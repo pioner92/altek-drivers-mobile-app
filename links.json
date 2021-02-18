@@ -1,0 +1,23 @@
+{
+    "login":"login",
+    "verification":"Verification",
+    "singUp": "SingUp",
+    "home":"Home",
+    "unloading":"Unloading",
+    "loadingVerified1" : "LoadVerified1",
+    "loadingVerified2" : "LoadVerified2",
+    "loadingVerified3" : "LoadVerified3",
+    "loadingVerified4" : "LoadVerified4",
+    "bids": "Bids",
+    "loadInfo": "LoadInfo",
+    "bidDetail": "BidDetail",
+    "filter" : "Filter",
+    "chat" : "Chat",
+    "chatContent" : "ChatContent",
+    "profile" : "Profile",
+    "editProfile": "EditProfile",
+    "notAvailable": "NotAvailable",
+    "camera": "Camera",
+    "myCards": "MyCards",
+    "editCardData": "EditCardData"
+}

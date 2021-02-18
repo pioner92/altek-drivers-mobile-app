@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "94041919412",
+    "project_id": "altek-drivers",
+    "storage_bucket": "altek-drivers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94041919412:android:8e610ae19be294cddeace1",
+        "android_client_info": {
+          "package_name": "au.com.altekdrivers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94041919412-cdp7kf59naohb54krdtsei1pkig5gp7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCao9tnBulwMbeA6zG5IiJN5dMk0ABc67Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "94041919412-cdp7kf59naohb54krdtsei1pkig5gp7j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "94041919412-tot6t7vv0l836f81ev74vfdhd56avb39.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.altekdrivers"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
