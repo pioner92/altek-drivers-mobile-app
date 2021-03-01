@@ -1,15 +1,15 @@
-import React from 'react';
-import {Animated, StyleSheet, View} from "react-native";
-import {SeeDetailBid} from "../../molecules/see-detail-bid";
-import {BidStepContent} from "../../../features/bid-card/ui/organisms";
-import {Wrapper} from "../../atoms/wrapper";
-import {useNavigate} from "../../../lib/hooks";
+import React from 'react'
+import {Animated, StyleSheet, View} from 'react-native'
+import {SeeDetailBid} from '../../molecules/see-detail-bid'
+import {BidStepContent} from '../../../features/bid-card/ui/organisms'
+import {Wrapper} from '../../atoms/wrapper'
+import {useNavigate} from '../../../lib/hooks'
 import links from '../../../../links.json'
-import {useStore} from "effector-react";
-import {$currentLoad} from "../../../../screens/load-info/models";
-import {Button} from "../../atoms/buttons";
-import {styleConfig} from "../../../StyleConfig";
-import {InfoSVG} from "../../atoms/icons";
+import {useStore} from 'effector-react'
+import {$currentLoad} from '../../../../screens/load-info/models'
+import {Button} from '../../atoms/buttons'
+import {styleConfig} from '../../../StyleConfig'
+import {InfoSVG} from '../../atoms/icons'
 
 type propsType = {
     animStyle: any
@@ -31,14 +31,14 @@ export const NewLoadOfferMenu: React.FC<propsType> = ({animStyle, closeMenu}) =>
     return (
         <Animated.View style={[animStyle, styles.container, styleConfig.shadowModal]}>
             <SeeDetailBid price={currentLoad?.driver_price || 0} Icon={InfoSVG} loadId={currentLoad?.id || 0}
-                          onPress={openBidsDetailMenu}/>
+                onPress={openBidsDetailMenu}/>
             <View style={styles.content}>
                 {currentLoad &&
                 <BidStepContent
-                    pickUp={currentLoad.pickUpAt || "*"}
-                    pickUpZip={currentLoad.pickUpAt_zip || "*"}
-                    deliveryTo={currentLoad.deliverTo || "*"}
-                    deliveryToZip={currentLoad.deliverTo_zip || "*"}
+                    pickUp={currentLoad.pickUpAt || '*'}
+                    pickUpZip={currentLoad.pickUpAt_zip || '*'}
+                    deliveryTo={currentLoad.deliverTo || '*'}
+                    deliveryToZip={currentLoad.deliverTo_zip || '*'}
                     pieces={currentLoad.pieces || 0}
                     weight={currentLoad.weight || 0}
                     totalMiles={currentLoad.miles || 0}
@@ -50,8 +50,8 @@ export const NewLoadOfferMenu: React.FC<propsType> = ({animStyle, closeMenu}) =>
                 <Button onPress={onClickAccept}>Accept</Button>
             </Wrapper>
         </Animated.View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -61,13 +61,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         borderTopRightRadius: 12,
         borderTopLeftRadius: 12,
-        position: "absolute",
+        position: 'absolute',
         bottom: 0,
-        zIndex: 101
+        zIndex: 101,
     },
     content: {
         paddingHorizontal: 28,
         marginBottom: 34,
-        marginTop: 12
-    }
+        marginTop: 12,
+    },
 })

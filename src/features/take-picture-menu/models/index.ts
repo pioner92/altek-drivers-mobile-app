@@ -1,1 +1,1 @@
-export {$animValueTakePicture,showTakePictureMenu,hideTakePictureMenu } from './models'
+export {$animValueTakePicture, showTakePictureMenu, hideTakePictureMenu} from './models'

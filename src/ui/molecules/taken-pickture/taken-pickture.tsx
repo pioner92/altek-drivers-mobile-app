@@ -1,7 +1,7 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from "react-native";
-import {CameraSVG} from "../../atoms/icons";
-import {styleConfig} from "../../../StyleConfig";
+import React from 'react'
+import {StyleSheet, Text, TouchableOpacity} from 'react-native'
+import {CameraSVG} from '../../atoms/icons'
+import {styleConfig} from '../../../StyleConfig'
 
 type propsType = {
     callback: () => void
@@ -9,12 +9,12 @@ type propsType = {
 
 export const TakenPicture: React.FC<propsType> = ({children, callback}) => {
     return (
-        <TouchableOpacity style={[styles.container,styleConfig.shadowMenu]} onPress={callback}>
+        <TouchableOpacity style={[styles.container, styleConfig.shadowMenu]} onPress={callback}>
             <CameraSVG/>
             <Text style={styles.label}>{children}</Text>
         </TouchableOpacity>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         height: 94,
         flex: 1,
-        maxHeight:94,
+        maxHeight: 94,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 6,
@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontFamily: 'IBMPlex-500',
         lineHeight: 16,
-        marginTop: 8
-    }
+        marginTop: 8,
+    },
 })

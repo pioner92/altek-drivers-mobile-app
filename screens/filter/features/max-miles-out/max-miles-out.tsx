@@ -1,15 +1,15 @@
-import React from 'react';
-import {StyleSheet, View} from "react-native";
-import {useStore} from "effector-react";
+import React from 'react'
+import {StyleSheet, View} from 'react-native'
+import {useStore} from 'effector-react'
 import {
     $sliderValueMaxMilesLeft,
     $sliderValueMaxMilesRight,
     MAX_MILES,
     setSliderValueMaxMilesLeft,
-    setSliderValueMaxMilesRight
-} from "./models";
-import {MultiSliderWithRange} from "../../../../src/ui/molecules/multi-slider/multi-slider-with-range";
-import {FilterTitle} from "../../ui/atoms/filter-title";
+    setSliderValueMaxMilesRight,
+} from './models'
+import {MultiSliderWithRange} from '../../../../src/ui/molecules/multi-slider/multi-slider-with-range'
+import {FilterTitle} from '../../ui/atoms/filter-title'
 
 export const MaxMilesOut: React.FC = () => {
     const valueLeft = useStore($sliderValueMaxMilesLeft)
@@ -37,16 +37,16 @@ export const MaxMilesOut: React.FC = () => {
                 />
             </View>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
         paddingTop: 24,
     },
-    sliderWrapper:{
-        justifyContent:'center',
-        alignItems:'center',
-        marginTop:8,
-    }
+    sliderWrapper: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 8,
+    },
 })

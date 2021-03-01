@@ -2,5 +2,5 @@ export {
     setSliderValueMinimumPayloadsRight,
     setSliderValueMinimumPayloadsLeft,
     $sliderValueMinimumPayloadsRight,
-    $sliderValueMinimumPayloadsLeft
+    $sliderValueMinimumPayloadsLeft,
 } from './models'

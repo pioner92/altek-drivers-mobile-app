@@ -4,5 +4,5 @@ export {
     $sliderValueMaxMilesLeft,
     setSliderValueMaxMilesRight,
     setSliderValueMaxMilesLeft,
-    $sliderValueMaxMilesRight
+    $sliderValueMaxMilesRight,
 } from './models'

@@ -7,7 +7,7 @@ export {DarkBg} from './dark-bg'
 export {Header} from './header'
 export {
     RightArrowSVG, BackSVG, BidsSVG, CameraSVG, ChatSVG, CheckBoxCheckedSVG, CheckBoxSVG, TruckSVG, FilterSVG, SendSVG,
-    InfoSVG, LoadSVG, LogoSVG, ProfileSVG
+    InfoSVG, LoadSVG, LogoSVG, ProfileSVG,
 } from './icons'
 export {Input} from './input'
 export {Line1px} from './line'

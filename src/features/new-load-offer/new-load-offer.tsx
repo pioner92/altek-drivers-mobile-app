@@ -1,17 +1,17 @@
-import React from 'react';
-import {Animated, StyleSheet, Text} from "react-native";
-import {useStore} from "effector-react";
-import {useInterpolate} from "../../../utils/animation-hooks/Hooks";
-import {NewLoadOfferMenu} from "../../ui/organisms/menu/new-load-offer";
-import {$isMountedNewLoadOfferMenu, $newLoadOfferAnimValue,} from "./models";
-import {DarkBg} from "../../ui/atoms/dark-bg";
-import {toUploadStatus} from "../../../hooks/delivery-hooks";
-import {showArrivedMenu} from "../arrived-menu/models";
-import {hideNewLoadOfferMenu} from "./models/models";
-import {statusGenerate} from "../../../utils/check-statuses-with-init/check-statuses-with-init";
-import {CardTopModal} from "../../ui/molecules/card-top-modal/card-top-bodal";
-import {styleConfig} from "../../StyleConfig";
-import {sendStatusToServerSocketAction} from "../../api/socket-client/socket-actions/socket-actions";
+import React from 'react'
+import {Animated, StyleSheet, Text} from 'react-native'
+import {useStore} from 'effector-react'
+import {useInterpolate} from '../../../utils/animation-hooks/Hooks'
+import {NewLoadOfferMenu} from '../../ui/organisms/menu/new-load-offer'
+import {$isMountedNewLoadOfferMenu, $newLoadOfferAnimValue} from './models'
+import {DarkBg} from '../../ui/atoms/dark-bg'
+import {toUploadStatus} from '../../../hooks/delivery-hooks'
+import {showArrivedMenu} from '../arrived-menu/models'
+import {hideNewLoadOfferMenu} from './models/models'
+import {statusGenerate} from '../../../utils/check-statuses-with-init/check-statuses-with-init'
+import {CardTopModal} from '../../ui/molecules/card-top-modal/card-top-modal'
+import {styleConfig} from '../../StyleConfig'
+import {sendStatusToServerSocketAction} from '../../api/socket-client/socket-actions/socket-actions'
 
 
 export const NewLoadOffer: React.FC = () => {
@@ -24,13 +24,13 @@ export const NewLoadOffer: React.FC = () => {
 
     const animMenuStyle = {
         transform: [
-            {translateY: menuInterpolateY}
-        ]
+            {translateY: menuInterpolateY},
+        ],
     }
     const animModalStyle = {
         transform: [
-            {translateY: modalInterpolateY}
-        ]
+            {translateY: modalInterpolateY},
+        ],
     }
 
     const accept = () => {
@@ -41,7 +41,7 @@ export const NewLoadOffer: React.FC = () => {
     }
 
     const animStyle = {
-        opacity: opacityInterpolate
+        opacity: opacityInterpolate,
     }
 
 
@@ -55,28 +55,27 @@ export const NewLoadOffer: React.FC = () => {
                     <NewLoadOfferMenu closeMenu={accept} animStyle={animMenuStyle}/>
                 </DarkBg>
             </Animated.View>
-        );
+        )
     } else {
         return null
     }
-
-};
+}
 
 const styles = StyleSheet.create({
     container: {
         height: '100%',
         width: '100%',
-        position: "absolute",
+        position: 'absolute',
         zIndex: 101,
-        backgroundColor: 'rgba(0,0,0,0.2)'
+        backgroundColor: 'rgba(0,0,0,0.2)',
     },
     anim: {
         height: '100%',
         width: '100%',
-        position: "absolute",
+        position: 'absolute',
         zIndex: 101,
     },
-    modalContentText:{
-        color:styleConfig.textColor.dark
-    }
+    modalContentText: {
+        color: styleConfig.textColor.dark,
+    },
 })

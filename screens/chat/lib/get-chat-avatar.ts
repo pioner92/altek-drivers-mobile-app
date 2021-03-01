@@ -1,20 +1,18 @@
-import {chatUsersType} from "../../../src/api/rest/chat/get-chats";
-import { $selfId} from "../models/models";
+import {chatUsersType} from '../../../src/api/rest/chat/get-chats'
+import {$selfId} from '../models/models'
 
-export const getChatAvatar = (users:chatUsersType) => {
+export const getChatAvatar = (users: chatUsersType) => {
     const dispatcher = findDispatcherFromArr(users)
-    if(dispatcher){
+    if (dispatcher) {
         return dispatcher.avatar
     }
 }
 
-export const findDispatcherFromArr =  (users:chatUsersType) => {
-
+export const findDispatcherFromArr = (users: chatUsersType) => {
     const selfId = $selfId.getState()
 
     if (selfId) {
-
-        let dispatcher = users.find((el) => el.toString() !== selfId.toString() && el.avatar)
+        const dispatcher = users.find((el) => el.toString() !== selfId.toString() && el.avatar)
         if (dispatcher) {
             return dispatcher
         }

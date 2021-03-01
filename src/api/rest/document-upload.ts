@@ -1,6 +1,6 @@
-import {getDb} from "../../../utils/db/get-db";
-import {TOKEN} from "../../../utils/db/constants";
-import {urls} from "../urls";
+import {getDb} from '../../../utils/db/get-db'
+import {TOKEN} from '../../../utils/db/constants'
+import {urls} from '../urls'
 
 
 export class UploadDocumentService {
@@ -8,10 +8,8 @@ export class UploadDocumentService {
     UploadService: UploadService
 
     constructor(UploadService: UploadService) {
-
         this.FileService = new FileService()
         this.UploadService = UploadService
-
     }
 
     uploadBolPicture(uri: string, id: string) {
@@ -20,7 +18,6 @@ export class UploadDocumentService {
 
     uploadTruckPicture(uri: string, id: string) {
         return this.UploadService.sentTuServer(this.FileService.create('Truck.jpeg', id, uri))
-
     }
 
     uploadPodPicture(uri: string, id: string) {
@@ -42,13 +39,12 @@ class FileService {
 
 
 export class UploadService {
-
     createFormData(id: string, name: string, file: { uri: string, name: string, type: string }) {
         const formData = new FormData()
         formData.append('name', name)
         formData.append('load', id)
-        //@ts-ignore
-        formData.append('file', file,'image.jpg')
+        // @ts-ignore
+        formData.append('file', file, 'image.jpg')
         return formData
     }
 
@@ -64,9 +60,9 @@ export class UploadService {
                 headers: {
                     // 'Accept': 'application/json',
                     // 'Content-Type': 'multipart/form-data',
-                    'Authorization': `JWT ${token}`
+                    'Authorization': `JWT ${token}`,
                 },
-                body: data
+                body: data,
             })
             return await response.json()
         } catch (e) {

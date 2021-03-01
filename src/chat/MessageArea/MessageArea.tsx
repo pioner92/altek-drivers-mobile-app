@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet} from "react-native";
-import {MessageContainer} from "./MessageContainer/MessageContainer";
-import {getDb} from "../../../utils/db/get-db";
-import {getChatData, mediaType} from "../../api/rest/chat/get-chat-data";
-import {useStore} from "effector-react";
-import {PHOTOPROFILE, USERID} from "../../../utils/db/constants";
+import React, {useEffect, useState} from 'react'
+import {FlatList, StyleSheet} from 'react-native'
+import {MessageContainer} from './MessageContainer/MessageContainer'
+import {getDb} from '../../../utils/db/get-db'
+import {getChatData} from '../../api/rest/chat/get-chat-data'
+import {useStore} from 'effector-react'
+import {PHOTOPROFILE, USERID} from '../../../utils/db/constants'
 import {
     $chatData,
     $chatMessages,
     $chatMessagesPage,
-    addNexPageMessages, setChatMessages,
-    setChatMessagesPage
-} from "../../../screens/chat/models/models";
+    setChatMessages,
+    setChatMessagesPage,
+} from '../../../screens/chat/models/models'
 
 
 type propsType = {
@@ -19,7 +19,6 @@ type propsType = {
 }
 
 export const MessageArea: React.FC<propsType> = ({id}) => {
-
     const messages = useStore($chatMessages)
     const pages = useStore($chatData).pages_count
     const messagesPage = useStore($chatMessagesPage)
@@ -36,17 +35,16 @@ export const MessageArea: React.FC<propsType> = ({id}) => {
         return () => {
             setChatMessages([])
         }
-
     }, [])
 
     useEffect(() => {
         if (messagesPage > 1 && messagesPage <= pages) {
-            getChatData({id, page:messagesPage})
-                // .then((data) => {
-                //     if (data) {
-                //         addNexPageMessages(data.chat_group_messages)
-                //     }
-                // })
+            getChatData({id, page: messagesPage})
+            // .then((data) => {
+            //     if (data) {
+            //         addNexPageMessages(data.chat_group_messages)
+            //     }
+            // })
         }
     }, [messagesPage])
 
@@ -76,7 +74,7 @@ export const MessageArea: React.FC<propsType> = ({id}) => {
                     <MessageContainer
                         isVisibleDateRow={isVisibleMessagesDate(item.modifiedDateTime)}
                         text={item.content}
-                        img={item.user_from?.avatar || ""}
+                        img={item.user_from?.avatar || ''}
                         type={item.files.length > 0 ? 'image' : 'text'}
                         files={item.files || []}
                         from={item.user_from.first_name}
@@ -89,14 +87,14 @@ export const MessageArea: React.FC<propsType> = ({id}) => {
             }
         >
         </FlatList>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
         flex: 10,
         width: '100%',
         paddingHorizontal: 15,
-        top: 0
-    }
+        top: 0,
+    },
 })

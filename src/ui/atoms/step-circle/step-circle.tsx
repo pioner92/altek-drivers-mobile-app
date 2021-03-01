@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from "react-native";
-import React from "react";
+import {StyleSheet, Text, View} from 'react-native'
+import React from 'react'
 
 export const StepCircle: React.FC = ({children}) => {
     return (
@@ -17,12 +17,12 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#DDEEFF',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
-    circleTitle:{
+    circleTitle: {
         fontSize: 10,
-        fontFamily:'IBMPlex-500',
+        fontFamily: 'IBMPlex-500',
         color: '#fff',
-        textAlign:"center"
-    }
+        textAlign: 'center',
+    },
 })

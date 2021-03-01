@@ -1,7 +1,7 @@
-import {makeRequest} from "../../make-request";
-import {urls} from "../../urls";
-import {createEffect} from "effector";
-import {setChatsData} from "../../../../screens/chat/models/models";
+import {makeRequest} from '../../make-request'
+import {urls} from '../../urls'
+import {createEffect} from 'effector'
+import {setChatsData} from '../../../../screens/chat/models/models'
 
 
 type lastMessageType = {
@@ -31,7 +31,7 @@ export type getChatsResponseType = Array<{
     id: number,
     last_message: lastMessageType
     users: chatUsersType
-    unread_count:number
+    unread_count: number
     created_date: string
     modifiedDateTime: string
     removedDateTime: string
@@ -42,7 +42,7 @@ export type getChatsResponseType = Array<{
 }>
 
 
-export const getChats = createEffect(async () :Promise<getChatsResponseType | undefined> =>{
+export const getChats = createEffect(async (): Promise<getChatsResponseType | undefined> => {
     try {
         return await makeRequest({url: urls.getChats(), method: 'GET', token: true})
     } catch (error) {
@@ -51,11 +51,10 @@ export const getChats = createEffect(async () :Promise<getChatsResponseType | un
     }
 })
 
-getChats.done.watch(({result})=>{
+getChats.done.watch(({result}) => {
     if (result) {
         setChatsData(result)
     }
 })
-
 
 

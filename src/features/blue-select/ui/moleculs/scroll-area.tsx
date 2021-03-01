@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, ScrollView, Text, TouchableOpacity} from "react-native";
+import React, {useState} from 'react'
+import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 
 export type valueType = {
     id: number
@@ -12,7 +12,6 @@ type propsType = {
 }
 
 export const ScrollArea: React.FC<propsType> = ({values, onSelect}) => {
-
     const [selectedIndex, setSelectedIndex] = useState(1)
 
     const onPress = (el: valueType) => {
@@ -22,8 +21,8 @@ export const ScrollArea: React.FC<propsType> = ({values, onSelect}) => {
 
     return (
         <ScrollView keyboardDismissMode="on-drag"
-                    nestedScrollEnabled={true}
-                    style={styles.container}>
+            nestedScrollEnabled={true}
+            style={styles.container}>
             <View style={styles.valuesWrapper}>
                 {values.map((el) => {
                     return (
@@ -37,22 +36,22 @@ export const ScrollArea: React.FC<propsType> = ({values, onSelect}) => {
                 })}
             </View>
         </ScrollView>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {},
     valuesWrapper: {
-        paddingVertical: 5
+        paddingVertical: 5,
     },
     valueWrapper: {
         borderRadius: 4,
     },
     value: {
-        textAlign: "center",
+        textAlign: 'center',
         fontSize: 12,
         lineHeight: 16,
         fontFamily: 'IBMPlex-400',
-        paddingVertical: 6
-    }
+        paddingVertical: 6,
+    },
 })

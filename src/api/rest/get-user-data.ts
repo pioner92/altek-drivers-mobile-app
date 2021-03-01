@@ -1,17 +1,16 @@
-import {createEffect} from "effector";
-import {urls} from "../urls";
-import {setCurrentLoad} from "../../../screens/load-info/models";
-import {makeRequest} from "../make-request";
-import {loadType} from "./loads/get-loads";
-import {setCompanyHash} from "../../../Store/user-data";
-import {setUserData} from "../../../screens/profile/models/models";
-import {login} from "./auth/login";
-import {getDb} from "../../../utils/db";
-import {EMAIL, PASSWORD, TOKEN} from "../../../utils/db/constants";
-import {BGGeolocationService} from "../../../utils/bg-sending-geo/bg-geolocation-service";
-import {FirebaseService} from "../../../utils/firebase-serivce/firebase-service";
-import {updateProfileDateOnServer} from "./update-profile";
-import {notificationHandler} from "../../../utils/firebase-serivce/notification-handler";
+import {createEffect} from 'effector'
+import {urls} from '../urls'
+import {setCurrentLoad} from '../../../screens/load-info/models'
+import {makeRequest} from '../make-request'
+import {loadType} from './loads/get-loads'
+import {setCompanyHash} from '../../../Store/user-data'
+import {setUserData} from '../../../screens/profile/models/models'
+import {login} from './auth/login'
+import {getDb} from '../../../utils/db'
+import {EMAIL, PASSWORD} from '../../../utils/db/constants'
+import {FirebaseService} from '../../../utils/firebase-serivce/firebase-service'
+import {updateProfileDateOnServer} from './update-profile'
+import {notificationHandler} from '../../../utils/firebase-serivce/notification-handler'
 
 
 type responseUserDataType = {
@@ -63,7 +62,7 @@ type responseUserDataType = {
         location: string
         owner: string
         responsible_user: string
-        status: "Available" | 'Non Available' | 'On load'
+        status: 'Available' | 'Non Available' | 'On load'
         unique_sms_key: string
         user: {
             address: string
@@ -77,7 +76,7 @@ type responseUserDataType = {
             phone_number: string
             zip_code: string
         },
-        "working_car"
+        'working_car'
             :
             82,
     },
@@ -122,7 +121,6 @@ export const getUserData = createEffect(async (): Promise<responseUserDataType |
 
 getUserData.done.watch(async ({result}) => {
     if (result && result !== 401) {
-
         setCompanyHash(result?.company_info?.company_hash)
 
         const {first_name, last_name, phone_number, id} = result
@@ -133,17 +131,16 @@ getUserData.done.watch(async ({result}) => {
             setCurrentLoad(result.driver_info.driver_loads[0])
         }
 
+
         const fbToken = await FirebaseService.getToken()
+        // FirebaseService.sendPushLogOut(id)
+
 
         if (fbToken) {
-            FirebaseService.foregroundMessageListener({handler:notificationHandler})
+            FirebaseService.foregroundMessageListener({handler: notificationHandler})
             updateProfileDateOnServer({fb_token: fbToken})
-
+            FirebaseService.topicSubscribe(id.toString())
         }
-
-        // BGGeolocationService({token:token || "",url:urls.sendGeo(),distance:1,interval:10000 })
-
-
     } else if (result && result === 401) {
         const email = await getDb(EMAIL)
         const password = await getDb(PASSWORD)

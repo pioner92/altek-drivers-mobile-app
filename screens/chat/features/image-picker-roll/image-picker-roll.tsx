@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {FlatList, View} from "react-native";
-import {ImageView} from "../ui/molecules/image-view";
-import {Asset} from "expo-media-library/src/MediaLibrary";
-import * as MediaLibrary from "expo-media-library";
+import React, {useEffect, useState} from 'react'
+import {FlatList, View} from 'react-native'
+import {ImageView} from '../ui/molecules/image-view'
+import {Asset} from 'expo-media-library/src/MediaLibrary'
+import * as MediaLibrary from 'expo-media-library'
 
 type propsType = {
     // images: Array<Asset>
@@ -10,19 +10,17 @@ type propsType = {
 }
 
 export const ImagePickerRoll: React.FC<propsType> = ({onSelect}) => {
-
     const [selectedImages, setSelectedImages] = useState<Array<string>>([])
     const [assets, setAssets] = useState<Array<Asset>>([])
     const [endCursor, setEndCursor] = useState<string | undefined>(undefined)
 
     const onPressHandler = (uri: string) => {
         selectImageHandler(uri)
-
     }
 
     const selectImageHandler = (uri: string) => {
         if (selectedImages.includes(uri)) {
-            setSelectedImages(selectedImages.filter(el => el !== uri))
+            setSelectedImages(selectedImages.filter((el) => el !== uri))
         } else {
             setSelectedImages([...selectedImages, uri])
         }
@@ -40,12 +38,11 @@ export const ImagePickerRoll: React.FC<propsType> = ({onSelect}) => {
     }
 
     useEffect(() => {
-
         (async function f() {
             const {granted} = await MediaLibrary.requestPermissionsAsync()
             if (granted) {
                 const media = await MediaLibrary.getAssetsAsync({
-                    first: 20
+                    first: 20,
                 })
                 if (media.assets) {
                     setAssets(media.assets)
@@ -69,10 +66,10 @@ export const ImagePickerRoll: React.FC<propsType> = ({onSelect}) => {
             showsVerticalScrollIndicator={false}
             style={{height: 196}}
             initialScrollIndex={0}
-            columnWrapperStyle={{justifyContent: "space-between"}}
+            columnWrapperStyle={{justifyContent: 'space-between'}}
             numColumns={3}
             ItemSeparatorComponent={
-                () => <View style={{backgroundColor: 'transparent',height:6 }}/>
+                () => <View style={{backgroundColor: 'transparent', height: 6}}/>
             }
             onEndReached={onNextPage}
             onEndReachedThreshold={0}

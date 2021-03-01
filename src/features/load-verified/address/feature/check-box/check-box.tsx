@@ -1,18 +1,17 @@
-import React from 'react';
-import {StyleSheet, View} from "react-native";
-import {CheckBoxItem} from "../../../../../ui/molecules/check-box-item";
-import {useStore} from "effector-react";
-import {$checkedIndex, setCheckedIndex} from "./models";
+import React from 'react'
+import {StyleSheet, View} from 'react-native'
+import {CheckBoxItem} from '../../../../../ui/molecules/check-box-item'
+import {useStore} from 'effector-react'
+import {$checkedIndex, setCheckedIndex} from './models'
 
 
 type propsType = {
-    callback?:(index:number)=>void
+    callback?: (index: number) => void
 }
 export const CheckBox: React.FC<propsType> = ({callback}) => {
-
     const values = [
         {index: 0, value: 'No'},
-        {index: 1, value: 'Yes'}
+        {index: 1, value: 'Yes'},
     ]
 
     const checkedIndex = useStore($checkedIndex)
@@ -36,8 +35,8 @@ export const CheckBox: React.FC<propsType> = ({callback}) => {
                 {values[1].value}
             </CheckBoxItem>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -45,5 +44,5 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between',
-    }
+    },
 })

@@ -1,5 +1,5 @@
-import {createEvent, createStore} from "effector";
-import moment from "moment";
+import {createEvent, createStore} from 'effector'
+import moment from 'moment'
 
 export const TIMER_VALUE = 300
 
@@ -45,7 +45,7 @@ stopTimer.watch(() => {
     resetCounter()
 })
 
-$counter.watch(state => {
+$counter.watch((state) => {
     if (state <= 0) {
         stopTimer()
     }

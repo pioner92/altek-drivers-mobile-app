@@ -1,30 +1,27 @@
-import React from 'react';
-import {GestureResponderEvent, StyleSheet, TouchableOpacity, ViewStyle} from "react-native";
+import React from 'react'
+import {StyleSheet, View, ViewStyle} from 'react-native'
 
 type buttonSetAvailableType = {
     children: React.ReactChild
-    callback: (e: GestureResponderEvent) => void
-    style?:ViewStyle
+    style?: ViewStyle
 }
 
 
-
-export const ButtonSetAvailable: React.FC<buttonSetAvailableType> = ({children,style, callback}) => {
+export const ButtonSetAvailable: React.FC<buttonSetAvailableType> = ({children, style}) => {
     return (
-        <TouchableOpacity
-            style={[styles.button,style]}
-            onPress={callback}>
+        <View
+            style={[styles.button, style]}>
             {children}
-        </TouchableOpacity>
-    );
-};
+        </View>
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         height: 42,
         width: 104,
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
     button: {
         justifyContent: 'center',
@@ -35,9 +32,9 @@ const styles = StyleSheet.create({
         width: 48,
         zIndex: 10,
         transform: [
-            {translateX: -20}
+            {translateX: -20},
         ],
-        shadowColor:'red',
+        shadowColor: 'red',
         shadowOffset: {
             width: 0,
             height: 0,
@@ -45,7 +42,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 3,
         elevation: 5,
-    }
+    },
 })
 
 

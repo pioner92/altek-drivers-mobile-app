@@ -1,7 +1,5 @@
-import {createEvent, createStore} from "effector";
-import {Animated} from "react-native";
-import {useTiming} from "../../../../../utils/animation-hooks/Hooks";
-import {$arrivedMenuAnimValue} from "../../../../../src/features/arrived-menu/models";
+import {createEvent, createStore} from 'effector'
+import {Animated} from 'react-native'
 
 export const showDarkBGAnimated = createEvent()
 export const hideDarkBGAnimated = createEvent()
@@ -11,15 +9,17 @@ const setIsMountedDarkBGAnimated = createEvent<boolean>()
 export const $animValueDarkBGAnimated = createStore(new Animated.Value(0))
 
 export const $isMountedDarkBGAnimated = createStore(false)
-    .on(setIsMountedDarkBGAnimated,(state, payload) => payload)
+    .on(setIsMountedDarkBGAnimated, (state, payload) => payload)
 
-showDarkBGAnimated.watch(()=>{
+showDarkBGAnimated.watch(() => {
     setIsMountedDarkBGAnimated(true)
-    useTiming($arrivedMenuAnimValue.getState(),1,500).start()
+    // useTiming($arrivedMenuAnimValue.getState(),1,300).start()
 })
 
-hideDarkBGAnimated.watch(()=>{
-    useTiming($arrivedMenuAnimValue.getState(),0,500).start(()=>{
-        setIsMountedDarkBGAnimated(false)
-    })
+hideDarkBGAnimated.watch(() => {
+    setIsMountedDarkBGAnimated(false)
+
+    // useTiming($arrivedMenuAnimValue.getState(),0,300).start(()=>{
+    //     setIsMountedDarkBGAnimated(false)
+    // })
 })

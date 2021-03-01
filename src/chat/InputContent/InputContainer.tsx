@@ -1,17 +1,15 @@
-import React, {useState} from 'react';
-import {StyleSheet, TextInput, View} from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
-import {SendButton} from "./SendButton";
-import {messageType} from "../../api/rest/chat/get-chat-data";
+import React, {useState} from 'react'
+import {StyleSheet, TextInput, View} from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import {SendButton} from './SendButton'
 
 
 type propsType = {
     openAttach: () => void
-    sendMessage: (text: string,type:'text') => void
+    sendMessage: (text: string, type: 'text') => void
 }
 
 export const InputContainer: React.FC<propsType> = ({openAttach, sendMessage}) => {
-
     const [inputValue, setInputValue] = useState('')
 
     const onChange = (text: string) => {
@@ -20,14 +18,14 @@ export const InputContainer: React.FC<propsType> = ({openAttach, sendMessage}) =
 
     const onSend = () => {
         if (inputValue.trim()) {
-            sendMessage(inputValue,'text')
+            sendMessage(inputValue, 'text')
         }
         setInputValue('')
     }
 
     return (
         <View style={styles.container}>
-            <Icon onPress={openAttach} name='paperclip' size={20} style={{marginBottom:8}} color={'#4d4d4d'}/>
+            <Icon onPress={openAttach} name='paperclip' size={20} style={{marginBottom: 8}} color={'#4d4d4d'}/>
             <TextInput
                 multiline
                 value={inputValue}
@@ -38,8 +36,8 @@ export const InputContainer: React.FC<propsType> = ({openAttach, sendMessage}) =
             />
             <SendButton callback={onSend} inputValue={inputValue}/>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -48,10 +46,10 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         width: '100%',
         paddingBottom: 10,
-        paddingTop:5,
+        paddingTop: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        backgroundColor:'#fff'
+        backgroundColor: '#fff',
     },
 
     input: {
@@ -61,6 +59,6 @@ const styles = StyleSheet.create({
         borderColor: '#EBEBEB',
         borderRadius: 10,
         fontFamily: 'IBMPlex-600',
-        color: '#5B5B5B'
+        color: '#5B5B5B',
     },
 })

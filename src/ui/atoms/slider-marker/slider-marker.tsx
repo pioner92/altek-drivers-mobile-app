@@ -1,7 +1,7 @@
-import {View,StyleSheet} from "react-native";
-import React from "react";
+import {StyleSheet, View} from 'react-native'
+import React from 'react'
 
-export const SliderMarker = (e:any) => {
+export const SliderMarker = (e: any) => {
     return (
         <View
             style={styles.container}/>
@@ -9,12 +9,12 @@ export const SliderMarker = (e:any) => {
 }
 
 const styles = StyleSheet.create({
-    container:{
-        width:20,
-        height:20,
-        borderRadius:50,
-        backgroundColor:'#1672D4',
-        borderColor:'#BBD6FF',
-        borderWidth:2
-    }
+    container: {
+        width: 20,
+        height: 20,
+        borderRadius: 50,
+        backgroundColor: '#1672D4',
+        borderColor: '#BBD6FF',
+        borderWidth: 2,
+    },
 })

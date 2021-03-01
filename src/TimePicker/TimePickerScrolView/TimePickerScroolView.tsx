@@ -1,5 +1,5 @@
-import React from 'react';
-import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import React from 'react'
+import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 
 type TimePickerScrollViewType = {
     timeListValidate: () => string[]
@@ -7,7 +7,7 @@ type TimePickerScrollViewType = {
     setSelectedValue: Function
 }
 
-const {width} =  Dimensions.get('window')
+const {width} = Dimensions.get('window')
 
 const timeList = ['Now', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00']
 
@@ -15,9 +15,9 @@ const timeList = ['Now', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00',
 export const TimePickerScrollView = ({timeListValidate, selectedValue, setSelectedValue}: TimePickerScrollViewType) => {
     return (
         <ScrollView horizontal={true}
-                    scrollEventThrottle={16}
-                    showsHorizontalScrollIndicator={false}
-                    style={styles.container}
+            scrollEventThrottle={16}
+            showsHorizontalScrollIndicator={false}
+            style={styles.container}
         >
             <View style={styles.wrapper}>
                 {timeList.map((el, index) => {
@@ -27,7 +27,7 @@ export const TimePickerScrollView = ({timeListValidate, selectedValue, setSelect
                             style={[styles.timeValueWrapper,
                                 {
                                     backgroundColor: el === selectedValue ? '#DDEEFF' : '#F3F5F9',
-                                    marginLeft: index === 0 ? 15 : 10
+                                    marginLeft: index === 0 ? 15 : 10,
                                 }]}
                             key={index}
                             onPress={() => setSelectedValue(el)}>
@@ -40,30 +40,30 @@ export const TimePickerScrollView = ({timeListValidate, selectedValue, setSelect
                 })}
             </View>
         </ScrollView>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
 
     container: {
         height: 33,
-        flex:1,
+        flex: 1,
         minWidth: width,
         left: 0,
-        right:0,
-        bottom:0,
-        width:370,
-        position:'absolute',
+        right: 0,
+        bottom: 0,
+        width: 370,
+        position: 'absolute',
         transform: [{
-            translateX: -15
-        }]
+            translateX: -15,
+        }],
     },
     wrapper: {
         height: 33,
         alignItems: 'center',
         flexDirection: 'row',
-        justifyContent:'center',
-        marginRight:10,
+        justifyContent: 'center',
+        marginRight: 10,
 
     },
     timeValueWrapper: {
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         height: 30,
         borderRadius: 5,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     timeValue: {
         fontFamily: 'IBMPlex-400',

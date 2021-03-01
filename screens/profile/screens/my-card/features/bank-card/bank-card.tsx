@@ -1,17 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {styleConfig} from "../../../../../../src/StyleConfig";
-import {separatorCardNumber} from "./lib/separatorCardNumber";
-import {BankCardGradient} from "./ui/atoms/bank-card-gradient";
-import {useStore} from "effector-react";
-import {$isVisibleBankCardData, setIsVisibleBankCardData} from "./models/models";
+import React from 'react'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {styleConfig} from '../../../../../../src/StyleConfig'
+import {separatorCardNumber} from './lib/separatorCardNumber'
+import {BankCardGradient} from './ui/atoms/bank-card-gradient'
+import {useStore} from 'effector-react'
+import {$isVisibleBankCardData} from './models/models'
 import {
-    $inputValueCardCVC,
     $inputValueCardDate,
     $inputValueCardHolderName,
     $inputValueCardNumber,
-    initCardData
-} from "../../../edit-card-data/features/bank-detail-inputs/models/models";
+} from '../../../edit-card-data/features/bank-detail-inputs/models/models'
 
 export const BankCard: React.FC = () => {
     const isVisibleCardData = useStore($isVisibleBankCardData)
@@ -24,37 +22,37 @@ export const BankCard: React.FC = () => {
 
 
     return (
-        <TouchableOpacity  style={[styles.container, styleConfig.shadowModal]}>
+        <TouchableOpacity style={[styles.container, styleConfig.shadowModal]}>
             <BankCardGradient>
                 <View style={styles.cardNumberWrapper}>
                     {cardNumberArr.map((el, index) => {
                         return (
                             <Text key={index}
-                                  style={[styles.cardValues, !isVisibleCardData && styles.circles, {letterSpacing: 2}]}>{el}</Text>
+                                style={[styles.cardValues, !isVisibleCardData && styles.circles, {letterSpacing: 2}]}>{el}</Text>
                         )
                     })}
                 </View>
                 <View style={styles.row}>
                     <View style={styles.cardHolderWrapper}>
                         <Text style={styles.cardTitle}>Card Holder</Text>
-                        {isVisibleCardData
-                            ? <Text style={styles.cardValues}>{cardHolderName}</Text>
-                            : <Text style={[styles.cardValues, styles.circles]}>{circles}</Text>
+                        {isVisibleCardData ?
+                            <Text style={styles.cardValues}>{cardHolderName}</Text> :
+                            <Text style={[styles.cardValues, styles.circles]}>{circles}</Text>
                         }
 
                     </View>
                     <View style={styles.cardExpDateWrapper}>
                         <Text style={styles.cardTitle}>EXP DATE</Text>
-                        {isVisibleCardData
-                            ? <Text style={styles.cardValues}>{cardDate}</Text>
-                            : <Text style={[styles.cardValues, styles.circles]}>{circles}</Text>
+                        {isVisibleCardData ?
+                            <Text style={styles.cardValues}>{cardDate}</Text> :
+                            <Text style={[styles.cardValues, styles.circles]}>{circles}</Text>
                         }
                     </View>
                 </View>
             </BankCardGradient>
         </TouchableOpacity>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -70,40 +68,40 @@ const styles = StyleSheet.create({
         paddingHorizontal: 28,
         paddingBottom: 29,
         paddingTop: 63,
-        justifyContent: "space-between",
+        justifyContent: 'space-between',
     },
     cardNumberWrapper: {
         width: '100%',
-        height:18,
-        flexDirection: "row",
-        justifyContent: "space-between"
+        height: 18,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     cardValues: {
         color: '#fff',
         fontSize: 13,
         lineHeight: 18,
-        fontFamily: 'Nunito Sans'
+        fontFamily: 'Nunito Sans',
     },
     cardHolderWrapper: {
-        height:32
+        height: 32,
     },
     cardExpDateWrapper: {
-        height:32
+        height: 32,
     },
     cardTitle: {
         color: '#fff',
         opacity: 0.5,
         fontSize: 8,
         lineHeight: 11,
-        textTransform: "uppercase"
+        textTransform: 'uppercase',
     },
     circles: {
-        color: '#98B7EE'
+        color: '#98B7EE',
     },
     row: {
         flexDirection: 'row',
         width: '100%',
-        justifyContent: "space-between"
-    }
+        justifyContent: 'space-between',
+    },
 
 })

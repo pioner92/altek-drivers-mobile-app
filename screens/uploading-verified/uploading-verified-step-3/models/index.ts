@@ -1,1 +1,1 @@
-export {$imageDataTruck,setImageDataTruck} from './models'
+export {$imageDataTruck, setImageDataTruck} from './models'

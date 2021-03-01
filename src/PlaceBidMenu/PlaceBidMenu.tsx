@@ -1,13 +1,12 @@
-import React, {useState} from 'react';
-import {Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
-import {useSpring} from "../../utils/animation-hooks/Hooks";
-import {useStore} from "effector-react";
-import {selectedBidStore, setIsStartedIntervalEvent, setSentBidIdEvent, timer} from "../../Store/Store";
-import {sendBid} from "../api/rest/bid/send-bid";
+import React, {useState} from 'react'
+import {Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
+import {useSpring} from '../../utils/animation-hooks/Hooks'
+import {useStore} from 'effector-react'
+import {selectedBidStore, setIsStartedIntervalEvent, setSentBidIdEvent, timer} from '../../Store/Store'
+import {sendBid} from '../api/rest/bid/send-bid'
 
 
 export const PlaceBidMenu = ({value, closeModal}: any) => {
-
     const selectedBidId = useStore(selectedBidStore)
 
     const [inputValue, setInputValue] = useState(0)
@@ -60,8 +59,8 @@ export const PlaceBidMenu = ({value, closeModal}: any) => {
                 </View>
             </View>
         </View>
-    );
-};
+    )
+}
 
 type buttonComponentType = {
     callback: () => void
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
     wrapper: {
         position: 'absolute',
         width: '100%',
-        bottom: 0
+        bottom: 0,
     },
     content: {
         backgroundColor: '#F9FAFF',
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingTop: 21,
-        paddingHorizontal: 29
+        paddingHorizontal: 29,
     },
     textInput: {
         textAlign: 'center',
@@ -108,13 +107,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 23,
         color: '#102656',
         fontSize: 14,
-        lineHeight: 18
+        lineHeight: 18,
     },
     textButton: {
         fontSize: 14,
         fontFamily: 'IBMPlex-600',
         lineHeight: 18,
-        color: '#1067C5'
-    }
+        color: '#1067C5',
+    },
 })
 

@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyleSheet} from "react-native";
-import {LinearGradient} from "expo-linear-gradient";
+import React from 'react'
+import {StyleSheet} from 'react-native'
+import {LinearGradient} from 'expo-linear-gradient'
 
 export const BankCardGradient: React.FC = ({children}) => {
     return (
@@ -12,8 +12,8 @@ export const BankCardGradient: React.FC = ({children}) => {
         >
             {children}
         </LinearGradient>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -23,6 +23,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 28,
         paddingBottom: 29,
         paddingTop: 63,
-        justifyContent: "space-between",
-    }
+        justifyContent: 'space-between',
+    },
 })

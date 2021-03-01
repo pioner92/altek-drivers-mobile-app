@@ -1,8 +1,8 @@
 import {createEffect} from 'effector'
-import {urls} from "../../urls";
-import {setDb} from "../../../../utils/db/set-db";
-import {makeRequest} from "../../make-request";
-import {FIRSTNAME, LASTNAME, TOKEN} from "../../../../utils/db/constants";
+import {urls} from '../../urls'
+import {setDb} from '../../../../utils/db/set-db'
+import {makeRequest} from '../../make-request'
+import {FIRSTNAME, LASTNAME, TOKEN} from '../../../../utils/db/constants'
 
 type dataType = {
     email: string

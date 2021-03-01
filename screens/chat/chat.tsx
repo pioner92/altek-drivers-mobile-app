@@ -1,70 +1,40 @@
-import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, View} from "react-native";
-import {ChatRow} from "../../src/chat/ChatRow";
-import {chatUsersType, getChats} from "../../src/api/rest/chat/get-chats";
-import {useStore} from "effector-react";
-import {ScreenWrapper} from "../../src/ui/atoms/screen-wrapper/screen-wrapper";
-import {navButtonIndex, setSelectedIndexNavButton} from "../../src/features/navigation/models/models";
-import {getDb} from "../../utils/db";
-import {USERID} from "../../utils/db/constants";
-import {$chatsData, setIsAmInChat, setSelfId} from './models/models';
-import {getChatAvatar} from "./lib/get-chat-avatar";
+import React, {useEffect} from 'react'
+import {ScrollView, StyleSheet, View} from 'react-native'
+import {ChatRow} from '../../src/chat/ChatRow'
+import {getChats} from '../../src/api/rest/chat/get-chats'
+import {useStore} from 'effector-react'
+import {ScreenWrapper} from '../../src/ui/atoms/screen-wrapper/screen-wrapper'
+import {getDb} from '../../utils/db'
+import {USERID} from '../../utils/db/constants'
+import {$chatsData, setIsAmInChat, setSelfId} from './models/models'
+import {getChatAvatar} from './lib/get-chat-avatar'
+import {StackScreenProps} from '@react-navigation/stack'
+import links from '../../links.json'
+import {StackScreenCreator} from '../../src/features/navigation/features/stack-screen-creator/stack-screen-creator'
 
-
-// export const findDispatcherFromArr =  (arr: chatUsersType,userId:string) => {
-//     if (userId) {
-//         let dispatcher = arr.find((el) => el.toString() !== userId && el.avatar)
-//         if (dispatcher) {
-//             return dispatcher
-//         }
-//     }
-// }
-//
-// export const getChatAvatar = (arr:chatUsersType,selfId:string) => {
-//     const dispatcher = findDispatcherFromArr(arr,selfId)
-//     if(dispatcher) {
-//         return dispatcher.avatar
-//     }
-// }
-
-
-export const Chat = () => {
+const Chat: React.FC<StackScreenProps<any>> = ({navigation}) => {
     const chats = useStore($chatsData)
-    const [userId,setUserId] = useState('')
 
-    // const findDispatcherFromArr =  (arr: chatUsersType) => {
-    //     if (userId) {
-    //         let dispatcher = arr.find((el) => el.toString() !== userId && el.avatar)
-    //         if (dispatcher) {
-    //             return dispatcher
-    //         }
-    //     }
-    // }
+    const geUserId = async () => {
+        const userId = await getDb(USERID)
+        if (userId) {
+            setSelfId(+userId)
+        }
+    }
+
 
     useEffect(() => {
+        geUserId()
         setIsAmInChat(true)
-        setSelectedIndexNavButton(navButtonIndex.chat)
         getChats()
-
-            return () => {setIsAmInChat(false)}
     }, [])
-
-    useEffect(()=>{
-        (async function getUserId(){
-           const userId = await getDb(USERID)
-            if(userId){
-                setSelfId(+userId)
-                setUserId(userId)
-            }
-        })()
-    },[])
 
 
     return (
-        <ScreenWrapper enableNavigateButtons={true}>
+        <ScreenWrapper enableNavigateButtons={false}>
             <ScrollView
                 style={styles.container}>
-                <View >
+                <View>
                     {chats.map((el) => {
                         return (
                             <ChatRow
@@ -81,13 +51,16 @@ export const Chat = () => {
                 </View>
             </ScrollView>
         </ScreenWrapper>
-    );
-};
+    )
+}
+
+export const ChatStackScreen = () => StackScreenCreator({link: links.chat, title: 'Chats', component: Chat})
+
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        height: '100%'
-    }
+        height: '100%',
+    },
 })
 

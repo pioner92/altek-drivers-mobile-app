@@ -1,6 +1,6 @@
-import {getDb, setDb} from "../../../../../utils/db";
-import {CARDS} from "../../../../../utils/db/constants";
-import {decryptData, encryptData} from "../../../../../utils/encryption";
+import {getDb, setDb} from '../../../../../utils/db'
+import {CARDS} from '../../../../../utils/db/constants'
+import {decryptData, encryptData} from '../../../../../utils/encryption'
 
 export type cardDataItemType = {
     id: number
@@ -15,7 +15,6 @@ type cardType = Omit<cardDataItemType, 'id'>
 
 
 export class Encrypting {
-
     encrypt(data: cardsDataType) {
         return this.execute(data, encryptData)
     }
@@ -65,7 +64,6 @@ export class CardsDataHService {
     }
 
     async addCard({cardNumber, cardHolderName, cardDate, cardCvs, id}: cardType & { id?: number }) {
-
         const oldCards = await this.getCards()
         if (oldCards?.length) {
             if (id !== undefined) {
@@ -101,6 +99,5 @@ export class CardsDataHService {
         this.DB.set(this.encrypting.encrypt(data))
     }
 }
-
 
 

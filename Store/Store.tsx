@@ -1,6 +1,6 @@
-import {createEvent, createStore, Event} from "effector";
-import {loadType} from "../src/api/rest/loads/get-loads";
-import {getChats} from "../src/api/rest/chat/get-chats";
+import {createEvent, createStore, Event} from 'effector'
+import {loadType} from '../src/api/rest/loads/get-loads'
+import {getChats} from '../src/api/rest/chat/get-chats'
 
 // Events
 
@@ -15,7 +15,7 @@ export const setIsLoadedBidsEvent = createEvent<boolean>()
 
 export const resetIsAuth = createEvent()
 
-//State
+// State
 
 
 export const loadsListStore = createStore<Array<loadType>>([])
@@ -69,7 +69,5 @@ setIsAuth.watch((payload) => {
         getChats()
     }
 })
-
-
 
 

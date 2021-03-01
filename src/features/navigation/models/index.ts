@@ -1,1 +1,1 @@
-export {$animValueNavigation,showNavigationPanel,hideNavigationPanel} from './models'
+export {$animValueNavigation, showNavigationPanel, hideNavigationPanel} from './models'

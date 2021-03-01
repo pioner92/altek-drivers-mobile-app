@@ -1,26 +1,31 @@
-import React from 'react';
-import {Dimensions, ScrollView, StyleSheet, View} from "react-native";
-import {ScreenWrapper} from "../../../../src/ui/atoms/screen-wrapper/screen-wrapper";
-import {PhotoProfileBlock} from "./features/photo-profile-block";
-import {PersonalInfo} from "./features/personal-info/personal-info";
-import {LogOut} from "./features/log-out";
-import {Button} from "../../../../src/ui/atoms/buttons";
-import {TakePictureMenu} from "../../../../src/features/take-picture-menu";
-import {Camera} from 'expo-camera';
-import {useNavigate} from "../../../../src/lib/hooks";
+import React, {useCallback} from 'react'
+import {Dimensions, Platform, ScrollView, StyleSheet, View} from 'react-native'
+import {ScreenWrapper} from '../../../../src/ui/atoms/screen-wrapper/screen-wrapper'
+import {PhotoProfileBlock} from './features/photo-profile-block'
+import {PersonalInfo} from './features/personal-info/personal-info'
+import {LogOut} from './features/log-out'
+import {Button} from '../../../../src/ui/atoms/buttons'
+import {TakePictureMenu} from '../../../../src/features/take-picture-menu'
+import {Camera} from 'expo-camera'
+import {useNavigate} from '../../../../src/lib/hooks'
 import links from '../../../../links.json'
-import {setDb} from "../../../../utils/db";
-import {setUserPhoto} from "../../models";
-import {imagePicker} from "../../../../utils/image-picker";
-import * as MediaLibrary from "expo-media-library";
-import {updateProfile} from "../../models/models";
-import {styleConfig} from "../../../../src/StyleConfig";
-import {LogOutAnimMenu} from "./features/log-out-anim-menu/log-out-anim-menu";
-import {PHOTOPROFILE} from "../../../../utils/db/constants";
-
+import {setDb} from '../../../../utils/db'
+import {setUserPhoto} from '../../models'
+import {imagePicker} from '../../../../utils/image-picker'
+import * as MediaLibrary from 'expo-media-library'
+import {updateProfile} from '../../models/models'
+import {styleConfig} from '../../../../src/StyleConfig'
+import {LogOutAnimMenu} from './features/log-out-anim-menu/log-out-anim-menu'
+import {PHOTOPROFILE} from '../../../../utils/db/constants'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {useHeaderHeight} from '@react-navigation/stack'
 
 export const EditProfile: React.FC = () => {
     const navigate = useNavigate()
+
+    const inset = useSafeAreaInsets()
+    const headerHeight = useHeaderHeight()
+
 
     const photo = (photo: string) => {
         setDb(PHOTOPROFILE, photo)
@@ -29,42 +34,45 @@ export const EditProfile: React.FC = () => {
 
     const takePhoto = async () => {
         await MediaLibrary.requestPermissionsAsync()
-        const {status} = await Camera.requestPermissionsAsync();
+        const {status} = await Camera.requestPermissionsAsync()
         status === 'granted' && navigate(links.camera, {callback: photo})
     }
 
     const getPhotoFromCameraRoll = async () => {
-        let result = await imagePicker()
+        const result = await imagePicker()
         if (!result.cancelled) {
             setUserPhoto(result.uri)
             setDb(PHOTOPROFILE, result.uri)
         }
     }
 
+    const onPressUpdateProfile = useCallback(() => {
+        updateProfile()
+        navigate(links.profile)
+    }, [])
+
     return (
         <>
-            <ScreenWrapper isEnabledHeightController={true} enableNavigateButtons={true} >
-                    <ScrollView contentContainerStyle={{height:Dimensions.get("window").height}} >
-                        <View style={styles.container}>
-                {/*<KeyboardAvoidingView behavior={Platform.OS === "ios"?'padding':'position'} style={{flex: 1}}>*/}
-                {/*        <View style={{flex:1}}>*/}
-                            <PhotoProfileBlock/>
-                            <PersonalInfo/>
-                            <LogOut/>
-                        {/*</View>*/}
-
+            <ScreenWrapper isEnabledHeightController={true}
+                safeAreaStyle={{backgroundColor: styleConfig.screenBackground}}>
+                <ScrollView contentContainerStyle={{height: Dimensions.get('window').height - headerHeight}}>
+                    <View style={styles.container}>
+                        <PhotoProfileBlock/>
+                        <PersonalInfo/>
+                        <LogOut/>
                         <View style={{
                             width: '100%',
-                            minHeight:150,
-                            marginTop:'auto',
-                            justifyContent: "flex-end",
-                            paddingBottom: 80
+                            flex: 1,
+                            minHeight: 60,
+                            marginTop: 30,
+                            bottom: 20,
+                            justifyContent: 'flex-end',
+                            paddingBottom: inset.bottom || Platform.OS === 'ios' ? 0 : 20,
                         }}>
-                            <Button onPress={() => updateProfile()} theme='white'>Update profile</Button>
+                            <Button onPress={onPressUpdateProfile} theme='white'>Update profile</Button>
                         </View>
-                {/*</KeyboardAvoidingView>*/}
-                        </View>
-                    </ScrollView>
+                    </View>
+                </ScrollView>
             </ScreenWrapper>
             <LogOutAnimMenu/>
             <TakePictureMenu
@@ -75,14 +83,14 @@ export const EditProfile: React.FC = () => {
                 callbackSecondButton={getPhotoFromCameraRoll}
             />
         </>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
-        height:'100%',
+        height: '100%',
         paddingTop: 26,
-        paddingHorizontal: 16
+        paddingHorizontal: 16,
     },
     camera: {
         height: 500,
@@ -104,7 +112,7 @@ const styles = StyleSheet.create({
     },
     logOutMenu: {
         height: 120,
-        justifyContent: "space-between",
-        paddingHorizontal: styleConfig.screenPadding
-    }
+        justifyContent: 'space-between',
+        paddingHorizontal: styleConfig.screenPadding,
+    },
 })

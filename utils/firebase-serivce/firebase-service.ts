@@ -1,7 +1,6 @@
-import messaging, {FirebaseMessagingTypes} from "@react-native-firebase/messaging";
-import {notificationHandlerPropsType} from "./notification-handler";
-import {chatContentPropsType} from "../../screens/chat/chat-content/chat-content";
-
+import messaging, {FirebaseMessagingTypes} from '@react-native-firebase/messaging'
+import {notificationHandlerPropsType} from './notification-handler'
+import {chatContentPropsType} from '../../screens/chat/chat-content/chat-content'
 
 
 type backgroundMessageHandlerType = {
@@ -9,12 +8,11 @@ type backgroundMessageHandlerType = {
 }
 
 const chatNotificationValidate = (message: FirebaseMessagingTypes.RemoteMessage) => {
-
-    return message?.data
-        && message.data.hasOwnProperty("action")
-        && message.data.action === "chat_message"
-        && message.data.hasOwnProperty("id")
-        && message.data.id
+    return message?.data &&
+        message.data.hasOwnProperty('action') &&
+        message.data.action === 'chat_message' &&
+        message.data.hasOwnProperty('id') &&
+        message.data.id
 }
 
 
@@ -22,10 +20,10 @@ export class FirebaseService {
     static unsubscribeCallback: () => void | undefined
 
     static requestUserPermission = async () => {
-        const authStatus = await messaging().requestPermission();
+        const authStatus = await messaging().requestPermission()
         const enabled =
             authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-            authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+            authStatus === messaging.AuthorizationStatus.PROVISIONAL
         return enabled
     }
 
@@ -33,31 +31,35 @@ export class FirebaseService {
     static getToken = async () => {
         const isEnabled = await FirebaseService.requestUserPermission()
         if (isEnabled) {
-            const fcmToken = await messaging().getToken();
+            const fcmToken = await messaging().getToken()
             if (fcmToken) {
-                console.log(fcmToken)
-                messaging().subscribeToTopic("all")
+                messaging().subscribeToTopic('all')
 
                 return fcmToken
             } else {
-                console.log("Failed", "No token received");
+                console.log('Failed', 'No token received')
             }
         }
     }
 
+
+    static topicSubscribe = (topicName: string) => {
+        messaging().subscribeToTopic(topicName)
+    }
+
     static foregroundMessageListener = ({handler}: backgroundMessageHandlerType) => {
-        FirebaseService.unsubscribeCallback = messaging().onMessage(async remoteMessage => {
-            console.log("MESSAGE FOREGROUND")
+        FirebaseService.unsubscribeCallback = messaging().onMessage(async (remoteMessage) => {
+            console.log('MESSAGE FOREGROUND')
             handler({message: remoteMessage})
-        });
+        })
     }
 
     static backgroundMessageListener = ({handler}: backgroundMessageHandlerType) => {
-        messaging().setBackgroundMessageHandler(async remoteMessage => {
-            console.log('Message handled in the background!', remoteMessage);
-            console.log("MESSAGE BACKGROUND")
+        messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+            console.log('Message handled in the background!', remoteMessage)
+            console.log('MESSAGE BACKGROUND')
             handler({message: remoteMessage})
-        });
+        })
     }
 
 
@@ -69,7 +71,7 @@ export class FirebaseService {
             }
         })
         messaging().getInitialNotification()
-            .then((message)=>{
+            .then((message) => {
                 if (message && chatNotificationValidate(message)) {
                     const {id} = message.data!
                     callback({id: +id})
@@ -77,11 +79,12 @@ export class FirebaseService {
             })
     }
 
-    static unsubscribeRemoteMessage() {
+    static unsubscribeRemoteMessage = () => {
         messaging().unregisterDeviceForRemoteMessages()
+        messaging().deleteToken()
     }
 
-    static unsubscribe() {
+    static unsubscribe = () => {
         if (FirebaseService.unsubscribeCallback) {
             FirebaseService.unsubscribeCallback()
         }

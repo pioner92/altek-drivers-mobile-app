@@ -1,1 +1,1 @@
-export {$animValueBidList,showBidList,hideBidList,$isMountedBIdList} from './models'
+export {$animValueBidList, showBidList, hideBidList, $isMountedBIdList} from './models'

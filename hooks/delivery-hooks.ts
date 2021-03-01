@@ -1,12 +1,12 @@
-import {createStore,createEvent} from "effector";
+import {createEvent, createStore} from 'effector'
 
-export const statuses= {
-    waiting : 'waiting',
-    toUpload : 'toUpload',
-    uploading : 'uploading',
-    toUnload : "toUnload",
-    unloading : 'unloading',
-    completed:'completed'
+export const statuses = {
+    waiting: 'waiting',
+    toUpload: 'toUpload',
+    uploading: 'uploading',
+    toUnload: 'toUnload',
+    unloading: 'unloading',
+    completed: 'completed',
 }
 
 type keys = keyof typeof statuses
@@ -24,25 +24,25 @@ export const setSelfStatus = createEvent<eventType>()
 export const resetSelfStatus = createEvent()
 
 export const $selfStatus = createStore<eventType>(statuses.waiting)
-    .on(setSelfStatus,((state, payload) => payload))
+    .on(setSelfStatus, ((state, payload) => payload))
     .reset(resetSelfStatus)
 
-waitingStatus.watch(()=>{
+waitingStatus.watch(() => {
     setSelfStatus(statuses.waiting)
 })
-toUploadStatus.watch(()=>{
+toUploadStatus.watch(() => {
     setSelfStatus(statuses.toUpload)
 })
-uploadingStatus.watch(()=>{
+uploadingStatus.watch(() => {
     setSelfStatus(statuses.uploading)
 })
-toUnloadStatus.watch(()=>{
+toUnloadStatus.watch(() => {
     setSelfStatus(statuses.toUnload)
 })
-unloadingStatus.watch(()=>{
+unloadingStatus.watch(() => {
     setSelfStatus(statuses.unloading)
 })
-completedStatus.watch(()=>{
+completedStatus.watch(() => {
     setSelfStatus(statuses.completed)
 })
 

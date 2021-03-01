@@ -5,5 +5,5 @@ export {
     $buttonIsDisabled,
     setButtonIsDisabled,
     setIsMountedArrivedMenu,
-    $isMountedArrivedMenu
+    $isMountedArrivedMenu,
 } from './models'

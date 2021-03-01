@@ -1,1 +1,1 @@
-export {$isMounted,setIsMountedStayAtPickUpMenu} from './models'
+export {$isMounted, setIsMountedStayAtPickUpMenu} from './models'

@@ -1,9 +1,9 @@
-import React from 'react';
-import {StyleSheet, Text, View} from "react-native";
-import {StepCircles} from "../../ui/molecules/steps/steps";
-import {loadType} from "../../api/rest/loads/get-loads";
-import {styleConfig} from "../../StyleConfig";
-import {nullableDateValidate, VALUEINSTEAD} from "../../lib/nullableDateValidate/nullableDateValidate";
+import React from 'react'
+import {StyleSheet, Text, View} from 'react-native'
+import {StepCircles} from '../../ui/molecules/steps/steps'
+import {loadType} from '../../api/rest/loads/get-loads'
+import {styleConfig} from '../../StyleConfig'
+import {VALUEINSTEAD} from '../../lib/nullableDateValidate/nullableDateValidate'
 
 
 type propsType = {
@@ -12,21 +12,17 @@ type propsType = {
 }
 
 
-
-export const BidDetailSteps: React.FC<propsType> = ({item,isCargo = true}) => {
-
-
+export const BidDetailSteps: React.FC<propsType> = ({item, isCargo = true}) => {
     return (
         <View style={styles.wrapper}>
             <StepCircles/>
             <View style={{justifyContent: 'space-between'}}>
-                <StepContent point='Pick-up' direction={item.pickUpAt} date={`${nullableDateValidate(item?.pick_up_date)}`}/>
+                <StepContent point='Pick-up' direction={item.pickUpAt} date={`${item?.pick_up_date || VALUEINSTEAD }`}/>
                 {isCargo ?
-                    <CargoWrapper item={item}/>
-                    :
+                    <CargoWrapper item={item}/> :
                     <View style={{height: 40}}/>
                 }
-                <StepContent point='Delivery' direction={item.deliverTo} date={`${nullableDateValidate(item.delivery_date)}`}/>
+                <StepContent point='Delivery' direction={item.deliverTo} date={`${item.delivery_date || VALUEINSTEAD}`}/>
             </View>
         </View>
     )
@@ -48,14 +44,14 @@ const DirectionTitle: React.FC = ({children}) => {
 }
 
 type dateTitleType = {
-    isEnabledTitleLocal:boolean
+    isEnabledTitleLocal: boolean
 }
-const DateTitle: React.FC<dateTitleType> = ({children,isEnabledTitleLocal= true}) => {
+const DateTitle: React.FC<dateTitleType> = ({children, isEnabledTitleLocal = true}) => {
     return (
         <Text style={styles.dateTitle}>
             {children}
             {isEnabledTitleLocal &&
-                <Text style={{color:'#798293',fontSize:10,lineHeight:13}}> ( local )</Text>
+            <Text style={{color: '#798293', fontSize: 10, lineHeight: 13}}> ( local )</Text>
             }
         </Text>
     )
@@ -69,10 +65,10 @@ type stepContent = {
 
 const StepContent: React.FC<stepContent> = ({point, direction, date}) => {
     return (
-        <View style={{height:52,justifyContent:"space-between"}}>
+        <View style={{height: 52, justifyContent: 'space-between'}}>
             <DetailStateTitle>{point}</DetailStateTitle>
             <DirectionTitle>{direction}</DirectionTitle>
-            <DateTitle isEnabledTitleLocal={date !== VALUEINSTEAD }>{date}</DateTitle>
+            <DateTitle isEnabledTitleLocal={date !== VALUEINSTEAD}>{date}</DateTitle>
         </View>
     )
 }
@@ -118,22 +114,22 @@ const styles = StyleSheet.create({
         height: 382,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#F9FAFF'
+        backgroundColor: '#F9FAFF',
     },
     wrapper: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     pointTitle: {
         fontSize: 10,
         fontFamily: 'IBMPlex-400',
         lineHeight: 13,
-        color: styleConfig.textColor.dark
+        color: styleConfig.textColor.dark,
     },
     directionTitle: {
         fontSize: 14,
         fontFamily: 'IBMPlex-500',
         lineHeight: 18,
-        color: styleConfig.textColor.dark
+        color: styleConfig.textColor.dark,
 
     },
     dateTitle: {
@@ -141,7 +137,7 @@ const styles = StyleSheet.create({
         fontFamily: 'IBMPlex-400',
         letterSpacing: -0.02,
         lineHeight: 16,
-        color: styleConfig.textColor.dark
+        color: styleConfig.textColor.dark,
     },
     cargoTitle: {
         fontSize: 14,
@@ -150,30 +146,30 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontStyle: 'normal',
         color: '#091735',
-        marginBottom: 8
+        marginBottom: 8,
     },
     propertyTitle: {
         fontSize: 12,
         fontFamily: 'IBMPlex-400',
-        color: '#8E8E8E'
+        color: '#8E8E8E',
     },
     propertyValue: {
         fontSize: 12,
         fontFamily: 'IBMPlex-400',
         color: '#091735',
-        lineHeight: 16
+        lineHeight: 16,
     },
     cargoPropertiesWrapper: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     propertyTitleWrapper: {
         height: 62,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     propertyValueWrapper: {
         marginLeft: 24,
         height: 62,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
 
-    }
+    },
 })

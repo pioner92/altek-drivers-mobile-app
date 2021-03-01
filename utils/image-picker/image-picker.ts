@@ -1,4 +1,4 @@
-import * as ImagePicker from "expo-image-picker";
+import * as ImagePicker from 'expo-image-picker'
 
 export const imagePicker = async () => {
     return await ImagePicker.launchImageLibraryAsync({
@@ -6,5 +6,5 @@ export const imagePicker = async () => {
         allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
-    });
+    })
 }

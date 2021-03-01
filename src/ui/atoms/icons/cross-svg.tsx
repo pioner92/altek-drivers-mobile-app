@@ -1,6 +1,5 @@
-import React from 'react';
-import {View, StyleSheet} from "react-native";
-import Svg, {Path} from "react-native-svg";
+import React from 'react'
+import Svg, {Path} from 'react-native-svg'
 
 export const CrossSVG: React.FC = () => {
     return (
@@ -10,9 +9,6 @@ export const CrossSVG: React.FC = () => {
                 fill="#1F2934"
             />
         </Svg>
-    );
-};
+    )
+}
 
-const styles = StyleSheet.create({
-    container: {}
-})

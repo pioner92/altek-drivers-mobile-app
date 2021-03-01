@@ -1,6 +1,6 @@
-import React from 'react';
-import {StyleSheet, Text, TextStyle, TouchableOpacity, View, ViewStyle} from "react-native";
-import {ColorCard} from "../../atoms/card/ColorCard";
+import React from 'react'
+import {StyleSheet, Text, TextStyle, TouchableOpacity, View, ViewStyle} from 'react-native'
+import {ColorCard} from '../../atoms/card/ColorCard'
 
 type theme = 'blue' | 'gray'
 
@@ -18,37 +18,37 @@ type propsType = {
     Icon: React.FC
     onPress: () => void
     label: string
-    labelStyle?:TextStyle
+    labelStyle?: TextStyle
     theme?: theme
-    style?:ViewStyle
+    style?: ViewStyle
 }
 
-export const ButtonColorCardWithIcon: React.FC<propsType> = ({onPress, Icon, label, theme = 'blue',labelStyle,style}) => {
+export const ButtonColorCardWithIcon: React.FC<propsType> = ({onPress, Icon, label, theme = 'blue', labelStyle, style}) => {
     return (
-        <ColorCard style={[{...style},{borderRadius: 10, backgroundColor: bg[theme]}]}>
+        <ColorCard style={[{...style}, {borderRadius: 10, backgroundColor: bg[theme]}]}>
             <TouchableOpacity onPress={onPress} style={styles.container}>
-                <Text style={[styles.text, {color: labelColor[theme]},labelStyle]}>{label}</Text>
+                <Text style={[styles.text, {color: labelColor[theme]}, labelStyle]}>{label}</Text>
                 <View style={{}}>
                     <Icon/>
                 </View>
             </TouchableOpacity>
         </ColorCard>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         width: '100%',
-        justifyContent: "space-between",
+        justifyContent: 'space-between',
         padding: 10,
-        alignItems: "center"
+        alignItems: 'center',
     },
     text: {
-        flex:1,
+        flex: 1,
         color: '#1A579A',
         fontSize: 14,
         fontFamily: 'IBMPlex-500',
         lineHeight: 18,
-    }
+    },
 })

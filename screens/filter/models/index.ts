@@ -1,1 +1,1 @@
-export {setIsFilteredBids,$isFilteredBids} from './models'
+export {setIsFilteredBids, $isFilteredBids} from './models'

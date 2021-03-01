@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {StyleSheet, View} from "react-native";
-import moment from "moment";
-import {TimePickerScrollView} from "./TimePickerScrolView/TimePickerScroolView";
-import {TimePickerHeader} from "./TimePickerHeader/TimePickerHeader";
+import React, {useState} from 'react'
+import {StyleSheet, View} from 'react-native'
+import moment from 'moment'
+import {TimePickerScrollView} from './TimePickerScrolView/TimePickerScroolView'
+import {TimePickerHeader} from './TimePickerHeader/TimePickerHeader'
 
 export const TimePicker = () => {
     const [selectedValue, setSelectedValue] = useState('Now')
@@ -15,12 +15,10 @@ export const TimePicker = () => {
 
     const timeListValidate = () => {
         const data = timeList.slice(1).filter((el) => {
-
             return +currentTime < +moment(el, 'hh').format('h')
         })
         data.unshift('Now')
         return data
-
     }
 
     return (
@@ -31,18 +29,18 @@ export const TimePicker = () => {
                 setSelectedTimeType={setSelectedTimeType}
             />
             <TimePickerScrollView timeListValidate={timeListValidate}
-                                  selectedValue={selectedValue}
-                                  setSelectedValue={setSelectedValue}/>
+                selectedValue={selectedValue}
+                setSelectedValue={setSelectedValue}/>
 
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
-        height:60,
-        width:'100%',
-        marginBottom:20
+        height: 60,
+        width: '100%',
+        marginBottom: 20,
     },
 
 })

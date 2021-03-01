@@ -1,29 +1,26 @@
-import {setDb} from "../../../utils/db";
+import {setDb} from '../../../utils/db'
 import {
     DELIVERYPOINT,
     MAXMILES,
     MINIMUMDIMSHEIGHT,
     MINIMUMDIMSLENGTH,
-    MINIMUMDIMSWIDTH, MINIMUMPAYLOADS,
-    PICKUPPOINT
-} from "../../../utils/db/constants";
-import {
-    setDeliveryPointEvent,
-    setMaxMilesEvent, setMinimumDimsHeightEvent,
-     setMinimumDimsWidthEvent, setMinimumPayloadsEvent,
-} from "../../../Store/FilterStore";
-import {setIsFilteredBids} from "../models";
-import {setInputValueDeliveryPoint} from "../features/delivery-point/models";
-import {setInputValuePickUpPoint} from "../features/pick-up-point/models";
+    MINIMUMDIMSWIDTH,
+    MINIMUMPAYLOADS,
+    PICKUPPOINT,
+} from '../../../utils/db/constants'
+import {setMaxMilesEvent} from '../../../Store/FilterStore'
+import {setIsFilteredBids} from '../models'
+import {setInputValueDeliveryPoint} from '../features/delivery-point/models'
+import {setInputValuePickUpPoint} from '../features/pick-up-point/models'
 import {
     setMinimumDimsHeightValue,
     setMinimumDimsLengthValue,
-    setMinimumDimsWidthValue
-} from "../features/minimum-dims/models";
+    setMinimumDimsWidthValue,
+} from '../features/minimum-dims/models'
 import {
     setSliderValueMinimumPayloadsLeft,
-    setSliderValueMinimumPayloadsRight
-} from "../features/minimum-payloads/models";
+    setSliderValueMinimumPayloadsRight,
+} from '../features/minimum-payloads/models'
 
 export const clearFilter = () => {
     setDb(MAXMILES, '')

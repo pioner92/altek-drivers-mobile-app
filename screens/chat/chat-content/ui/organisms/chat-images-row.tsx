@@ -1,16 +1,15 @@
-import {TouchableOpacity, View} from "react-native";
-import {MessageImage} from "../../../../../src/chat/MessageArea/MessageContainer/MessageImage/MessageImage";
-import {serverUrl} from "../../../../../src/api/urls";
-import React, {useState} from "react";
-import {mediaType} from "../../../../../src/api/rest/chat/get-chat-data";
-import {ImageModalView} from "../../features/image-modal-view/image-modal-view";
+import {TouchableOpacity, View} from 'react-native'
+import {MessageImage} from '../../../../../src/chat/MessageArea/MessageContainer/MessageImage/MessageImage'
+import {serverUrl} from '../../../../../src/api/urls'
+import React, {useState} from 'react'
+import {mediaType} from '../../../../../src/api/rest/chat/get-chat-data'
+import {ImageModalView} from '../../features/image-modal-view/image-modal-view'
 
 type propsType = {
-    images:mediaType
+    images: mediaType
 }
 
-export const ChatImagesRow:React.FC<propsType> = ({images}) => {
-
+export const ChatImagesRow: React.FC<propsType> = ({images}) => {
     const [isOpened, setIsOpened] = useState(false)
 
     const openImage = () => {
@@ -18,10 +17,11 @@ export const ChatImagesRow:React.FC<propsType> = ({images}) => {
     }
 
     const getImagesArr = () => {
-        return images.map((el) => ({url: `${serverUrl}${el.path}`}))    }
+        return images.map((el) => ({url: `${serverUrl}${el.path}`}))
+    }
 
     return (
-        <TouchableOpacity onPress={openImage} style={{flexDirection: "row"}}>
+        <TouchableOpacity onPress={openImage} style={{flexDirection: 'row'}}>
             {
                 images.map((el) => (
                     <View key={el.id} style={{marginHorizontal: 2}}>

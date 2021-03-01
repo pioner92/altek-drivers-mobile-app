@@ -1,1 +1,1 @@
-export {setInputValueDeliveryPoint,$inputValueDeliveryPoint} from './models'
+export {setInputValueDeliveryPoint, $inputValueDeliveryPoint} from './models'

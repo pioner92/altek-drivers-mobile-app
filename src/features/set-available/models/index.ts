@@ -6,5 +6,5 @@ export {
     $setAvailableAnimValue,
     $shadowColor,
     $svgColor,
-    $title
+    $title,
 } from './models'

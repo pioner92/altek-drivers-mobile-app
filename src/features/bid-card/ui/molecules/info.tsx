@@ -1,40 +1,39 @@
-import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import React from 'react'
+import {StyleSheet, Text, View} from 'react-native'
 
 type InfoType = {
-    title1:string
-    title2:string
-    title3:string
+    value1: string
+    value2: string
+    value3: string
+    value4: string
 }
 
-export const Info:React.FC<InfoType> = ({title1,title2,title3}) => {
+export const Info: React.FC<InfoType> = ({value1, value2, value3, value4}) => {
     return (
         <View style={styles.info}>
-            <View style={{alignItems:'flex-end',height:26}}>
-                <Text style={styles.infoTitle}>{title1}</Text>
-                <Text style={styles.infoTitle}> {title2}</Text>
+            <View style={{alignItems: 'flex-end', flex: 1}}>
+                <Text style={styles.infoTitle}>{value1}</Text>
+                <Text style={styles.infoTitle}> {value2}</Text>
             </View>
-            <View style={{height:13,alignItems:'flex-end'}}>
-                <Text style={styles.infoTitle}>{title3}</Text>
+            <View style={{alignItems: 'flex-end'}}>
+                <Text style={styles.infoTitle}>{value3}</Text>
+                <Text style={styles.infoTitle}>{value4}</Text>
             </View>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     info: {
         alignItems: 'flex-end',
-        marginRight: 14,
-        height:82,
-        justifyContent:'space-between',
-        paddingTop:13,
-        paddingBottom:11
+        flexDirection: 'column',
     },
     infoTitle: {
-        color: '#133271',
-        fontSize: 10,
+        color: '#798293',
+        fontSize: 12,
+        letterSpacing: -0.01,
         fontFamily: 'IBMPlex-400',
         fontWeight: 'normal',
-        lineHeight: 13
-    }
+        lineHeight: 16,
+    },
 })

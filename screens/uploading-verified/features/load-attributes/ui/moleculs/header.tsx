@@ -1,20 +1,20 @@
-import React from 'react';
-import {View, StyleSheet} from "react-native";
-import {Title} from "../atoms";
+import React from 'react'
+import {StyleSheet, View} from 'react-native'
+import {Title} from '../atoms'
 
 export const Header: React.FC = () => {
     return (
         <View style={styles.container}>
-            <View style={{flex:1.5}}></View>
+            <View style={{flex: 1.5}}></View>
             <Title>Scheduled</Title>
             <Title>Actual</Title>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection:'row',
-        width:'100%',
-    }
+        flexDirection: 'row',
+        width: '100%',
+    },
 })

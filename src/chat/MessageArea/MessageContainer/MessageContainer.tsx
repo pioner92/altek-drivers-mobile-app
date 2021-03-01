@@ -1,8 +1,8 @@
-import React from 'react';
-import {Image, PixelRatio, StyleSheet, Text, View} from "react-native";
-import {Message} from "./Message";
-import {serverUrl} from "../../../api/urls";
-import {mediaType} from "../../../api/rest/chat/get-chat-data";
+import React from 'react'
+import {Image, PixelRatio, StyleSheet, View} from 'react-native'
+import {Message} from './Message'
+import {serverUrl} from '../../../api/urls'
+import {mediaType} from '../../../api/rest/chat/get-chat-data'
 
 
 type propsType = {
@@ -36,8 +36,7 @@ export const MessageContainer: React.FC<propsType> = ({text, img, from, bySelf, 
                         {img ?
                             <Image
                                 source={{uri: `${serverUrl}${img}`}}
-                                style={styles.avatar}/>
-                            :
+                                style={styles.avatar}/> :
                             <View
                                 style={[styles.avatar, {backgroundColor: '#f4f4f4'}]}
                             />
@@ -45,17 +44,17 @@ export const MessageContainer: React.FC<propsType> = ({text, img, from, bySelf, 
                     </View>
                 </View>
             </View>
-            {/*{isVisibleDateRow &&*/}
+            {/* {isVisibleDateRow &&*/}
             {/*    <View style={styles.messagesDateRow}>*/}
             {/*        <View style={styles.messagesDateWrapper}>*/}
             {/*            <Text style={styles.messageDateRowTitle}>{time}</Text>*/}
             {/*        </View>*/}
 
             {/*    </View>*/}
-            {/*}*/}
+            {/* }*/}
         </>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -65,29 +64,29 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     wrapper: {
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
     avatar: {
         width: PixelRatio.getPixelSizeForLayoutSize(15),
         height: PixelRatio.getPixelSizeForLayoutSize(15),
         borderRadius: 50,
-        marginHorizontal: 6
+        marginHorizontal: 6,
     },
     messagesDateRow: {
         width: '100%',
-        alignItems: "center",
+        alignItems: 'center',
         marginVertical: 10,
     },
     messagesDateWrapper: {
         backgroundColor: '#DDEEFF',
         paddingHorizontal: 9,
         paddingVertical: 5,
-        borderRadius: 10
+        borderRadius: 10,
     },
     messageDateRowTitle: {
         color: '#3284D2',
         fontFamily: 'IBMPlex-600',
         fontSize: 10,
-        lineHeight: 13
-    }
+        lineHeight: 13,
+    },
 })

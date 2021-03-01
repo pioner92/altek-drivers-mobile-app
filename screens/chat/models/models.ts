@@ -1,6 +1,6 @@
-import {createEvent, createStore} from "effector";
-import {getChatDataResponseType, messagesType} from "../../../src/api/rest/chat/get-chat-data";
-import {getChatsResponseType} from "../../../src/api/rest/chat/get-chats";
+import {createEvent, createStore} from 'effector'
+import {getChatDataResponseType, messagesType} from '../../../src/api/rest/chat/get-chat-data'
+import {getChatsResponseType} from '../../../src/api/rest/chat/get-chats'
 
 export const setIsNewMessageInChat = createEvent<boolean>()
 export const setIsAmInChat = createEvent<boolean>()
@@ -12,14 +12,14 @@ export const addNewChatMessage = createEvent<messagesType>()
 export const addNexPageMessages = createEvent<messagesType>()
 export const setChatMessagesPage = createEvent()
 export const setChatData = createEvent<getChatDataResponseType>()
-export const setUnreadCount = createEvent<{ id: number, count?: number,content?:string }>()
+export const setUnreadCount = createEvent<{ id: number, count?: number, content?: string }>()
 
 export const resetChatsData = createEvent()
 
 
 export const $chatsData = createStore<getChatsResponseType>([])
     .on(setChatsData, (state, payload) => payload)
-    .on(setUnreadCount, (state, payload) => [...unreadCountHandler(state, payload.id, payload.count,payload.content)])
+    .on(setUnreadCount, (state, payload) => [...unreadCountHandler(state, payload.id, payload.count, payload.content)])
     .reset(resetChatsData)
 
 export const $chatData = createStore<getChatDataResponseType>({} as getChatDataResponseType)
@@ -45,15 +45,15 @@ export const $selfId = createStore<number | null>(null)
     .on(setSelfId, (state, payload) => payload)
 
 
-const unreadCountHandler = (state: getChatsResponseType, id: number, count?: number,content?:string) => {
+const unreadCountHandler = (state: getChatsResponseType, id: number, count?: number, content?: string) => {
     const index = state.findIndex((el) => el.id === id)
     if (index !== -1) {
         state[index].unread_count = count === undefined ? state[index].unread_count + 1 : 0
-        if(content) {
+        if (content) {
             state[index].last_message.content = content
         }
         const chat = [...state][index]
-        state.splice(index,1)
+        state.splice(index, 1)
         state.unshift(chat)
     }
     return state

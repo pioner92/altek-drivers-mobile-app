@@ -1,6 +1,6 @@
-import {calculationDistance} from "./calculation-distance";
-import {updateLoadsType} from "../socket-client";
-import {pushNotification} from "../../../../utils/notification/push-notification";
+import {calculationDistance} from './calculation-distance'
+import {updateLoadsType} from '../socket-client'
+import {pushNotification} from '../../../../utils/notification/push-notification'
 
 export const pushNotificationNewLoad = (data: updateLoadsType) => {
     const load = data.data[0]
@@ -16,7 +16,7 @@ export const pushNotificationNewLoad = (data: updateLoadsType) => {
             pushNotification({
                 title: 'You can make a new bid on a load',
                 text: `${load.pickUpAt} —> ${load.deliverTo}, ${load.miles} miles. 
-${load.weight || '0'} LBS and ${load.pieces || '0'} PC, ${Math.ceil(distance)} miles out.`
+${load.weight || '0'} LBS and ${load.pieces || '0'} PC, ${Math.ceil(distance)} miles out.`,
             })
         }
     }

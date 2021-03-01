@@ -1,1 +1,1 @@
-export {$isWaitingResult,setIsWaitingResult} from './models'
+export {$isWaitingResult, setIsWaitingResult} from './models'

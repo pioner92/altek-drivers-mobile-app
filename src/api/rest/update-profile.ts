@@ -1,6 +1,6 @@
-import {createEffect} from "effector";
-import {makeRequest} from "../make-request";
-import {urls} from "../urls";
+import {createEffect} from 'effector'
+import {makeRequest} from '../make-request'
+import {urls} from '../urls'
 
 type propsData = {
     firstName?: string
@@ -15,22 +15,20 @@ type datType = {
 }
 
 export const updateProfileDateOnServer = createEffect(async ({firstName, lastName, fb_token}: propsData) => {
-
-    const data: datType = {
-    }
+    const data: datType = {}
 
     if (firstName) {
-        data["first_name"] = firstName
+        data['first_name'] = firstName
     }
     if (lastName) {
-        data["last_name"] = lastName
+        data['last_name'] = lastName
     }
     if (fb_token) {
-        data["fb_token"] = fb_token
+        data['fb_token'] = fb_token
     }
 
     return await makeRequest({
-        url: urls.updateProfile(), token: true, method: 'PUT', body: data
+        url: urls.updateProfile(), token: true, method: 'PUT', body: data,
     })
 })
 

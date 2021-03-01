@@ -1,18 +1,17 @@
-import {createEffect} from "effector";
-import {urls} from "../../urls";
-import {addLoadsToStoreEvent, geoLocationStore} from "../../../../Store/Store";
-import {makeRequest} from "../../make-request";
-import {hidePreloader, showPreloader} from "../../../features/preloader/models/models";
-import {getDb} from "../../../../utils/db";
-import {DELIVERYPOINT, MAXMILES, PICKUPPOINT, USERID} from "../../../../utils/db/constants";
-import {useStore} from "effector-react";
-import {$inputValuePickUpPoint} from "../../../../screens/filter/features/pick-up-point/models";
-import {$inputValueDeliveryPoint} from "../../../../screens/filter/features/delivery-point/models";
+import {createEffect} from 'effector'
+import {urls} from '../../urls'
+import {addLoadsToStoreEvent, geoLocationStore} from '../../../../Store/Store'
+import {makeRequest} from '../../make-request'
+import {hidePreloader, showPreloader} from '../../../features/preloader/models/models'
+import {getDb} from '../../../../utils/db'
+import {MAXMILES, USERID} from '../../../../utils/db/constants'
+import {$inputValuePickUpPoint} from '../../../../screens/filter/features/pick-up-point/models'
+import {$inputValueDeliveryPoint} from '../../../../screens/filter/features/delivery-point/models'
 import {
     $minimumDimsHeightValue,
     $minimumDimsLengthValue,
-    $minimumDimsWidthValue
-} from "../../../../screens/filter/features/minimum-dims/models";
+    $minimumDimsWidthValue,
+} from '../../../../screens/filter/features/minimum-dims/models'
 
 
 export type loadsResult = {
@@ -80,10 +79,10 @@ export type loadType = {
         full_name: string
         id: number
         load: number
-        "location": string
-        "state": string
-        "type": string
-        "zip_code": string
+        'location': string
+        'state': string
+        'type': string
+        'zip_code': string
     }>
 
     price: number

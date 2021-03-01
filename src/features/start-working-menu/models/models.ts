@@ -1,6 +1,6 @@
-import {createEvent, createStore} from "effector";
-import {Animated} from "react-native";
-import {useSpring, useSpringAsync} from "../../../../utils/animation-hooks/Hooks";
+import {createEvent, createStore} from 'effector'
+import {Animated} from 'react-native'
+import {useSpring, useSpringAsync} from '../../../../utils/animation-hooks/Hooks'
 
 
 export const showStartWorkingMenu = createEvent()
@@ -22,5 +22,4 @@ showStartWorkingMenu.watch(() => {
 hideStartWorkingMenu.watch(async () => {
     await useSpringAsync($animValueStartWorkingMenu.getState(), 0, 10, 7)
     setIsMountedStartWorkingMenu(false)
-
 })

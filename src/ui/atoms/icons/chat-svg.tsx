@@ -1,8 +1,8 @@
-import * as React from "react";
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
-import {svgType} from "./types";
+import * as React from 'react'
+import Svg, {ClipPath, Defs, G, Path} from 'react-native-svg'
+import {svgType} from './types'
 
-export const ChatSVG:React.FC<svgType> = ({color,size,}) => {
+export const ChatSVG: React.FC<svgType> = ({color, size}) => {
     return (
         <Svg width={size} height={size} viewBox="0 0 17 17" fill="none">
             <G clipPath="url(#clip0)">
@@ -13,9 +13,9 @@ export const ChatSVG:React.FC<svgType> = ({color,size,}) => {
             </G>
             <Defs>
                 <ClipPath id="clip0">
-                    <Path fill="none" d="M0 0H17V17H0z" />
+                    <Path fill="none" d="M0 0H17V17H0z"/>
                 </ClipPath>
             </Defs>
         </Svg>
-    );
+    )
 }

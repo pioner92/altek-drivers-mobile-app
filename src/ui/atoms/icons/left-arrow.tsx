@@ -1,7 +1,7 @@
-import * as React from "react"
-import Svg, {Path} from "react-native-svg"
+import * as React from 'react'
+import Svg, {Path} from 'react-native-svg'
 
-export const LeftArrow=()=> {
+export const LeftArrow = () => {
     return (
         <Svg width={8} height={12} viewBox="0 0 8 12" fill="none">
             <Path

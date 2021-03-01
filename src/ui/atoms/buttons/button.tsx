@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableHighlight} from "react-native";
+import React, {useState} from 'react'
+import {StyleSheet, Text, TouchableHighlight} from 'react-native'
 
 enum bgColor {
     blue = '#1672D4',
     blueActive = '#115FB6',
     blueDisabled = '#5E7C9C',
-    white='#fff',
+    white = '#fff',
     none = 'transparent'
 }
 
@@ -48,7 +48,7 @@ class ThemeCreate {
             borderColorDisabled,
             labelColor,
             labelColorActive,
-            labelColorDisabled
+            labelColorDisabled,
         })
     }
 }
@@ -57,47 +57,47 @@ class ThemeCreate {
 class Theme {
     create(theme: buttonThemes): ThemeCreate {
         switch (theme) {
-            case "blue":
-                return new ThemeCreate({
-                    bg: bgColor.blue,
-                    bgDisabled: bgColor.blueDisabled,
-                    bgActive: bgColor.blueActive,
-                    borderColor: borderColor.none,
-                    borderColorActive: borderColor.none,
-                    borderColorDisabled: borderColor.none,
-                    labelColor: labelColor.white,
-                    labelColorActive: labelColor.white,
-                    labelColorDisabled: labelColor.white
-                });
-                break;
-            case "white":
-                return new ThemeCreate({
-                    bg: bgColor.white,
-                    bgDisabled: bgColor.none,
-                    bgActive: bgColor.blueActive,
-                    borderColor: bgColor.blue,
-                    borderColorActive: borderColor.none,
-                    borderColorDisabled: borderColor.gray,
-                    labelColor: labelColor.blue,
-                    labelColorActive: labelColor.white,
-                    labelColorDisabled: labelColor.gray
-                });
-                break;
-            case "red":
-                return new ThemeCreate({
-                    bg: bgColor.none,
-                    bgDisabled: bgColor.none,
-                    bgActive: bgColor.none,
-                    borderColor: borderColor.red,
-                    borderColorActive: borderColor.gray,
-                    borderColorDisabled: borderColor.gray,
-                    labelColor: labelColor.red,
-                    labelColorActive: labelColor.gray,
-                    labelColorDisabled: labelColor.gray
-                });
-                break;
-            default :
-                return new ThemeCreate({} as themeType)
+        case 'blue':
+            return new ThemeCreate({
+                bg: bgColor.blue,
+                bgDisabled: bgColor.blueDisabled,
+                bgActive: bgColor.blueActive,
+                borderColor: borderColor.none,
+                borderColorActive: borderColor.none,
+                borderColorDisabled: borderColor.none,
+                labelColor: labelColor.white,
+                labelColorActive: labelColor.white,
+                labelColorDisabled: labelColor.white,
+            })
+            break
+        case 'white':
+            return new ThemeCreate({
+                bg: bgColor.white,
+                bgDisabled: bgColor.none,
+                bgActive: bgColor.blueActive,
+                borderColor: bgColor.blue,
+                borderColorActive: borderColor.none,
+                borderColorDisabled: borderColor.gray,
+                labelColor: labelColor.blue,
+                labelColorActive: labelColor.white,
+                labelColorDisabled: labelColor.gray,
+            })
+            break
+        case 'red':
+            return new ThemeCreate({
+                bg: bgColor.none,
+                bgDisabled: bgColor.none,
+                bgActive: bgColor.none,
+                borderColor: borderColor.red,
+                borderColorActive: borderColor.gray,
+                borderColorDisabled: borderColor.gray,
+                labelColor: labelColor.red,
+                labelColorActive: labelColor.gray,
+                labelColorDisabled: labelColor.gray,
+            })
+            break
+        default:
+            return new ThemeCreate({} as themeType)
         }
     }
 }
@@ -110,7 +110,6 @@ export type buttonPropsType = {
 }
 
 export const Button: React.FC<buttonPropsType> = ({onPress, children, disabled = false, theme = 'blue'}) => {
-
     const colorTheme = new Theme().create(theme) as themeType
 
     const [labelColor, setLabelColor] = useState(colorTheme.labelColor)
@@ -118,11 +117,11 @@ export const Button: React.FC<buttonPropsType> = ({onPress, children, disabled =
 
     const buttonStyle = {
         borderColor: disabled ? colorTheme.borderColorDisabled : borderColor,
-        backgroundColor: disabled ? colorTheme.bgDisabled : colorTheme.bg
+        backgroundColor: disabled ? colorTheme.bgDisabled : colorTheme.bg,
     }
 
     const labelStyle = {
-        color: disabled ? colorTheme.labelColorDisabled : labelColor
+        color: disabled ? colorTheme.labelColorDisabled : labelColor,
     }
 
     const onClickHandler = (isPressed: boolean) => {
@@ -140,8 +139,8 @@ export const Button: React.FC<buttonPropsType> = ({onPress, children, disabled =
             style={[styles.button, buttonStyle]}>
             <Text style={[styles.label, labelStyle]}>{children}</Text>
         </TouchableHighlight>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     button: {
@@ -155,6 +154,6 @@ const styles = StyleSheet.create({
     label: {
         fontFamily: 'IBMPlex-600',
         fontSize: 18,
-        lineHeight: 23
-    }
+        lineHeight: 23,
+    },
 })

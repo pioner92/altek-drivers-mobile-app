@@ -1,11 +1,8 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
+import * as React from 'react'
+import Svg, {Path} from 'react-native-svg'
 
-type propsType = {
-    color?:string
-}
 
-export const  LocationSVG:React.FC = () => {
+export const LocationSVG: React.FC = () => {
     return (
         <Svg width={16} height={20} viewBox="0 0 16 20" fill="none">
             <Path

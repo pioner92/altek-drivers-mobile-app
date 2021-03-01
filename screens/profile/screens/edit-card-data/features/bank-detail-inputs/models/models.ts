@@ -1,8 +1,8 @@
-import {createEvent, createStore} from "effector";
-import {CardsDataHService, cardsDataType} from "../../../lib/cards-data-handler";
+import {createEvent, createStore} from 'effector'
+import {CardsDataHService, cardsDataType} from '../../../lib/cards-data-handler'
 
 type saveCardDataType = {
-    id?:number
+    id?: number
 }
 
 const cardService = new CardsDataHService()
@@ -62,7 +62,7 @@ saveCardData.watch(async ({id}) => {
     const cardDate = $inputValueCardDate.getState()
     const cardCvs = $inputValueCardCVC.getState()
 
-    await cardService.addCard({cardNumber, cardHolderName, cardDate, cardCvs,id})
+    await cardService.addCard({cardNumber, cardHolderName, cardDate, cardCvs, id})
     initCardData()
 })
 

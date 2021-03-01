@@ -1,17 +1,9 @@
-import * as React from "react"
-import Svg, {Path} from "react-native-svg"
-import {View} from "react-native";
+import * as React from 'react'
+import Svg, {Path} from 'react-native-svg'
 
 export const ErrorSVG = () => {
-
-    const transformStyle = {
-        transform:[
-            {translateX:10}
-        ]
-    }
-
     return (
-        <Svg  width={14} height={14} viewBox="0 0 14 14" fill="none">
+        <Svg width={14} height={14} viewBox="0 0 14 14" fill="none">
             <Path
                 d="M7 9.595a.727.727 0 00-.72.72c0 .39.328.719.72.719.377 0 .72-.328.702-.703A.703.703 0 007 9.595z"
                 fill="#F95875"

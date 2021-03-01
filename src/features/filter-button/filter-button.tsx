@@ -1,14 +1,13 @@
-import {useNavigation} from "@react-navigation/native";
-import {TouchableOpacity} from "react-native";
-import links from "../../../links.json";
-import {FilterSVG} from "../../ui/atoms/icons";
-import React from "react";
-import {FilterIcon} from "../../ui/molecules/icons/filter-icon";
-import {useStore} from "effector-react";
-import {$isFilteredBids} from "../../../screens/filter/models";
+import {useNavigation} from '@react-navigation/native'
+import {TouchableOpacity} from 'react-native'
+import links from '../../../links.json'
+import React from 'react'
+import {FilterIcon} from '../../ui/molecules/icons/filter-icon'
+import {useStore} from 'effector-react'
+import {$isFilteredBids} from '../../../screens/filter/models'
 
 export const FilterButton = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation()
     const isFilteredBids = useStore($isFilteredBids)
     return (
         <TouchableOpacity

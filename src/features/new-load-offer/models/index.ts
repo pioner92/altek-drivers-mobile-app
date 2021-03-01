@@ -5,5 +5,5 @@ export {
     $isNewLoadOfferStore,
     $newLoadOfferAnimValue,
     showNewLoadOfferMenu,
-    hideNewLoadOfferMenu
+    hideNewLoadOfferMenu,
 } from './models'

@@ -1,7 +1,7 @@
-import {showNewLoadOfferMenu} from "../../src/features/new-load-offer/models";
-import {completedStatus, toUnloadStatus, toUploadStatus, unloadingStatus, uploadingStatus} from "../../hooks";
-import {setButtonIsDisabled, showArrivedMenu} from "../../src/features/arrived-menu/models";
-import {showStayAtPickUpMenu} from "../../src/features/stay-at-pick-up/models/models";
+import {showNewLoadOfferMenu} from '../../src/features/new-load-offer/models'
+import {completedStatus, toUnloadStatus, toUploadStatus, unloadingStatus, uploadingStatus} from '../../hooks'
+import {setButtonIsDisabled, showArrivedMenu} from '../../src/features/arrived-menu/models'
+import {showStayAtPickUpMenu} from '../../src/features/stay-at-pick-up/models/models'
 
 
 type statusData = {
@@ -9,10 +9,6 @@ type statusData = {
     substatus?: number
 }
 
-type statusValidateDataType = {
-    currentStatus:number
-    currentSubstatus:number
-}
 
 const loadStatus = (status: number, substatus?: number) => {
     const data = {status} as statusData
@@ -22,26 +18,25 @@ const loadStatus = (status: number, substatus?: number) => {
 
 
 export const statusGenerate = {
-    newLoadOffer:loadStatus(1,1),
+    newLoadOffer: loadStatus(1, 1),
     toUpload: loadStatus(2, 1),
     uploading: loadStatus(3, 1),
     uploaded: loadStatus(3, 2),
     toUnload: loadStatus(4, 1),
     unloading: loadStatus(5, 1),
     unloaded: loadStatus(5, 2),
-    completed: loadStatus(6)
+    completed: loadStatus(6),
 }
 
 
-const statusValidate = (currentStatus:number, currentSubstatus:number) => {
-    return ({status, substatus}:statusData) => {
+const statusValidate = (currentStatus: number, currentSubstatus: number) => {
+    return ({status, substatus}: statusData) => {
         return status === currentStatus && currentSubstatus === substatus
     }
 }
 
-export const checkStatusesWithInit = (status:number,substatus:number) => {
-
-    const validate = statusValidate(status,substatus)
+export const checkStatusesWithInit = (status: number, substatus: number) => {
+    const validate = statusValidate(status, substatus)
 
     if (validate(statusGenerate.newLoadOffer)) {
         showNewLoadOfferMenu()

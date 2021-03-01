@@ -1,34 +1,33 @@
-import {getDb} from "../../../utils/db";
-import {TOKEN} from "../../../utils/db/constants";
-import {urls} from "../urls";
+import {getDb} from '../../../utils/db'
+import {TOKEN} from '../../../utils/db/constants'
+import {urls} from '../urls'
 
 type resultType = {
-    "chat": null,
-    "created_date": string
-    "extension": string
-    "file_name": string
-    "id": number
-    "message": null
-    "name": string
-    "path": string
-    "size": string
+    'chat': null,
+    'created_date': string
+    'extension': string
+    'file_name': string
+    'id': number
+    'message': null
+    'name': string
+    'path': string
+    'size': string
 }
 
 const createFormData = (name: string, format: string, file: string) => {
     const formData = new FormData()
     formData.append('name', name)
-    //@ts-ignore
+    // @ts-ignore
     formData.append('path', file, `${name}.${format}`)
     return formData
 }
 
 export const uploadFile = async (name: string, type: string, file: any): Promise<resultType> => {
-
     let format = 'jpg'
 
     switch (type) {
-        case 'file':
-            format = 'pdf'
+    case 'file':
+        format = 'pdf'
     }
 
     const token = await getDb(TOKEN)
@@ -39,9 +38,9 @@ export const uploadFile = async (name: string, type: string, file: any): Promise
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'multipart/form-data',
-            'Authorization': `JWT ${token}`
+            'Authorization': `JWT ${token}`,
         },
-        body
+        body,
     })
 
     return await response.json()

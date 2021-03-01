@@ -1,16 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {Text, TextStyle, ViewStyle} from "react-native";
-import moment from "moment";
+import React, {useEffect, useState} from 'react'
+import {Text, TextStyle, ViewStyle} from 'react-native'
+import moment from 'moment'
 
 
 type counterType = {
     style?: ViewStyle | TextStyle
     callback?: (status: boolean) => void
-    value:number
+    value: number
 }
 
-export const Counter: React.FC<counterType> = ({style, callback,value}) => {
-
+export const Counter: React.FC<counterType> = ({style, callback, value}) => {
     const min = moment.unix(value).format('mm:ss')
     const [counter, setCounter] = useState(min)
 
@@ -20,6 +19,6 @@ export const Counter: React.FC<counterType> = ({style, callback,value}) => {
 
     return (
         <Text {...{style}}> ({counter})</Text>
-    );
-};
+    )
+}
 

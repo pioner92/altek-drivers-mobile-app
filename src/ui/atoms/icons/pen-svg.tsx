@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyleSheet} from "react-native";
-import Svg, {Path} from "react-native-svg";
+import React from 'react'
+import {StyleSheet} from 'react-native'
+import Svg, {Path} from 'react-native-svg'
 
 export const PenSVG: React.FC = () => {
     return (
@@ -10,9 +10,9 @@ export const PenSVG: React.FC = () => {
                 fill="#1F2934"
             />
         </Svg>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
-    container: {}
+    container: {},
 })

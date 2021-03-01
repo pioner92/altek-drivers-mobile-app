@@ -1,5 +1,5 @@
-import {getDb} from "../../utils/db/get-db";
-import { TOKEN} from "../../utils/db/constants";
+import {getDb} from '../../utils/db/get-db'
+import {TOKEN} from '../../utils/db/constants'
 
 type requestDataType = {
     url: string
@@ -12,7 +12,7 @@ type requestDataType = {
 export const makeRequest = async ({url, method, body, token}: requestDataType) => {
     try {
         const headers: HeadersInit = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         }
         if (token) {
             const token = await getDb(TOKEN)

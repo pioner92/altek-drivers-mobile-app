@@ -1,30 +1,30 @@
-import React from 'react';
-import {View, StyleSheet, Text} from "react-native";
+import React from 'react'
+import {StyleSheet, Text, View} from 'react-native'
 
 
 type propsType = {
-    shadowColor:string
+    shadowColor: string
 }
 
-export const IsAvailableCard: React.FC<propsType> = ({children,shadowColor}) => {
+export const IsAvailableCard: React.FC<propsType> = ({children, shadowColor}) => {
     return (
         <View
-            style={[styles.container,{shadowColor:shadowColor}]}>
+            style={[styles.container, {shadowColor: shadowColor}]}>
             <Text style={styles.statusTitle}>{children}</Text>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
         height: 23,
         backgroundColor: '#fff',
         borderRadius: 7,
-        paddingRight:24,
-        paddingLeft:6,
+        paddingRight: 24,
+        paddingLeft: 6,
         zIndex: 1,
         justifyContent: 'center',
-        shadowColor: "#FFC5C5",
+        shadowColor: '#FFC5C5',
         shadowOffset: {
             width: 0,
             height: 0,
@@ -38,5 +38,5 @@ const styles = StyleSheet.create({
         fontFamily: 'IBMPlex-500',
         lineHeight: 14,
         color: '#1F2934',
-    }
+    },
 })

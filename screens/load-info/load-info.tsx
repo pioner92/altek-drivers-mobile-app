@@ -1,18 +1,16 @@
-import React from 'react';
-import {ScrollView, StyleSheet, View} from "react-native";
-import {InfoCard} from "../../src/features/bids-info";
-import {Notes} from "../../src/features/bids-info/ui/atoms";
-import {PriceAreaComponent} from "../../src/features/bids-info/ui/molecules/price-area-component";
-import {DetailCard} from "../../src/features/bids-info";
-import {SafeAreaComponent} from "../../src/ui/atoms/safe-area";
-import {useNavigate} from "../../src/lib/hooks";
-import {useStore} from "effector-react";
-import {$currentLoad} from "./models";
+import React from 'react'
+import {ScrollView, StyleSheet, View} from 'react-native'
+import {DetailCard, InfoCard} from '../../src/features/bids-info'
+import {Notes} from '../../src/features/bids-info/ui/atoms'
+import {PriceAreaComponent} from '../../src/features/bids-info/ui/molecules/price-area-component'
+import {useNavigate} from '../../src/lib/hooks'
+import {useStore} from 'effector-react'
+import {$currentLoad} from './models'
 import links from '../../links.json'
-import {Button} from "../../src/ui/atoms/buttons";
-import {ScreenWrapper} from "../../src/ui/atoms/screen-wrapper/screen-wrapper";
-import {styleConfig} from "../../src/StyleConfig";
-import {BtnWrapper} from "../../src/ui/atoms/wrapper/btn-wrapper";
+import {Button} from '../../src/ui/atoms/buttons'
+import {ScreenWrapper} from '../../src/ui/atoms/screen-wrapper/screen-wrapper'
+import {styleConfig} from '../../src/StyleConfig'
+import {BtnWrapper} from '../../src/ui/atoms/wrapper/btn-wrapper'
 
 
 export const LoadInfo: React.FC<any> = ({route}) => {
@@ -39,7 +37,7 @@ export const LoadInfo: React.FC<any> = ({route}) => {
     }
     return (
         <>
-            <ScreenWrapper>
+            <ScreenWrapper isEnabledHeightController={true}>
                 <ScrollView contentContainerStyle={{paddingBottom: 100, paddingTop: 27}} style={styles.container}>
                     <InfoCard data={currentLoadData!}/>
                     <Notes notes={currentLoadData!.note}/>
@@ -55,26 +53,26 @@ export const LoadInfo: React.FC<any> = ({route}) => {
                 </BtnWrapper>
             </ScreenWrapper>
         </>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 16,
-        paddingBottom: 50
+        paddingBottom: 50,
     },
     priceAreasWrapper: {
-        flexDirection: "row",
+        flexDirection: 'row',
         height: 100,
-        marginTop: 26
+        marginTop: 26,
     },
     btnWrapper: {
-        position: "absolute",
+        position: 'absolute',
         width: '100%',
         paddingHorizontal: 16,
         bottom: 0,
         paddingVertical: 16,
-        backgroundColor: styleConfig.screenBackground
-    }
+        backgroundColor: styleConfig.screenBackground,
+    },
 
 })

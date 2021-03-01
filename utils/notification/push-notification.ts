@@ -1,6 +1,6 @@
-import * as Notifications from "expo-notifications";
+import * as Notifications from 'expo-notifications'
 import * as Permissions from 'expo-permissions'
-import {chatContentPropsType} from "../../screens/chat/chat-content/chat-content";
+import {chatContentPropsType} from '../../screens/chat/chat-content/chat-content'
 
 const newChatSms = 'newChatSms'
 
@@ -10,7 +10,7 @@ Notifications.setNotificationHandler({
         shouldPlaySound: true,
         shouldSetBadge: true,
     }),
-});
+})
 
 
 type propsType = {
@@ -35,7 +35,6 @@ export const resetBadgeCount = () => {
 }
 
 export const getNotificationPermissions = async () => {
-
     const {status} = await Permissions.getAsync(Permissions.NOTIFICATIONS)
     if (status) {
         const {status} = await Permissions.askAsync(Permissions.NOTIFICATIONS)
@@ -43,17 +42,15 @@ export const getNotificationPermissions = async () => {
 }
 
 export const NotificationsHandler = async (callback: ({id}: chatContentPropsType) => void) => {
-
-    Notifications.addNotificationResponseReceivedListener(notification => {
+    Notifications.addNotificationResponseReceivedListener((notification) => {
         const data = notification.notification.request.content.data as propsType
-        if (data?.hasOwnProperty("action") &&  data.action === newChatSms) {
+        if (data?.hasOwnProperty('action') && data.action === newChatSms) {
             const {id = 0} = data || {}
             callback({id})
         }
-    });
+    })
 }
-export const pushNotification = async ({title, text, action = "newLoad", id}: propsType) => {
-
+export const pushNotification = async ({title, text, action = 'newLoad', id}: propsType) => {
     type dataType = {
         action: string
         id?: number
@@ -63,10 +60,10 @@ export const pushNotification = async ({title, text, action = "newLoad", id}: pr
     }
 
     const data: dataType = {
-        action
+        action,
     }
     if (action === newChatSms) {
-        data["id"] = id
+        data['id'] = id
     }
 
     const badgeCount = await Notifications.getBadgeCountAsync()
@@ -77,8 +74,8 @@ export const pushNotification = async ({title, text, action = "newLoad", id}: pr
             body: text,
             sound: 'default',
             data: data,
-            badge: action === newChatSms ? badgeCount + 1 : badgeCount
+            badge: action === newChatSms ? badgeCount + 1 : badgeCount,
         },
         trigger: {seconds: 2},
-    });
+    })
 }

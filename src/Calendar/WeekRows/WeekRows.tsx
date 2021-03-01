@@ -1,7 +1,7 @@
-import React from 'react';
-import {StyleSheet, View} from "react-native";
-import {WeekRow} from "./WeekRow/WeekRow";
-import {weekType} from "../Calendar";
+import React from 'react'
+import {StyleSheet, View} from 'react-native'
+import {WeekRow} from './WeekRow/WeekRow'
+import {weekType} from '../Calendar'
 
 type weekRowsType = {
     weeks: {
@@ -17,11 +17,11 @@ const WeekRows: React.FC<weekRowsType> = ({weeks, callback, selectedDay}) => {
         <View style={styles.container}>
             <WeekRow week={weeks.currentWeekArr} selectedDay={selectedDay} callback={callback}/>
             {weeks.nextWeekArr &&
-                <WeekRow week={weeks.nextWeekArr} selectedDay={selectedDay} callback={callback}/>
+            <WeekRow week={weeks.nextWeekArr} selectedDay={selectedDay} callback={callback}/>
             }
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default WeekRows;
+export default WeekRows

@@ -21,5 +21,5 @@ export const BANKCARDNAME = 'bankCardName'
 export const BANKCARDDATE = 'bankCardDate'
 export const BANKCARDCVS = 'bankCardCvs'
 export const CARDS = 'cards'
-export const TIMERBID = "timerBid"
+export const TIMERBID = 'timerBid'
 

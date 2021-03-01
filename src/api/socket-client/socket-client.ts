@@ -1,27 +1,26 @@
 import {createEffect, createEvent, createStore} from 'effector'
-import {NewConnectService, newLoadHandler, statusesHandler} from "./lib";
-import {loadType} from "../rest/loads/get-loads";
-import {getDb} from "../../../utils/db/get-db";
-import {logOut} from "../../../utils/log-out";
-import {COMPANYHASH, TIMERBID, TOKEN} from "../../../utils/db/constants";
-import {messageType} from "../rest/chat/get-chat-data";
+import {NewConnectService, newLoadHandler, statusesHandler} from './lib'
+import {loadType} from '../rest/loads/get-loads'
+import {getDb} from '../../../utils/db/get-db'
+import {logOutHandler} from '../../../utils/log-out-handler'
+import {COMPANYHASH, TIMERBID, TOKEN} from '../../../utils/db/constants'
+import {messageType} from '../rest/chat/get-chat-data'
 import {
     $chatsData,
     $isAmInChat,
     $selfId,
     addNewChatMessage,
     setIsNewMessageInChat,
-    setUnreadCount
-} from "../../../screens/chat/models/models";
-import {startTimer} from "../../features/button-with-counter/models/models";
-import {setDb} from "../../../utils/db";
-import {pushNotification} from '../../../utils/notification/push-notification';
-import {pushNotificationNewLoad} from "./lib/push-notification-new-load";
-import {$isAuth} from "../../../Store/Store";
-import {AppState} from "react-native";
-import {urls} from "../urls";
-import {$currentLoad} from "../../../screens/load-info/models";
-import {$selfStatus, statuses} from "../../../hooks";
+    setUnreadCount,
+} from '../../../screens/chat/models/models'
+import {startTimer} from '../../features/button-with-counter/models/models'
+import {setDb} from '../../../utils/db'
+import {pushNotification} from '../../../utils/notification/push-notification'
+import {pushNotificationNewLoad} from './lib/push-notification-new-load'
+import {$isAuth} from '../../../Store/Store'
+import {AppState} from 'react-native'
+import {urls} from '../urls'
+import {$selfStatus, statuses} from '../../../hooks'
 
 
 // Types
@@ -47,7 +46,7 @@ type chatMessageType = {
 }
 
 export type updateLoadsType = {
-    action: "update_loads"
+    action: 'update_loads'
     data: [{
         deliverTo: string
         delivery_date: string
@@ -115,7 +114,7 @@ export const unsubscribeSocket = createEvent()
 // Stores
 export const $socketStore = createStore<WebSocket | null>(null)
     .on(initSocketClient.doneData, ((_, payload) => payload))
-    .on(closeSocket, (state => state?.close()))
+    .on(closeSocket, ((state) => state?.close()))
     .on(socketSend, (state, payload) => state?.send(JSON.stringify(payload)))
 
 
@@ -142,45 +141,46 @@ $socketStore.watch((state) => {
         const data = JSON.parse(message?.data) as socketDataType
 
         switch (data?.action) {
-            case 'new_load_offer':
-                newLoadHandler(data?.data);
-                break;
-            case "update_loads":
-                if($selfStatus.getState() === statuses.waiting){
-                    pushNotificationNewLoad(data)
-                }
-                break
-            case 'load_status_change':
-                statusesHandler(data?.data?.status)
-                break;
-            case 'driver_connect':
-                if (!NewConnectService.get()) {
-                    logOut()
-                        .then(() => closeSocket())
-                }
-                break;
-            case "group_chat_message":
-                if (!$isAmInChat.getState() && data?.data?.user_from.id !== $selfId.getState() && $isAuth.getState()) {
-                    const chat = $chatsData?.getState()?.find((el) => el.id === data.data.chat_id)
-                    if (chat) {
-                        if (AppState.currentState === "active") {
-                            pushNotification({
-                                title: data.data.user_from.first_name,
-                                text: data.data.content,
-                                action: 'newChatSms',
-                                id: chat.id,
-                            })
-                        }
+        case 'new_load_offer':
+            newLoadHandler(data?.data)
+            break
+        case 'update_loads':
+            if ($selfStatus.getState() === statuses.waiting) {
+                pushNotificationNewLoad(data)
+            }
+            break
+        case 'load_status_change':
+            console.log(data?.data)
+            statusesHandler(data?.data?.status)
+            break
+        case 'driver_connect':
+            if (!NewConnectService.get()) {
+                logOutHandler()
+                    .then(() => closeSocket())
+            }
+            break
+        case 'group_chat_message':
+            if (!$isAmInChat.getState() && data?.data?.user_from.id !== $selfId.getState() && $isAuth.getState()) {
+                const chat = $chatsData?.getState()?.find((el) => el.id === data.data.chat_id)
+                if (chat) {
+                    if (AppState.currentState === 'active') {
+                        pushNotification({
+                            title: data.data.user_from.first_name,
+                            text: data.data.content,
+                            action: 'newChatSms',
+                            id: chat.id,
+                        })
                     }
-                    setIsNewMessageInChat(true)
-                    setUnreadCount({id: data.data.chat_id, content: data.data.content})
                 }
+                setIsNewMessageInChat(true)
+                setUnreadCount({id: data.data.chat_id, content: data.data.content})
+            }
 
-                addNewChatMessage([{...data.data}])
-                break;
-            case "driver_bid":
-                setDb(TIMERBID, Date.now().toString())
-                startTimer()
+            addNewChatMessage([{...data.data}])
+            break
+        case 'driver_bid':
+            setDb(TIMERBID, Date.now().toString())
+            startTimer()
         }
     })
 })

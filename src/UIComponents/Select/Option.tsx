@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet, Text} from "react-native";
+import React from 'react'
+import {StyleSheet, Text} from 'react-native'
 
 export const Option: React.FC = ({children}) => {
     return (
@@ -12,6 +12,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: 'IBMPlex-500',
         color: '#102656',
-        textAlign: 'center'
+        textAlign: 'center',
     },
 })

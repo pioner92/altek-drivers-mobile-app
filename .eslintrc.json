@@ -1,0 +1,40 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react-hooks/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "google"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "func-names": "error",
+        "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+        "semi": ["error", "never"],
+        "new-cap": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "react/prop-types": "off",
+        "quote-props": "off",
+        "require-jsdoc": "off",
+        "no-warning-comments": "off",
+        "indent": ["error", 4],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "max-len": "off",
+        "brace-style": "warn"
+    }
+}

@@ -1,22 +1,22 @@
-import React from 'react';
-import moment from "moment";
-import {StyleSheet, Text, View} from "react-native";
-import {weekType} from "../../Calendar";
+import React from 'react'
+import moment from 'moment'
+import {StyleSheet, Text, View} from 'react-native'
+import {weekType} from '../../Calendar'
 
 
 export type weekRow = {
     week: weekType
-    callback:Function,
-    selectedDay:string
+    callback: Function,
+    selectedDay: string
 }
 
 enum dayColorEnum {
     lastDays = '#BEC3CC',
-    currentDay='#1672D4',
+    currentDay = '#1672D4',
     nextDays = '#091735'
 }
 
-export const WeekRow:React.FC<weekRow> = ({week, callback, selectedDay}) => {
+export const WeekRow: React.FC<weekRow> = ({week, callback, selectedDay}) => {
     const now = moment().format('DD')
 
     const getColor = (el: string) => {
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginTop: 4,
-        width:'100%'
+        width: '100%',
     },
     dayWrapper: {
         height: 32,
@@ -59,13 +59,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 20,
-        borderColor: '#1672D4'
+        borderColor: '#1672D4',
     },
     dayValue: {
         fontFamily: 'IBMPlex-500',
         color: '#112A5F',
         fontWeight: '500',
-        lineHeight:22,
+        lineHeight: 22,
         fontSize: 13,
-    }
+    },
 })

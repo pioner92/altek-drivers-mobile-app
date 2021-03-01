@@ -1,21 +1,21 @@
-import {Alert} from "react-native";
+import {Alert} from 'react-native'
 
 type propsType = {
-    title:string
-    message:string
-    callback?:()=>void
+    title: string
+    message: string
+    callback?: () => void
 }
 
-export const alertFn = ({title,message,callback}:propsType) => {
+export const alertFn = ({title, message, callback}: propsType) => {
     Alert.alert(
         title,
         message,
         [
             {
-                text: "Ok",
-                onPress: () => callback && callback()
-            }
+                text: 'Ok',
+                onPress: () => callback && callback(),
+            },
         ],
-        { cancelable: false }
-    );
+        {cancelable: false},
+    )
 }

@@ -3,5 +3,5 @@ export {
     $isAccepted,
     setAccepted,
     setIsMountedConfirmArrivedModal,
-    $confirmArrivedAnimValue
+    $confirmArrivedAnimValue,
 } from './models'

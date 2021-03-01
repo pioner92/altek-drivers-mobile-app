@@ -1,40 +1,38 @@
-import React from 'react';
-import {View, StyleSheet,Text} from "react-native";
+import React from 'react'
+import {StyleSheet, Text, View} from 'react-native'
 
 
 type propsType = {
-    time:string,
-    bySelf:boolean
-    isImage:boolean
+    time: string,
+    bySelf: boolean
+    isImage: boolean
 }
 
-export const MessageTime: React.FC<propsType> = ({time,bySelf,isImage}) => {
-
+export const MessageTime: React.FC<propsType> = ({time, bySelf, isImage}) => {
     const textColor = () => {
         if (isImage) {
-            return "#fff"
-        }
-        else if (bySelf) {
+            return '#fff'
+        } else if (bySelf) {
             return '#BCD7FF'
         }
-      return '#9C9C9C'
+        return '#9C9C9C'
     }
 
     return (
-        <View style={[styles.container,isImage && {paddingTop:0}]}>
-            <Text style={[styles.text,{color:textColor()}]}>{time}</Text>
+        <View style={[styles.container, isImage && {paddingTop: 0}]}>
+            <Text style={[styles.text, {color: textColor()}]}>{time}</Text>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
-        alignItems:'flex-end',
-        justifyContent:'flex-end',
-        paddingTop:5,
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
+        paddingTop: 5,
     },
-    text:{
-        fontSize:10,
-        lineHeight:13
-    }
+    text: {
+        fontSize: 10,
+        lineHeight: 13,
+    },
 })

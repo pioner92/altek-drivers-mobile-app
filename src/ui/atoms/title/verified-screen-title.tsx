@@ -1,21 +1,21 @@
-import React from 'react';
-import {FlexStyle, StyleSheet, Text, TextStyle, ViewStyle} from "react-native";
+import React from 'react'
+import {FlexStyle, StyleSheet, Text, TextStyle} from 'react-native'
 
 type propsType = {
-    color:string
-    style?:Array<FlexStyle|TextStyle|undefined>
+    color: string
+    style?: Array<FlexStyle | TextStyle | undefined>
 }
 
-export const VerifiedScreenTitle: React.FC<propsType> = ({children,style,color}) => {
+export const VerifiedScreenTitle: React.FC<propsType> = ({children, style, color}) => {
     return (
-        <Text style={[styles.text,{color},style]}>{children}</Text>
-    );
-};
+        <Text style={[styles.text, {color}, style]}>{children}</Text>
+    )
+}
 
 const styles = StyleSheet.create({
-    text:{
-        fontSize:14,
-        lineHeight:18,
-        fontFamily:'IBMPlex-500'
-    }
+    text: {
+        fontSize: 14,
+        lineHeight: 18,
+        fontFamily: 'IBMPlex-500',
+    },
 })

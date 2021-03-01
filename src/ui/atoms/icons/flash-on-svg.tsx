@@ -1,10 +1,10 @@
-import * as React from "react"
-import Svg, { G, Path } from "react-native-svg"
+import * as React from 'react'
+import Svg, {G, Path} from 'react-native-svg'
 
-type propsType ={
-    size?:number
+type propsType = {
+    size?: number
 }
-export const  FlashOnSVG:React.FC<propsType> = ({size=22}) => {
+export const FlashOnSVG: React.FC<propsType> = ({size = 22}) => {
     return (
         <Svg width={size} height={size} viewBox="0 0 11 20">
             <G stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">

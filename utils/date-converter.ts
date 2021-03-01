@@ -1,4 +1,4 @@
-export const dateConverter = (date:string) => {
+export const dateConverter = (date: string) => {
     const re = /-(\d+)-(\d+)/
-    return date.replace(re,'-$2-$1')
+    return date.replace(re, '-$2-$1')
 }

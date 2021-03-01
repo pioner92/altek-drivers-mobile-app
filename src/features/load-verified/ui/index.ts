@@ -1,1 +1,1 @@
-export {TitleGrey,TitleDark} from './atoms'
+export {TitleGrey, TitleDark} from './atoms'

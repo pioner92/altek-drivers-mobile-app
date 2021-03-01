@@ -1,1 +1,1 @@
-export {$checkedIndex,setCheckedIndex} from './models'
+export {$checkedIndex, setCheckedIndex} from './models'

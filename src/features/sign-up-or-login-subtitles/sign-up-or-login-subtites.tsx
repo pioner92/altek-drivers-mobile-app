@@ -1,15 +1,15 @@
-import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from "react-native";
-import {useNavigate} from "../../lib/hooks";
-import {styleConfig} from "../../StyleConfig";
+import React from 'react'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {useNavigate} from '../../lib/hooks'
+import {styleConfig} from '../../StyleConfig'
 
 type propsType = {
-    buttonTitle:string
-    title:string
-    link:string
+    buttonTitle: string
+    title: string
+    link: string
 }
 
-export const SignUpOrLogInSubtitle: React.FC<propsType> = ({buttonTitle,title,link}) => {
+export const SignUpOrLogInSubtitle: React.FC<propsType> = ({buttonTitle, title, link}) => {
     const navigator = useNavigate()
 
     const onClick = () => {
@@ -25,15 +25,15 @@ export const SignUpOrLogInSubtitle: React.FC<propsType> = ({buttonTitle,title,li
         </View>
 
     )
-};
+}
 
 const styles = StyleSheet.create({
     container: {
         width: '100%',
         marginTop: 21,
         alignItems: 'center',
-        flexDirection: "row",
-        justifyContent: 'center'
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
     createAccountTitle: {
         color: styleConfig.textColor.dark,
@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
         color: '#1672D4',
         fontSize: 14,
         fontFamily: 'IBMPlex-600',
-        lineHeight: 16
+        lineHeight: 16,
     },
 })

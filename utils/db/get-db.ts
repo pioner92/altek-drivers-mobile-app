@@ -1,23 +1,30 @@
-// @ts-ignore
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 import {
-    PHONENUMBER,
+    BANKCARDCVS,
+    BANKCARDDATE,
+    BANKCARDNAME,
+    BANKCARDNUMBER,
+    CARDS,
+    COMPANYHASH,
+    DELIVERYPOINT,
     EMAIL,
-    USERID,
-    GROUPID,
-    PASSWORD,
-    TOKEN,
     FIRSTNAME,
+    GROUPID,
+    ISAVAILABLE,
     LASTNAME,
     MAXMILES,
-    PICKUPPOINT,
-    DELIVERYPOINT,
+    MINIMUMDIMSHEIGHT,
     MINIMUMDIMSLENGTH,
     MINIMUMDIMSWIDTH,
-    MINIMUMDIMSHEIGHT,
     MINIMUMPAYLOADS,
+    PASSWORD,
+    PHONENUMBER,
     PHOTOPROFILE,
-    ISAVAILABLE, COMPANYHASH, BANKCARDNUMBER, BANKCARDNAME, BANKCARDDATE, BANKCARDCVS, CARDS, TIMERBID
+    PICKUPPOINT,
+    TIMERBID,
+    TOKEN,
+    USERID,
 } from './constants'
 
 export type dbType = typeof PHONENUMBER

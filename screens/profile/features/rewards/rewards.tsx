@@ -1,21 +1,20 @@
-import React, {useState} from 'react';
-import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {ProfileTitle} from "../../ui/atoms/profile-title";
-import {WhiteCard} from "../../../../src/ui/atoms/card/white-card";
-import {GrayLine} from "../../ui/atoms/gray-line";
-import * as Progress from 'react-native-progress';
-import {InfoSVG} from "../../../../src/ui/atoms/icons";
-//@ts-ignore
-import {PopoverComponent} from "../../../../src/features/popover/popover";
+import React, {useState} from 'react'
+import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {ProfileTitle} from '../../ui/atoms/profile-title'
+import {WhiteCard} from '../../../../src/ui/atoms/card/white-card'
+import {GrayLine} from '../../ui/atoms/gray-line'
+import * as Progress from 'react-native-progress'
+import {InfoSVG} from '../../../../src/ui/atoms/icons'
+// @ts-ignore
+import {PopoverComponent} from '../../../../src/features/popover/popover'
 
-const {width} = Dimensions.get("window")
+const {width} = Dimensions.get('window')
 
 export const Rewards: React.FC = () => {
-
     const [isVisiblePopover, setIsVisiblePopover] = useState(false)
 
     const onPressInfo = () => {
-        setIsVisiblePopover(prevState => !prevState)
+        setIsVisiblePopover((prevState) => !prevState)
     }
 
     return (
@@ -56,8 +55,8 @@ export const Rewards: React.FC = () => {
             </WhiteCard>
         </View>
 
-    );
-};
+    )
+}
 
 
 const TextPopover = () => {
@@ -67,7 +66,7 @@ const TextPopover = () => {
                 Earn points for each completed load. You’ll get 10% to 20% from each transaction.
 
             </Text>
-            <Text style={[styles.popoverText,{marginTop: 16}]}>
+            <Text style={[styles.popoverText, {marginTop: 16}]}>
                 Cash out after reaching the next rank or spend it on a discount from our partners!
             </Text>
 
@@ -78,13 +77,13 @@ const TextPopover = () => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        marginTop: 34
+        marginTop: 34,
     },
     currentPoints: {
         fontSize: 18,
         lineHeight: 23,
         fontFamily: 'IBMPlex-600',
-        color: '#000'
+        color: '#000',
     },
     allPoints: {
         fontFamily: 'IBMPlex-400',
@@ -97,25 +96,25 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'IBMPlex-500',
         lineHeight: 21,
-        marginBottom: 10
+        marginBottom: 10,
     },
     pointsInfo: {
-        flexDirection: "row",
+        flexDirection: 'row',
         width: '100%',
-        justifyContent: "space-between",
+        justifyContent: 'space-between',
         paddingTop: 12,
-        alignItems: "center",
+        alignItems: 'center',
     },
     pointsInfoTitle: {
         color: '#798293',
         fontSize: 16,
-        lineHeight: 21
+        lineHeight: 21,
     },
     popoverText: {
         fontSize: 13,
         lineHeight: 16,
         color: '#677E85',
-        fontFamily: 'IBMPlex-500'
-    }
+        fontFamily: 'IBMPlex-500',
+    },
 
 })

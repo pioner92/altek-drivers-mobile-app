@@ -1,21 +1,20 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {WhiteCard} from "../../../../../../../../src/ui/atoms/card/white-card";
-import {styleConfig} from "../../../../../../../../src/StyleConfig";
-import {PenSVG} from "../../../../../../../../src/ui/atoms/icons/pen-svg";
-import {CrossSVG} from "../../../../../../../../src/ui/atoms/icons/cross-svg";
-import {useNavigate} from "../../../../../../../../src/lib/hooks";
+import React from 'react'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {WhiteCard} from '../../../../../../../../src/ui/atoms/card/white-card'
+import {styleConfig} from '../../../../../../../../src/StyleConfig'
+import {PenSVG} from '../../../../../../../../src/ui/atoms/icons/pen-svg'
+import {CrossSVG} from '../../../../../../../../src/ui/atoms/icons/cross-svg'
+import {useNavigate} from '../../../../../../../../src/lib/hooks'
 import links from '../../../../../../../../links.json'
 import {
     deleteCardData,
     setInputValueCardCVS,
     setInputValueCardDate,
     setInputValueCardHoldName,
-    setInputValueCardNumber
-} from "../../../../../edit-card-data/features/bank-detail-inputs/models/models";
-import {$isVisibleBankCardData, setIsVisibleBankCardData} from "../../../bank-card/models/models";
-import {cardDataItemType} from "../../../../../edit-card-data/lib/cards-data-handler";
-import {useStore} from "effector-react";
+    setInputValueCardNumber,
+} from '../../../../../edit-card-data/features/bank-detail-inputs/models/models'
+import {setIsVisibleBankCardData} from '../../../bank-card/models/models'
+import {cardDataItemType} from '../../../../../edit-card-data/lib/cards-data-handler'
 
 
 type propsType = {
@@ -64,18 +63,18 @@ export const CardListItem: React.FC<propsType> = ({number, id, data}) => {
                 </View>
             </WhiteCard>
         </TouchableOpacity>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 16,
         paddingVertical: 17,
-        flexDirection: "row",
+        flexDirection: 'row',
         marginBottom: 15,
     },
     text: {
-        color: styleConfig.textColor.dark
+        color: styleConfig.textColor.dark,
     },
     number: {
         fontFamily: 'IBMPlex-400',
@@ -83,9 +82,9 @@ const styles = StyleSheet.create({
         lineHeight: 18,
     },
     buttons: {
-        flexDirection: "row",
+        flexDirection: 'row',
         width: 40,
-        justifyContent: "space-between",
-        alignItems: "center"
-    }
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
 })

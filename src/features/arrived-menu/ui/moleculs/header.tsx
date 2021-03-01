@@ -1,24 +1,24 @@
-import React from 'react';
-import {View, StyleSheet, TouchableOpacity, Text} from "react-native";
-import {InfoSVG} from "../../../../ui/atoms/icons";
+import React from 'react'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {InfoSVG} from '../../../../ui/atoms/icons'
 
 
 type propsType = {
-    onPress:()=>void
+    onPress: () => void
 }
 
-export const Header: React.FC<propsType> = ({children,onPress}) => {
+export const Header: React.FC<propsType> = ({children, onPress}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.headerTitle}>{children}</Text>
             <TouchableOpacity
-                style={{paddingHorizontal:27,paddingVertical:16,alignItems:"flex-end",justifyContent:"center"}}
+                style={{paddingHorizontal: 27, paddingVertical: 16, alignItems: 'flex-end', justifyContent: 'center'}}
                 onPress={onPress}>
                 <InfoSVG/>
             </TouchableOpacity>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -32,10 +32,10 @@ const styles = StyleSheet.create({
         // paddingRight: 37,
         alignItems: 'center',
     },
-    headerTitle:{
+    headerTitle: {
         color: '#106DD3',
         fontSize: 16,
         fontFamily: 'IBMPlex-600',
-        lineHeight: 21
-    }
+        lineHeight: 21,
+    },
 })

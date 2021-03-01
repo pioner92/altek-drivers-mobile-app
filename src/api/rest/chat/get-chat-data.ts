@@ -1,26 +1,26 @@
 import config from '../../../../config.json'
-import {chatUsersType} from "./get-chats";
-import {makeRequest} from "../../make-request";
-import {createEffect} from "effector";
-import {addNexPageMessages, setChatData} from "../../../../screens/chat/models/models";
+import {chatUsersType} from './get-chats'
+import {makeRequest} from '../../make-request'
+import {createEffect} from 'effector'
+import {addNexPageMessages, setChatData} from '../../../../screens/chat/models/models'
 
 
 export type mediaType = Array<{
-    "chat": number,
-    "created_date": string
-    "extension": string
-    "file_name": string
-    "id": number
-    "message": number
-    "name": string
-    "path": string
-    "size": string
+    'chat': number,
+    'created_date': string
+    'extension': string
+    'file_name': string
+    'id': number
+    'message': number
+    'name': string
+    'path': string
+    'size': string
 }>
 
 export type messageType = {
     content: string
     files: mediaType | []
-    chat_id:number
+    chat_id: number
     modifiedDateTime: string
     user_from: {
         avatar: string
@@ -55,19 +55,18 @@ export const getChatData = createEffect(async (props: { id: number, page?: numbe
         return await makeRequest({
             url: `${config.get_Chats}${props.id}/?page=${props.page || 1}`,
             method: 'GET',
-            token: true
+            token: true,
         })
     } catch (e) {
         console.log('Get chat data ERROR: ', e)
     }
 })
 
-getChatData.done.watch(({result,params})=>{
-    if(result) {
-        if(params.page && params.page > 1){
+getChatData.done.watch(({result, params}) => {
+    if (result) {
+        if (params.page && params.page > 1) {
             addNexPageMessages(result.chat_group_messages)
-        }
-        else {
+        } else {
             setChatData(result)
         }
     }

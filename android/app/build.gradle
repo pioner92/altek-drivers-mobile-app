@@ -143,8 +143,8 @@ android {
         applicationId 'au.com.altekdrivers'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 13
-        versionName "1.2.5"
+        versionCode 15
+        versionName "1.2.7"
     }
     splits {
         abi {

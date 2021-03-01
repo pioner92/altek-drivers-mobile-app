@@ -1,25 +1,23 @@
-import {AppRegistry} from "react-native";
+import {AppRegistry} from 'react-native';
 
 import App from './App';
-import React from "react";
-import {FirebaseService} from "./utils/firebase-serivce/firebase-service";
-import {notificationHandler} from "./utils/firebase-serivce/notification-handler";
-import messaging from "@react-native-firebase/messaging";
-import {Notifications} from "expo/build/deprecated.web";
+import React from 'react';
+import {FirebaseService} from './utils/firebase-serivce/firebase-service';
+import {notificationHandler} from './utils/firebase-serivce/notification-handler';
 
 
-FirebaseService.backgroundMessageListener({handler:notificationHandler})
+FirebaseService.backgroundMessageListener({handler: notificationHandler});
 // messaging().setBackgroundMessageHandler(async remoteMessage => {
 //     console.log('Message handled in the background!', remoteMessage);
 //     console.log("MESSAGE BACKGROUND")
 //     // handler({message: remoteMessage})
 // });
 
-export function HeadlessCheck({ isHeadless }) {
+export function HeadlessCheck({isHeadless}) {
     if (isHeadless) {
         return null;
     }
-    return <App />;
+    return <App/>;
 }
 
 

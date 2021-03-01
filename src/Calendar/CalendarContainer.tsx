@@ -1,21 +1,21 @@
-import React, {useState} from 'react';
-import {Calendar} from "./Calendar";
-import moment from "moment";
-import {weeksGenerate} from "./lib/weeks-generate";
+import React, {useState} from 'react'
+import {Calendar} from './Calendar'
+import moment from 'moment'
+import {weeksGenerate} from './lib/weeks-generate'
 
 
 type propsType = {
-    count:1|2
-    onSelect?:(day:string)=>void
+    count: 1 | 2
+    onSelect?: (day: string) => void
 }
 
-export const CalendarContainer:React.FC<propsType> = ({count,onSelect}) => {
+export const CalendarContainer: React.FC<propsType> = ({count, onSelect}) => {
     const [selectedDay, setSelectedDay] = useState('')
     const daysName = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
     const title = moment().format('MMMM YYYY')
     const weeks = weeksGenerate()
 
-    const onSelectHandler = (day:string) => {
+    const onSelectHandler = (day: string) => {
         setSelectedDay(day)
         onSelect && onSelect(day)
     }
@@ -29,5 +29,5 @@ export const CalendarContainer:React.FC<propsType> = ({count,onSelect}) => {
             selectedDay={selectedDay}
             callback={onSelectHandler}
         />
-    );
-};
+    )
+}

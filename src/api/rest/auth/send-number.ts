@@ -1,13 +1,13 @@
-import {createEffect} from "effector";
-import {urls} from "../../urls";
-import {setDb} from "../../../../utils/db/set-db";
-import {makeRequest} from "../../make-request";
-import {setIsNumberValidateFailed} from "../../../../screens/login/models/models";
+import {createEffect} from 'effector'
+import {urls} from '../../urls'
+import {setDb} from '../../../../utils/db/set-db'
+import {makeRequest} from '../../make-request'
+import {setIsNumberValidateFailed} from '../../../../screens/login/models/models'
 import {
     hideNumberErrorModal,
-    showNumberErrorModal
-} from "../../../../screens/login/features/number-error-modal/models/models";
-import {PHONENUMBER} from "../../../../utils/db/constants";
+    showNumberErrorModal,
+} from '../../../../screens/login/features/number-error-modal/models/models'
+import {PHONENUMBER} from '../../../../utils/db/constants'
 
 type result = {
     message: string
@@ -18,18 +18,17 @@ export const sendNumber = createEffect(async (number: string): Promise<result | 
     try {
         return await makeRequest({url: urls.sms(), method: 'POST', body: {phone_number: number}})
     } catch (e) {
-        console.log('Send sms ERROR: ', e)
+        console.log('Send number ERROR: ', e)
     }
-
 })
 
 sendNumber.done.watch(({params, result}) => {
+    console.log(result)
     if (result?.success) {
         setIsNumberValidateFailed(false)
         hideNumberErrorModal()
         setDb(PHONENUMBER, params)
-    }
-    else {
+    } else {
         showNumberErrorModal()
         setIsNumberValidateFailed(true)
     }

@@ -1,1 +1,1 @@
-export {setUserPhoto,$userPhoto} from './models'
+export {setUserPhoto, $userPhoto} from './models'

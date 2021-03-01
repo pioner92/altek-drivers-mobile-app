@@ -1,15 +1,9 @@
-import React from 'react';
-import {StyleSheet, Text, View} from "react-native";
-import {useStore} from "effector-react";
-import {useInterpolate} from "../../../../utils/animation-hooks/Hooks";
-import {
-    $confirmArrivedAnimValue,
-    $isMountedConfirmArrivedModal,
-    setIsMountedConfirmArrivedModal
-} from "./models";
-import {AlertModal} from "../../../ui/molecules/alert-modal/alert-modal";
-import {AlertModalContainer} from "../alert-modal/alert-modal";
-import {hideAlertModal} from "../alert-modal/models/models";
+import React from 'react'
+import {StyleSheet, Text} from 'react-native'
+import {useStore} from 'effector-react'
+import {$confirmArrivedAnimValue, $isMountedConfirmArrivedModal, setIsMountedConfirmArrivedModal} from './models'
+import {AlertModalContainer} from '../alert-modal/alert-modal'
+import {hideAlertModal} from '../alert-modal/models/models'
 
 
 type propsType = {
@@ -24,8 +18,9 @@ export const ConfirmArrived: React.FC<propsType> = ({children, callback}) => {
     const onClickYes = () => {
         callback()
     }
-    const onClickNo = () => {
-        hideAlertModal({value,callback:()=>setIsMountedConfirmArrivedModal(false)})
+    const onClickNo = async () => {
+        await hideAlertModal(value)
+        setIsMountedConfirmArrivedModal(false)
     }
 
 
@@ -42,11 +37,11 @@ export const ConfirmArrived: React.FC<propsType> = ({children, callback}) => {
                 <Text style={styles.title}>Do you confirm that you arrived to </Text>
                 <Text style={styles.direction}>{children}</Text>
             </AlertModalContainer>
-        );
+        )
     } else {
         return null
     }
-};
+}
 
 const styles = StyleSheet.create({
 
@@ -54,12 +49,12 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: 'IBMPlex-400',
         lineHeight: 18,
-        color: '#1F2934'
+        color: '#1F2934',
     },
     direction: {
         color: '#1F2934',
         fontSize: 16,
         fontFamily: 'IBMPlex-500',
-        lineHeight: 21
-    }
+        lineHeight: 21,
+    },
 })

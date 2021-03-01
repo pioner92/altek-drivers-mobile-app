@@ -1,31 +1,31 @@
-import React from "react";
-import {View} from "react-native";
+import React from 'react'
+import {View} from 'react-native'
 
 
 type propsType = {
-    isSelected:boolean
+    isSelected: boolean
 }
 
-export const SelectedCircle:React.FC<propsType> = ({isSelected}) => {
+export const SelectedCircle: React.FC<propsType> = ({isSelected}) => {
     return (
         <View style={{
             width: 14,
             height: 14,
-            backgroundColor: "transparent",
+            backgroundColor: 'transparent',
             borderRadius: 50,
             borderWidth: 1,
-            borderColor: "#FFFFFF",
-            alignItems:"center",
-            justifyContent:"center"
+            borderColor: '#FFFFFF',
+            alignItems: 'center',
+            justifyContent: 'center',
         }}>
-            {isSelected
-                ? <View style={{
+            {isSelected ?
+                <View style={{
                     width: 8,
                     height: 8,
-                    backgroundColor: "#FFFFFF",
+                    backgroundColor: '#FFFFFF',
                     borderRadius: 50,
-                }}/>
-                : null
+                }}/> :
+                null
             }
 
         </View>

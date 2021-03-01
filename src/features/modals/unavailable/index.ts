@@ -1,3 +1,3 @@
 export {
-    UnavailableModal
+    UnavailableModal,
 } from './unavailable-modal'

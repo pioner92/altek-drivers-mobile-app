@@ -1,8 +1,3 @@
-import {createEffect, createEvent, createStore} from 'effector'
-import {getDb} from "../utils/db/get-db";
-import {messageType} from "../src/api/rest/chat/get-chat-data";
-import {TOKEN} from "../utils/db/constants";
-
 // export const initSocketEvent = createEffect(async (id: number) => {
 //     const token = await getDb(TOKEN)
 //     return new WebSocket(`wss://altekloads.com/ws/chat/${id}/?access_token=${token}`)

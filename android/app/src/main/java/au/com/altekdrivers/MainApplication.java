@@ -6,7 +6,6 @@ import android.content.Context;
 //import com.facebook.react.PackageList;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import io.invertase.firebase.RNFirebasePackage;
 //import com.centaurwarchief.smslistener.SmsListenerPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -17,7 +16,7 @@ import au.com.altekdrivers.generated.BasePackageList;
 import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import org.unimodules.adapters.react.ReactModuleRegistryProvider;
 
-import au.com.altekdrivers.backgroundLocationService.DevicePackage;
+//import au.com.altekdrivers.backgroundLocationService.DevicePackage;
 import expo.modules.updates.UpdatesController;
 
 import java.lang.reflect.InvocationTargetException;
@@ -39,7 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       List<ReactPackage> packages = new PackageList(this).getPackages();
       packages.add(new ModuleRegistryAdapter(mModuleRegistryProvider));
-      packages.add(new DevicePackage());
+//      packages.add(new DevicePackage());
       return packages;
     }
 

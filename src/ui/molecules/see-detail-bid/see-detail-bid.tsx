@@ -1,8 +1,7 @@
-import React from "react";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {RightArrowSVG} from "../../atoms/icons";
-import {styleConfig} from "../../../StyleConfig";
-import {components} from "@eva-design/eva/mapping";
+import React from 'react'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {RightArrowSVG} from '../../atoms/icons'
+import {styleConfig} from '../../../StyleConfig'
 
 type seeDetailBidType = {
     onPress: () => void
@@ -11,16 +10,17 @@ type seeDetailBidType = {
     Icon?: React.FC
 }
 
-export const SeeDetailBid: React.FC<seeDetailBidType> = ({onPress, loadId,price, Icon}) => {
+export const SeeDetailBid: React.FC<seeDetailBidType> = ({onPress, loadId, price, Icon}) => {
     return (
         <View>
             <TouchableOpacity activeOpacity={0.5} onPress={onPress} style={styles.header}>
-                <Text style={styles.headerTitle}>Load #{loadId} - <Text style={{color:'#1672D4',fontFamily:'IBMPlex-500',fontSize:14}}>{price}$</Text></Text>
+                <Text style={styles.headerTitle}>Load #{loadId} - <Text
+                    style={{color: '#1672D4', fontFamily: 'IBMPlex-500', fontSize: 14}}>{price}$</Text></Text>
                 {Icon ?
-                    <View style={{paddingRight:28}}>
+                    <View style={{paddingRight: 28}}>
                         <Icon/>
-                    </View>
-                    : <RightArrowSVG/>
+                    </View> :
+                    <RightArrowSVG/>
 
                 }
             </TouchableOpacity>
@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         lineHeight: 18,
         fontFamily: 'IBMPlex-400',
-        color: styleConfig.textColor.dark
+        color: styleConfig.textColor.dark,
     },
 })

@@ -7,5 +7,5 @@ export {
     toUnloadStatus,
     toUploadStatus,
     uploadingStatus,
-    completedStatus
+    completedStatus,
 } from './delivery-hooks'

@@ -1,4 +1,4 @@
-export type svgType =  {
-    size:number
-    color:string
+export type svgType = {
+    size: number
+    color: string
 }

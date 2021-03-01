@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet, Text, View} from "react-native";
+import React from 'react'
+import {StyleSheet, Text, View} from 'react-native'
 
 type dayTitlesType = {
     daysName: string[]
@@ -16,8 +16,8 @@ export const DayTitles: React.FC<dayTitlesType> = ({daysName}) => {
                 )
             })}
         </View>
-    );
-};
+    )
+}
 
 
 const styles = StyleSheet.create({
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         width: 32,
         height: 16,
         alignItems: 'center',
-        justifyContent:'center'
+        justifyContent: 'center',
     },
     dayTitle: {
         fontFamily: 'IBMPlex-500',
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         color: '#BEC3CC',
         fontSize: 8,
         letterSpacing: 1.5,
-        lineHeight: 16
+        lineHeight: 16,
     },
 
 })

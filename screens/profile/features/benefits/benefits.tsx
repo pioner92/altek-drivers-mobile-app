@@ -1,8 +1,8 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {ProfileTitle} from "../../ui/atoms/profile-title";
-import {BlueCardBenefit} from "../../ui/atoms/blue-card-benefit";
-import {styleConfig} from "../../../../src/StyleConfig";
+import React from 'react'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {ProfileTitle} from '../../ui/atoms/profile-title'
+import {BlueCardBenefit} from '../../ui/atoms/blue-card-benefit'
+import {styleConfig} from '../../../../src/StyleConfig'
 
 export const Benefits: React.FC = () => {
     return (
@@ -24,37 +24,37 @@ export const Benefits: React.FC = () => {
                 </View>
             </View>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 34
+        marginTop: 34,
     },
     benefitRightBlock: {
         // alignSelf:"flex-end",
-        transform: [{translateX: 16}]
+        transform: [{translateX: 16}],
     },
     benefitWrapper: {
-        flexDirection: "row",
-        justifyContent: "space-between"
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     benefitLeftBlock: {
-        flexDirection: "row",
+        flexDirection: 'row',
         height: 96,
-        flex: 1
+        flex: 1,
     },
     benefitWhiteBlock: {
         backgroundColor: '#fff',
         flex: 1,
         borderTopRightRadius: 10,
         borderBottomRightRadius: 10,
-        padding: 10
+        padding: 10,
     },
     title: {
         fontSize: 12,
         lineHeight: 16,
-        marginBottom: 5
+        marginBottom: 5,
     },
     subtitle: {
         fontSize: 10,
@@ -65,9 +65,9 @@ const styles = StyleSheet.create({
         height: 20,
         width: 57,
         borderRadius: 6,
-        justifyContent: "center",
-        alignItems: "center",
-        alignSelf: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
         marginTop: 12,
 
     },
@@ -75,6 +75,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 12,
         lineHeight: 16,
-        fontFamily: 'IBMPlex-500'
-    }
+        fontFamily: 'IBMPlex-500',
+    },
 })

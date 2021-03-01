@@ -1,9 +1,5 @@
-import React from 'react';
-import {
-    Image,
-    StyleSheet,
-    View,
-} from "react-native";
+import React from 'react'
+import {Image, StyleSheet, View} from 'react-native'
 
 
 type propsType = {
@@ -11,7 +7,6 @@ type propsType = {
 }
 
 export const MessageImage: React.FC<propsType> = ({source}) => {
-
     return (
         <View style={styles.container}>
             <Image
@@ -20,15 +15,15 @@ export const MessageImage: React.FC<propsType> = ({source}) => {
                 style={{
                     width: 102,
                     height: 136,
-                    borderRadius: 4
+                    borderRadius: 4,
                 }}
             />
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 5
-    }
+        paddingTop: 5,
+    },
 })

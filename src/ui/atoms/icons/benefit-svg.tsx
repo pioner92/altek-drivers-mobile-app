@@ -1,5 +1,5 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
+import * as React from 'react'
+import Svg, {Path} from 'react-native-svg'
 
 export const BenefitSVG = () => {
     return (
@@ -20,7 +20,7 @@ export const BenefitSVG = () => {
                 d="M13.83.377c-3.303 0-4.435 4.174-4.481 4.352a.685.685 0 00.663.86h3.84c1.424 0 2.583-1.17 2.583-2.606A2.609 2.609 0 0013.829.377zm.022 3.84h-2.864c.43-.986 1.328-2.469 2.841-2.469.67 0 1.235.566 1.235 1.235 0 .692-.533 1.234-1.212 1.234z"
                 fill="#ECF5FF"
             />
-            <Path d="M10.698 4.903H9.326v14.035h1.372V4.903z" fill="#ECF5FF" />
+            <Path d="M10.698 4.903H9.326v14.035h1.372V4.903z" fill="#ECF5FF"/>
         </Svg>
     )
 }

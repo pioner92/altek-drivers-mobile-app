@@ -1,23 +1,21 @@
-import React from 'react';
-import {useInterpolate} from "../../../utils/animation-hooks/Hooks";
-import {alertFn} from "../../../utils/alert/alert";
-import {useStore} from "effector-react";
-import {$arrivedMenuAnimValue} from "./models";
-import {useNavigate} from "../../lib/hooks";
+import React from 'react'
+import {useInterpolate} from '../../../utils/animation-hooks/Hooks'
+import {alertFn} from '../../../utils/alert/alert'
+import {useStore} from 'effector-react'
+import {$arrivedMenuAnimValue} from './models'
+import {useNavigate} from '../../lib/hooks'
 import links from '../../../links.json'
-import { $buttonIsDisabled, $isOpenedArrivedMenu, slideToTopArrivedMenu} from "./models/models";
-import {Animated, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {styleConfig} from "../../StyleConfig";
-import {Wrapper} from "../../ui/atoms/wrapper";
-import {ButtonColorCardWithIcon} from "../../ui/molecules/button-color-card-with-icon";
-import {ChatSVG, SendSVG} from "../../ui/atoms/icons";
-import {GrayAreaWithTitle, Header} from "./ui/moleculs";
-import {Button} from "../../ui/atoms/buttons";
-import {VALUEINSTEAD} from "../../lib/nullableDateValidate/nullableDateValidate";
+import {$buttonIsDisabled, $isOpenedArrivedMenu, slideToTopArrivedMenu} from './models/models'
+import {Animated, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {styleConfig} from '../../StyleConfig'
+import {Wrapper} from '../../ui/atoms/wrapper'
+import {ButtonColorCardWithIcon} from '../../ui/molecules/button-color-card-with-icon'
+import {ChatSVG, SendSVG} from '../../ui/atoms/icons'
+import {GrayAreaWithTitle, Header} from './ui/moleculs'
+import {Button} from '../../ui/atoms/buttons'
+import {VALUEINSTEAD} from '../../lib/nullableDateValidate/nullableDateValidate'
 
-import {sendGeoToServer} from "../../api/rest/send-geo-to-server";
-import {DateTime} from "luxon";
-import {dateConverter} from "../../../utils/date-converter";
+import {sendGeoToServer} from '../../api/rest/send-geo-to-server'
 
 type propsType = {
     accept: () => void
@@ -29,11 +27,10 @@ type propsType = {
 }
 
 export const ArrivedMenu: React.FC<propsType> = ({accept, btnLabel, address, date, title, dateTitle}) => {
-
-    let dateFormatted = 'Direct'
+    let dateFormatted = VALUEINSTEAD
     if (date) {
-        "2021-12-02T15:30:00-05:00"
-        dateFormatted = DateTime.fromISO(date,{setZone:false}).toFormat("EEEE dd MMMM hh:mm a")
+        // dateFormatted = DateTime.fromISO(date, {setZone: false}).toFormat("EEEE dd MMMM hh:mm a")
+        dateFormatted = date
     }
 
 
@@ -52,7 +49,7 @@ export const ArrivedMenu: React.FC<propsType> = ({accept, btnLabel, address, dat
     const loadChat = () => {
         alertFn({
             title: 'Good to go', message: 'You have been manually released by dispatcher.', callback: () => {
-            }
+            },
         })
     }
     const showRoute = () => {
@@ -63,22 +60,22 @@ export const ArrivedMenu: React.FC<propsType> = ({accept, btnLabel, address, dat
 
     const animStyle = {
         transform: [
-            {translateY: menuInterpolateY}
-        ]
+            {translateY: menuInterpolateY},
+        ],
     }
     return (
         <Animated.View style={[styles.container, animStyle, styleConfig.shadowModal]}>
-            <TouchableOpacity disabled={isOpenedMenu}  onPress={() => !isOpenedMenu ? slideToTopArrivedMenu() : null}>
+            <TouchableOpacity disabled={isOpenedMenu} onPress={() => !isOpenedMenu ? slideToTopArrivedMenu() : null}>
                 <Header onPress={showInfo}>{title}</Header>
             </TouchableOpacity>
             <Wrapper>
                 {/* временно */}
                 <View style={{height: 10, width: '100%'}}></View>
-                {/*<ButtonsColorCardWithIcon*/}
+                {/* <ButtonsColorCardWithIcon*/}
                 {/*    style={{marginVertical:20,width:244}}*/}
                 {/*    LeftComponent={LoadChat}*/}
                 {/*    RightComponent={ShowRoute}*/}
-                {/*/>*/}
+                {/* />*/}
                 <GrayAreaWithTitle style={{marginBottom: 16}} title={dateTitle}>
                     <Text style={styles.informationText}>{dateFormatted}
                         {dateFormatted !== VALUEINSTEAD &&
@@ -92,8 +89,8 @@ export const ArrivedMenu: React.FC<propsType> = ({accept, btnLabel, address, dat
                 <Button disabled={buttonIsDisabled} onPress={onClickAccept}>{btnLabel}</Button>
             </Wrapper>
         </Animated.View>
-    );
-};
+    )
+}
 
 
 const LoadChat = () => {
@@ -122,10 +119,10 @@ const styles = StyleSheet.create({
         zIndex: 4,
         elevation: 4,
         backgroundColor: '#fff',
-        height: 320, //392
+        height: 320, // 392
         width: '100%',
-        position: "absolute",
-        bottom: 50,
+        position: 'absolute',
+        bottom: 0,
         borderTopLeftRadius: 12,
         borderTopRightRadius: 12,
     },
@@ -133,13 +130,13 @@ const styles = StyleSheet.create({
         color: styleConfig.textColor.dark,
         fontSize: 14,
         fontFamily: 'IBMPlex-500',
-        lineHeight: 18
+        lineHeight: 18,
     },
     buttonContainer: {
         flexDirection: 'row',
         width: 244,
         justifyContent: 'space-between',
         paddingTop: 16,
-        paddingBottom: 21
-    }
+        paddingBottom: 21,
+    },
 })

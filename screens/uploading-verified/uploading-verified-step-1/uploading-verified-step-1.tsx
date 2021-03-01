@@ -1,14 +1,15 @@
-import React from 'react';
-import {Dimensions, ScrollView, StyleSheet, View} from "react-native";
-import {TitleGrey} from "../../../src/features/load-verified";
-import {useNavigate} from "../../../src/lib/hooks";
-import {LoadWithCurrent} from "../features";
+import React from 'react'
+import {StyleSheet, View} from 'react-native'
+import {TitleGrey} from '../../../src/features/load-verified'
+import {useNavigate} from '../../../src/lib/hooks'
+import {LoadWithCurrent} from '../features'
 import links from '../../../links.json'
-import {Button} from "../../../src/ui/atoms/buttons";
-import {ScreenWrapper} from "../../../src/ui/atoms/screen-wrapper/screen-wrapper";
-import {WrapperPaddingBottom} from "../../../src/ui/atoms/wrapper/wrapper-padding-bottom";
-import {useStore} from "effector-react";
-import {$currentLoad} from "../../load-info/models";
+import {Button} from '../../../src/ui/atoms/buttons'
+import {ScreenWrapper} from '../../../src/ui/atoms/screen-wrapper/screen-wrapper'
+import {WrapperPaddingBottom} from '../../../src/ui/atoms/wrapper/wrapper-padding-bottom'
+import {useStore} from 'effector-react'
+import {$currentLoad} from '../../load-info/models'
+import {styleConfig} from '../../../src/StyleConfig'
 
 export const UploadingVerifiedStep1: React.FC = () => {
     const navigate = useNavigate()
@@ -19,9 +20,9 @@ export const UploadingVerifiedStep1: React.FC = () => {
     }
 
     const getPiecesInfo = () => {
-        if(currentLoad) {
-            const {width = 0,height = 0,length = 0} = currentLoad || {}
-            if (width && height && length){
+        if (currentLoad) {
+            const {width = 0, height = 0, length = 0} = currentLoad || {}
+            if (width && height && length) {
                 return `${length}x${width}x${height}`
             }
             return 'Not supplied'
@@ -30,29 +31,29 @@ export const UploadingVerifiedStep1: React.FC = () => {
     }
 
     return (
-        <ScreenWrapper isEnabledHeightController={true}>
-                <View style={styles.container}>
+        <ScreenWrapper isEnabledHeightController={true} safeAreaStyle={{backgroundColor: styleConfig.screenBackground}}>
+            <View style={styles.container}>
                 <TitleGrey>Type in the verified load information </TitleGrey>
                 <LoadWithCurrent piecesDescription={getPiecesInfo()} weightDescription={'lbs'}/>
                 <WrapperPaddingBottom style={styles.btnWrapper}>
-                    <Button  onPress={onClickConfirm}>Continue</Button>
+                    <Button onPress={onClickConfirm}>Continue</Button>
                 </WrapperPaddingBottom>
-                </View>
+            </View>
         </ScreenWrapper>
-    );
-};
+    )
+}
 
 
 const styles = StyleSheet.create({
     container: {
         // flex:1,
-        height:'100%',
+        height: '100%',
         paddingHorizontal: 16,
         paddingTop: 27,
     },
     btnWrapper: {
-        alignItems:"center",
-        justifyContent:"center",
+        alignItems: 'center',
+        justifyContent: 'center',
         marginTop: 'auto',
     },
     title: {
@@ -62,6 +63,6 @@ const styles = StyleSheet.create({
         lineHeight: 18,
         marginBottom: 10,
         paddingLeft: 16,
-        marginTop: 27
-    }
+        marginTop: 27,
+    },
 })

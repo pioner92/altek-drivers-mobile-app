@@ -1,8 +1,8 @@
-import * as React from "react";
-import Svg, { Path } from "react-native-svg";
-import {svgType} from "./types";
+import * as React from 'react'
+import Svg, {Path} from 'react-native-svg'
+import {svgType} from './types'
 
-export const BidsSVG:React.FC<svgType> = ({color,size}) => {
+export const BidsSVG: React.FC<svgType> = ({color, size}) => {
     return (
         <Svg width={size} height={size} viewBox="0 0 18 18" fill="none">
             <Path
@@ -14,6 +14,6 @@ export const BidsSVG:React.FC<svgType> = ({color,size}) => {
                 fill={color}
             />
         </Svg>
-    );
+    )
 }
 

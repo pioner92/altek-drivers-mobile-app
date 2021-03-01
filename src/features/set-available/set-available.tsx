@@ -1,12 +1,11 @@
-import React from 'react';
-import {Animated, StyleSheet, View} from 'react-native'
-import {ButtonSetAvailable} from "../../ui/atoms/buttons";
-import {TruckSVG} from "../../ui/atoms/icons";
-import {IsAvailableCard} from "../../ui/atoms/card";
-import {$setAvailableAnimValue, $shadowColor, $svgColor, $title} from "./models";
-import {useInterpolate} from "../../../utils/animation-hooks/Hooks";
-import {useStore} from "effector-react";
-import { pushNotification } from '../../../utils/notification/push-notification';
+import React from 'react'
+import {Animated, StyleSheet, TouchableOpacity} from 'react-native'
+import {ButtonSetAvailable} from '../../ui/atoms/buttons'
+import {TruckSVG} from '../../ui/atoms/icons'
+import {IsAvailableCard} from '../../ui/atoms/card'
+import {$setAvailableAnimValue, $shadowColor, $svgColor, $title} from './models'
+import {useInterpolate} from '../../../utils/animation-hooks/Hooks'
+import {useStore} from 'effector-react'
 
 type propsType = {
     callback: () => void
@@ -14,7 +13,6 @@ type propsType = {
 
 
 export const SetAvailable: React.FC<propsType> = ({callback}) => {
-
     const value = useStore($setAvailableAnimValue)
     const shadowColor = useStore($shadowColor)
     const svgColor = useStore($svgColor)
@@ -27,34 +25,34 @@ export const SetAvailable: React.FC<propsType> = ({callback}) => {
         opacity: opacityInterpolate,
         transform: [
             {translateX: translateXInterpolate},
-        ]
+        ],
     }
 
-    const onClick = () => {
+    const onPress = () => {
         callback()
     }
 
     return (
         <Animated.View style={[animStyle, styles.button]}>
-            <View style={styles.container}>
+            <TouchableOpacity activeOpacity={0.5} onPress={onPress} style={styles.container}>
                 <IsAvailableCard shadowColor={shadowColor}>{title}</IsAvailableCard>
-                <ButtonSetAvailable callback={onClick} style={{shadowColor: shadowColor}}>
+                <ButtonSetAvailable style={{shadowColor: shadowColor}}>
                     <TruckSVG color={svgColor}/>
                 </ButtonSetAvailable>
-            </View>
+            </TouchableOpacity>
         </Animated.View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
     button: {
         height: 46,
         position: 'absolute',
-        bottom: 96,
+        bottom: 52,
         right: 0,
         zIndex: 2,
     },

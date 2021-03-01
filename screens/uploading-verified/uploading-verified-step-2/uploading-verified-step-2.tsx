@@ -1,21 +1,20 @@
-import React from 'react';
-import {Dimensions, ScrollView, StyleSheet, View} from "react-native";
-import {AddressConfirmationCard} from "../../../src/features/load-verified/address/ui/organisms/address-confirmation-card";
-import {TakenPicture} from "../../../src/ui/molecules/taken-pickture";
-import {useNavigate} from "../../../src/lib/hooks";
-import {TakePictureMenu} from "../../../src/features/take-picture-menu";
-import {TitleGrey} from "../../../src/features/load-verified/ui/atoms";
-import {setImageDataBol, setSelectedIndex} from "./models";
-import {hideTakePictureMenu, showTakePictureMenu} from "../../../src/features/take-picture-menu/models";
-import {InputBol} from "../features/input-bol";
+import React from 'react'
+import {StyleSheet, View} from 'react-native'
+import {AddressConfirmationCard} from '../../../src/features/load-verified/address/ui/organisms/address-confirmation-card'
+import {TakenPicture} from '../../../src/ui/molecules/taken-pickture'
+import {useNavigate} from '../../../src/lib/hooks'
+import {TakePictureMenu} from '../../../src/features/take-picture-menu'
+import {TitleGrey} from '../../../src/features/load-verified/ui/atoms'
+import {setImageDataBol, setSelectedIndex} from './models'
+import {hideTakePictureMenu, showTakePictureMenu} from '../../../src/features/take-picture-menu/models'
+import {InputBol} from '../features/input-bol'
 import links from '../../../links.json'
-import {useStore} from "effector-react";
-import {$currentLoad} from "../../load-info/models";
-import {Button} from "../../../src/ui/atoms/buttons";
-import {WrapperPaddingBottom} from "../../../src/ui/atoms/wrapper/wrapper-padding-bottom";
-import {cameraHandler} from "../../../utils/cameraHandler/cameraHandler";
-import {ScreenWrapper} from "../../../src/ui/atoms/screen-wrapper/screen-wrapper";
-
+import {useStore} from 'effector-react'
+import {$currentLoad} from '../../load-info/models'
+import {Button} from '../../../src/ui/atoms/buttons'
+import {WrapperPaddingBottom} from '../../../src/ui/atoms/wrapper/wrapper-padding-bottom'
+import {cameraHandler} from '../../../utils/cameraHandler/cameraHandler'
+import {ScreenWrapper} from '../../../src/ui/atoms/screen-wrapper/screen-wrapper'
 
 
 export const UploadingVerifiedStep2: React.FC = () => {
@@ -40,46 +39,45 @@ export const UploadingVerifiedStep2: React.FC = () => {
     }
 
     const onTakenPicture = async () => {
-        const callback = ()=> navigate(links.camera, {callback: photo})
+        const callback = () => navigate(links.camera, {callback: photo})
         cameraHandler(callback)
-
     }
 
 
     return (
         <ScreenWrapper isEnabledHeightController={true}>
-                <View style={[styles.container]}>
+            <View style={[styles.container]}>
                 <TitleGrey>Type in BOL number</TitleGrey>
                 <InputBol/>
                 <TitleGrey style={{marginTop: 32}}>Does the delivery address on the BOL match the address
                     below?</TitleGrey>
                 <AddressConfirmationCard callback={onChangeCheckBox}
-                                         text={pickUpAddress || ''}/>
+                    text={pickUpAddress || ''}/>
                 <TitleGrey style={{marginTop: 32}}>Take Picture of the BOL</TitleGrey>
                 <TakenPicture callback={openTakePictureMenu}>Take a Picture</TakenPicture>
                 <WrapperPaddingBottom style={styles.btnWrapper}>
-                    <Button  onPress={onClickContinue}>Continue</Button>
+                    <Button onPress={onClickContinue}>Continue</Button>
                 </WrapperPaddingBottom>
-                </View>
+            </View>
             <TakePictureMenu
                 title='Take Picture of the BOL'
                 callbackFirstButton={onTakenPicture}
                 themeSecondButton='white'
             />
         </ScreenWrapper>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
         height: '100%',
         paddingHorizontal: 16,
         backgroundColor: '#fff',
-        paddingTop: 27
+        paddingTop: 27,
     },
     btnWrapper: {
-        justifyContent:"center",
-        alignItems:"center",
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 'auto',
     },
     title: {
@@ -89,6 +87,6 @@ const styles = StyleSheet.create({
         lineHeight: 18,
         marginBottom: 10,
         paddingLeft: 16,
-        marginTop: 27
-    }
+        marginTop: 27,
+    },
 })

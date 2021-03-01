@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
-import {ScrollView, StyleSheet, View} from "react-native";
-import {useStore} from "effector-react";
+import React from 'react'
+import {ScrollView, StyleSheet, View} from 'react-native'
+import {useStore} from 'effector-react'
 import {
     deliveryPointStore,
     minimumDimsHeightStore,
@@ -8,14 +8,13 @@ import {
     minimumDimsWidthStore,
     minimumPayloadsStore,
     pickUpPointStore,
-} from "../../Store/FilterStore";
-import {setDb} from "../../utils/db";
-import {MaxMilesOut} from "./features/max-miles-out/max-miles-out";
-import {DeliveryPoint} from "./features/delivery-point/delivery-point";
-import {ScreenWrapper} from "../../src/ui/atoms/screen-wrapper/screen-wrapper";
-import {Button} from "../../src/ui/atoms/buttons";
-import {setIsFilteredBids} from "./models";
-import {BtnWrapper} from "../../src/ui/atoms/wrapper/btn-wrapper";
+} from '../../Store/FilterStore'
+import {setDb} from '../../utils/db'
+import {MaxMilesOut} from './features/max-miles-out/max-miles-out'
+import {ScreenWrapper} from '../../src/ui/atoms/screen-wrapper/screen-wrapper'
+import {Button} from '../../src/ui/atoms/buttons'
+import {setIsFilteredBids} from './models'
+import {BtnWrapper} from '../../src/ui/atoms/wrapper/btn-wrapper'
 import {
     DELIVERYPOINT,
     MAXMILES,
@@ -23,17 +22,16 @@ import {
     MINIMUMDIMSLENGTH,
     MINIMUMDIMSWIDTH,
     MINIMUMPAYLOADS,
-    PICKUPPOINT
-} from "../../utils/db/constants";
-import {$sliderValueMaxMilesRight} from "./features/max-miles-out/models";
-import {clearFilter} from "./lib/clear-filter";
-import {useInitFilter} from "./lib/use-init-filter";
-import {StackScreenProps} from "@react-navigation/stack";
-import {getLoads} from "../../src/api/rest/loads/get-loads";
+    PICKUPPOINT,
+} from '../../utils/db/constants'
+import {$sliderValueMaxMilesRight} from './features/max-miles-out/models'
+import {clearFilter} from './lib/clear-filter'
+import {useInitFilter} from './lib/use-init-filter'
+import {StackScreenProps} from '@react-navigation/stack'
+import {getLoads} from '../../src/api/rest/loads/get-loads'
 
 
-export const Filter:React.FC<StackScreenProps<any>> = ({navigation}) => {
-
+export const Filter: React.FC<StackScreenProps<any>> = ({navigation}) => {
     const maxMiles = useStore($sliderValueMaxMilesRight)
     const pickUpPoint = useStore(pickUpPointStore)
     const deliveryPoint = useStore(deliveryPointStore)
@@ -64,33 +62,35 @@ export const Filter:React.FC<StackScreenProps<any>> = ({navigation}) => {
     useInitFilter()
 
     return (
-        <ScreenWrapper>
-            <ScrollView nestedScrollEnabled={true}  style={styles.container}>
+        <ScreenWrapper isEnabledHeightController={true}>
+            <ScrollView
+                nestedScrollEnabled={true}
+                style={styles.container}>
                 <View style={styles.wrapper}>
                     <MaxMilesOut/>
-                    {/*<PickUpPoint/>*/}
-                    <DeliveryPoint/>
-                    {/*<PickUpDate/>*/}
-                    {/*<DeliveryDate/>*/}
-                    {/*<MinimumDims/>*/}
-                    {/*<MinimumPayloads/>*/}
+                    {/* <PickUpPoint/>*/}
+                    {/* <DeliveryPoint/>*/}
+                    {/* <PickUpDate/>*/}
+                    {/* <DeliveryDate/>*/}
+                    {/* <MinimumDims/>*/}
+                    {/* <MinimumPayloads/>*/}
                 </View>
             </ScrollView>
-            <BtnWrapper style={{height: 149, justifyContent: "space-between"}}>
+            <BtnWrapper style={{height: 149, justifyContent: 'space-between'}}>
                 <Button onPress={onSaveFilter}>Apply</Button>
                 <Button theme='white' onPress={onClearFilter}>Clear</Button>
             </BtnWrapper>
         </ScreenWrapper>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        height: '100%'
+        height: '100%',
     },
     wrapper: {
         paddingBottom: 20,
         paddingHorizontal: 16,
-    }
+    },
 })

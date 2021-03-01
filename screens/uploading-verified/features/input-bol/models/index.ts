@@ -1,1 +1,1 @@
-export {$inputValueBol,setInputValueBol} from './models'
+export {$inputValueBol, setInputValueBol} from './models'

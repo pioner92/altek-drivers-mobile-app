@@ -1,7 +1,7 @@
-import React from 'react';
-import {FlatList, StyleSheet, View} from "react-native";
-import {SvgComponent} from "./SvgIcon";
-import {Option} from "./Option";
+import React from 'react'
+import {FlatList, StyleSheet, View} from 'react-native'
+import {SvgComponent} from './SvgIcon'
+import {Option} from './Option'
 
 export const Select = () => {
     return (
@@ -16,8 +16,8 @@ export const Select = () => {
                 keyExtractor={(item) => item.toString()}
                 renderItem={({item}) => <Option>{item}</Option>}/>
         </>
-    );
-};
+    )
+}
 
 
 const valueGenerate = () => {
@@ -35,16 +35,16 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderColor: '#BEC6D8',
         borderRadius: 2,
-        flexDirection: "row",
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
     },
     value: {
         fontSize: 14,
         fontFamily: 'IBMPlex-500',
         color: '#102656',
-        textAlign: 'center'
+        textAlign: 'center',
     },
     selectScrollView: {
         height: 200,
@@ -52,5 +52,5 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderColor: '#BEC6D8',
 
-    }
+    },
 })

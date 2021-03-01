@@ -1,1 +1,1 @@
-export {showStartWorkingLaterMenu,$startWorkingLaterAnimValue,hideStartWorkingLaterMenu} from './models'
+export {showStartWorkingLaterMenu, $startWorkingLaterAnimValue, hideStartWorkingLaterMenu} from './models'

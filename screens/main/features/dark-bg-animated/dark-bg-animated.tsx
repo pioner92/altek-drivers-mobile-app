@@ -1,41 +1,51 @@
-import React, {useEffect, useState} from "react";
-import {View, StyleSheet, Animated} from "react-native";
-import {useStore} from "effector-react";
-import {$animValueDarkBGAnimated, $isMountedDarkBGAnimated} from "./models/models";
-import {useInterpolate} from "../../../../utils/animation-hooks/Hooks";
-import {$arrivedMenuAnimValue} from "../../../../src/features/arrived-menu/models";
+import React, {useEffect, useState} from 'react'
+import {Animated, StyleSheet} from 'react-native'
+import {useInterpolate} from '../../../../utils/animation-hooks/Hooks'
 
 type propsType = {
-    onPress: () => void
+    onPress?: () => void
+    animatedValue?: Animated.Value
 }
 
-export const DarkBgAnimated: React.FC<propsType> = ({onPress}) => {
-
+export const DarkBgAnimated: React.FC<propsType> = ({onPress, animatedValue}) => {
     const [isMounted, setIsMounted] = useState(false)
 
-    const animValue = useStore($arrivedMenuAnimValue)
+    // let animValue = useStore($arrivedMenuAnimValue)
+    let animValue: Animated.Value
+
+
+    if (animatedValue !== undefined) {
+        animValue = animatedValue
+    } else {
+        animValue = new Animated.Value(0)
+    }
+
     const interpolateOpacity = useInterpolate(animValue, [0, 1, 2, 3], [0, 0.2, 0, 0.2])
 
     const opacityStyle = {
-        opacity: interpolateOpacity
+        opacity: interpolateOpacity,
+    }
+
+    const onPressHandler = () => {
+        onPress && onPress()
     }
 
     useEffect(() => {
-        animValue.addListener(state => {
+        animValue.addListener((state) => {
             if (state.value === 0 || state.value === 2) {
                 setIsMounted(false)
             } else {
                 setIsMounted(true)
             }
         })
-        return ()=> animValue.removeAllListeners()
-    },[])
+        return () => animValue.removeAllListeners()
+    }, [])
 
     if (!isMounted) {
         return null
     }
     return (
-        <Animated.View onTouchStart={onPress} style={[opacityStyle, styles.container]}/>
+        <Animated.View onTouchStart={onPressHandler} style={[opacityStyle, styles.container]}/>
     )
 }
 
@@ -44,6 +54,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: '100%',
         height: '100%',
-        backgroundColor: 'black'
-    }
+        backgroundColor: 'black',
+    },
 })

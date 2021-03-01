@@ -1,13 +1,13 @@
 import {createEvent, createStore} from 'effector'
-import {getDb, setDb} from "../../../utils/db";
+import {getDb, setDb} from '../../../utils/db'
 import {
     $inputValueUserName,
     $inputValueUserPhone,
     setInputValueUserName,
-    setInputValueUserPhone
-} from "../screens/edit-profile/features/personal-info/models/models";
-import {updateProfileDateOnServer} from "../../../src/api/rest/update-profile";
-import {FIRSTNAME, LASTNAME, PHONENUMBER, USERID} from "../../../utils/db/constants";
+    setInputValueUserPhone,
+} from '../screens/edit-profile/features/personal-info/models/models'
+import {updateProfileDateOnServer} from '../../../src/api/rest/update-profile'
+import {FIRSTNAME, LASTNAME, PHONENUMBER, USERID} from '../../../utils/db/constants'
 
 type userDataType = {
     firstName: string | undefined
@@ -28,7 +28,7 @@ export const resetUserDataStore = createEvent()
 
 
 export const $userData = createStore({} as userDataType)
-    .on(setUserData, (state, payload) =>  payload)
+    .on(setUserData, (state, payload) => payload)
     .on(setUserFirstName, (state, payload) => ({...state, firstName: payload}))
     .on(setUserLastName, (state, payload) => ({...state, lastName: payload}))
     .on(setUserPhone, (state, payload) => ({...state, phone: payload}))
@@ -45,7 +45,7 @@ initUserData.watch(async () => {
 
     setInputValueUserName(`${firstName} ${lastName}`)
     setInputValueUserPhone(`${phone}`)
-    setUserData({firstName, lastName, phone,id:Number(id)})
+    setUserData({firstName, lastName, phone, id: Number(id)})
 })
 
 

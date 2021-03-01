@@ -1,1 +1,1 @@
-export {setInputValuePickUpPoint,$inputValuePickUpPoint} from './models'
+export {setInputValuePickUpPoint, $inputValuePickUpPoint} from './models'

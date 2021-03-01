@@ -1,21 +1,20 @@
-import React from 'react';
-import {StyleSheet, View} from "react-native";
-import {Info, StepComponent} from "../molecules";
+import React from 'react'
+import {StyleSheet, View} from 'react-native'
+import {Info, StepComponent} from '../molecules'
 
 type stepsType = {
-    pickUp:string
-    pickUpZip:string
-    deliveryTo:string
-    deliveryToZip:string
-    pieces:number
-    weight:number
-    totalMiles:number
-    emptyMiles:number
+    pickUp: string
+    pickUpZip: string
+    deliveryTo: string
+    deliveryToZip: string
+    pieces: number
+    weight: number
+    totalMiles: number
+    emptyMiles: number
 }
 
-export const BidStepContent: React.FC<stepsType> = ({pickUp,deliveryTo,pieces,weight,totalMiles,emptyMiles,pickUpZip,deliveryToZip}) => {
-
-    const createSubtitle = (title:string) => {
+export const BidStepContent: React.FC<stepsType> = ({pickUp, deliveryTo, pieces, weight, totalMiles, emptyMiles, pickUpZip, deliveryToZip}) => {
+    const createSubtitle = (title: string) => {
         return `${title}, USA`
     }
 
@@ -29,27 +28,32 @@ export const BidStepContent: React.FC<stepsType> = ({pickUp,deliveryTo,pieces,we
                         <StepComponent number='2' title={deliveryTo} subTitle={createSubtitle(deliveryToZip)}/>
                     </View>
                 </View>
-                <Info title1={`${totalMiles} mi`} title2={`${emptyMiles} out`} title3={`${pieces} PC / ${weight} LBS`}/>
+                <Info
+                    value1={`${totalMiles} mi`}
+                    value2={`${emptyMiles} out`}
+                    value3={`${pieces} PC`}
+                    value4={`${weight} LBS`}/>
             </View>
         </View>
-    );
-};
+    )
+}
 
 
 const styles = StyleSheet.create({
     container: {
-        height: 82,
+        // height: 82,
         width: '100%',
         justifyContent: 'center',
+        alignItems: 'center',
     },
     wrapper: {
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between',
-        alignItems:'center'
+        alignItems: 'center',
     },
-    circlesWrapper:{
-      alignItems:'center'
+    circlesWrapper: {
+        alignItems: 'center',
     },
     circle: {
         width: 18,
@@ -60,29 +64,30 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        marginLeft: 10
+        marginLeft: 10,
     },
     circleAndTitleWrapper: {
+        height: 89,
         flexDirection: 'row',
-        width: '60%'
+        width: '60%',
     },
     circleTitle: {
         fontSize: 7,
         color: '#E7F1F4',
-        fontFamily: 'IBMPlex-500'
+        fontFamily: 'IBMPlex-500',
     },
     line: {
         borderLeftWidth: 1,
-        height: 42,
-        alignSelf:'flex-start',
+        height: 36,
+        alignSelf: 'flex-start',
         marginLeft: 10,
-        borderColor: '#7B8CAE'
+        borderColor: '#7B8CAE',
     },
     stepRow: {
         flexDirection: 'row',
         width: '100%',
         alignItems: 'center',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     city: {
         fontSize: 12,
@@ -92,11 +97,11 @@ const styles = StyleSheet.create({
         letterSpacing: -0.01,
         lineHeight: 16,
         fontWeight: '500',
-        fontStyle: 'normal'
+        fontStyle: 'normal',
     },
     content: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '90%'
+        width: '90%',
     },
 })

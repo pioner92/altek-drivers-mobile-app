@@ -1,17 +1,17 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, View, ViewStyle} from "react-native";
-import {TitleGrey} from "../load-verified/ui/atoms";
-import {SwipeMenuWrapper} from "../swipe-menu-wrapper";
-import {useStore} from "effector-react";
-import {$animValueTakePicture, hideTakePictureMenu} from "./models";
-import {$swipeMenuWrapperValueDY} from "../swipe-menu-wrapper/models/models";
-import {Button} from "../../ui/atoms/buttons";
-import {buttonThemes} from "../../ui/atoms/buttons/button";
+import React, {useEffect} from 'react'
+import {StyleSheet, View, ViewStyle} from 'react-native'
+import {TitleGrey} from '../load-verified/ui/atoms'
+import {SwipeMenuWrapper} from '../swipe-menu-wrapper'
+import {useStore} from 'effector-react'
+import {$animValueTakePicture, hideTakePictureMenu} from './models'
+import {$swipeMenuWrapperValueDY} from '../swipe-menu-wrapper/models/models'
+import {Button} from '../../ui/atoms/buttons'
+import {buttonThemes} from '../../ui/atoms/buttons/button'
 
 
 type propsType = {
     callbackFirstButton: () => void
-    callbackSecondButton?:()=>void
+    callbackSecondButton?: () => void
     title?: string
     style?: ViewStyle
     labelFirstButton?: string
@@ -26,13 +26,12 @@ export const TakePictureMenu: React.FC<propsType> = (
         callbackSecondButton,
         title,
         style,
-        labelFirstButton='Take picture',
-        labelSecondButton='Cancel',
-        themeFirstButton='blue',
-        themeSecondButton='blue'
-    }
+        labelFirstButton = 'Take picture',
+        labelSecondButton = 'Cancel',
+        themeFirstButton = 'blue',
+        themeSecondButton = 'blue',
+    },
 ) => {
-
     const value = useStore($animValueTakePicture)
     const dy = useStore($swipeMenuWrapperValueDY)
 
@@ -62,13 +61,13 @@ export const TakePictureMenu: React.FC<propsType> = (
                 <Button theme={themeSecondButton} onPress={onPressSecondButton}>{labelSecondButton}</Button>
             </View>
         </SwipeMenuWrapper>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     wrapper: {
         height: 147,
         paddingHorizontal: 16,
-        justifyContent: "space-between"
-    }
+        justifyContent: 'space-between',
+    },
 })
