@@ -6,7 +6,7 @@ import {MessageHeader} from './MessageHeader/MessageHeader'
 import {MessageTime} from './MessageTime/MessageTime'
 import {mediaType} from '../../../api/rest/chat/get-chat-data'
 import {styleConfig} from '../../../StyleConfig'
-import {ChatImagesRow} from '../../../../screens/chat/chat-content/ui/organisms/chat-images-row'
+import {ChatImagesRow} from '../../../../screens/main-stack-screen/chat/chat-content/ui/organisms/chat-images-row'
 
 
 type propsType = {

@@ -1,16 +1,17 @@
 import {createEffect} from 'effector'
 import {urls} from '../urls'
-import {setCurrentLoad} from '../../../screens/load-info/models'
+import {setCurrentLoad} from '../../../screens/main-stack-screen/load-info/models'
 import {makeRequest} from '../make-request'
 import {loadType} from './loads/get-loads'
 import {setCompanyHash} from '../../../Store/user-data'
-import {setUserData} from '../../../screens/profile/models/models'
+import {setUserData} from '../../../screens/main-stack-screen/profile/models/models'
 import {login} from './auth/login'
 import {getDb} from '../../../utils/db'
 import {EMAIL, PASSWORD} from '../../../utils/db/constants'
 import {FirebaseService} from '../../../utils/firebase-serivce/firebase-service'
 import {updateProfileDateOnServer} from './update-profile'
 import {notificationHandler} from '../../../utils/firebase-serivce/notification-handler'
+import {sendLogOutPush} from './send-log-out-push'
 
 
 type responseUserDataType = {
@@ -131,10 +132,9 @@ getUserData.done.watch(async ({result}) => {
             setCurrentLoad(result.driver_info.driver_loads[0])
         }
 
+        sendLogOutPush(id)
 
         const fbToken = await FirebaseService.getToken()
-        // FirebaseService.sendPushLogOut(id)
-
 
         if (fbToken) {
             FirebaseService.foregroundMessageListener({handler: notificationHandler})

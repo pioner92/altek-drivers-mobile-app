@@ -1,7 +1,7 @@
 import config from '../../../config.json'
 
-const body = {
-    'to': '/topics/179',
+const body = (id:number)=> ({
+    'to': `/topics/${id}`,
     'notification': {
         'tag': 'logout',
         'title': 'LogOut',
@@ -34,15 +34,15 @@ const body = {
             },
         },
     },
-}
+})
 
-export const sendLogOutPush = () => {
+export const sendLogOutPush = (id:number) => {
     fetch('https://fcm.googleapis.com/fcm/send', {
         method: 'POST',
         headers: {
             'Authorization': `key=${config.firebase_token}`,
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(body(id)),
     })
 }

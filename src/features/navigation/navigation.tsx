@@ -8,7 +8,7 @@ import links from '../../../links.json'
 import {$isAvailable} from '../set-available/models'
 import {$selfStatus, statuses} from '../../../hooks'
 import {$selectedIndexNavButton, navButtonIndex, setSelectedIndexNavButton} from './models/models'
-import {$isNewMessageInChat} from '../../../screens/chat/models/models'
+import {$isNewMessageInChat} from '../../../screens/main-stack-screen/chat/models/models'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 const {width} = Dimensions.get('window')

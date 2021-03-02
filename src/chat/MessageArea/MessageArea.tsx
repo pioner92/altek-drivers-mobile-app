@@ -11,7 +11,7 @@ import {
     $chatMessagesPage,
     setChatMessages,
     setChatMessagesPage,
-} from '../../../screens/chat/models/models'
+} from '../../../screens/main-stack-screen/chat/models/models'
 
 
 type propsType = {

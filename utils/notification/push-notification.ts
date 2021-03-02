@@ -1,6 +1,6 @@
 import * as Notifications from 'expo-notifications'
 import * as Permissions from 'expo-permissions'
-import {chatContentPropsType} from '../../screens/chat/chat-content/chat-content'
+import {chatContentPropsType} from '../../screens/main-stack-screen/chat/chat-content/chat-content'
 
 const newChatSms = 'newChatSms'
 

@@ -3,7 +3,7 @@ import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from 'react-native
 import React, {useEffect} from 'react'
 import {$isAvailable} from '../set-available/models'
 import {useStore} from 'effector-react'
-import {$isNewMessageInChat, setIsAmInChat} from '../../../screens/chat/models/models'
+import {$isNewMessageInChat, setIsAmInChat} from '../../../screens/main-stack-screen/chat/models/models'
 
 const width = Dimensions.get('window').width
 

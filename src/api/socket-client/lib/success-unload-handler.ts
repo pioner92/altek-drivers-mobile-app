@@ -2,7 +2,7 @@ import {hideStayAtPickUpMenu} from '../../../features/stay-at-pick-up/models/mod
 import {hideArrivedMenu, setButtonIsDisabled} from '../../../features/arrived-menu/models/models'
 import {$selfStatus, statuses, waitingStatus} from '../../../../hooks'
 import {playSoundNotification} from '../../../../utils/notification/play-notification'
-import {setCurrentLoad} from '../../../../screens/load-info/models'
+import {setCurrentLoad} from '../../../../screens/main-stack-screen/load-info/models'
 import {showAlertModal} from '../../../features/modals/alert-modal/models/models'
 import {
     $animValueCongratulationModal,

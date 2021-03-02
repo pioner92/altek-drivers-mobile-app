@@ -2,7 +2,7 @@ import {$selfStatus, statuses, unloadingStatus, uploadingStatus} from '../../../
 import {ConfirmArrived} from './confirm-arrived'
 import React from 'react'
 import {useStore} from 'effector-react'
-import {$currentLoad} from '../../../../screens/load-info/models'
+import {$currentLoad} from '../../../../screens/main-stack-screen/load-info/models'
 import {hideAlertModal} from '../alert-modal/models/models'
 import {setIsMountedConfirmArrivedModal} from './models'
 import {sendStatusToServerSocketAction} from '../../../api/socket-client/socket-actions/socket-actions'

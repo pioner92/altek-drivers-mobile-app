@@ -12,7 +12,7 @@ import {
     addNewChatMessage,
     setIsNewMessageInChat,
     setUnreadCount,
-} from '../../../screens/chat/models/models'
+} from '../../../screens/main-stack-screen/chat/models/models'
 import {startTimer} from '../../features/button-with-counter/models/models'
 import {setDb} from '../../../utils/db'
 import {pushNotification} from '../../../utils/notification/push-notification'

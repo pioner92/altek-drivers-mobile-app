@@ -1,6 +1,6 @@
 import {createEvent} from 'effector'
 import {socketSend} from '../socket-client'
-import {$currentLoad} from '../../../../screens/load-info/models'
+import {$currentLoad} from '../../../../screens/main-stack-screen/load-info/models'
 import {setStatusDataGenerate} from '../lib'
 
 export type setStatusType = {

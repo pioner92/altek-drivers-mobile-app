@@ -1,7 +1,7 @@
 import {makeRequest} from '../../make-request'
 import {urls} from '../../urls'
 import {createEffect} from 'effector'
-import {setChatsData} from '../../../../screens/chat/models/models'
+import {setChatsData} from '../../../../screens/main-stack-screen/chat/models/models'
 
 
 type lastMessageType = {

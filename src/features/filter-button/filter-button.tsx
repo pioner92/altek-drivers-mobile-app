@@ -4,7 +4,7 @@ import links from '../../../links.json'
 import React from 'react'
 import {FilterIcon} from '../../ui/molecules/icons/filter-icon'
 import {useStore} from 'effector-react'
-import {$isFilteredBids} from '../../../screens/filter/models'
+import {$isFilteredBids} from '../../../screens/main-stack-screen/filter/models'
 
 export const FilterButton = () => {
     const navigation = useNavigation()
