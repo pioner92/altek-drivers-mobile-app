@@ -5,13 +5,13 @@ import {makeRequest} from '../../make-request'
 import {hidePreloader, showPreloader} from '../../../features/preloader/models/models'
 import {getDb} from '../../../../utils/db'
 import {MAXMILES, USERID} from '../../../../utils/db/constants'
-import {$inputValuePickUpPoint} from '../../../../screens/main-stack-screen/filter/features/pick-up-point/models'
-import {$inputValueDeliveryPoint} from '../../../../screens/main-stack-screen/filter/features/delivery-point/models'
+import {$inputValuePickUpPoint} from '../../../../screens/main-stack-screen/bids/filter/features/pick-up-point/models'
+import {$inputValueDeliveryPoint} from '../../../../screens/main-stack-screen/bids/filter/features/delivery-point/models'
 import {
     $minimumDimsHeightValue,
     $minimumDimsLengthValue,
     $minimumDimsWidthValue,
-} from '../../../../screens/main-stack-screen/filter/features/minimum-dims/models'
+} from '../../../../screens/main-stack-screen/bids/filter/features/minimum-dims/models'
 
 
 export type loadsResult = {

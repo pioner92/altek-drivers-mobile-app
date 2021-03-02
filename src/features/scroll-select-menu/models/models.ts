@@ -1,7 +1,7 @@
 import {createEvent, createStore} from 'effector'
 import {Animated} from 'react-native'
 import {useSpring} from '../../../../utils/animation-hooks/Hooks'
-import {hideDarkBGAnimated, showDarkBGAnimated} from '../../../../screens/main-stack-screen/main/features/dark-bg-animated/models/models'
+import {hideDarkBGAnimated, showDarkBGAnimated} from '../../../../screens/main-stack-screen/home/available-home/features/dark-bg-animated/models/models'
 
 type itemType = {
     id: number,

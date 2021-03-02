@@ -2,14 +2,14 @@ import {createStackNavigator} from '@react-navigation/stack'
 import React from 'react'
 import {BottomTabNavigationScreen} from '../../navigation/BottomTabNavigator'
 import links from '../../links.json'
-import {BidDetail} from './bid-detail/bid-detail'
+import {BidDetail} from './bids/bid-detail/bid-detail'
 import {HeaderBackButton} from '../../src/ui/atoms/buttons/header-back'
 import {LoadInfo} from './load-info'
-import {ChatContent, Filter, UnloadingVerified} from '..'
-import {UploadingVerifiedStep1} from './uploading-verified/uploading-verified-step-1'
-import {UploadingVerifiedStep2} from './uploading-verified/uploading-verified-step-2'
-import {UploadingVerifiedStep3} from './uploading-verified/uploading-verified-step-3'
-import {UploadingVerifiedStep4} from './uploading-verified/uploading-verified-step-4'
+import {ChatContent, Filter, UnloadingVerification} from '..'
+import {UploadingVerificationStep1} from './uploading-veriffication/uploading-verification-step-1'
+import {UploadingVerificationStep2} from './uploading-veriffication/uploading-verification-step-2'
+import {UploadingVerificationStep3} from './uploading-veriffication/uploading-verification-step-3'
+import {UploadingVerificationStep4} from './uploading-veriffication/uploading-verification-step-4'
 import {CameraScreen} from './camera/camera-screen'
 import {EditProfile} from './profile/screens/edit-profile/edit-profile'
 import {StackScreenContainer} from '../stack-screen-container'
@@ -73,7 +73,7 @@ export const MainStackScreen = () => {
                     headerBackTitleVisible: false,
                 }}
                 name={links.loadingVerified1}
-                component={UploadingVerifiedStep1}
+                component={UploadingVerificationStep1}
             />
             <Stack.Screen
                 options={{
@@ -83,7 +83,7 @@ export const MainStackScreen = () => {
                     headerBackTitleVisible: false,
                 }}
                 name={links.loadingVerified2}
-                component={UploadingVerifiedStep2}
+                component={UploadingVerificationStep2}
             />
             <Stack.Screen
                 options={{
@@ -93,7 +93,7 @@ export const MainStackScreen = () => {
                     headerBackTitleVisible: false,
                 }}
                 name={links.loadingVerified3}
-                component={UploadingVerifiedStep3}
+                component={UploadingVerificationStep3}
             />
             <Stack.Screen
                 options={{
@@ -103,7 +103,7 @@ export const MainStackScreen = () => {
                     headerBackTitleVisible: false,
                 }}
                 name={links.loadingVerified4}
-                component={UploadingVerifiedStep4}
+                component={UploadingVerificationStep4}
             />
             <Stack.Screen
                 options={{
@@ -113,7 +113,7 @@ export const MainStackScreen = () => {
                     headerBackTitleVisible: false,
                 }}
                 name={links.unloading}
-                component={UnloadingVerified}
+                component={UnloadingVerification}
             />
             <Stack.Screen
                 name={links.camera}
