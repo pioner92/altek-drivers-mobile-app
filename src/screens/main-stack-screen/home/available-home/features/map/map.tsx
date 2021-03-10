@@ -1,6 +1,6 @@
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps'
 import customStyleMap from '../../../../../../customMapStyle.json'
-import React, {memo, useMemo} from 'react'
+import React, {memo} from 'react'
 import {useStore} from 'effector-react'
 import {geoLocationStore} from '../../../../../../Store/Store'
 import {$currentLoad} from '../../../../load-info/models'
@@ -48,19 +48,19 @@ const MapInner: React.FC = () => {
     const uploadCheck = selfStatus === statuses.toUpload || selfStatus === statuses.uploading
     const unloadCheck = selfStatus == statuses.toUnload || selfStatus === statuses.unloading
 
-    const pointTitle = useMemo(() => {
+    const pointTitle =() => {
         if (uploadCheck) {
             return 'Pick-Up Point'
         } else if (unloadCheck) {
             return 'Delivery Point'
         }
-    }, [selfStatus])
+    }
 
-    const statusesChecker = useMemo(() => {
+    const statusesChecker =() => {
         return selfStatus !== statuses.completed && selfStatus !== statuses.waiting
-    }, [selfStatus])
+    }
 
-    const geolocationService = useMemo(() => {
+    const geolocationService =() => {
         if (uploadCheck) {
             return statusChecker(locationPoints.start)
         } else if (unloadCheck) {
@@ -70,7 +70,7 @@ const MapInner: React.FC = () => {
             latitude: geo.latitude,
             longitude: geo.longitude,
         })
-    }, [selfStatus, geo])
+    }
 
 
     return (
@@ -81,17 +81,17 @@ const MapInner: React.FC = () => {
             customMapStyle={customStyleMap}
             showsUserLocation={true}
             region={{
-                latitude: geolocationService.latitude,
-                longitude: geolocationService.longitude,
+                latitude: geolocationService().latitude,
+                longitude: geolocationService().longitude,
                 latitudeDelta: 0.09,
                 longitudeDelta: 0.035,
             }}>
 
             {
-                statusesChecker ?
+                statusesChecker() ?
                     <Marker
-                        title={pointTitle}
-                        coordinate={geolocationService}/> :
+                        title={pointTitle()}
+                        coordinate={geolocationService()}/> :
                     null
             }
         </MapView>

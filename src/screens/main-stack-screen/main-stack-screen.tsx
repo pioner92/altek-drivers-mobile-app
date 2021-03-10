@@ -1,6 +1,6 @@
 import {createStackNavigator} from '@react-navigation/stack'
 import React from 'react'
-import {BottomTabNavigationScreen} from '../../navigation/BottomTabNavigator'
+import {BottomTabNavigationScreen} from '../../src/navigation/BottomTabNavigator'
 import links from '../../links.json'
 import {BidDetail} from './bids/bid-detail/bid-detail'
 import {HeaderBackButton} from '../../src/ui/atoms/buttons/header-back'

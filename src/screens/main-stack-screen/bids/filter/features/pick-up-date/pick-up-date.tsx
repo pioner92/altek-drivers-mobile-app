@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {CalendarContainer} from '../../../../../../src/Calendar/CalendarContainer'
+import {CalendarContainer} from '../../../../../../src/features/Calendar/CalendarContainer'
 import {FilterTitle} from '../../ui/atoms/filter-title'
 import {setSelectedValuePickUpDate} from './models'
 

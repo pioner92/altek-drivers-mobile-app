@@ -1,6 +1,6 @@
 import React from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
-import {SvgComponent} from '../../../../../../src/chat/SvgIcon'
+import {SvgComponent} from '../../../../../../src/features/chat/SvgIcon'
 import {styleConfig} from '../../../../../../src/StyleConfig'
 import {serverUrl} from '../../../../../../src/api/urls'
 

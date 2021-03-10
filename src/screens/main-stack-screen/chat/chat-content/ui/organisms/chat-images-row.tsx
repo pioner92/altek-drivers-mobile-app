@@ -1,5 +1,5 @@
 import {TouchableOpacity, View} from 'react-native'
-import {MessageImage} from '../../../../../../src/chat/MessageArea/MessageContainer/MessageImage/MessageImage'
+import {MessageImage} from '../../../../../../src/features/chat/MessageArea/MessageContainer/MessageImage/MessageImage'
 import {serverUrl} from '../../../../../../src/api/urls'
 import React, {useState} from 'react'
 import {mediaType} from '../../../../../../src/api/rest/chat/get-chat-data'

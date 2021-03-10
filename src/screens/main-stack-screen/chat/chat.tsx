@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {ScrollView, StyleSheet, View} from 'react-native'
-import {ChatRow} from '../../../src/chat/ChatRow'
+import {ChatRow} from '../../../src/features/chat/ChatRow'
 import {getChats} from '../../../src/api/rest/chat/get-chats'
 import {useStore} from 'effector-react'
 import {ScreenWrapper} from '../../../src/ui/atoms/screen-wrapper/screen-wrapper'
