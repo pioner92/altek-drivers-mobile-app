@@ -1,8 +1,20 @@
 import * as Notifications from 'expo-notifications'
 import * as Permissions from 'expo-permissions'
-import {chatContentPropsType} from '../../screens/main-stack-screen/chat/chat-content/chat-content'
 
 const newChatSms = 'newChatSms'
+
+export enum pushActions {
+    newChatSms='newChatSms',
+    newLoad = 'newLoad'
+}
+
+
+export type actionsType = keyof typeof pushActions
+
+type handlerType = {
+    action: actionsType
+    callback:({id}:{id:number})=>void
+}
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -16,7 +28,7 @@ Notifications.setNotificationHandler({
 type propsType = {
     title: string
     text: string
-    action?: string
+    action?: actionsType
     id?: number
 }
 
@@ -41,18 +53,36 @@ export const getNotificationPermissions = async () => {
     }
 }
 
-export const NotificationsHandler = async (callback: ({id}: chatContentPropsType) => void) => {
+// export const NotificationsHandler = async (callback: ({id}: chatContentPropsType) => void) => {
+//     Notifications.addNotificationResponseReceivedListener((notification) => {
+//         const data = notification.notification.request.content.data as propsType
+//         if (data?.hasOwnProperty('action') && data.action === newChatSms) {
+//             const {id = 0} = data || {}
+//             callback({id})
+//         }
+//     })
+// }
+
+
+export const NotificationsHandler = async (handlers:Array<handlerType>) => {
     Notifications.addNotificationResponseReceivedListener((notification) => {
         const data = notification.notification.request.content.data as propsType
-        if (data?.hasOwnProperty('action') && data.action === newChatSms) {
+
+        if (data?.hasOwnProperty('action')) {
             const {id = 0} = data || {}
-            callback({id})
+
+            handlers.forEach((handler)=>{
+                if (data.action === handler.action) {
+                    handler.callback({id})
+                }
+            })
         }
     })
 }
-export const pushNotification = async ({title, text, action = 'newLoad', id}: propsType) => {
+
+export const pushNotification = async ({title, text, action = pushActions.newLoad, id}: propsType) => {
     type dataType = {
-        action: string
+        action?: string
         id?: number
         loadId?: number
         avatar?: string
@@ -61,10 +91,9 @@ export const pushNotification = async ({title, text, action = 'newLoad', id}: pr
 
     const data: dataType = {
         action,
+        id,
     }
-    if (action === newChatSms) {
-        data['id'] = id
-    }
+
 
     const badgeCount = await Notifications.getBadgeCountAsync()
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {styleConfig} from '../../../../../../../src/StyleConfig'
+import {styleConfig} from '../../../../../../../StyleConfig'
 import {separatorCardNumber} from './lib/separatorCardNumber'
 import {BankCardGradient} from './ui/atoms/bank-card-gradient'
 import {useStore} from 'effector-react'

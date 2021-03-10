@@ -2,7 +2,7 @@ import React from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {ProfileTitle} from '../../ui/atoms/profile-title'
 import {BlueCardBenefit} from '../../ui/atoms/blue-card-benefit'
-import {styleConfig} from '../../../../../src/StyleConfig'
+import {styleConfig} from '../../../../../StyleConfig'
 
 export const Benefits: React.FC = () => {
     return (

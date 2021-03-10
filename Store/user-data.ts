@@ -1,14 +1,12 @@
-import {createEvent} from 'effector'
-import {initSocketClient} from '../src/api/socket-client/socket-client'
+import {createEvent, createStore} from 'effector'
 import {setDb} from '../utils/db/set-db'
 import {COMPANYHASH} from '../utils/db/constants'
 
 export const setCompanyHash = createEvent<string>()
+export const $companyHash = createStore('')
+    .on(setCompanyHash, (state, payload) => payload)
 
 
-setCompanyHash.watch(((payload) => {
-    if (payload) {
-        setDb(COMPANYHASH, payload.toString())
-        initSocketClient(payload)
-    }
-}))
+setCompanyHash.watch((payload) => {
+    setDb(COMPANYHASH, payload.toString())
+})

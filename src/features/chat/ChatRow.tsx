@@ -2,9 +2,9 @@ import React, {memo} from 'react'
 import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {SvgComponent} from './SvgIcon'
 import {useNavigation} from '@react-navigation/native'
-import {styleConfig} from '../StyleConfig'
-import {serverUrl} from '../api/urls'
-import links from '../../links.json'
+import {styleConfig} from '../../StyleConfig'
+import {serverUrl} from '../../api/urls'
+import links from '../../../links.json'
 
 const width = Dimensions.get('window').width
 
@@ -20,7 +20,7 @@ type propsType = {
 
 
 export const ChatRowInner: React.FC<propsType> = ({
-    id, time, loadId, avatar = '',
+    id, time, loadId, avatar = null,
     lastMessage = '', unread_count,
 }) => {
     const {navigate} = useNavigation()
@@ -47,8 +47,8 @@ export const ChatRowInner: React.FC<propsType> = ({
             <View style={styles.titleWrapper}>
                 {avatar ?
                     <Image style={{width: 45, height: 45, borderRadius: 50, marginHorizontal: 5}}
-                        source={{uri: avatar.includes(serverUrl) ? avatar : serverUrl + avatar}}/> :
-                    <SvgComponent/>
+                        source={{uri: avatar.includes(serverUrl) ? avatar : serverUrl + avatar}}/>
+                    : <SvgComponent/>
                 }
                 <View>
                     <Text style={styles.title}>{createChatName()}</Text>

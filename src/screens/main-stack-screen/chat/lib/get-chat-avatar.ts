@@ -1,4 +1,4 @@
-import {chatUsersType} from '../../../../src/api/rest/chat/get-chats'
+import {chatUsersType} from '../../../../api/rest/chat/get-chats'
 import {$selfId} from '../models/models'
 
 export const getChatAvatar = (users: chatUsersType) => {

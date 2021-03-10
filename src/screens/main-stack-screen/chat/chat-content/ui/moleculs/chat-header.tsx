@@ -1,8 +1,8 @@
 import React from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
-import {SvgComponent} from '../../../../../../src/features/chat/SvgIcon'
-import {styleConfig} from '../../../../../../src/StyleConfig'
-import {serverUrl} from '../../../../../../src/api/urls'
+import {SvgComponent} from '../../../../../../features/chat/SvgIcon'
+import {styleConfig} from '../../../../../../StyleConfig'
+import {serverUrl} from '../../../../../../api/urls'
 
 type propsType = {
     loadId: number | null

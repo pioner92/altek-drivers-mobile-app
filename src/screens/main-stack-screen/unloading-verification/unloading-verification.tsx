@@ -1,29 +1,26 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {TitleGrey} from '../../../src/features/load-verified/ui/atoms'
-import {Input} from '../../../src/ui/atoms/input'
-import {TakenPicture} from '../../../src/ui/molecules/taken-pickture'
-import {TakePictureMenu} from '../../../src/features/take-picture-menu'
+import {TitleGrey} from '../../../features/load-verified/ui/atoms'
+import {Input} from '../../../ui/atoms/input'
+import {TakenPicture} from '../../../ui/molecules/taken-pickture'
+import {TakePictureMenu} from '../../../features/take-picture-menu'
 import {useStore} from 'effector-react'
 import {$inputValueUnloadedBy, setImageDataPod, setInputValueUnloadedBy} from './models'
-import {useNavigate} from '../../../src/lib/hooks'
-import {showStayAtPickUpMenu} from '../../../src/features/stay-at-pick-up/models/models'
-import {hideTakePictureMenu, showTakePictureMenu} from '../../../src/features/take-picture-menu/models'
-import links from '../../../links.json'
-import {setButtonIsDisabled} from '../../../src/features/arrived-menu/models'
-import {completedStatus} from '../../../hooks'
+import {useNavigate} from '../../../lib/hooks'
+import {hideTakePictureMenu, showTakePictureMenu} from '../../../features/take-picture-menu/models'
+import links from '../../../../links.json'
 import {$imageDataPod, clearUnloadingData} from './models/models'
-import {UploadDocumentService, UploadService} from '../../../src/api/rest/document-upload'
+import {UploadDocumentService, UploadService} from '../../../api/rest/document-upload'
 import {$currentLoad} from '../load-info/models'
-import {Button} from '../../../src/ui/atoms/buttons'
-import {styleConfig} from '../../../src/StyleConfig'
-import {statusGenerate} from '../../../utils/check-statuses-with-init/check-statuses-with-init'
-import {WhiteCard} from '../../../src/ui/atoms/card/white-card'
-import {ScreenWrapper} from '../../../src/ui/atoms/screen-wrapper/screen-wrapper'
-import {WrapperPaddingBottom} from '../../../src/ui/atoms/wrapper/wrapper-padding-bottom'
-import {cameraHandler} from '../../../utils/cameraHandler/cameraHandler'
-import {setLoad} from '../../../src/api/rest/loads/set-load'
-import {sendStatusToServerSocketAction} from '../../../src/api/socket-client/socket-actions/socket-actions'
+import {Button} from '../../../ui/atoms/buttons'
+import {styleConfig} from '../../../StyleConfig'
+import {statusGenerate} from '../../../../utils/check-statuses-with-init/check-statuses-with-init'
+import {WhiteCard} from '../../../ui/atoms/card/white-card'
+import {ScreenWrapper} from '../../../ui/atoms/screen-wrapper/screen-wrapper'
+import {WrapperPaddingBottom} from '../../../ui/atoms/wrapper/wrapper-padding-bottom'
+import {cameraHandler} from '../../../../utils/cameraHandler/cameraHandler'
+import {setLoad} from '../../../api/rest/loads/set-load'
+import {sendStatusToServerSocketAction} from '../../../api/socket-client/socket-actions/socket-actions'
 
 export const UnloadingVerification: React.FC = () => {
     const uploadDocument = new UploadDocumentService(new UploadService())
@@ -54,14 +51,16 @@ export const UnloadingVerification: React.FC = () => {
     const onConfirm = () => {
         podImageData && currentLoad && uploadDocument.uploadPodPicture(podImageData, currentLoad.id?.toString())
         setLoad({data: {recieved_by: inputValue}})
+            .then(()=>{
+                sendStatusToServerSocketAction({...statusGenerate.unloaded})
+            })
 
         navigate(links.home)
 
         clearUnloadingData()
-        completedStatus()
-        setButtonIsDisabled(true)
-        showStayAtPickUpMenu()
-        sendStatusToServerSocketAction({...statusGenerate.unloaded})
+        // completedStatus()
+        // setButtonIsDisabled(true)
+        // showStayAtPickUpMenu()
     }
 
     return (

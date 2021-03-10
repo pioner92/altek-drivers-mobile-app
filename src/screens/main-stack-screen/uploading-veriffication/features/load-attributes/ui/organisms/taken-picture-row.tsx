@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, Text, View} from 'react-native'
-import {TakenPicture} from '../../../../../../../src/ui/molecules/taken-pickture'
+import {TakenPicture} from '../../../../../../../ui/molecules/taken-pickture'
 
 type propsType = {
     callbackLeft: () => void

@@ -4,7 +4,7 @@ import {$selfStatus, statuses} from '../../../hooks'
 import {ArrivedMenu} from '../arrived-menu'
 import {useNavigate} from '../../lib/hooks'
 import links from '../../../links.json'
-import {$currentLoad} from '../../../screens/main-stack-screen/load-info/models'
+import {$currentLoad} from '../../screens/main-stack-screen/load-info/models'
 import {$confirmArrivedAnimValue, setIsMountedConfirmArrivedModal} from '../modals/confirm-arrived/models'
 import {showAlertModal} from '../modals/alert-modal/models/models'
 

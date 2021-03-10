@@ -1,10 +1,10 @@
 import React from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {WhiteCard} from '../../../../../src/ui/atoms/card/white-card'
+import {WhiteCard} from '../../../../../ui/atoms/card/white-card'
 import {ProfileTitle} from '../../ui/atoms/profile-title'
 import {GrayLine} from '../../ui/atoms/gray-line'
-import {styleConfig} from '../../../../../src/StyleConfig'
-import {RightArrowSVG} from '../../../../../src/ui/atoms/icons'
+import {styleConfig} from '../../../../../StyleConfig'
+import {RightArrowSVG} from '../../../../../ui/atoms/icons'
 
 export const MostRecentLoad: React.FC = () => {
     return (

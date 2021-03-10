@@ -3,7 +3,7 @@ import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from 'react-native
 import React, {useEffect} from 'react'
 import {$isAvailable} from '../set-available/models'
 import {useStore} from 'effector-react'
-import {$isNewMessageInChat, setIsAmInChat} from '../../../screens/main-stack-screen/chat/models/models'
+import {$isNewMessageInChat, setIsInChat} from '../../screens/main-stack-screen/chat/models/models'
 
 const width = Dimensions.get('window').width
 
@@ -20,9 +20,9 @@ export const TabBarPanel = ({state, descriptors, navigation}: BottomTabBarProps)
 
     useEffect(() => {
         if (state.index === chatIndex) {
-            setIsAmInChat(true)
+            setIsInChat(true)
         } else {
-            setIsAmInChat(false)
+            setIsInChat(false)
         }
     }, [state.index])
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {timePickerHeaderType} from './TimePickerHeader'
-import {styleConfig} from '../../StyleConfig'
+import {styleConfig} from '../../../StyleConfig'
 
 
 export const TimeTypeButtons: React.FC<timePickerHeaderType> = ({timeTypeList, selectedTimeType, setSelectedTimeType}) => {

@@ -1,5 +1,5 @@
-import links from '../../links.json'
-import {Login, Verification} from '..'
+import links from '../../../links.json'
+import {Login, Verification} from '../index'
 import {SignUp} from './sign-up/sign-up'
 import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'

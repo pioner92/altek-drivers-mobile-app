@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {ProfileTitle} from '../../ui/atoms/profile-title'
-import {WhiteCard} from '../../../../../src/ui/atoms/card/white-card'
+import {WhiteCard} from '../../../../../ui/atoms/card/white-card'
 import {GrayLine} from '../../ui/atoms/gray-line'
 import * as Progress from 'react-native-progress'
-import {InfoSVG} from '../../../../../src/ui/atoms/icons'
+import {InfoSVG} from '../../../../../ui/atoms/icons'
 // @ts-ignore
-import {PopoverComponent} from '../../../../../src/features/popover/popover'
+import {PopoverComponent} from '../../../../../features/popover/popover'
 
 const {width} = Dimensions.get('window')
 

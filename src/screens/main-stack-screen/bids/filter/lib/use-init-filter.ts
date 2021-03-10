@@ -1,5 +1,5 @@
 import {useEffect} from 'react'
-import {getDb} from '../../../../../utils/db'
+import {getDb} from '../../../../../../utils/db'
 import {
     DELIVERYPOINT,
     MAXMILES,
@@ -8,7 +8,7 @@ import {
     MINIMUMDIMSWIDTH,
     MINIMUMPAYLOADS,
     PICKUPPOINT,
-} from '../../../../../utils/db/constants'
+} from '../../../../../../utils/db/constants'
 import {
     setDeliveryPointEvent,
     setMaxMilesEvent,
@@ -17,7 +17,7 @@ import {
     setMinimumDimsWidthEvent,
     setMinimumPayloadsEvent,
     setPickUpPointEvent,
-} from '../../../../../Store/FilterStore'
+} from '../../../../../../Store/FilterStore'
 
 export const useInitFilter = () => {
     useEffect(() => {

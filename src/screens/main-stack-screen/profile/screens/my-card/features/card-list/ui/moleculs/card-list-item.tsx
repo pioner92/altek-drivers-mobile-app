@@ -1,11 +1,11 @@
 import React from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {WhiteCard} from '../../../../../../../../../src/ui/atoms/card/white-card'
-import {styleConfig} from '../../../../../../../../../src/StyleConfig'
-import {PenSVG} from '../../../../../../../../../src/ui/atoms/icons/pen-svg'
-import {CrossSVG} from '../../../../../../../../../src/ui/atoms/icons/cross-svg'
-import {useNavigate} from '../../../../../../../../../src/lib/hooks'
-import links from '../../../../../../../../../links.json'
+import {WhiteCard} from '../../../../../../../../../ui/atoms/card/white-card'
+import {styleConfig} from '../../../../../../../../../StyleConfig'
+import {PenSVG} from '../../../../../../../../../ui/atoms/icons/pen-svg'
+import {CrossSVG} from '../../../../../../../../../ui/atoms/icons/cross-svg'
+import {useNavigate} from '../../../../../../../../../lib/hooks'
+import links from '../../../../../../../../../../links.json'
 import {
     deleteCardData,
     setInputValueCardCVS,

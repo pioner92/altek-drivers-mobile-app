@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {BenefitSVG} from '../../../../../src/ui/atoms/icons/benefit-svg'
-import {styleConfig} from '../../../../../src/StyleConfig'
+import {BenefitSVG} from '../../../../../ui/atoms/icons/benefit-svg'
+import {styleConfig} from '../../../../../StyleConfig'
 
 export const BlueCardBenefit: React.FC = () => {
     return (

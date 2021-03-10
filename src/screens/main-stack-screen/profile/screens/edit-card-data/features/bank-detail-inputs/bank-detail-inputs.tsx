@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {WhiteCard} from '../../../../../../../src/ui/atoms/card/white-card'
-import {Input} from '../../../../../../../src/ui/atoms/input'
+import {WhiteCard} from '../../../../../../../ui/atoms/card/white-card'
+import {Input} from '../../../../../../../ui/atoms/input'
 import {
     $inputValueCardCVC,
     $inputValueCardDate,

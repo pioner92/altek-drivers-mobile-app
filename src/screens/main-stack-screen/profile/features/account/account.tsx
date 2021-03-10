@@ -1,12 +1,12 @@
 import React from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {ProfileTitle} from '../../ui/atoms/profile-title'
-import {WhiteCard} from '../../../../../src/ui/atoms/card/white-card'
+import {WhiteCard} from '../../../../../ui/atoms/card/white-card'
 import {GrayLine} from '../../ui/atoms/gray-line'
-import {Switch, switchPropsType} from '../../../../../src/ui/molecules/swith/switch'
-import {styleConfig} from '../../../../../src/StyleConfig'
-import {useNavigate} from '../../../../../src/lib/hooks'
-import links from '../../../../../links.json'
+import {Switch, switchPropsType} from '../../../../../ui/molecules/swith/switch'
+import {styleConfig} from '../../../../../StyleConfig'
+import {useNavigate} from '../../../../../lib/hooks'
+import links from '../../../../../../links.json'
 
 export const Account: React.FC = () => {
     const navigate = useNavigate()

@@ -1,6 +1,6 @@
 import {createEvent} from 'effector'
 import {socketSend} from '../socket-client'
-import {$currentLoad} from '../../../../screens/main-stack-screen/load-info/models'
+import {$currentLoad} from '../../../screens/main-stack-screen/load-info/models'
 import {setStatusDataGenerate} from '../lib'
 
 export type setStatusType = {
@@ -14,7 +14,7 @@ const createSocketData = (action: string, data: object) => {
 }
 
 export const sendBidSocketAction = createEvent<{ load_id: number, price: number }>()
-export const sendChatMessageSocketAction = createEvent<{ content: string, chat_id: number, media?: Array<number> }>()
+export const sendChatMessageSocketAction = createEvent<{ content: string, chat_id: number, media?: Array<number>, files?:Array<number> }>()
 export const sendStatusToServerSocketAction = createEvent<setStatusType>()
 
 sendBidSocketAction.watch((payload) => {

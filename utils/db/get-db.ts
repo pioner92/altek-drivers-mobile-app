@@ -53,8 +53,12 @@ export type dbType = typeof PHONENUMBER
     | typeof TIMERBID
 
 export const getDb = async (name: dbType) => {
-    const value = await AsyncStorage.getItem(name)
-    if (value !== null) {
-        return value
+    try {
+        const value = await AsyncStorage.getItem(name)
+        if (value !== null) {
+            return value
+        }
+    } catch (e) {
+        console.log('Get db error', e)
     }
 }

@@ -1,18 +1,17 @@
 import React, {useEffect} from 'react'
 import {ScrollView, StyleSheet, View} from 'react-native'
-import {ChatRow} from '../../../src/features/chat/ChatRow'
-import {getChats} from '../../../src/api/rest/chat/get-chats'
+import {ChatRow} from '../../../features/chat/ChatRow'
+import {getChats} from '../../../api/rest/chat/get-chats'
 import {useStore} from 'effector-react'
-import {ScreenWrapper} from '../../../src/ui/atoms/screen-wrapper/screen-wrapper'
-import {getDb} from '../../../utils/db'
-import {USERID} from '../../../utils/db/constants'
-import {$chatsData, setIsAmInChat, setSelfId} from './models/models'
+import {ScreenWrapper} from '../../../ui/atoms/screen-wrapper/screen-wrapper'
+import {getDb} from '../../../../utils/db'
+import {USERID} from '../../../../utils/db/constants'
+import {$chatsData, setIsInChat, setSelfId} from './models/models'
 import {getChatAvatar} from './lib/get-chat-avatar'
-import {StackScreenProps} from '@react-navigation/stack'
-import links from '../../../links.json'
-import {StackScreenCreator} from '../../../src/features/navigation/features/stack-screen-creator/stack-screen-creator'
+import links from '../../../../links.json'
+import {StackScreenCreator} from '../../../features/navigation/features/stack-screen-creator/stack-screen-creator'
 
-const Chat: React.FC<StackScreenProps<any>> = ({navigation}) => {
+const Chat: React.FC = () => {
     const chats = useStore($chatsData)
 
     const geUserId = async () => {
@@ -22,11 +21,15 @@ const Chat: React.FC<StackScreenProps<any>> = ({navigation}) => {
         }
     }
 
+    const init = async () => {
+        await geUserId()
+        setIsInChat(true)
+        getChats()
+    }
+
 
     useEffect(() => {
-        geUserId()
-        setIsAmInChat(true)
-        getChats()
+        init()
     }, [])
 
 

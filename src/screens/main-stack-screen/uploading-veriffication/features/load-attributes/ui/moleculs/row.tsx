@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, Text, TextInput, View, ViewStyle} from 'react-native'
-import {styleConfig} from '../../../../../../../src/StyleConfig'
+import {styleConfig} from '../../../../../../../StyleConfig'
 
 type propsType = {
     label: string

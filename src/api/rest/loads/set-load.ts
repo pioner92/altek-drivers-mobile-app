@@ -1,6 +1,6 @@
 import {createEffect, createEvent} from 'effector'
 import {urls} from '../../urls'
-import {$currentLoad} from '../../../../screens/main-stack-screen/load-info/models'
+import {$currentLoad} from '../../../screens/main-stack-screen/load-info/models'
 import {loadType} from './get-loads'
 import {makeRequest} from '../../make-request'
 

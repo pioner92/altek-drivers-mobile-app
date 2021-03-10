@@ -25,7 +25,7 @@ export const InfoCard: React.FC<propsType> = ({data}) => {
     const coordinates = data?.start_location?.split(',')
 
     const emptyMiles = () => {
-        if (coordinates.length > 1) {
+        if (coordinates?.length > 1) {
             return Math.ceil(calculationDistance(+coordinates[0], +coordinates[1]))
         } else return 0
     }
@@ -111,7 +111,7 @@ export const InfoCard: React.FC<propsType> = ({data}) => {
                             <InfoRow title='Total load miles' value={`${data?.miles?.toString()} mi`}/>
                             <InfoRow title='Empty miles' value={`${emptyMiles()} mi`}/>
                             <InfoRow title='Total cargo'
-                                value={`${data?.pieces.toString()} pc, ${data?.weight?.toString()} lb`}/>
+                                value={`${data?.pieces?.toString()} pc, ${data?.weight?.toString()} lb`}/>
                             <InfoRow title='Dims (LxWxH)' value={data?.dims}/>
                             <InfoRow title='Truck size' value={data?.car?.toString()}/>
                             <InfoRow title='Fast load' value={boolResultFormatted(data?.isUrgent)}/>

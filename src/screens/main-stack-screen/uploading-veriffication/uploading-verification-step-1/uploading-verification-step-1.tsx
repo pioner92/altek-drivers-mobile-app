@@ -1,15 +1,15 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {TitleGrey} from '../../../../src/features/load-verified'
-import {useNavigate} from '../../../../src/lib/hooks'
+import {TitleGrey} from '../../../../features/load-verified'
+import {useNavigate} from '../../../../lib/hooks'
 import {LoadWithCurrent} from '../features'
-import links from '../../../../links.json'
-import {Button} from '../../../../src/ui/atoms/buttons'
-import {ScreenWrapper} from '../../../../src/ui/atoms/screen-wrapper/screen-wrapper'
-import {WrapperPaddingBottom} from '../../../../src/ui/atoms/wrapper/wrapper-padding-bottom'
+import links from '../../../../../links.json'
+import {Button} from '../../../../ui/atoms/buttons'
+import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
+import {WrapperPaddingBottom} from '../../../../ui/atoms/wrapper/wrapper-padding-bottom'
 import {useStore} from 'effector-react'
 import {$currentLoad} from '../../load-info/models'
-import {styleConfig} from '../../../../src/StyleConfig'
+import {styleConfig} from '../../../../StyleConfig'
 
 export const UploadingVerificationStep1: React.FC = () => {
     const navigate = useNavigate()

@@ -6,7 +6,9 @@ import {FirebaseService} from './utils/firebase-serivce/firebase-service';
 import {notificationHandler} from './utils/firebase-serivce/notification-handler';
 
 
-FirebaseService.backgroundMessageListener({handler: notificationHandler});
+
+
+FirebaseService.backgroundMessageListener({handler: notificationHandler})
 // messaging().setBackgroundMessageHandler(async remoteMessage => {
 //     console.log('Message handled in the background!', remoteMessage);
 //     console.log("MESSAGE BACKGROUND")
@@ -15,9 +17,9 @@ FirebaseService.backgroundMessageListener({handler: notificationHandler});
 
 export function HeadlessCheck({isHeadless}) {
     if (isHeadless) {
-        return null;
+        return null
     }
-    return <App/>;
+    return <App/>
 }
 
 

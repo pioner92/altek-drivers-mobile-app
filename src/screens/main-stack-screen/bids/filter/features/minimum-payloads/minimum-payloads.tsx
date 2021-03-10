@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {MultiSliderWithRange} from '../../../../../../src/ui/molecules/multi-slider/multi-slider-with-range'
+import {MultiSliderWithRange} from '../../../../../../ui/molecules/multi-slider/multi-slider-with-range'
 import {useStore} from 'effector-react'
 import {
     $sliderValueMinimumPayloadsLeft,

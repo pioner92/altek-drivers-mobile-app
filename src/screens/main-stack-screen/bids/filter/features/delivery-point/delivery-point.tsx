@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {Input} from '../../../../../../src/ui/atoms/input'
+import {Input} from '../../../../../../ui/atoms/input'
 import {useStore} from 'effector-react'
 import {$inputValueDeliveryPoint, setInputValueDeliveryPoint} from './models'
 import {FilterTitle} from '../../ui/atoms/filter-title'

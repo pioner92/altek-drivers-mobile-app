@@ -1,6 +1,6 @@
 import React from 'react'
 import {TimeTypeButtons} from './TimeTypeButtons'
-import {SelectTitle} from '../../UIComponents/Title/SelectTitle'
+import {SelectTitle} from '../../../UIComponents/Title/SelectTitle'
 import {StyleSheet, View} from 'react-native'
 
 export type timePickerHeaderType = {

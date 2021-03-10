@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react'
 import {StyleSheet, View} from 'react-native'
-import {ScreenWrapper} from '../../../../../src/ui/atoms/screen-wrapper/screen-wrapper'
-import {styleConfig} from '../../../../../src/StyleConfig'
-import {Button} from '../../../../../src/ui/atoms/buttons'
+import {ScreenWrapper} from '../../../../../ui/atoms/screen-wrapper/screen-wrapper'
+import {styleConfig} from '../../../../../StyleConfig'
+import {Button} from '../../../../../ui/atoms/buttons'
 import {useStore} from 'effector-react'
 import {
     $inputValueCardCVC,
@@ -16,8 +16,8 @@ import {
 import {BankCard} from '../my-card/features/bank-card/bank-card'
 import {BankDetailInputs} from './features/bank-detail-inputs/bank-detail-inputs'
 import {setIsVisibleBankCardData} from '../my-card/features/bank-card/models/models'
-import {useNavigate} from '../../../../../src/lib/hooks'
-import links from '../../../../../links.json'
+import {useNavigate} from '../../../../../lib/hooks'
+import links from '../../../../../../links.json'
 import {StackScreenProps} from '@react-navigation/stack'
 
 

@@ -4,7 +4,7 @@ import moment from 'moment'
 import WeekRows from './WeekRows/WeekRows'
 import {DayTitles} from './WeekRows/DeyTitles/DeyTitles'
 import {WeekRow} from './WeekRows/WeekRow/WeekRow'
-import {styleConfig} from '../StyleConfig'
+import {styleConfig} from '../../StyleConfig'
 
 
 export type weekType = Array<{ name: string, value: string }>

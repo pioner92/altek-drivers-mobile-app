@@ -1,6 +1,6 @@
 import {createEvent, createStore} from 'effector'
 import {Animated} from 'react-native'
-import {useSpring} from '../../../../../../../utils/animation-hooks/Hooks'
+import {useSpring} from '../../../../../../../../utils/animation-hooks/Hooks'
 
 export const showPlaceBidErrorModal = createEvent()
 export const hidePlaceBidErrorModal = createEvent()

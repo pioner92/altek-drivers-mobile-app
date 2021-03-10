@@ -1,21 +1,22 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react'
 import {KeyboardAvoidingView, Platform, StyleSheet, TouchableOpacity, View} from 'react-native'
-import {useSpring, useTiming, useValue} from '../../../../utils/animation-hooks/Hooks'
+import {useSpring, useTiming, useValue} from '../../../../../utils/animation-hooks/Hooks'
 import * as ImagePicker from 'expo-image-picker'
-import {InputContainer} from '../../../../src/features/chat/InputContent/InputContainer'
-import {AttachModal} from '../../../../src/features/chat/AttachModal/AttachModal'
-import {MessageArea} from '../../../../src/features/chat/MessageArea/MessageArea'
-import {getChatData} from '../../../../src/api/rest/chat/get-chat-data'
+import {InputContainer} from '../../../../features/chat/InputContent/InputContainer'
+import {AttachModal} from '../../../../features/chat/AttachModal/AttachModal'
+import {MessageArea} from '../../../../features/chat/MessageArea/MessageArea'
+import {getChatData} from '../../../../api/rest/chat/get-chat-data'
 import {StackScreenProps, useHeaderHeight} from '@react-navigation/stack'
-import {$chatsData, setIsAmInChat, setIsNewMessageInChat, setUnreadCount} from '../models/models'
-import {sendChatMessageSocketAction} from '../../../../src/api/socket-client/socket-actions/socket-actions'
-import {MoreSVG} from '../../../../src/ui/atoms/icons/more-svg'
+import {$chatsData, setIsInChat, setIsNewMessageInChat, setUnreadCount} from '../models/models'
+import {sendChatMessageSocketAction} from '../../../../api/socket-client/socket-actions/socket-actions'
+import {MoreSVG} from '../../../../ui/atoms/icons/more-svg'
 import {ChatHeader} from './ui/moleculs/chat-header'
-import {uploadFile} from '../../../../src/api/rest/upload-file'
+import {uploadFile} from '../../../../api/rest/upload-file'
 import {useStore} from 'effector-react'
-import {$swipeMenuWrapperValueDY} from '../../../../src/features/swipe-menu-wrapper/models/models'
-import {ScreenWrapper} from '../../../../src/ui/atoms/screen-wrapper/screen-wrapper'
+import {$swipeMenuWrapperValueDY} from '../../../../features/swipe-menu-wrapper/models/models'
+import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {getChatAvatar} from '../lib/get-chat-avatar'
+import * as DocumentPicker from 'expo-document-picker'
 
 type imagePickerResultType = {
     cancelled: boolean
@@ -56,11 +57,24 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
         })
     }
 
+    const getMediaType = (media: string) => {
+        return media.match(/\.([a-z]+)/)?.[1]
+    }
 
     const pickDocument = async () => {
-        // let result = await DocumentPicker.getDocumentAsync({}) as documentPickerResultType;
-        // if (result.type === 'success') {
-        // }
+        const result = await DocumentPicker.getDocumentAsync({type: '*/*', multiple: false})
+        if (result.type === 'success') {
+            const type = getMediaType(result.name) ?? 'pdf'
+            const res = await uploadFile(result.name, type, {uri: result.uri, name: result.name, type: `file/${type}`})
+            if (res) {
+                sendChatMessageSocketAction({files: [res.id], content: '', chat_id: id})
+            }
+            closeAttachModal()
+        }
+    }
+
+    const uploadPhotoContainer = async (uri:string) => {
+        return await uploadFile('photo.jpg', 'jpeg', {uri: uri, name: 'photo.jpg', type: `image/jpeg`})
     }
 
     const pickEndSendPhoto = async () => {
@@ -70,8 +84,10 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
         }) as imagePickerResultType
 
         if (!result.cancelled) {
-            const res = await uploadFile('photo', result.type, {uri: result.uri, name: 'photo', type: result.type})
-            sendChatMessageSocketAction({media: [res.id], content: '', chat_id: id})
+            const res = await uploadPhotoContainer(result.uri)
+            if (res) {
+                sendChatMessageSocketAction({media: [res.id], content: '', chat_id: id})
+            }
             closeAttachModal()
         }
     }
@@ -81,11 +97,11 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
         closeAttachModal()
         const arr = []
         for (const i of images) {
-            arr.push(uploadFile('photo', 'image', {uri: i, name: 'photo', type: 'image'}))
+            arr.push(uploadPhotoContainer(i))
         }
         const res = await Promise.all(arr)
-        if (res) {
-            sendChatMessageSocketAction({media: res.map((el) => el.id), content: '', chat_id: id})
+        if (res.length > 0) {
+            sendChatMessageSocketAction({media: res.map((el) => el?.id ?? 0), content: '', chat_id: id})
         }
     }
 
@@ -122,7 +138,7 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
         setIsNewMessageInChat(false)
         getChatData({id})
         setUnreadCount({id, count: 0})
-        setIsAmInChat(true)
+        setIsInChat(true)
         return () => {
             setUnreadCount({id, count: 0})
         }

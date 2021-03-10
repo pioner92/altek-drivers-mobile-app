@@ -1,7 +1,8 @@
-import {showNewLoadOfferMenu} from '../../src/features/new-load-offer/models'
-import {completedStatus, toUnloadStatus, toUploadStatus, unloadingStatus, uploadingStatus} from '../../hooks'
-import {setButtonIsDisabled, showArrivedMenu} from '../../src/features/arrived-menu/models'
-import {showStayAtPickUpMenu} from '../../src/features/stay-at-pick-up/models/models'
+import {hideNewLoadOfferMenu, showNewLoadOfferMenu} from '../../src/features/new-load-offer/models'
+import {completedStatus, toUploadStatus, unloadingStatus, uploadingStatus} from '../../hooks'
+import {hideArrivedMenu, setButtonIsDisabled, showArrivedMenu} from '../../src/features/arrived-menu/models'
+import {hideStayAtPickUpMenu, showStayAtPickUpMenu} from '../../src/features/stay-at-pick-up/models/models'
+import {successUnloadHandler, successUploadHandler} from '../../src/api/socket-client/lib'
 
 
 type statusData = {
@@ -25,7 +26,7 @@ export const statusGenerate = {
     toUnload: loadStatus(4, 1),
     unloading: loadStatus(5, 1),
     unloaded: loadStatus(5, 2),
-    completed: loadStatus(6),
+    completed: loadStatus(6, 2),
 }
 
 
@@ -35,30 +36,42 @@ const statusValidate = (currentStatus: number, currentSubstatus: number) => {
     }
 }
 
+const closeStayModal = ()=> {
+    hideStayAtPickUpMenu()
+    setButtonIsDisabled(false)
+}
+
 export const checkStatusesWithInit = (status: number, substatus: number) => {
     const validate = statusValidate(status, substatus)
 
+    if (status !== 1 && status !== 6) {
+        showArrivedMenu()
+    }
+
+
     if (validate(statusGenerate.newLoadOffer)) {
         showNewLoadOfferMenu()
+        hideArrivedMenu()
     } else if (validate(statusGenerate.toUpload)) {
+        hideNewLoadOfferMenu()
         toUploadStatus()
-        showArrivedMenu()
     } else if (validate(statusGenerate.uploading)) {
+        closeStayModal()
         uploadingStatus()
-        showArrivedMenu()
     } else if (validate(statusGenerate.uploaded)) {
         uploadingStatus()
         setButtonIsDisabled(true)
         showStayAtPickUpMenu()
     } else if (validate(statusGenerate.toUnload)) {
-        toUnloadStatus()
-        showArrivedMenu()
+        successUploadHandler()
     } else if (validate(statusGenerate.unloading)) {
+        closeStayModal()
         unloadingStatus()
-        showArrivedMenu()
     } else if (validate(statusGenerate.unloaded)) {
         completedStatus()
         setButtonIsDisabled(true)
         showStayAtPickUpMenu()
+    } else if (validate(statusGenerate.completed)) {
+        successUnloadHandler()
     }
 }

@@ -1,11 +1,14 @@
 import React from 'react'
-import {Animated, StyleSheet} from 'react-native'
+import {Animated, Dimensions, StyleSheet} from 'react-native'
 import {DarkBg} from '../../atoms/dark-bg'
 import {AlertModalCard, confirmCardPropsType} from '../alert-modal-card/alert-modal-card'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 type propsType = {
     animStyle: any
 }
+
+const height = Dimensions.get('window').height
 
 export type alertModalPropsType = confirmCardPropsType & propsType
 
@@ -16,8 +19,10 @@ export const AlertModal: React.FC<alertModalPropsType> = (
         ...props
     },
 ) => {
+    const inset = useSafeAreaInsets()
+
     return (
-        <Animated.View style={[styles.container, animStyle]}>
+        <Animated.View style={[styles.container, animStyle, {height: height + inset.top, top: -inset.top}]}>
             <DarkBg>
                 <AlertModalCard {...props}>
                     {children}

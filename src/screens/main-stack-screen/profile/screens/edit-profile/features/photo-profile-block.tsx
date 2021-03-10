@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react'
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {styleConfig} from '../../../../../../src/StyleConfig'
+import {styleConfig} from '../../../../../../StyleConfig'
 import {useStore} from 'effector-react'
 import {$userData, $userPhoto, setUserPhoto} from '../../../models/models'
-import {getDb} from '../../../../../../utils/db'
+import {getDb} from '../../../../../../../utils/db'
 import {ButtonEdit} from '../../../../uploading-veriffication/features/load-attributes/ui/atoms'
-import {useNavigate} from '../../../../../../src/lib/hooks'
-import links from '../../../../../../links.json'
-import {CameraSVG} from '../../../../../../src/ui/atoms/icons'
-import {showTakePictureMenu} from '../../../../../../src/features/take-picture-menu/models'
-import {PHOTOPROFILE} from '../../../../../../utils/db/constants'
+import {useNavigate} from '../../../../../../lib/hooks'
+import links from '../../../../../../../links.json'
+import {CameraSVG} from '../../../../../../ui/atoms/icons'
+import {showTakePictureMenu} from '../../../../../../features/take-picture-menu/models'
+import {PHOTOPROFILE} from '../../../../../../../utils/db/constants'
 
 
 type propsType = {

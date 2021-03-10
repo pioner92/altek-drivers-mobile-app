@@ -1,11 +1,11 @@
 import React, {useRef, useState} from 'react'
 import {StyleSheet, TouchableOpacity, View} from 'react-native'
 import {Camera} from 'expo-camera'
-import {FlashOnSVG} from '../../../src/ui/atoms/icons/flash-on-svg'
-import {FlashOffSVG} from '../../../src/ui/atoms/icons/flash-off-svg'
-import {CameraSVG} from '../../../src/ui/atoms/icons'
+import {FlashOnSVG} from '../../../ui/atoms/icons/flash-on-svg'
+import {FlashOffSVG} from '../../../ui/atoms/icons/flash-off-svg'
+import {CameraSVG} from '../../../ui/atoms/icons'
 import {StackScreenProps} from '@react-navigation/stack'
-import {CameraReverseSVG} from '../../../src/ui/atoms/icons/camera-reverse-svg'
+import {CameraReverseSVG} from '../../../ui/atoms/icons/camera-reverse-svg'
 import * as MediaLibrary from 'expo-media-library'
 
 type routeType = {

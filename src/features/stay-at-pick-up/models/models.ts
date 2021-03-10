@@ -3,8 +3,6 @@ import {Animated} from 'react-native'
 import {useSpring} from '../../../../utils/animation-hooks/Hooks'
 import {showArrivedMenu} from '../../arrived-menu/models'
 
-type callback = () => void
-
 
 export const setIsMountedStayAtPickUpMenu = createEvent<boolean>()
 

@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import {Animated, Text, TouchableOpacity, View} from 'react-native'
-import {styleConfig} from '../../StyleConfig'
-import {GallerySVG} from '../../ui/atoms/icons/gallery-svg'
-import {FilesSVG} from '../../ui/atoms/icons/files-svg'
-import {LocationFillSVG} from '../../ui/atoms/icons/location-fill-svg'
-import {SwipeMenuWrapper} from '../../features/swipe-menu-wrapper'
+import {styleConfig} from '../../../StyleConfig'
+import {GallerySVG} from '../../../ui/atoms/icons/gallery-svg'
+import {FilesSVG} from '../../../ui/atoms/icons/files-svg'
+import {LocationFillSVG} from '../../../ui/atoms/icons/location-fill-svg'
+import {SwipeMenuWrapper} from '../../swipe-menu-wrapper'
 import {ImagePickerRoll} from '../../../screens/main-stack-screen/chat/features/image-picker-roll/image-picker-roll'
-import {Button} from '../../ui/atoms/buttons'
+import {Button} from '../../../ui/atoms/buttons'
 
 
 type callback = () => void

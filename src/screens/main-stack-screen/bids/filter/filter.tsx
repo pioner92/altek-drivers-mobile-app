@@ -8,13 +8,13 @@ import {
     minimumDimsWidthStore,
     minimumPayloadsStore,
     pickUpPointStore,
-} from '../../../../Store/FilterStore'
-import {setDb} from '../../../../utils/db'
+} from '../../../../../Store/FilterStore'
+import {setDb} from '../../../../../utils/db'
 import {MaxMilesOut} from './features/max-miles-out/max-miles-out'
-import {ScreenWrapper} from '../../../../src/ui/atoms/screen-wrapper/screen-wrapper'
-import {Button} from '../../../../src/ui/atoms/buttons'
+import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
+import {Button} from '../../../../ui/atoms/buttons'
 import {setIsFilteredBids} from './models'
-import {BtnWrapper} from '../../../../src/ui/atoms/wrapper/btn-wrapper'
+import {BtnWrapper} from '../../../../ui/atoms/wrapper/btn-wrapper'
 import {
     DELIVERYPOINT,
     MAXMILES,
@@ -23,12 +23,12 @@ import {
     MINIMUMDIMSWIDTH,
     MINIMUMPAYLOADS,
     PICKUPPOINT,
-} from '../../../../utils/db/constants'
+} from '../../../../../utils/db/constants'
 import {$sliderValueMaxMilesRight} from './features/max-miles-out/models'
 import {clearFilter} from './lib/clear-filter'
 import {useInitFilter} from './lib/use-init-filter'
 import {StackScreenProps} from '@react-navigation/stack'
-import {getLoads} from '../../../../src/api/rest/loads/get-loads'
+import {getLoads} from '../../../../api/rest/loads/get-loads'
 
 
 export const Filter: React.FC<StackScreenProps<any>> = ({navigation}) => {

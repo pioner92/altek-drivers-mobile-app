@@ -1,13 +1,13 @@
 import React from 'react'
 import {Keyboard, StyleSheet, View} from 'react-native'
-import {AuthTitle} from '../../../src/ui/atoms/title'
-import {Input} from '../../../src/ui/atoms/input'
-import {Wrapper} from '../../../src/ui/atoms/wrapper'
+import {AuthTitle} from '../../../ui/atoms/title'
+import {Input} from '../../../ui/atoms/input'
+import {Wrapper} from '../../../ui/atoms/wrapper'
 import {useNavigation} from '@react-navigation/native'
-import {WhiteCard} from '../../../src/ui/atoms/card/white-card'
-import {SignUpOrLogInSubtitle} from '../../../src/features/sign-up-or-login-subtitles/sign-up-or-login-subtites'
-import links from '../../../links.json'
-import {ButtonWithSubtitles} from '../../../src/ui/atoms/buttons/button-with-subtitles'
+import {WhiteCard} from '../../../ui/atoms/card/white-card'
+import {SignUpOrLogInSubtitle} from '../../../features/sign-up-or-login-subtitles/sign-up-or-login-subtites'
+import links from '../../../../links.json'
+import {ButtonWithSubtitles} from '../../../ui/atoms/buttons/button-with-subtitles'
 import {
     $inputValueSignUpName,
     $inputValueSignUpNumber,
@@ -15,8 +15,8 @@ import {
     setInputValueSignUpNumber,
 } from './models/models'
 import {useStore} from 'effector-react'
-import {ScreenWrapper} from '../../../src/ui/atoms/screen-wrapper/screen-wrapper'
-import {styleConfig} from '../../../src/StyleConfig'
+import {ScreenWrapper} from '../../../ui/atoms/screen-wrapper/screen-wrapper'
+import {styleConfig} from '../../../StyleConfig'
 
 export const SignUp: React.FC = () => {
     const nameInputValue = useStore($inputValueSignUpName)

@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, Text, View} from 'react-native'
-import {styleConfig} from '../../../../../../src/StyleConfig'
+import {styleConfig} from '../../../../../../StyleConfig'
 
 export const FilterTitle: React.FC = ({children}) => {
     return (

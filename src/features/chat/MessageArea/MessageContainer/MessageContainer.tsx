@@ -1,8 +1,8 @@
 import React from 'react'
 import {Image, PixelRatio, StyleSheet, View} from 'react-native'
 import {Message} from './Message'
-import {serverUrl} from '../../../api/urls'
-import {mediaType} from '../../../api/rest/chat/get-chat-data'
+import {serverUrl} from '../../../../api/urls'
+import {mediaType} from '../../../../api/rest/chat/get-chat-data'
 
 
 type propsType = {
@@ -14,7 +14,7 @@ type propsType = {
     bySelf: boolean
     position: string
     time: string
-    type: 'text' | 'image'
+    type: 'text' | 'image' | 'file'
 }
 
 export const MessageContainer: React.FC<propsType> = ({text, img, from, bySelf, position, time, files, isVisibleDateRow, type}) => {

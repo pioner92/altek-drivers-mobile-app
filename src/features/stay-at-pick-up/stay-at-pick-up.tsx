@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
     },
     topModalWrapper: {
         paddingHorizontal: 16,
-        marginTop: 21,
+        // marginTop: 21,
     },
 })

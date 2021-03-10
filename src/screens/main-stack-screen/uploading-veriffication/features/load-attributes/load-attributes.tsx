@@ -3,7 +3,7 @@ import {StyleSheet, View, ViewStyle} from 'react-native'
 import {useStore} from 'effector-react'
 import {$inputValuePieces, $inputValueWeight, setInputValuePieces, setInputValueWeight} from './models'
 import {Line, Row} from './ui'
-import {styleConfig} from '../../../../../src/StyleConfig'
+import {styleConfig} from '../../../../../StyleConfig'
 
 
 type propsType = {

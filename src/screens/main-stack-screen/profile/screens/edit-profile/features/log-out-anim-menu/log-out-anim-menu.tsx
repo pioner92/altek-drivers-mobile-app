@@ -1,11 +1,11 @@
 import React from 'react'
 import {Animated, StyleSheet, Text} from 'react-native'
-import {Button} from '../../../../../../../src/ui/atoms/buttons'
+import {Button} from '../../../../../../../ui/atoms/buttons'
 import {useStore} from 'effector-react'
 import {$animValueLogOutAnimMenu, $isMountedLogOutAnimMenu, hideLogOutAnimMenu} from './models/models'
-import {useInterpolate} from '../../../../../../../utils/animation-hooks/Hooks'
-import {styleConfig} from '../../../../../../../src/StyleConfig'
-import {logOutHandler} from '../../../../../../../utils/log-out-handler'
+import {useInterpolate} from '../../../../../../../../utils/animation-hooks/Hooks'
+import {styleConfig} from '../../../../../../../StyleConfig'
+import {logOutHandler} from '../../../../../../../../utils/log-out-handler'
 
 
 export const LogOutAnimMenu: React.FC = () => {

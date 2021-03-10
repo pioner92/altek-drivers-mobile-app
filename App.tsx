@@ -10,9 +10,15 @@ import {useAppState} from './hooks/useAppState'
 import {FirebaseService} from './utils/firebase-serivce/firebase-service'
 import {getLocationPermissions} from './utils/permissions/location-permissions'
 import {SafeAreaProvider} from 'react-native-safe-area-context'
-import {MainStackScreen} from './screens/main-stack-screen/main-stack-screen'
-import {AuthStackScreen} from './screens/auth-stack-screen/auth-stack-screen'
+import {MainStackScreen} from './src/screens/main-stack-screen/main-stack-screen'
+import {AuthStackScreen} from './src/screens/auth-stack-screen/auth-stack-screen'
+import {useIsInBid} from './hooks/use-is-in-bid'
 
+
+if (__DEV__) {
+    // @ts-ignore
+    import('./Reacton.js').then(() => console.log('Reactotron Configured'))
+}
 
 export default function App() {
     const isLoadingComplete = useCachedResources()
@@ -32,12 +38,13 @@ export default function App() {
             await getLocationPermissions()
             await getNotificationPermissions()
         })()
-
         return FirebaseService.unsubscribe
     }, [])
 
 
+    useIsInBid()
     useAppState()
+
 
     if (!isLoadingComplete) {
         return null

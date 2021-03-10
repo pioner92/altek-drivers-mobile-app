@@ -1,8 +1,8 @@
 import {Text} from 'react-native'
-import {AlertModal} from '../../../../../../src/ui/molecules/alert-modal/alert-modal'
-import {styleConfig} from '../../../../../../src/StyleConfig'
+import {AlertModal} from '../../../../../../ui/molecules/alert-modal/alert-modal'
+import {styleConfig} from '../../../../../../StyleConfig'
 import React from 'react'
-import {useInterpolate} from '../../../../../../utils/animation-hooks/Hooks'
+import {useInterpolate} from '../../../../../../../utils/animation-hooks/Hooks'
 import {useStore} from 'effector-react'
 import {$animValuePlaceBidErrorModal, $isMountedPlaceBidErrorModal, hidePlaceBidErrorModal} from './models/models'
 

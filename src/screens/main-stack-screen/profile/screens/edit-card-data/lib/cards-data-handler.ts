@@ -1,6 +1,6 @@
-import {getDb, setDb} from '../../../../../../utils/db'
-import {CARDS} from '../../../../../../utils/db/constants'
-import {decryptData, encryptData} from '../../../../../../utils/encryption'
+import {getDb, setDb} from '../../../../../../../utils/db'
+import {CARDS} from '../../../../../../../utils/db/constants'
+import {decryptData, encryptData} from '../../../../../../../utils/encryption'
 
 export type cardDataItemType = {
     id: number

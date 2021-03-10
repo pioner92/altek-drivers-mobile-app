@@ -22,6 +22,9 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "operator-linebreak": "off",
+//        "no-trailing-spaces": "off",
+        "camelcase": "warn",
         "func-names": "error",
         "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
         "semi": ["error", "never"],

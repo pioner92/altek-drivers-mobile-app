@@ -1,38 +1,38 @@
 import React, {useEffect} from 'react'
 import {Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View} from 'react-native'
-import {ScreenWrapper} from '../../../../src/ui/atoms/screen-wrapper/screen-wrapper'
-import {BtnWrapper} from '../../../../src/ui/atoms/wrapper/btn-wrapper'
-import {Button} from '../../../../src/ui/atoms/buttons'
-import {InfoCard} from '../../../../src/features/bids-info/info-card'
+import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
+import {BtnWrapper} from '../../../../ui/atoms/wrapper/btn-wrapper'
+import {Button} from '../../../../ui/atoms/buttons'
+import {InfoCard} from '../../../../features/bids-info/info-card'
 import {StackScreenProps} from '@react-navigation/stack'
-import {loadType} from '../../../../src/api/rest/loads/get-loads'
-import {Notes} from '../../../../src/features/bids-info/ui/atoms'
-import {PriceAreaComponent} from '../../../../src/features/bids-info/ui/molecules'
-import {styleConfig} from '../../../../src/StyleConfig'
-import {DetailCard} from '../../../../src/features/bids-info/detail-card'
-import {ButtonWithCounter} from '../../../../src/features/button-with-counter/button-with-counter'
+import {loadType} from '../../../../api/rest/loads/get-loads'
+import {Notes} from '../../../../features/bids-info/ui/atoms'
+import {PriceAreaComponent} from '../../../../features/bids-info/ui/molecules'
+import {styleConfig} from '../../../../StyleConfig'
+import {DetailCard} from '../../../../features/bids-info/detail-card'
+import {ButtonWithCounter} from '../../../../features/button-with-counter/button-with-counter'
 import {useStore} from 'effector-react'
 import {
     $isStartedCounter,
     setCounter,
     startTimer,
     TIMER_VALUE,
-} from '../../../../src/features/button-with-counter/models/models'
-import {removeBid} from '../../../../src/api/rest/bid/remove-bid'
-import {ScrollSelectMenu} from '../../../../src/features/scroll-select-menu/scroll-select-menu'
+} from '../../../../features/button-with-counter/models/models'
+import {removeBid} from '../../../../api/rest/bid/remove-bid'
+import {ScrollSelectMenu} from '../../../../features/scroll-select-menu/scroll-select-menu'
 import {
     $animatedValueScrollSelectMenu,
     hideScrollSelectMenu,
     showScrollSelectMenu,
-} from '../../../../src/features/scroll-select-menu/models/models'
-import {getDb, setDb} from '../../../../utils/db'
-import {TIMERBID} from '../../../../utils/db/constants'
+} from '../../../../features/scroll-select-menu/models/models'
+import {getDb, setDb} from '../../../../../utils/db'
+import {TIMERBID} from '../../../../../utils/db/constants'
 import {$sentBidData, setSentBidData} from './models/models'
 import {PlaceBidErrorModal} from './features/placeBidErrorModal/placeBidErrorModal'
 import {showPlaceBidErrorModal} from './features/placeBidErrorModal/models/models'
-import {sendBidSocketAction} from '../../../../src/api/socket-client/socket-actions/socket-actions'
+import {sendBidSocketAction} from '../../../../api/socket-client/socket-actions/socket-actions'
 import {DarkBgAnimated} from '../../home/available-home/features/dark-bg-animated/dark-bg-animated'
-import {LoadLiveTimer} from '../../../../src/features/load-live-timer/load-live-timer'
+import {LoadLiveTimer} from '../../../../features/load-live-timer/load-live-timer'
 
 
 type itemType = {

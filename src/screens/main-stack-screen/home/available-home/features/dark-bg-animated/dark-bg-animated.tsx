@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import {Animated, StyleSheet} from 'react-native'
-import {useInterpolate} from '../../../../../../utils/animation-hooks/Hooks'
+import {useInterpolate} from '../../../../../../../utils/animation-hooks/Hooks'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 type propsType = {
     onPress?: () => void
     animatedValue?: Animated.Value
 }
 
+
 export const DarkBgAnimated: React.FC<propsType> = ({onPress, animatedValue}) => {
     const [isMounted, setIsMounted] = useState(false)
-
-    // let animValue = useStore($arrivedMenuAnimValue)
+    const inset = useSafeAreaInsets()
     let animValue: Animated.Value
 
 
@@ -45,7 +46,7 @@ export const DarkBgAnimated: React.FC<propsType> = ({onPress, animatedValue}) =>
         return null
     }
     return (
-        <Animated.View onTouchStart={onPressHandler} style={[opacityStyle, styles.container]}/>
+        <Animated.View onTouchStart={onPressHandler} style={[opacityStyle, styles.container, {top: -inset.top}]}/>
     )
 }
 

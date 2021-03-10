@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, Text} from 'react-native'
-import {WhiteCard} from '../../../../../../../src/ui/atoms/card/white-card'
+import {WhiteCard} from '../../../../../../../ui/atoms/card/white-card'
 
 export const CardRow: React.FC = () => {
     const circles = '••••'

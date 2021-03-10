@@ -1,8 +1,8 @@
 import React from 'react'
 import {StyleSheet, Text, View} from 'react-native'
 import {FilterTitle} from '../../ui/atoms/filter-title'
-import {BlueSelect} from '../../../../../../src/features/blue-select/blue-select'
-import {valueType} from '../../../../../../src/features/blue-select/ui/moleculs/scroll-area'
+import {BlueSelect} from '../../../../../../features/blue-select/blue-select'
+import {valueType} from '../../../../../../features/blue-select/ui/moleculs/scroll-area'
 import {
     $minimumDimsHeightValue,
     $minimumDimsLengthValue,

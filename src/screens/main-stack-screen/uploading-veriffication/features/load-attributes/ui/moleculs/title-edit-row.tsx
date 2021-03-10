@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {TitleGrey} from '../../../../../../../src/features/load-verified/ui/atoms'
+import {TitleGrey} from '../../../../../../../features/load-verified/ui/atoms'
 import {ButtonEdit} from '../atoms/button-edit'
 
 

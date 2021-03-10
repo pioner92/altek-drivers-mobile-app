@@ -1,13 +1,13 @@
 import {createEvent, createStore} from 'effector'
-import {getDb, setDb} from '../../../../utils/db'
+import {getDb, setDb} from '../../../../../utils/db'
 import {
     $inputValueUserName,
     $inputValueUserPhone,
     setInputValueUserName,
     setInputValueUserPhone,
 } from '../screens/edit-profile/features/personal-info/models/models'
-import {updateProfileDateOnServer} from '../../../../src/api/rest/update-profile'
-import {FIRSTNAME, LASTNAME, PHONENUMBER, USERID} from '../../../../utils/db/constants'
+import {updateProfileDateOnServer} from '../../../../api/rest/update-profile'
+import {FIRSTNAME, LASTNAME, PHONENUMBER, USERID} from '../../../../../utils/db/constants'
 
 type userDataType = {
     firstName: string | undefined

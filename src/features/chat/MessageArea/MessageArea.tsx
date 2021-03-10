@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {FlatList, StyleSheet} from 'react-native'
 import {MessageContainer} from './MessageContainer/MessageContainer'
-import {getDb} from '../../../utils/db/get-db'
-import {getChatData} from '../../api/rest/chat/get-chat-data'
+import {getDb} from '../../../../utils/db/get-db'
+import {getChatData} from '../../../api/rest/chat/get-chat-data'
 import {useStore} from 'effector-react'
-import {PHOTOPROFILE, USERID} from '../../../utils/db/constants'
+import {USERID} from '../../../../utils/db/constants'
 import {
     $chatData,
     $chatMessages,
@@ -22,14 +22,11 @@ export const MessageArea: React.FC<propsType> = ({id}) => {
     const messages = useStore($chatMessages)
     const pages = useStore($chatData).pages_count
     const messagesPage = useStore($chatMessagesPage)
-    const [photoProfile, setPhotoProfile] = useState('')
     const [userId, setUserId] = useState(0)
     const dates = new Set()
 
 
     useEffect(() => {
-        getDb(PHOTOPROFILE)
-            .then((data) => data && setPhotoProfile(data))
         getDb(USERID)
             .then((data) => data && setUserId(+data))
         return () => {
@@ -40,11 +37,6 @@ export const MessageArea: React.FC<propsType> = ({id}) => {
     useEffect(() => {
         if (messagesPage > 1 && messagesPage <= pages) {
             getChatData({id, page: messagesPage})
-            // .then((data) => {
-            //     if (data) {
-            //         addNexPageMessages(data.chat_group_messages)
-            //     }
-            // })
         }
     }, [messagesPage])
 
@@ -55,6 +47,15 @@ export const MessageArea: React.FC<propsType> = ({id}) => {
         }
         dates.add(value.slice(0, 10))
         return true
+    }
+
+    const isImage = (format:string) => {
+        return format === 'jpg' ||
+            format === 'jpeg' ||
+            format === 'png' ||
+            format === 'tiff' ||
+            format === 'bmp' ||
+            format === 'gif'
     }
 
     return (
@@ -75,7 +76,7 @@ export const MessageArea: React.FC<propsType> = ({id}) => {
                         isVisibleDateRow={isVisibleMessagesDate(item.modifiedDateTime)}
                         text={item.content}
                         img={item.user_from?.avatar || ''}
-                        type={item.files.length > 0 ? 'image' : 'text'}
+                        type={item.files.length > 0 ? isImage(item.files[0].extension) ? 'image' : 'file' : 'text'}
                         files={item.files || []}
                         from={item.user_from.first_name}
                         bySelf={userId === item.user_from.id}

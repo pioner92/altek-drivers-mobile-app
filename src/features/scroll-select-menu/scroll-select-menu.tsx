@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useState} from 'react'
-import {Animated, Dimensions, Platform, StyleSheet, Text, View} from 'react-native'
+import {Animated, Dimensions, Platform, StyleSheet, Text, View,} from 'react-native'
 import {styleConfig} from '../../StyleConfig'
 import {Header} from './ui/molecules/header'
 import {itemGenerate} from './lib/item-generate'
@@ -19,7 +19,6 @@ import {useStore} from 'effector-react'
 import {useInterpolate} from '../../../utils/animation-hooks/Hooks'
 import {loadType} from '../../api/rest/loads/get-loads'
 
-
 const width = Dimensions.get('window').width
 
 type propsType = {
@@ -27,23 +26,22 @@ type propsType = {
     item: loadType
 }
 
-const numberIsNan = (value: number) => {
-    return value !== NaN
-}
-
 const textPriceValidate = (text: string) => {
     const number = Number(text)
 
-    if (numberIsNan(number) && number < 1) {
+    if (!isNaN(number) && number < 1) {
         return 1
-    } else if (numberIsNan(number) && number >= 1) {
+    } else if (!isNaN(number) && number >= 1) {
         return number
     } else {
         return 1
     }
 }
 
-export const ScrollSelectMenu: React.FC<propsType> = ({onPressRightButton, item}) => {
+export const ScrollSelectMenu: React.FC<propsType> = ({
+    onPressRightButton,
+    item,
+}) => {
     const selectedValue = useStore($scrollSelectMenuSelectedValue)
     const inputValue = useStore($inputValueScrollSelectMenu)
     const animValue = useStore($animatedValueScrollSelectMenu)
@@ -51,8 +49,9 @@ export const ScrollSelectMenu: React.FC<propsType> = ({onPressRightButton, item}
 
     const defaultItems = useMemo(() => itemGenerate(0.25, 5), [])
 
-    const [itemsArray, setItemsArray] = useState<Array<{ id: number, value: string }>>([])
-
+    const [itemsArray, setItemsArray] = useState<
+        Array<{ id: number; value: string }>
+    >([])
 
     const calculationPerMile = (miles: number, price: number) => {
         return Number((price / miles).toFixed(2))
@@ -78,22 +77,23 @@ export const ScrollSelectMenu: React.FC<propsType> = ({onPressRightButton, item}
 
     const onChangeScrollMenu = (index: any) => {
         setScrollSelectedMenuSelectedValue(itemsArray[index])
-        setInputValueScrollSelectMenu((item.miles * Number(itemsArray[index].value)).toFixed(1))
+        setInputValueScrollSelectMenu(
+            (item.miles * Number(itemsArray[index].value)).toFixed(1),
+        )
     }
 
     const interpolateY = useInterpolate(animValue, [0, 1], [500, 0])
 
     const animStyle = {
-        transform: [
-            {translateY: interpolateY},
-        ],
+        transform: [{translateY: interpolateY}],
     }
 
     useEffect(() => {
         setItemsArray(itemGenerate(0.25, 5))
-        setScrollSelectedMenuSelectedValue(defaultItems[defaultItems.length / 2])
+        setScrollSelectedMenuSelectedValue(
+            defaultItems[defaultItems.length / 2],
+        )
     }, [])
-
 
     if (!isMounted) {
         return null
@@ -105,32 +105,44 @@ export const ScrollSelectMenu: React.FC<propsType> = ({onPressRightButton, item}
                 <Header
                     onChange={onChangeInput}
                     inputValue={inputValue}
-                    leftButtonLabel='Cancel'
-                    rightButtonLabel='Place'
+                    leftButtonLabel="Cancel"
+                    rightButtonLabel="Place"
                     onPressLeftButton={onPressLeftButton}
                     onPressRightButton={onPressRightButtonHandler}
                 />
 
-
                 <Picker
                     mode={Platform.OS === 'ios' ? 'dialog' : 'dropdown'}
-                    itemStyle={{fontSize: 16, lineHeight: 21, fontFamily: 'IBMPlex-500', color: '#102656'}}
+                    itemStyle={{
+                        fontSize: 16,
+                        lineHeight: 21,
+                        fontFamily: 'IBMPlex-500',
+                        color: '#102656',
+                    }}
                     selectedValue={selectedValue.value}
-                    style={{height: Platform.OS === 'ios' ? 219 : 50, width: '100%', backgroundColor: '#ffffff'}}
-                    onValueChange={((itemValue, itemIndex) => onChangeScrollMenu(itemIndex))}
+                    style={{
+                        height: Platform.OS === 'ios' ? 219 : 50,
+                        width: '100%',
+                        backgroundColor: '#ffffff',
+                    }}
+                    onValueChange={(itemValue, itemIndex) =>
+                        onChangeScrollMenu(itemIndex)
+                    }
                 >
-                    {itemsArray?.map((el) => <Picker.Item
-                        color={'#102656'}
-                        key={el.id}
-                        label={el.value}
-                        value={el.value}/>)}
+                    {itemsArray?.map((el) => (
+                        <Picker.Item
+                            color={'#102656'}
+                            key={el.id}
+                            label={el.value}
+                            value={el.value}
+                        />
+                    ))}
                 </Picker>
                 <Text style={styles.perMileLabel}>per mile</Text>
             </View>
         </Animated.View>
     )
 }
-
 
 const styles = StyleSheet.create({
     container: {

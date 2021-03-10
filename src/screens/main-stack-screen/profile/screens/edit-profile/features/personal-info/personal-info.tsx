@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react'
 import {StyleSheet, Text, View} from 'react-native'
 import {ButtonEdit} from '../../../../../uploading-veriffication/features/load-attributes/ui/atoms'
-import {WhiteCard} from '../../../../../../../src/ui/atoms/card/white-card'
-import {Input} from '../../../../../../../src/ui/atoms/input'
-import {styleConfig} from '../../../../../../../src/StyleConfig'
+import {WhiteCard} from '../../../../../../../ui/atoms/card/white-card'
+import {Input} from '../../../../../../../ui/atoms/input'
+import {styleConfig} from '../../../../../../../StyleConfig'
 import {useStore} from 'effector-react'
 import {
     $inputValueUserName,

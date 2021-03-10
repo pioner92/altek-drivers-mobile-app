@@ -1,9 +1,11 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
 
+
 export const DarkBg: React.FC = ({children}) => {
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container]}>
             {children}
         </View>
     )

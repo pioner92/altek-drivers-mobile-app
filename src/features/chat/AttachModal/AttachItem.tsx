@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, Text, TouchableOpacity} from 'react-native'
-import {styleConfig} from '../../StyleConfig'
+import {styleConfig} from '../../../StyleConfig'
 
 
 type propsType = {

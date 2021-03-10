@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, Text, View} from 'react-native'
-import {styleConfig} from '../../../../../src/StyleConfig'
+import {styleConfig} from '../../../../../StyleConfig'
 
 export const ProfileTitle: React.FC = ({children}) => {
     return (

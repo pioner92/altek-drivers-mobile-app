@@ -1,8 +1,8 @@
 import {TouchableOpacity, View} from 'react-native'
-import {MessageImage} from '../../../../../../src/features/chat/MessageArea/MessageContainer/MessageImage/MessageImage'
-import {serverUrl} from '../../../../../../src/api/urls'
+import {MessageImage} from '../../../../../../features/chat/MessageArea/MessageContainer/MessageImage/MessageImage'
+import {serverUrl} from '../../../../../../api/urls'
 import React, {useState} from 'react'
-import {mediaType} from '../../../../../../src/api/rest/chat/get-chat-data'
+import {mediaType} from '../../../../../../api/rest/chat/get-chat-data'
 import {ImageModalView} from '../../features/image-modal-view/image-modal-view'
 
 type propsType = {

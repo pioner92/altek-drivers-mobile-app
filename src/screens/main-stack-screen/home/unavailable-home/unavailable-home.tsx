@@ -1,16 +1,16 @@
 import React, {useEffect} from 'react'
 import {StyleSheet, View} from 'react-native'
-import {LogoScreen} from '../../../../src/ui/molecules/logo'
-import {SetAvailable} from '../../../../src/features/set-available'
-import {hideSetAvailable, setIsAvailable, showSetAvailable} from '../../../../src/features/set-available/models'
-import {hideStartWorkingMenu, showStartWorkingMenu} from '../../../../src/features/start-working-menu/models'
-import {StartWorkingMenu} from '../../../../src/features/start-working-menu'
-import {StartWorkLetterMenu} from '../../../../src/features/start-working-later-menu'
+import {LogoScreen} from '../../../../ui/molecules/logo'
+import {SetAvailable} from '../../../../features/set-available'
+import {hideSetAvailable, setIsAvailable, showSetAvailable} from '../../../../features/set-available/models'
+import {hideStartWorkingMenu, showStartWorkingMenu} from '../../../../features/start-working-menu/models'
+import {StartWorkingMenu} from '../../../../features/start-working-menu'
+import {StartWorkLetterMenu} from '../../../../features/start-working-later-menu'
 import {
     hideStartWorkingLaterMenu,
     showStartWorkingLaterMenu
-} from '../../../../src/features/start-working-later-menu/models'
-import {ScreenWrapper} from '../../../../src/ui/atoms/screen-wrapper/screen-wrapper'
+} from '../../../../features/start-working-later-menu/models'
+import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
 
 
 export const UnavailableHome: React.FC = () => {

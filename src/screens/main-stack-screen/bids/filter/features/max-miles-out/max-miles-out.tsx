@@ -8,7 +8,7 @@ import {
     setSliderValueMaxMilesLeft,
     setSliderValueMaxMilesRight,
 } from './models'
-import {MultiSliderWithRange} from '../../../../../../src/ui/molecules/multi-slider/multi-slider-with-range'
+import {MultiSliderWithRange} from '../../../../../../ui/molecules/multi-slider/multi-slider-with-range'
 import {FilterTitle} from '../../ui/atoms/filter-title'
 
 export const MaxMilesOut: React.FC = () => {

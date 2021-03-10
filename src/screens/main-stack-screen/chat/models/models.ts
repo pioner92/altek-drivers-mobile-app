@@ -1,9 +1,9 @@
 import {createEvent, createStore} from 'effector'
-import {getChatDataResponseType, messagesType} from '../../../../src/api/rest/chat/get-chat-data'
-import {getChatsResponseType} from '../../../../src/api/rest/chat/get-chats'
+import {getChatDataResponseType, messagesType} from '../../../../api/rest/chat/get-chat-data'
+import {getChatsResponseType} from '../../../../api/rest/chat/get-chats'
 
 export const setIsNewMessageInChat = createEvent<boolean>()
-export const setIsAmInChat = createEvent<boolean>()
+export const setIsInChat = createEvent<boolean>()
 export const setSelfId = createEvent<number>()
 
 export const setChatsData = createEvent<getChatsResponseType>()
@@ -39,7 +39,7 @@ export const $isNewMessageInChat = createStore(false)
     .on(setIsNewMessageInChat, (state, payload) => payload)
 
 export const $isAmInChat = createStore(false)
-    .on(setIsAmInChat, (state, payload) => payload)
+    .on(setIsInChat, (state, payload) => payload)
 
 export const $selfId = createStore<number | null>(null)
     .on(setSelfId, (state, payload) => payload)

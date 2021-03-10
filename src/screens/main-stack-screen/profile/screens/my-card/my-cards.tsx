@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react'
 import {StyleSheet, View} from 'react-native'
-import {ScreenWrapper} from '../../../../../src/ui/atoms/screen-wrapper/screen-wrapper'
+import {ScreenWrapper} from '../../../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {BankCard} from './features/bank-card/bank-card'
-import {styleConfig} from '../../../../../src/StyleConfig'
-import {Button} from '../../../../../src/ui/atoms/buttons'
+import {styleConfig} from '../../../../../StyleConfig'
+import {Button} from '../../../../../ui/atoms/buttons'
 
 import {CardList} from './features/card-list/card-list'
-import {useNavigate} from '../../../../../src/lib/hooks'
-import links from '../../../../../links.json'
+import {useNavigate} from '../../../../../lib/hooks'
+import links from '../../../../../../links.json'
 import {initCardData} from '../edit-card-data/features/bank-detail-inputs/models/models'
 import {setIsVisibleBankCardData} from './features/bank-card/models/models'
 

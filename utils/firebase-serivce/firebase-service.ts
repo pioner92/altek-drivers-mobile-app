@@ -1,6 +1,6 @@
 import messaging, {FirebaseMessagingTypes} from '@react-native-firebase/messaging'
 import {notificationHandlerPropsType} from './notification-handler'
-import {chatContentPropsType} from '../../screens/main-stack-screen/chat/chat-content/chat-content'
+import {chatContentPropsType} from '../../src/screens/main-stack-screen/chat/chat-content/chat-content'
 
 
 type backgroundMessageHandlerType = {
@@ -33,8 +33,7 @@ export class FirebaseService {
         if (isEnabled) {
             const fcmToken = await messaging().getToken()
             if (fcmToken) {
-                messaging().subscribeToTopic('all')
-
+                // messaging().subscribeToTopic('all')
                 return fcmToken
             } else {
                 console.log('Failed', 'No token received')
@@ -47,17 +46,18 @@ export class FirebaseService {
         messaging().subscribeToTopic(topicName)
     }
 
+    static topicUnsubscribe = (topicName: string) => {
+        messaging().unsubscribeFromTopic(topicName)
+    }
+
     static foregroundMessageListener = ({handler}: backgroundMessageHandlerType) => {
         FirebaseService.unsubscribeCallback = messaging().onMessage(async (remoteMessage) => {
-            console.log('MESSAGE FOREGROUND')
             handler({message: remoteMessage})
         })
     }
 
     static backgroundMessageListener = ({handler}: backgroundMessageHandlerType) => {
         messaging().setBackgroundMessageHandler(async (remoteMessage) => {
-            console.log('Message handled in the background!', remoteMessage)
-            console.log('MESSAGE BACKGROUND')
             handler({message: remoteMessage})
         })
     }

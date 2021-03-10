@@ -2,7 +2,7 @@ import config from '../../../../config.json'
 import {chatUsersType} from './get-chats'
 import {makeRequest} from '../../make-request'
 import {createEffect} from 'effector'
-import {addNexPageMessages, setChatData} from '../../../../screens/main-stack-screen/chat/models/models'
+import {addNexPageMessages, setChatData} from '../../../screens/main-stack-screen/chat/models/models'
 
 
 export type mediaType = Array<{

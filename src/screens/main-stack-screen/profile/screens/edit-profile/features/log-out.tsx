@@ -1,8 +1,8 @@
 import React from 'react'
 import {Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {WhiteCard} from '../../../../../../src/ui/atoms/card/white-card'
-import {LogOutSVG} from '../../../../../../src/ui/atoms/icons/log-out-svg'
-import {styleConfig} from '../../../../../../src/StyleConfig'
+import {WhiteCard} from '../../../../../../ui/atoms/card/white-card'
+import {LogOutSVG} from '../../../../../../ui/atoms/icons/log-out-svg'
+import {styleConfig} from '../../../../../../StyleConfig'
 import {showLogOutAnimMenu} from './log-out-anim-menu/models/models'
 
 
