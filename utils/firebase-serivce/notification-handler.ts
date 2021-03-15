@@ -20,7 +20,7 @@ const appBackgroundStatus = () => {
 
 export const notificationHandler = ({message}: notificationHandlerPropsType) => {
     if (message.data?.hasOwnProperty('action')) {
-        switch (message.data?.action) {
+        switch (message.data.action) {
         case ActionsEnum.updateLocation:
             sendGeoToServer()
             break

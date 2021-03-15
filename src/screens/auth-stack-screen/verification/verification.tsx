@@ -22,7 +22,6 @@ export const Verification = () => {
     const onPressVerify = useCallback(async () => {
         const result = await auth(value)
         const {email = '', password = '', success} = result || {}
-
         if (success) {
             await login({email, password})
             await getUserData()

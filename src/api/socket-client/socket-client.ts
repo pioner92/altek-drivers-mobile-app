@@ -1,13 +1,12 @@
-import {createEvent, createStore} from 'effector'
+import {createEvent, createStore, sample} from 'effector'
 import {NewConnectService, newLoadHandler} from './lib'
-import {loadType} from '../rest/loads/get-loads'
 import {getDb} from '../../../utils/db/get-db'
 import {logOutHandler} from '../../../utils/log-out-handler'
 import {COMPANYHASH, TIMERBID, TOKEN} from '../../../utils/db/constants'
 import {messageType} from '../rest/chat/get-chat-data'
 import {
     $chatsData,
-    $isAmInChat,
+    $isInChat,
     $selfId,
     addNewChatMessage,
     setIsNewMessageInChat,
@@ -17,68 +16,15 @@ import {startTimer} from '../../features/button-with-counter/models/models'
 import {setDb} from '../../../utils/db'
 import {pushActions, pushNotification} from '../../../utils/notification/push-notification'
 import {pushNotificationNewLoad} from './lib/push-notification-new-load'
-import {$isAuth} from '../../../Store/Store'
+import {$isAuth, addNewLoad} from '../../../Store/Store'
 import {AppState} from 'react-native'
 import {urls} from '../urls'
 import {$selfStatus, statuses} from '../../../hooks'
 import {checkStatusesWithInit} from '../../../utils/check-statuses-with-init/check-statuses-with-init'
-
-
-// Types
-type newLoadOfferResponseType = {
-    action: 'new_load_offer'
-    data: loadType
-}
-
-type statusesResponseType = {
-    action: 'load_status_change',
-    data: {
-        status: number
-        substatus: string
-    }
-}
-type statusDriverConnect = {
-    action: 'driver_connect'
-}
-
-type chatMessageType = {
-    action: 'group_chat_message',
-    data: messageType
-}
-
-export type updateLoadsType = {
-    action: 'update_loads'
-    data: [{
-        deliverTo: string
-        delivery_date: string
-        end_location: string
-        id: number
-        pieces: number
-        weight: number
-        miles: number
-        pickUpAt: string
-        pick_up_date: string
-        price: number
-        start_location: string
-    }]
-}
-
-type driverBidType = {
-    action: 'driver_bid'
-    data: {
-        load_id: string
-        phone_number: string
-    }
-}
-
-
-type socketDataType =
-    newLoadOfferResponseType
-    | statusesResponseType
-    | statusDriverConnect
-    | chatMessageType
-    | driverBidType
-    | updateLoadsType
+import {distanceValidate} from './lib/distance-validate'
+import {$maxMiles} from '../../../Store/FilterStore'
+import {getChatsResponseType} from '../rest/chat/get-chats'
+import {socketDataType, updateLoadsType} from './types'
 
 let timer: null | NodeJS.Timer = null
 
@@ -98,23 +44,30 @@ const reconnectSocket = async () => {
     }, 5000)
 }
 
-
 // Events
-
 
 export const initSocket = createEvent<{companyHash:string, token:string}>()
 
-export const closeSocket = createEvent()
-export const socketSend = createEvent<object>()
+export const updateLoadsClock = createEvent<updateLoadsType>()
+export const newChatMessageClock = createEvent<messageType>()
 
+export const updateLoadsHandler = createEvent<{data:updateLoadsType, maxMiles:number, selfStatus:string}>()
+export const newChatMessageHandler = createEvent<{isInChat:boolean, selfId:number | null, isAuth:boolean, chatData:getChatsResponseType, socketData:messageType}>()
+
+
+export const closeSocket = createEvent()
+export const socketSend = createEvent<{action:string, data:any}>()
 
 // Stores
 export const $socketStore = createStore<WebSocket | null>(null)
     .on(initSocket, (state, payload) => new WebSocket(urls.socketUrl(payload.companyHash, payload.token)))
-    .on(closeSocket, (state) => {state?.close()})
+    .on(closeSocket, (state) => {
+        state?.close()
+    })
     .on(socketSend, (state, payload) => {
         state?.send(JSON.stringify(payload))
     })
+
 
 // Watches
 $socketStore.watch((state) => {
@@ -123,13 +76,11 @@ $socketStore.watch((state) => {
         console.log('Connect...')
     })
     state?.addEventListener('close', (status) => {
-        console.log('Close...')
-        console.log(status)
+        console.log('Close...', status)
         reconnectSocket()
     })
     state?.addEventListener('error', (error) => {
-        console.log('Error...')
-        console.log(error)
+        console.log('Error...', error)
         reconnectSocket()
     })
 
@@ -138,14 +89,13 @@ $socketStore.watch((state) => {
 
         const data = JSON.parse(message?.data) as socketDataType
         console.log(data)
+
         switch (data?.action) {
         case 'new_load_offer':
             newLoadHandler(data?.data)
             break
         case 'update_loads':
-            if ($selfStatus.getState() === statuses.waiting) {
-                pushNotificationNewLoad(data)
-            }
+            updateLoadsClock(data)
             break
         case 'load_status_change':
             checkStatusesWithInit(data.data.status, +data.data.substatus)
@@ -153,27 +103,12 @@ $socketStore.watch((state) => {
         case 'driver_connect':
             if (!NewConnectService.get()) {
                 logOutHandler()
-                    .then(() => closeSocket())
+                    .then(closeSocket)
             }
             break
         case 'group_chat_message':
-            if (!$isAmInChat.getState() && data?.data?.user_from.id !== $selfId.getState() && $isAuth.getState()) {
-                const chat = $chatsData?.getState()?.find((el) => el.id === data.data.chat_id)
-                if (chat) {
-                    if (AppState.currentState === 'active') {
-                        pushNotification({
-                            title: data.data.user_from.first_name,
-                            text: data.data.content,
-                            action: pushActions.newChatSms,
-                            id: chat.id,
-                        })
-                    }
-                }
-                setIsNewMessageInChat(true)
-                setUnreadCount({id: data.data.chat_id, content: data.data.content})
-            }
-
-            addNewChatMessage([{...data.data}])
+            data.data.user_from.id
+            newChatMessageClock(data.data)
             break
         case 'driver_bid':
             setDb(TIMERBID, Date.now().toString())
@@ -183,3 +118,49 @@ $socketStore.watch((state) => {
 })
 
 
+sample({
+    source: {$maxMiles, $selfStatus},
+    clock: updateLoadsClock,
+    fn: ({$maxMiles, $selfStatus}, data) => ({data, maxMiles: $maxMiles, selfStatus: $selfStatus}),
+    target: updateLoadsHandler,
+})
+
+
+sample({
+    source: {$isInChat, $selfId, $isAuth, $chatsData},
+    clock: newChatMessageClock,
+    fn: ({$isInChat, $selfId, $isAuth, $chatsData}, socketData)=>({isAuth: $isAuth, selfId: $selfId, socketData, isInChat: $isInChat, chatData: $chatsData}),
+    target: newChatMessageHandler,
+})
+
+updateLoadsHandler.watch(({data, maxMiles, selfStatus})=>{
+    if (selfStatus === statuses.waiting) {
+        data.data.forEach((load)=>{
+            if (distanceValidate(load.start_location, maxMiles)) {
+                addNewLoad({...load})
+                pushNotificationNewLoad(data)
+            }
+        })
+    }
+})
+
+newChatMessageHandler.watch(({isAuth, isInChat, selfId, chatData, socketData})=>{
+    if (socketData?.user_from.id !== selfId && isAuth) {
+        const chat = chatData?.find((el) => el.id === socketData.chat_id)
+        if (chat && !isInChat) {
+            if (AppState.currentState === 'active') {
+                pushNotification({
+                    title: socketData.user_from.first_name,
+                    text: socketData.content,
+                    action: pushActions.newChatSms,
+                    id: chat.id,
+                })
+            }
+            setIsNewMessageInChat(true)
+        }
+        setUnreadCount({id: socketData.chat_id, content: socketData.content})
+    }
+    if (socketData.files?.length) {
+        addNewChatMessage([socketData])
+    }
+})

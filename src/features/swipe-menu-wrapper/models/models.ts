@@ -29,13 +29,6 @@ export const $panResponder = createStore(PanResponder.create({
         $animValueSwipeMenuWrapper.getState().extractOffset()
     },
     onPanResponderMove: onMoveHandler,
-    // onPanResponderMove: Animated.event([
-    //         null,
-    //         {dy: $animValueSwipeMenuWrapper.getState().y}
-    //     ],
-    //     {useNativeDriver: false,listener:(event)=>{}}
-    // ),
-
     onPanResponderRelease: (e, gestureState) => {
         hideSwipeMenuWrapper()
         setValueDY(gestureState.dy)

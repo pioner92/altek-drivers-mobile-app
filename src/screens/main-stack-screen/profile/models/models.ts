@@ -1,4 +1,4 @@
-import {createEvent, createStore} from 'effector'
+import {createEvent, createStore, sample} from 'effector'
 import {getDb, setDb} from '../../../../../utils/db'
 import {
     $inputValueUserName,
@@ -7,17 +7,12 @@ import {
     setInputValueUserPhone,
 } from '../screens/edit-profile/features/personal-info/models/models'
 import {updateProfileDateOnServer} from '../../../../api/rest/update-profile'
-import {FIRSTNAME, LASTNAME, PHONENUMBER, USERID} from '../../../../../utils/db/constants'
+import {FIRSTNAME, LASTNAME, PHONENUMBER} from '../../../../../utils/db/constants'
+import {responseUserDataType} from '../../../../api/rest/get-user-data'
 
-type userDataType = {
-    firstName: string | undefined
-    lastName: string | undefined
-    phone: string | undefined
-    id: number | undefined
-}
 
 export const setUserPhoto = createEvent<string>()
-export const setUserData = createEvent<userDataType>()
+export const setUserData = createEvent<responseUserDataType>()
 export const setUserFirstName = createEvent<string>()
 export const setUserLastName = createEvent<string>()
 export const setUserPhone = createEvent<string>()
@@ -27,7 +22,7 @@ export const updateProfile = createEvent()
 export const resetUserDataStore = createEvent()
 
 
-export const $userData = createStore({} as userDataType)
+export const $userData = createStore({} as responseUserDataType)
     .on(setUserData, (state, payload) => payload)
     .on(setUserFirstName, (state, payload) => ({...state, firstName: payload}))
     .on(setUserLastName, (state, payload) => ({...state, lastName: payload}))
@@ -41,17 +36,22 @@ initUserData.watch(async () => {
     const firstName = await getDb(FIRSTNAME)
     const lastName = await getDb(LASTNAME)
     const phone = await getDb(PHONENUMBER)
-    const id = await getDb(USERID)
+    // const id = await getDb(USERID)
 
     setInputValueUserName(`${firstName} ${lastName}`)
     setInputValueUserPhone(`${phone}`)
-    setUserData({firstName, lastName, phone, id: Number(id)})
 })
 
 
-updateProfile.watch(() => {
-    const fullName = $inputValueUserName.getState().split(' ')
-    const phone = $inputValueUserPhone.getState()
+const handler = sample({
+    source: {userName: $inputValueUserName, userPhone: $inputValueUserPhone},
+    clock: updateProfile,
+    fn: (states, _) => (states),
+})
+
+handler.watch(({userName, userPhone})=>{
+    const fullName = userName.split(' ')
+    const phone = userPhone
 
     setUserPhone(phone)
     setDb(PHONENUMBER, phone || '')
@@ -64,3 +64,4 @@ updateProfile.watch(() => {
 
     updateProfileDateOnServer({firstName: fullName[0] || '', lastName: fullName[1] || ''})
 })
+

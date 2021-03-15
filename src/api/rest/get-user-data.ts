@@ -2,7 +2,6 @@ import {createEffect} from 'effector'
 import {urls} from '../urls'
 import {setCurrentLoad} from '../../screens/main-stack-screen/load-info/models'
 import {makeRequest} from '../make-request'
-import {loadType} from './loads/get-loads'
 import {setCompanyHash} from '../../../Store/user-data'
 import {setUserData} from '../../screens/main-stack-screen/profile/models/models'
 import {login} from './auth/login'
@@ -12,9 +11,10 @@ import {FirebaseService} from '../../../utils/firebase-serivce/firebase-service'
 import {updateProfileDateOnServer} from './update-profile'
 import {notificationHandler} from '../../../utils/firebase-serivce/notification-handler'
 import {sendLogOutPush} from './send-log-out-push'
+import {loadType} from './loads/types'
 
 
-type responseUserDataType = {
+export type responseUserDataType = {
     added_by: {
         address: string
         avatar: string
@@ -124,9 +124,9 @@ getUserData.done.watch(async ({result}) => {
     if (result && result !== 401) {
         setCompanyHash(result?.company_info?.company_hash)
 
-        const {first_name, last_name, phone_number, id} = result
+        const {id} = result
 
-        setUserData({lastName: last_name, firstName: first_name, phone: phone_number, id})
+        setUserData(result)
 
         if (result.driver_info?.driver_loads[0]) {
             setCurrentLoad(result.driver_info.driver_loads[0])

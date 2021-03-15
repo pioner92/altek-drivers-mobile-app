@@ -5,7 +5,6 @@ import {AuthTitle} from '../../../ui/atoms/title'
 import {Wrapper} from '../../../ui/atoms'
 import {sendNumber} from '../../../api/rest/auth/send-number'
 import {setIsAvailable} from '../../../features/set-available/models'
-import links from '../../../../links.json'
 import {ButtonWithSubtitles} from '../../../ui/atoms/buttons/button-with-subtitles'
 import {SignUpOrLogInSubtitle} from '../../../features/sign-up-or-login-subtitles/sign-up-or-login-subtites'
 import {ScreenWrapper} from '../../../ui/atoms/screen-wrapper/screen-wrapper'
@@ -14,6 +13,7 @@ import {useStore} from 'effector-react'
 import {$inputValuePhoneNumber} from './features/models/models'
 import {NumberErrorModal} from './features/number-error-modal/number-error-modal'
 import {styleConfig} from '../../../StyleConfig'
+import {links} from '../../../navigation/links'
 
 
 export const Login = () => {

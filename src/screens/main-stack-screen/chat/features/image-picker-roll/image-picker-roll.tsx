@@ -1,13 +1,22 @@
-import React, {useEffect, useState} from 'react'
-import {FlatList, View} from 'react-native'
-import {ImageView} from '../ui/molecules/image-view'
+import React, {useContext, useEffect, useState} from 'react'
+import {Dimensions, FlatList, StyleSheet, TouchableOpacity, View} from 'react-native'
 import {Asset} from 'expo-media-library/src/MediaLibrary'
 import * as MediaLibrary from 'expo-media-library'
+import {CameraSVG} from '../../../../../ui/atoms/icons'
+import {ImageView} from '../ui/molecules/image-view'
+import {useNavigate} from '../../../../../lib/hooks'
+import {sendChatMessageSocketAction} from '../../../../../api/socket-client/socket-actions/socket-actions'
+import {ChatContext, uploadPhotoContainer} from '../../chat-content/chat-content'
+import {hideAttachMenu} from '../../../../../features/chat/AttachMenu/models/models'
+import {links} from '../../../../../navigation/links'
 
 type propsType = {
     // images: Array<Asset>
     onSelect: (uri: Array<string>) => void
 }
+
+const width = Dimensions.get('window').width
+
 
 export const ImagePickerRoll: React.FC<propsType> = ({onSelect}) => {
     const [selectedImages, setSelectedImages] = useState<Array<string>>([])
@@ -28,9 +37,12 @@ export const ImagePickerRoll: React.FC<propsType> = ({onSelect}) => {
 
 
     const onNextPage = async () => {
-        const media = await MediaLibrary.getAssetsAsync({
-            after: endCursor,
-        })
+        const media = await MediaLibrary.getAssetsAsync(
+            {
+                after: endCursor,
+                sortBy: 'creationTime',
+
+            })
         if (media.assets) {
             setAssets([...assets, ...media.assets])
         }
@@ -43,6 +55,7 @@ export const ImagePickerRoll: React.FC<propsType> = ({onSelect}) => {
             if (granted) {
                 const media = await MediaLibrary.getAssetsAsync({
                     first: 20,
+                    sortBy: 'creationTime',
                 })
                 if (media.assets) {
                     setAssets(media.assets)
@@ -75,12 +88,51 @@ export const ImagePickerRoll: React.FC<propsType> = ({onSelect}) => {
             onEndReachedThreshold={0}
             data={assets}
             keyExtractor={(el) => el.id}
-            renderItem={({item}) =>
-                <ImageView
-                    isSelected={selectedImages.includes(item.uri)}
-                    uri={item.uri}
-                    onPress={onPressHandler}
-                />}
+            renderItem={({item, index}) =>
+                (index === 0 ?
+                    <OpenCameraButton/>
+                    :
+                    <ImageView
+                        isSelected={selectedImages.includes(item.uri)}
+                        uri={item.uri}
+                        onPress={onPressHandler}
+                    />
+                )
+            }
         />
     )
 }
+
+const OpenCameraButton = () => {
+    const chatContextValue = useContext(ChatContext)
+
+    const navigate = useNavigate()
+    const callback = async (uri: string) => {
+        const res = await uploadPhotoContainer(uri)
+        hideAttachMenu()
+        if (res) {
+            sendChatMessageSocketAction({media: [res.id], content: '', chat_id: chatContextValue.chatId})
+        }
+    }
+
+    const onPress = () => {
+        navigate(links.camera, {callback})
+    }
+
+    return (
+        <TouchableOpacity onPress={onPress} style={styles.openCameraButton}>
+            <CameraSVG color='#fff'/>
+        </TouchableOpacity>
+    )
+}
+
+
+const styles = StyleSheet.create({
+    openCameraButton: {
+        width: (width / 100) * 30.5,
+        height: 100,
+        backgroundColor: '#C4C4C4',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+})

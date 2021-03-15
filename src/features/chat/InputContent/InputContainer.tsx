@@ -6,7 +6,7 @@ import {SendButton} from './SendButton'
 
 type propsType = {
     openAttach: () => void
-    sendMessage: (text: string, type: 'text') => void
+    sendMessage: (text: string) => void
 }
 
 export const InputContainer: React.FC<propsType> = ({openAttach, sendMessage}) => {
@@ -18,7 +18,7 @@ export const InputContainer: React.FC<propsType> = ({openAttach, sendMessage}) =
 
     const onSend = () => {
         if (inputValue.trim()) {
-            sendMessage(inputValue, 'text')
+            sendMessage(inputValue)
         }
         setInputValue('')
     }

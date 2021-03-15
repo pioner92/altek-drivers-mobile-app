@@ -1,17 +1,25 @@
-import {createEvent, createStore} from 'effector'
+import {createEvent, createStore, sample} from 'effector'
 import {Animated, Keyboard} from 'react-native'
-import {useSpring, useTiming} from '../../../../utils/animation-hooks/Hooks'
+import {useSpring} from '../../../../utils/animation-hooks/Hooks'
 
-export const showTakePictureMenu = createEvent()
-export const hideTakePictureMenu = createEvent()
+export const startAnimation = createEvent<number>()
+
+export const showTakePictureMenu = startAnimation.prepend(()=> 1)
+export const hideTakePictureMenu = startAnimation.prepend(()=> 0)
 
 export const $animValueTakePicture = createStore(new Animated.Value(0))
 
-showTakePictureMenu.watch(() => {
-    Keyboard.dismiss()
-    useSpring($animValueTakePicture.getState(), 1, 10, 7).start()
+
+const handler = sample({
+    source: $animValueTakePicture,
+    clock: startAnimation,
+    fn: (state, to) => ({state, to}),
 })
 
-hideTakePictureMenu.watch(() => {
-    useTiming($animValueTakePicture.getState(), 0, 800).start()
+handler.watch(({state, to})=>{
+    if (to === 1) {
+        Keyboard.dismiss()
+    }
+    useSpring(state, to, 10, 7).start()
 })
+

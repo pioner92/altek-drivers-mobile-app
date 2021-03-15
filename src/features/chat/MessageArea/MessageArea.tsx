@@ -12,13 +12,14 @@ import {
     setChatMessages,
     setChatMessagesPage,
 } from '../../../screens/main-stack-screen/chat/models/models'
+import {hideAttachMenu} from "../AttachMenu/models/models";
 
 
 type propsType = {
     id: number
 }
 
-export const MessageArea: React.FC<propsType> = ({id}) => {
+export const MessageArea: React.FC<propsType> = React.memo(({id}) => {
     const messages = useStore($chatMessages)
     const pages = useStore($chatData).pages_count
     const messagesPage = useStore($chatMessagesPage)
@@ -60,6 +61,7 @@ export const MessageArea: React.FC<propsType> = ({id}) => {
 
     return (
         <FlatList
+            onTouchStart={()=>hideAttachMenu()}
             inverted={true}
             style={styles.container}
             contentContainerStyle={{paddingTop: 10}}
@@ -89,7 +91,7 @@ export const MessageArea: React.FC<propsType> = ({id}) => {
         >
         </FlatList>
     )
-}
+})
 
 const styles = StyleSheet.create({
     container: {

@@ -7,9 +7,9 @@ import {Button} from '../../../../../ui/atoms/buttons'
 
 import {CardList} from './features/card-list/card-list'
 import {useNavigate} from '../../../../../lib/hooks'
-import links from '../../../../../../links.json'
 import {initCardData} from '../edit-card-data/features/bank-detail-inputs/models/models'
 import {setIsVisibleBankCardData} from './features/bank-card/models/models'
+import {links} from '../../../../../navigation/links'
 
 export const MyCards: React.FC = () => {
     const navigate = useNavigate()

@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useState} from 'react'
-import {Animated, Dimensions, Platform, StyleSheet, Text, View,} from 'react-native'
+import {Animated, Dimensions, Platform, StyleSheet, Text, View} from 'react-native'
 import {styleConfig} from '../../StyleConfig'
 import {Header} from './ui/molecules/header'
 import {itemGenerate} from './lib/item-generate'
@@ -17,7 +17,7 @@ import {
 import {Picker} from '@react-native-picker/picker'
 import {useStore} from 'effector-react'
 import {useInterpolate} from '../../../utils/animation-hooks/Hooks'
-import {loadType} from '../../api/rest/loads/get-loads'
+import {loadType} from '../../api/rest/loads/types'
 
 const width = Dimensions.get('window').width
 

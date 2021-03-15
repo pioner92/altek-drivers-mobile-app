@@ -4,12 +4,12 @@ import {SeeDetailBid} from '../../molecules/see-detail-bid'
 import {BidStepContent} from '../../../features/bid-card/ui/organisms'
 import {Wrapper} from '../../atoms/wrapper'
 import {useNavigate} from '../../../lib/hooks'
-import links from '../../../../links.json'
 import {useStore} from 'effector-react'
 import {$currentLoad} from '../../../screens/main-stack-screen/load-info/models'
 import {Button} from '../../atoms/buttons'
 import {styleConfig} from '../../../StyleConfig'
 import {InfoSVG} from '../../atoms/icons'
+import {links} from '../../../navigation/links'
 
 type propsType = {
     animStyle: any

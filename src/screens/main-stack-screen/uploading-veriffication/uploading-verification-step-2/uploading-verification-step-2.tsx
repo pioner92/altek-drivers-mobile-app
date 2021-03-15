@@ -8,13 +8,13 @@ import {TitleGrey} from '../../../../features/load-verified/ui/atoms'
 import {setImageDataBol, setSelectedIndex} from './models'
 import {hideTakePictureMenu, showTakePictureMenu} from '../../../../features/take-picture-menu/models'
 import {InputBol} from '../features/input-bol'
-import links from '../../../../../links.json'
 import {useStore} from 'effector-react'
 import {$currentLoad} from '../../load-info/models'
 import {Button} from '../../../../ui/atoms/buttons'
 import {WrapperPaddingBottom} from '../../../../ui/atoms/wrapper/wrapper-padding-bottom'
 import {cameraHandler} from '../../../../../utils/cameraHandler/cameraHandler'
 import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
+import {links} from '../../../../navigation/links'
 
 
 export const UploadingVerificationStep2: React.FC = () => {

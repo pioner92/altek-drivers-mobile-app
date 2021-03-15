@@ -2,7 +2,7 @@ import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps'
 import customStyleMap from '../../../../../../../customMapStyle.json'
 import React, {memo} from 'react'
 import {useStore} from 'effector-react'
-import {geoLocationStore} from '../../../../../../../Store/Store'
+import {$geoLocationStore} from '../../../../../../../Store/Store'
 import {$currentLoad} from '../../../../load-info/models'
 import {$selfStatus, statuses} from '../../../../../../../hooks'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
@@ -18,7 +18,7 @@ enum locationPoints {
 const MapInner: React.FC = () => {
     const inset = useSafeAreaInsets()
 
-    const geo = useStore(geoLocationStore)
+    const geo = useStore($geoLocationStore)
     const currentLoad = useStore($currentLoad)
     const selfStatus = useStore($selfStatus)
 

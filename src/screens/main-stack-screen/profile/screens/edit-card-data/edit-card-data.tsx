@@ -17,8 +17,8 @@ import {BankCard} from '../my-card/features/bank-card/bank-card'
 import {BankDetailInputs} from './features/bank-detail-inputs/bank-detail-inputs'
 import {setIsVisibleBankCardData} from '../my-card/features/bank-card/models/models'
 import {useNavigate} from '../../../../../lib/hooks'
-import links from '../../../../../../links.json'
 import {StackScreenProps} from '@react-navigation/stack'
+import {links} from '../../../../../navigation/links'
 
 
 export const EditCardData: React.FC<StackScreenProps<any>> = ({route}) => {

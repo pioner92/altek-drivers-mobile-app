@@ -26,12 +26,14 @@ import {Map} from './features/map/map'
 export const AvailableHome = () => {
     const isAvailable = useStore($isAvailable)
     const currentLoad = useStore($currentLoad)
+    const arrivedMenuAnimValue = useStore($arrivedMenuAnimValue)
+    const animValueUnavailableModal = useStore($animValueUnavailableModal)
 
 
     const openUnavailableModal = () => {
         if (isAvailable && !currentLoad?.hasOwnProperty('id')) {
             setIsMountedUnavailableModal(true)
-            showAlertModal($animValueUnavailableModal.getState())
+            showAlertModal(animValueUnavailableModal)
         }
     }
 
@@ -58,7 +60,7 @@ export const AvailableHome = () => {
                 <Map/>
                 <DarkBgAnimated
                     onPress={slideToBottomArrivedMenu}
-                    animatedValue={$arrivedMenuAnimValue.getState()}
+                    animatedValue={arrivedMenuAnimValue}
                 />
                 <SetAvailable callback={openUnavailableModal}/>
                 <ArrivedMenuContainer/>

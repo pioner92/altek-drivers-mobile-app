@@ -6,7 +6,7 @@ import {GrayLine} from '../../ui/atoms/gray-line'
 import {Switch, switchPropsType} from '../../../../../ui/molecules/swith/switch'
 import {styleConfig} from '../../../../../StyleConfig'
 import {useNavigate} from '../../../../../lib/hooks'
-import links from '../../../../../../links.json'
+import {links} from '../../../../../navigation/links'
 
 export const Account: React.FC = () => {
     const navigate = useNavigate()

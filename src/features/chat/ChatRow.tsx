@@ -4,7 +4,7 @@ import {SvgComponent} from './SvgIcon'
 import {useNavigation} from '@react-navigation/native'
 import {styleConfig} from '../../StyleConfig'
 import {serverUrl} from '../../api/urls'
-import links from '../../../links.json'
+import {links} from '../../navigation/links'
 
 const width = Dimensions.get('window').width
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import {StyleSheet, Text, View} from 'react-native'
 import {StepCircles} from '../../ui/molecules/steps/steps'
-import {loadType} from '../../api/rest/loads/get-loads'
 import {styleConfig} from '../../StyleConfig'
 import {VALUEINSTEAD} from '../../lib/nullableDateValidate/nullableDateValidate'
+import {loadType} from "../../api/rest/loads/types";
 
 
 type propsType = {

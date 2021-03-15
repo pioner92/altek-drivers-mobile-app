@@ -9,23 +9,23 @@ export const setMinimumDimsHeightEvent = createEvent<string>()
 export const setMinimumPayloadsEvent = createEvent<string>()
 
 
-export const maxMilesStore = createStore(150)
-    .on(setMaxMilesEvent, ((state, payload) => payload))
+export const $maxMiles = createStore(200)
+    .on(setMaxMilesEvent, (state, payload) => payload)
 
-export const pickUpPointStore = createStore('')
-    .on(setPickUpPointEvent, ((state, payload) => payload))
+export const $pickUpPoint = createStore('')
+    .on(setPickUpPointEvent, (state, payload) => payload)
 
-export const deliveryPointStore = createStore('')
-    .on(setDeliveryPointEvent, ((state, payload) => payload))
+export const $deliveryPoint = createStore('')
+    .on(setDeliveryPointEvent, (state, payload) => payload)
 
-export const minimumDimsLengthStore = createStore('')
-    .on(setMinimumDimsLengthEvent, ((state, payload) => payload))
+export const $minimumDimsLength = createStore('')
+    .on(setMinimumDimsLengthEvent, (state, payload) => payload)
 
-export const minimumDimsWidthStore = createStore('')
-    .on(setMinimumDimsWidthEvent, ((state, payload) => payload))
+export const $minimumDimsWidth = createStore('')
+    .on(setMinimumDimsWidthEvent, (state, payload) => payload)
 
-export const minimumDimsHeightStore = createStore('')
-    .on(setMinimumDimsHeightEvent, ((state, payload) => payload))
+export const $minimumDimsHeight = createStore('')
+    .on(setMinimumDimsHeightEvent, (state, payload) => payload)
 
-export const minimumPayloadsStore = createStore('')
-    .on(setMinimumPayloadsEvent, ((state, payload) => payload))
+export const $minimumPayloads = createStore('')
+    .on(setMinimumPayloadsEvent, (state, payload) => payload)

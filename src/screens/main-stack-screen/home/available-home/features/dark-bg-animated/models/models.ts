@@ -13,13 +13,8 @@ export const $isMountedDarkBGAnimated = createStore(false)
 
 showDarkBGAnimated.watch(() => {
     setIsMountedDarkBGAnimated(true)
-    // useTiming($arrivedMenuAnimValue.getState(),1,300).start()
 })
 
 hideDarkBGAnimated.watch(() => {
     setIsMountedDarkBGAnimated(false)
-
-    // useTiming($arrivedMenuAnimValue.getState(),0,300).start(()=>{
-    //     setIsMountedDarkBGAnimated(false)
-    // })
 })

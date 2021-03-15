@@ -13,6 +13,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context'
 import {MainStackScreen} from './src/screens/main-stack-screen/main-stack-screen'
 import {AuthStackScreen} from './src/screens/auth-stack-screen/auth-stack-screen'
 import {useIsInBid} from './hooks/use-is-in-bid'
+import {$currentLoad} from "./src/screens/main-stack-screen/load-info/models";
 
 
 if (__DEV__) {
@@ -24,6 +25,7 @@ export default function App() {
     const isLoadingComplete = useCachedResources()
     const colorScheme = useColorScheme()
     const isAuth = useStore($isAuth)
+    const currentLoad = useStore($currentLoad)
 
     // @ts-ignore
     if (Text.defaultProps == null) Text.defaultProps = {}
@@ -42,7 +44,7 @@ export default function App() {
     }, [])
 
 
-    useIsInBid()
+    useIsInBid(currentLoad)
     useAppState()
 
 
@@ -54,9 +56,9 @@ export default function App() {
                 <SafeAreaProvider>
                     <NavigationContainer
                         theme={colorScheme == 'dark' ? DarkTheme : DefaultTheme}>
-                        {!isAuth ?
-                            <AuthStackScreen/> :
-                            <MainStackScreen/>
+                        {!isAuth
+                            ? <AuthStackScreen/>
+                            : <MainStackScreen/>
                         }
                         <StatusBar barStyle="dark-content" backgroundColor={'#fff'}/>
                     </NavigationContainer>

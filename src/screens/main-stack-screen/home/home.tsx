@@ -5,7 +5,6 @@ import {UnavailableHome} from './unavailable-home/unavailable-home'
 import {useStore} from 'effector-react'
 import {actionsType, NotificationsHandler, pushActions} from '../../../../utils/notification/push-notification'
 import {useNavigate} from '../../../lib/hooks'
-import links from '../../../../links.json'
 import {FirebaseService} from '../../../../utils/firebase-serivce/firebase-service'
 import {StackScreenCreator} from '../../../features/navigation/features/stack-screen-creator/stack-screen-creator'
 import {$currentLoad} from '../load-info/models'
@@ -14,6 +13,7 @@ import {$socketStore, closeSocket, initSocket} from '../../../api/socket-client/
 import {$companyHash} from '../../../../Store/user-data'
 import {getDb} from '../../../../utils/db'
 import {TOKEN} from '../../../../utils/db/constants'
+import {links} from '../../../navigation/links'
 
 
 const createHandler = ({action, callback}: { action: actionsType, callback: ({id}: { id: number }) => void }) => {
@@ -46,9 +46,9 @@ export const Home: React.FC = () => {
 
 
     const socketConnect = async (companyHash:string) => {
-        if (!socketClient) {
+        if (!socketClient || socketClient?.readyState === socketClient?.CLOSED) {
             const token = await getDb(TOKEN)
-            initSocket({companyHash, token: token ?? ''})
+            token && initSocket({companyHash, token})
         }
     }
 

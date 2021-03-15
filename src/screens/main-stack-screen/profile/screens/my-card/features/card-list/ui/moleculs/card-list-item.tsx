@@ -5,7 +5,6 @@ import {styleConfig} from '../../../../../../../../../StyleConfig'
 import {PenSVG} from '../../../../../../../../../ui/atoms/icons/pen-svg'
 import {CrossSVG} from '../../../../../../../../../ui/atoms/icons/cross-svg'
 import {useNavigate} from '../../../../../../../../../lib/hooks'
-import links from '../../../../../../../../../../links.json'
 import {
     deleteCardData,
     setInputValueCardCVS,
@@ -15,6 +14,7 @@ import {
 } from '../../../../../edit-card-data/features/bank-detail-inputs/models/models'
 import {setIsVisibleBankCardData} from '../../../bank-card/models/models'
 import {cardDataItemType} from '../../../../../edit-card-data/lib/cards-data-handler'
+import {links} from '../../../../../../../../../navigation/links'
 
 
 type propsType = {

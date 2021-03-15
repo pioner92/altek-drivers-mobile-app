@@ -3,8 +3,8 @@ import {Card, Title} from '../ui'
 import {Line1px} from '../../../ui/atoms/line/line-1px'
 import {Wrapper} from '../ui/atoms'
 import {BidDetailSteps} from '../../bid-detail-steps'
-import {loadType} from '../../../api/rest/loads/get-loads'
 import {ArrowTop} from '../../../ui/atoms/icons/arrow-top'
+import {loadType} from '../../../api/rest/loads/types'
 
 type propsType = {
     data: loadType

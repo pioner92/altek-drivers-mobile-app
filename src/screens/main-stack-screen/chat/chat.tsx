@@ -8,10 +8,10 @@ import {getDb} from '../../../../utils/db'
 import {USERID} from '../../../../utils/db/constants'
 import {$chatsData, setIsInChat, setSelfId} from './models/models'
 import {getChatAvatar} from './lib/get-chat-avatar'
-import links from '../../../../links.json'
 import {StackScreenCreator} from '../../../features/navigation/features/stack-screen-creator/stack-screen-creator'
+import {links} from '../../../navigation/links'
 
-const Chat: React.FC = () => {
+const Chat: React.FC = React.memo(() => {
     const chats = useStore($chatsData)
 
     const geUserId = async () => {
@@ -38,24 +38,24 @@ const Chat: React.FC = () => {
             <ScrollView
                 style={styles.container}>
                 <View>
-                    {chats.map((el) => {
+                    {chats?.map((el) => {
                         return (
                             <ChatRow
-                                unread_count={el.unread_count}
-                                membersCount={el.users.length}
-                                lastMessage={el.last_message.content}
-                                avatar={el.load !== null ? getChatAvatar(el.users) || '' : ''}
-                                loadId={el.load}
-                                key={el.id}
-                                time={new Date(el.modifiedDateTime).toTimeString().slice(0, 5)}
-                                id={el.id}/>
+                                unread_count={el?.unread_count}
+                                membersCount={el?.users?.length}
+                                lastMessage={el?.last_message?.content}
+                                avatar={el?.load !== null ? getChatAvatar(el?.users) || '' : ''}
+                                loadId={el?.load}
+                                key={el?.id}
+                                time={new Date(el?.modifiedDateTime)?.toTimeString()?.slice(0, 5)}
+                                id={el?.id}/>
                         )
                     })}
                 </View>
             </ScrollView>
         </ScreenWrapper>
     )
-}
+})
 
 export const ChatStackScreen = () => StackScreenCreator({link: links.chat, title: 'Chats', component: Chat})
 

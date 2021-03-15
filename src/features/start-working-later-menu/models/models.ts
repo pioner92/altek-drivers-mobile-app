@@ -1,16 +1,22 @@
-import {createEvent, createStore} from 'effector'
+import {createEvent, createStore, sample} from 'effector'
 import {Animated} from 'react-native'
 import {useSpring} from '../../../../utils/animation-hooks/Hooks'
 
-export const showStartWorkingLaterMenu = createEvent()
-export const hideStartWorkingLaterMenu = createEvent()
+
+const startAnimation = createEvent<number>()
+
+export const showStartWorkingLaterMenu = startAnimation.prepend(()=> 1)
+export const hideStartWorkingLaterMenu = startAnimation.prepend(()=> 0)
 
 export const $startWorkingLaterAnimValue = createStore(new Animated.Value(0))
 
-showStartWorkingLaterMenu.watch(() => {
-    useSpring($startWorkingLaterAnimValue.getState(), 1, 10, 7).start()
+
+const handler = sample({
+    source: $startWorkingLaterAnimValue,
+    clock: startAnimation,
+    fn: (state, to) => ({state, to}),
 })
 
-hideStartWorkingLaterMenu.watch(() => {
-    useSpring($startWorkingLaterAnimValue.getState(), 0, 10, 7).start()
+handler.watch(({state, to})=> {
+    useSpring(state, to, 10, 7).start()
 })

@@ -5,6 +5,7 @@ const body = (id:number)=> ({
     'notification': {
         'tag': 'logout',
         'title': 'LogOut',
+        'action': 'logout',
         'content_available': true,
         'priority': 'high',
         'high_priority': 'high',

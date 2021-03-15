@@ -1,5 +1,5 @@
 import {createEvent, createStore} from 'effector'
-import {loadType} from '../../../../api/rest/loads/get-loads'
+import {loadType} from '../../../../api/rest/loads/types'
 
 export const setCurrentLoad = createEvent<loadType | null>()
 export const resetCurrentLoad = createEvent()

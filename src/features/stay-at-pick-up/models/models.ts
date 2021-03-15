@@ -1,34 +1,40 @@
-import {createEffect, createEvent, createStore} from 'effector'
+import {attach, createEffect, createEvent, createStore} from 'effector'
 import {Animated} from 'react-native'
 import {useSpring} from '../../../../utils/animation-hooks/Hooks'
 import {showArrivedMenu} from '../../arrived-menu/models'
 
 
 export const setIsMountedStayAtPickUpMenu = createEvent<boolean>()
+export const showStayAtPickUpMenu = createEvent()
+export const hideStayAtPickUpMenu = createEvent()
+
+
+const startAnimationEffect = createEffect<{ state: Animated.Value, to: number }, Promise<null>>(async ({state, to}) => {
+    return new Promise((resolve) => {
+        useSpring(state, to, 10, 5).start(() => resolve())
+    })
+})
 
 export const $isMounted = createStore(false)
     .on(setIsMountedStayAtPickUpMenu, ((state, payload) => payload))
 
-export const showStayAtPickUpMenu = createEffect(async () => {
-    return new Promise((resolve) => {
-        setIsMountedStayAtPickUpMenu(true)
-        showArrivedMenu()
-        useSpring($stayAtPickUpAnimValue.getState(), 1, 10, 5).start(resolve)
-    })
-})
-
-export const hideStayAtPickUpMenu = createEffect(async () => {
-    return new Promise((resolve) => {
-        useSpring($stayAtPickUpAnimValue.getState(), 0, 10, 5).start(resolve)
-    })
-})
-
 export const $stayAtPickUpAnimValue = createStore(new Animated.Value(0))
 
-showStayAtPickUpMenu.done.watch(() => {
-    showArrivedMenu()
+
+const startAnimation = attach({
+    source: $stayAtPickUpAnimValue,
+    mapParams: (to: number, state) => ({to, state}),
+    effect: startAnimationEffect,
 })
-hideStayAtPickUpMenu.done.watch(() => {
+
+showStayAtPickUpMenu.watch(() => {
+    setIsMountedStayAtPickUpMenu(true)
+    showArrivedMenu()
+    startAnimation(1)
+})
+
+hideStayAtPickUpMenu.watch(async () => {
+    await startAnimation(0)
     setIsMountedStayAtPickUpMenu(false)
 })
 

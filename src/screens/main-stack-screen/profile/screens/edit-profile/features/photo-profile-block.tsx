@@ -6,10 +6,10 @@ import {$userData, $userPhoto, setUserPhoto} from '../../../models/models'
 import {getDb} from '../../../../../../../utils/db'
 import {ButtonEdit} from '../../../../uploading-veriffication/features/load-attributes/ui/atoms'
 import {useNavigate} from '../../../../../../lib/hooks'
-import links from '../../../../../../../links.json'
 import {CameraSVG} from '../../../../../../ui/atoms/icons'
 import {showTakePictureMenu} from '../../../../../../features/take-picture-menu/models'
 import {PHOTOPROFILE} from '../../../../../../../utils/db/constants'
+import {links} from '../../../../../../navigation/links'
 
 
 type propsType = {
@@ -66,8 +66,8 @@ export const PhotoProfileBlock: React.FC<propsType> = ({enableButtonEdit = false
                 <ButtonCamera/>
             </View>
             <EditButton/>
-            <Text style={[styles.name, styles.textColor]}>{userData.firstName} {userData.lastName}</Text>
-            <Text style={[styles.phone, styles.textColor]}>{userData.phone}</Text>
+            <Text style={[styles.name, styles.textColor]}>{userData.first_name} {userData.last_name}</Text>
+            <Text style={[styles.phone, styles.textColor]}>{userData.phone_number}</Text>
         </View>
     )
 }

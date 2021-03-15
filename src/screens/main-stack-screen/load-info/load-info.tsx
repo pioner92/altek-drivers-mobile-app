@@ -6,11 +6,11 @@ import {PriceAreaComponent} from '../../../features/bids-info/ui/molecules/price
 import {useNavigate} from '../../../lib/hooks'
 import {useStore} from 'effector-react'
 import {$currentLoad} from './models'
-import links from '../../../../links.json'
 import {Button} from '../../../ui/atoms/buttons'
 import {ScreenWrapper} from '../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {styleConfig} from '../../../StyleConfig'
 import {BtnWrapper} from '../../../ui/atoms/wrapper/btn-wrapper'
+import {links} from '../../../navigation/links'
 
 
 export const LoadInfo: React.FC<any> = ({route}) => {

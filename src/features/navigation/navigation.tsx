@@ -4,12 +4,12 @@ import {useStore} from 'effector-react'
 import {useNavigation} from '@react-navigation/native'
 import {NavButton} from '../../ui/molecules/nav-button'
 import {BidsSVG, ChatSVG, LoadSVG, ProfileSVG} from '../../ui/atoms/icons'
-import links from '../../../links.json'
 import {$isAvailable} from '../set-available/models'
 import {$selfStatus, statuses} from '../../../hooks'
 import {$selectedIndexNavButton, navButtonIndex, setSelectedIndexNavButton} from './models/models'
 import {$isNewMessageInChat} from '../../screens/main-stack-screen/chat/models/models'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {links} from '../../navigation/links'
 
 const {width} = Dimensions.get('window')
 

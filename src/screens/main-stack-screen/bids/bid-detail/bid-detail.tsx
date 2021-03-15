@@ -5,7 +5,6 @@ import {BtnWrapper} from '../../../../ui/atoms/wrapper/btn-wrapper'
 import {Button} from '../../../../ui/atoms/buttons'
 import {InfoCard} from '../../../../features/bids-info/info-card'
 import {StackScreenProps} from '@react-navigation/stack'
-import {loadType} from '../../../../api/rest/loads/get-loads'
 import {Notes} from '../../../../features/bids-info/ui/atoms'
 import {PriceAreaComponent} from '../../../../features/bids-info/ui/molecules'
 import {styleConfig} from '../../../../StyleConfig'
@@ -33,6 +32,7 @@ import {showPlaceBidErrorModal} from './features/placeBidErrorModal/models/model
 import {sendBidSocketAction} from '../../../../api/socket-client/socket-actions/socket-actions'
 import {DarkBgAnimated} from '../../home/available-home/features/dark-bg-animated/dark-bg-animated'
 import {LoadLiveTimer} from '../../../../features/load-live-timer/load-live-timer'
+import {loadType} from '../../../../api/rest/loads/types'
 
 
 type itemType = {

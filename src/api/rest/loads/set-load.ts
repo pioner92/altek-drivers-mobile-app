@@ -1,11 +1,11 @@
 import {createEffect, createEvent} from 'effector'
 import {urls} from '../../urls'
-import {$currentLoad} from '../../../screens/main-stack-screen/load-info/models'
-import {loadType} from './get-loads'
 import {makeRequest} from '../../make-request'
+import {loadType} from './types'
 
 type data = {
     data?: {}
+    id?: number
 }
 type statusData = {
     status: number
@@ -35,23 +35,21 @@ export const statusNumbers = {
 }
 
 
-export const setLoad = createEffect(async ({data}: data) => {
-    try {
-        const id = $currentLoad.getState()?.id
-        if (id) {
-            return await makeRequest({
-                url: urls.setLoad(id),
-                method: 'PUT',
-                token: true,
-                body: data,
-            })
-        }
-    } catch (e) {
-        console.log('Set load ERROR: ', e)
+export const setLoad = createEffect(async ({data, id}: data) => {
+    if (id) {
+        return await makeRequest({
+            url: urls.setLoad(id),
+            method: 'PUT',
+            token: true,
+            body: data,
+        })
     }
 },
 )
 
+setLoad.fail.watch(({error}) => {
+    console.log('Set load ERROR: ', error)
+})
 
 export const setLoadStatus = createEvent<setStatusData>()
 export const setLoadData = createEvent<setLoadDataType>()
@@ -60,5 +58,5 @@ export const setLoadData = createEvent<setLoadDataType>()
 setLoadStatus.watch(({statuses}) => setLoad({data: statuses}))
 
 setLoadData.watch((data) => {
-    setLoad({data})
+    setLoad({data, id: data.id})
 })

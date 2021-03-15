@@ -1,9 +1,8 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react'
+import React, {createContext, useEffect, useLayoutEffect} from 'react'
 import {KeyboardAvoidingView, Platform, StyleSheet, TouchableOpacity, View} from 'react-native'
-import {useSpring, useTiming, useValue} from '../../../../../utils/animation-hooks/Hooks'
 import * as ImagePicker from 'expo-image-picker'
 import {InputContainer} from '../../../../features/chat/InputContent/InputContainer'
-import {AttachModal} from '../../../../features/chat/AttachModal/AttachModal'
+import {AttachMenu} from '../../../../features/chat/AttachMenu/AttachMenu'
 import {MessageArea} from '../../../../features/chat/MessageArea/MessageArea'
 import {getChatData} from '../../../../api/rest/chat/get-chat-data'
 import {StackScreenProps, useHeaderHeight} from '@react-navigation/stack'
@@ -17,6 +16,13 @@ import {$swipeMenuWrapperValueDY} from '../../../../features/swipe-menu-wrapper/
 import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {getChatAvatar} from '../lib/get-chat-avatar'
 import * as DocumentPicker from 'expo-document-picker'
+import {Preloader} from '../../../../features/preloader/preloader'
+import {
+    $animValueAttachMenu,
+    $isMountedAttachMenu,
+    hideAttachMenu,
+    showAttachMenu,
+} from '../../../../features/chat/AttachMenu/models/models'
 
 type imagePickerResultType = {
     cancelled: boolean
@@ -31,30 +37,27 @@ export type chatContentPropsType = {
     id: number
 }
 
+export const ChatContext = createContext({chatId: 0})
 
-export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType }>> = ({route, navigation}) => {
+
+export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType }>> = React.memo(({route, navigation}) => {
     const params = route.params as chatContentPropsType
 
     const {id} = params
     const dy = useStore($swipeMenuWrapperValueDY)
-    const [isOpened, setIsOpened] = useState(false)
-
+    const isMounted = useStore($isMountedAttachMenu)
     const chats = useStore($chatsData)
 
     const headerHeight = useHeaderHeight()
 
+    const value = useStore($animValueAttachMenu)
 
-    const value = useValue(0)
-
-    const openAttachModal = () => {
-        setIsOpened(true)
-        useSpring(value, 1, 10, 9).start()
+    const openAttachMenu = () => {
+        showAttachMenu()
     }
 
-    const closeAttachModal = () => {
-        useTiming(value, 0, 300).start(() => {
-            setIsOpened(false)
-        })
+    const closeAttachMenu = () => {
+        hideAttachMenu()
     }
 
     const getMediaType = (media: string) => {
@@ -65,16 +68,12 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
         const result = await DocumentPicker.getDocumentAsync({type: '*/*', multiple: false})
         if (result.type === 'success') {
             const type = getMediaType(result.name) ?? 'pdf'
+            closeAttachMenu()
             const res = await uploadFile(result.name, type, {uri: result.uri, name: result.name, type: `file/${type}`})
             if (res) {
                 sendChatMessageSocketAction({files: [res.id], content: '', chat_id: id})
             }
-            closeAttachModal()
         }
-    }
-
-    const uploadPhotoContainer = async (uri:string) => {
-        return await uploadFile('photo.jpg', 'jpeg', {uri: uri, name: 'photo.jpg', type: `image/jpeg`})
     }
 
     const pickEndSendPhoto = async () => {
@@ -88,13 +87,13 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
             if (res) {
                 sendChatMessageSocketAction({media: [res.id], content: '', chat_id: id})
             }
-            closeAttachModal()
+            closeAttachMenu()
         }
     }
 
 
     const sendPhotos = async (images: Array<string>) => {
-        closeAttachModal()
+        closeAttachMenu()
         const arr = []
         for (const i of images) {
             arr.push(uploadPhotoContainer(i))
@@ -105,7 +104,7 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
         }
     }
 
-    const onSendMessage = (text: string, type: 'text', file?: { name: string, uri: string }) => {
+    const onSendMessage = (text: string, file?: { name: string, uri: string }) => {
         sendChatMessageSocketAction({content: text, chat_id: id})
     }
 
@@ -122,6 +121,7 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
                 ),
                 headerRight: () => (
                     <TouchableOpacity
+                        // onPress={()=>Linking.openURL(`tel:+34698779553`)}
                         style={{
                             width: 32,
                             alignItems: 'center',
@@ -146,50 +146,56 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
 
     useEffect(() => {
         if (dy > 20) {
-            closeAttachModal()
+            closeAttachMenu()
         }
     }, [dy])
 
 
     return (
         <>
-            <ScreenWrapper safeAreaStyle={{backgroundColor: '#fff'}} enableNavigateButtons={false}>
-                <KeyboardAvoidingView
+            <ChatContext.Provider value={{chatId: id}}>
+                <ScreenWrapper safeAreaStyle={{backgroundColor: '#fff'}} enableNavigateButtons={false}>
+                    <KeyboardAvoidingView
                     // @ts-ignore
-                    behavior={Platform.OS == 'ios' ? 'padding' : null}
-                    style={{flex: 1, backgroundColor: '#fff'}}
-                    keyboardVerticalOffset={Platform.OS === 'ios' ? headerHeight : 0}
-                >
-                    <View style={styles.container}>
-                        <MessageArea id={id}/>
-                        <InputContainer
-                            sendMessage={onSendMessage}
-                            openAttach={openAttachModal}
-                        />
+                        behavior={Platform.OS == 'ios' ? 'padding' : null}
+                        style={{flex: 1, backgroundColor: '#fff'}}
+                        keyboardVerticalOffset={Platform.OS === 'ios' ? headerHeight : 0}
+                    >
+                        <View style={styles.container}>
+                            <MessageArea id={id}/>
+                            <InputContainer
+                                sendMessage={onSendMessage}
+                                openAttach={openAttachMenu}
+                            />
 
-                    </View>
-                </KeyboardAvoidingView>
-            </ScreenWrapper>
-            {isOpened ?
-                <AttachModal
-                    sendPhotos={sendPhotos}
-                    animValue={value}
-                    pickEndSendPhoto={pickEndSendPhoto}
-                    getDocument={pickDocument}
-                    closeModal={closeAttachModal}
-                /> :
-                null
-            }
-
+                        </View>
+                    </KeyboardAvoidingView>
+                </ScreenWrapper>
+                {isMounted ?
+                    <AttachMenu
+                        sendPhotos={sendPhotos}
+                        animValue={value}
+                        pickEndSendPhoto={pickEndSendPhoto}
+                        getDocument={pickDocument}
+                        closeModal={closeAttachMenu}
+                    /> :
+                    null
+                }
+            </ChatContext.Provider>
+            <Preloader/>
         </>
     )
+})
+
+
+export async function uploadPhotoContainer(uri:string) {
+    return await uploadFile('photo.jpg', 'jpeg', {uri: uri, name: 'photo.jpg', type: `image/jpeg`})
 }
 
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        // height: '100%',
         flex: 1,
     },
 })

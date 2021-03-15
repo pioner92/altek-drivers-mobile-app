@@ -20,7 +20,7 @@ type propsType = {
     time: string
 }
 
-export const Message: React.FC<propsType> = ({text, type, file, from, bySelf: bySelf, position, time, files}) => {
+export const Message: React.FC<propsType> = React.memo(({text, type, file, from, bySelf: bySelf, position, time, files}) => {
     const styleContainer = bySelf ?
         {
             backgroundColor: '#1672D4',
@@ -61,7 +61,7 @@ export const Message: React.FC<propsType> = ({text, type, file, from, bySelf: by
             </View>
         </View>
     )
-}
+})
 
 const styles = StyleSheet.create({
     container: {

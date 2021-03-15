@@ -9,9 +9,9 @@ import {getLoads} from '../../../api/rest/loads/get-loads'
 import {Preloader} from '../../../features/preloader/preloader'
 import {$animValuePreloader, showPreloader} from '../../../features/preloader/models/models'
 import {DarkBgAnimated} from '../home/available-home/features/dark-bg-animated/dark-bg-animated'
-import links from '../../../../links.json'
 import {FilterButton} from '../../../features/filter-button/filter-button'
 import {StackScreenCreator} from '../../../features/navigation/features/stack-screen-creator/stack-screen-creator'
+import {links} from '../../../navigation/links'
 
 
 const INTERVAL = 20000
@@ -23,7 +23,7 @@ export const Bids: React.FC = () => {
 
 
     const getLoadsHandler = async () => {
-        await getLoads()
+        await getLoads({})
         setIsRefreshing(false)
     }
 
@@ -45,7 +45,7 @@ export const Bids: React.FC = () => {
             <ScreenWrapper enableNavigateButtons={false} style={{backgroundColor: styleConfig.screenBackgroundGrey}}>
                 <View style={styles.container}>
                     <FlatList
-                        onRefresh={() => getLoads()}
+                        onRefresh={() => getLoads({})}
                         refreshing={isRefreshing}
                         inverted={false}
                         contentContainerStyle={styles.flatList}

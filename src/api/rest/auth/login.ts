@@ -21,7 +21,6 @@ type result = {
 
 export const login = createEffect(async ({email, password}: dataType): Promise<result | undefined> => {
     try {
-        console.log('LOGIN')
         return await makeRequest({url: urls.login(), method: 'POST', body: {email, password}})
     } catch (e) {
         console.log('Login ERROR: ', e)

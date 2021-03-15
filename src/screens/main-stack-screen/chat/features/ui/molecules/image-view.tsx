@@ -14,15 +14,15 @@ export const ImageView: React.FC<propsType> = ({onPress, uri, isSelected}) => {
     const onPressHandler = () => {
         onPress(uri)
     }
-
     return (
         <TouchableOpacity style={{width: '32.5%'}} onPress={onPressHandler} activeOpacity={0.9}>
-            <Image style={{width: 1, height: 1, borderRadius: 2}}
+            <Image
+                style={{width: 100, height: 100, borderRadius: 2}}
                 resizeMode={'cover'}
                 height={100}
                 width={(width / 100) * 30.5}
-                source={{uri}}/>
-
+                source={{uri}}
+            />
             <View style={{position: 'absolute', right: 10, top: 10}}>
                 <SelectedCircle isSelected={isSelected}/>
             </View>

@@ -1,7 +1,7 @@
 import {createEffect} from 'effector'
 import {urls} from '../../urls'
 import {makeRequest} from '../../make-request'
-import {loadType} from './get-loads'
+import {loadType} from './types'
 
 type responseType = {
     load_data:loadType

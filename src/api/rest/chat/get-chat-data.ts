@@ -6,15 +6,15 @@ import {addNexPageMessages, setChatData} from '../../../screens/main-stack-scree
 
 
 export type mediaType = Array<{
-    'chat': number,
-    'created_date': string
-    'extension': string
-    'file_name': string
-    'id': number
-    'message': number
-    'name': string
-    'path': string
-    'size': string
+    chat: number,
+    created_date: string
+    extension: string
+    file_name: string
+    id: number
+    message: number
+    name: string
+    path: string
+    size: string
 }>
 
 export type messageType = {

@@ -3,7 +3,7 @@ import {useNavigation} from '@react-navigation/native'
 import {navButtonIndex, setSelectedIndexNavButton} from '../navigation/models/models'
 import {TouchableOpacity} from 'react-native'
 import {LeftArrow} from '../../ui/atoms/icons/left-arrow'
-import links from '../../../links.json'
+import {links} from '../../navigation/links'
 
 type backButtonProps = {
     // props: StackHeaderLeftButtonProps

@@ -17,11 +17,12 @@ type propsType = {
     type: 'text' | 'image' | 'file'
 }
 
-export const MessageContainer: React.FC<propsType> = ({text, img, from, bySelf, position, time, files, isVisibleDateRow, type}) => {
+export const MessageContainer: React.FC<propsType> = React.memo( ({text, img, from, bySelf, position, time, files, isVisibleDateRow, type}) => {
     return (
         <>
 
-            <View style={[styles.container, {alignSelf: bySelf ? 'flex-end' : 'flex-start'}]}>
+            <View
+                style={[styles.container, {alignSelf: bySelf ? 'flex-end' : 'flex-start'}]}>
                 <View style={[styles.wrapper, {flexDirection: bySelf ? 'row' : 'row-reverse'}]}>
                     <Message
                         files={files}
@@ -54,7 +55,7 @@ export const MessageContainer: React.FC<propsType> = ({text, img, from, bySelf, 
             {/* }*/}
         </>
     )
-}
+})
 
 const styles = StyleSheet.create({
     container: {

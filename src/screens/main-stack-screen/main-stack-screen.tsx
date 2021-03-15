@@ -1,7 +1,6 @@
 import {createStackNavigator} from '@react-navigation/stack'
 import React from 'react'
 import {BottomTabNavigationScreen} from '../../navigation/BottomTabNavigator'
-import links from '../../../links.json'
 import {BidDetail} from './bids/bid-detail/bid-detail'
 import {HeaderBackButton} from '../../ui/atoms/buttons/header-back'
 import {LoadInfo} from './load-info'
@@ -13,6 +12,7 @@ import {UploadingVerificationStep4} from './uploading-veriffication/uploading-ve
 import {CameraScreen} from './camera/camera-screen'
 import {EditProfile} from './profile/screens/edit-profile/edit-profile'
 import {StackScreenContainer} from '../stack-screen-container'
+import {links} from '../../navigation/links'
 
 const Stack = createStackNavigator()
 

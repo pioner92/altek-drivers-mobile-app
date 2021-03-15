@@ -1,6 +1,5 @@
 import {TabBarPanel} from '../features/navigation/tab-bar-panel'
 import {BidsSVG, ChatSVG, LoadSVG, ProfileSVG} from '../ui/atoms/icons'
-import links from '../../links.json'
 import {HomeStackScreen} from '../screens/main-stack-screen/home/home'
 import {BidsStackScreen} from '../screens/main-stack-screen/bids/bids'
 import {ChatStackScreen} from '../screens/main-stack-screen/chat/chat'
@@ -10,6 +9,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {$selfStatus, statuses} from '../../hooks'
 import {useStore} from 'effector-react'
 import {useNavigation} from '@react-navigation/native'
+import {links} from './links'
 
 const Tab = createBottomTabNavigator()
 

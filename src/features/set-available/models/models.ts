@@ -1,4 +1,4 @@
-import {createEvent, createStore} from 'effector'
+import {createEvent, createStore, sample} from 'effector'
 import {Animated} from 'react-native'
 import {useSpring} from '../../../../utils/animation-hooks/Hooks'
 import {setDb} from '../../../../utils/db/set-db'
@@ -6,8 +6,12 @@ import {sendIsAvailableToServer} from '../../../api/rest/send-is-available-to-se
 import {ISAVAILABLE} from '../../../../utils/db/constants'
 import {sendGeoToServer} from '../../../api/rest/send-geo-to-server'
 
-export const showSetAvailable = createEvent()
-export const hideSetAvailable = createEvent()
+
+const startAnimation = createEvent<number>()
+
+export const showSetAvailable = startAnimation.prepend(() => 0)
+export const hideSetAvailable = startAnimation.prepend(() => 1)
+
 export const setIsAvailable = createEvent<boolean>()
 export const resetIsAvailable = createEvent()
 export const resetSetIsAvailableAnimValue = createEvent()
@@ -19,11 +23,15 @@ export const $isAvailable = createStore(false)
 export const $setAvailableAnimValue = createStore(new Animated.Value(0))
     .reset(resetSetIsAvailableAnimValue)
 
-showSetAvailable.watch(() => {
-    useSpring($setAvailableAnimValue.getState(), 0, 10, 5).start()
+
+const handler = sample({
+    source: $setAvailableAnimValue,
+    clock: startAnimation,
+    fn: (state, to) => ({state, to}),
 })
-hideSetAvailable.watch(() => {
-    useSpring($setAvailableAnimValue.getState(), 1, 10, 5).start()
+
+handler.watch(({state, to})=>{
+    useSpring(state, to, 10, 5).start()
 })
 
 setIsAvailable.watch((state) => {

@@ -3,13 +3,13 @@ import {StyleSheet, View} from 'react-native'
 import {TitleGrey} from '../../../../features/load-verified'
 import {useNavigate} from '../../../../lib/hooks'
 import {LoadWithCurrent} from '../features'
-import links from '../../../../../links.json'
 import {Button} from '../../../../ui/atoms/buttons'
 import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {WrapperPaddingBottom} from '../../../../ui/atoms/wrapper/wrapper-padding-bottom'
 import {useStore} from 'effector-react'
 import {$currentLoad} from '../../load-info/models'
 import {styleConfig} from '../../../../StyleConfig'
+import {links} from '../../../../navigation/links'
 
 export const UploadingVerificationStep1: React.FC = () => {
     const navigate = useNavigate()

@@ -2,11 +2,11 @@ import React, {useEffect, useRef, useState} from 'react'
 import {Card, Title, Wrapper} from '../ui/atoms'
 import {Line1px} from '../../../ui/atoms'
 import {InfoRow} from '../ui/molecules/info-row'
-import {loadType} from '../../../api/rest/loads/get-loads'
 import {Animated, Easing, Platform, ScrollView, Text, TouchableOpacity, View} from 'react-native'
 import {useInterpolate, useValue} from '../../../../utils/animation-hooks/Hooks'
 import {calculationDistance} from '../../../api/socket-client/lib/calculation-distance'
 import {ArrowTop} from '../../../ui/atoms/icons/arrow-top'
+import {loadType} from '../../../api/rest/loads/types'
 
 type propsType = {
     data: loadType

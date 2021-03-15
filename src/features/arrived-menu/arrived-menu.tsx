@@ -4,7 +4,6 @@ import {alertFn} from '../../../utils/alert/alert'
 import {useStore} from 'effector-react'
 import {$arrivedMenuAnimValue} from './models'
 import {useNavigate} from '../../lib/hooks'
-import links from '../../../links.json'
 import {$buttonIsDisabled, $isOpenedArrivedMenu, slideToTopArrivedMenu} from './models/models'
 import {Animated, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {styleConfig} from '../../StyleConfig'
@@ -16,6 +15,7 @@ import {Button} from '../../ui/atoms/buttons'
 import {VALUEINSTEAD} from '../../lib/nullableDateValidate/nullableDateValidate'
 
 import {sendGeoToServer} from '../../api/rest/send-geo-to-server'
+import {links} from "../../navigation/links";
 
 type propsType = {
     accept: () => void

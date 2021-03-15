@@ -1,13 +1,13 @@
 import {useEffect} from 'react'
 import {FirebaseService} from '../utils/firebase-serivce/firebase-service'
-import {$currentLoad} from '../src/screens/main-stack-screen/load-info/models'
+import {loadType} from '../src/api/rest/loads/types'
 
-export const useIsInBid = () => {
+export const useIsInBid = (load:loadType | null) => {
     useEffect(()=>{
-        if ($currentLoad.getState()?.id === undefined) {
+        if (load?.id === undefined) {
             FirebaseService.topicUnsubscribe('all')
         } else {
             FirebaseService.topicSubscribe('all')
         }
-    }, [$currentLoad.getState()])
+    }, [load])
 }

@@ -1,4 +1,4 @@
-import {createEvent, createStore} from 'effector'
+import {createEvent, createStore, sample} from 'effector'
 import moment from 'moment'
 
 export const TIMER_VALUE = 300
@@ -34,10 +34,22 @@ export const $counterMinutes = createStore('')
 export const $isStartedCounter = createStore(false)
     .on(setIsStartedCounter, (state, payload) => payload)
 
-startTimer.watch(() => {
-    setIsStartedCounter(true)
-    Timer.start(() => setCounter($counter.getState() - 1))
+
+const handler = sample({
+    source: $counter,
+    clock: startTimer,
+    fn: (state, value) => ({state, value}),
 })
+
+handler.watch(({state, value})=>{
+    setIsStartedCounter(true)
+    Timer.start(() => setCounter(state - 1))
+})
+
+// startTimer.watch(() => {
+//     setIsStartedCounter(true)
+//     Timer.start(() => setCounter($counter.getState() - 1))
+// })
 
 stopTimer.watch(() => {
     Timer.stop()

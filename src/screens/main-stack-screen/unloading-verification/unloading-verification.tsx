@@ -8,7 +8,6 @@ import {useStore} from 'effector-react'
 import {$inputValueUnloadedBy, setImageDataPod, setInputValueUnloadedBy} from './models'
 import {useNavigate} from '../../../lib/hooks'
 import {hideTakePictureMenu, showTakePictureMenu} from '../../../features/take-picture-menu/models'
-import links from '../../../../links.json'
 import {$imageDataPod, clearUnloadingData} from './models/models'
 import {UploadDocumentService, UploadService} from '../../../api/rest/document-upload'
 import {$currentLoad} from '../load-info/models'
@@ -21,6 +20,7 @@ import {WrapperPaddingBottom} from '../../../ui/atoms/wrapper/wrapper-padding-bo
 import {cameraHandler} from '../../../../utils/cameraHandler/cameraHandler'
 import {setLoad} from '../../../api/rest/loads/set-load'
 import {sendStatusToServerSocketAction} from '../../../api/socket-client/socket-actions/socket-actions'
+import {links} from '../../../navigation/links'
 
 export const UnloadingVerification: React.FC = () => {
     const uploadDocument = new UploadDocumentService(new UploadService())
@@ -50,7 +50,7 @@ export const UnloadingVerification: React.FC = () => {
 
     const onConfirm = () => {
         podImageData && currentLoad && uploadDocument.uploadPodPicture(podImageData, currentLoad.id?.toString())
-        setLoad({data: {recieved_by: inputValue}})
+        setLoad({data: {recieved_by: inputValue}, id: currentLoad?.id})
             .then(()=>{
                 sendStatusToServerSocketAction({...statusGenerate.unloaded})
             })

@@ -2,12 +2,12 @@ import React from 'react'
 import {ScrollView, StyleSheet, View} from 'react-native'
 import {useStore} from 'effector-react'
 import {
-    deliveryPointStore,
-    minimumDimsHeightStore,
-    minimumDimsLengthStore,
-    minimumDimsWidthStore,
-    minimumPayloadsStore,
-    pickUpPointStore,
+    $deliveryPoint,
+    $minimumDimsHeight,
+    $minimumDimsLength,
+    $minimumDimsWidth,
+    $minimumPayloads,
+    $pickUpPoint,
 } from '../../../../../Store/FilterStore'
 import {setDb} from '../../../../../utils/db'
 import {MaxMilesOut} from './features/max-miles-out/max-miles-out'
@@ -33,12 +33,12 @@ import {getLoads} from '../../../../api/rest/loads/get-loads'
 
 export const Filter: React.FC<StackScreenProps<any>> = ({navigation}) => {
     const maxMiles = useStore($sliderValueMaxMilesRight)
-    const pickUpPoint = useStore(pickUpPointStore)
-    const deliveryPoint = useStore(deliveryPointStore)
-    const minimumDimsLength = useStore(minimumDimsLengthStore)
-    const minimumDimsWidth = useStore(minimumDimsWidthStore)
-    const minimumDimsHeight = useStore(minimumDimsHeightStore)
-    const minimumPayloads = useStore(minimumPayloadsStore)
+    const pickUpPoint = useStore($pickUpPoint)
+    const deliveryPoint = useStore($deliveryPoint)
+    const minimumDimsLength = useStore($minimumDimsLength)
+    const minimumDimsWidth = useStore($minimumDimsWidth)
+    const minimumDimsHeight = useStore($minimumDimsHeight)
+    const minimumPayloads = useStore($minimumPayloads)
 
     const onSaveFilter = () => {
         maxMiles && setDb(MAXMILES, maxMiles.toString())
@@ -50,13 +50,13 @@ export const Filter: React.FC<StackScreenProps<any>> = ({navigation}) => {
         minimumPayloads && setDb(MINIMUMPAYLOADS, minimumPayloads)
         setIsFilteredBids(true)
         navigation.goBack()
-        getLoads()
+        getLoads({})
     }
 
     const onClearFilter = () => {
         clearFilter()
         navigation.goBack()
-        getLoads()
+        getLoads({})
     }
 
     useInitFilter()

@@ -1,16 +1,17 @@
-import React, {memo} from 'react'
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import React, {memo, useEffect} from 'react'
+import {Animated, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
-import {geoLocationStore, setSelectedBidEvent} from '../../../Store/Store'
+import {$geoLocationStore, setSelectedBidEvent} from '../../../Store/Store'
 import {RightArrowSVG} from '../../ui/atoms/icons'
 import {BidStepContent} from './ui/organisms'
-import {loadType} from '../../api/rest/loads/get-loads'
-import links from '../../../links.json'
 import {styleConfig} from '../../StyleConfig'
 import {getDistance} from '../../../utils/get-distance/get-distance'
 import {useStore} from 'effector-react'
 import {LoadLiveTimer} from '../load-live-timer/load-live-timer'
 import {BIDLIVETIME} from '../../screens/main-stack-screen/bids/bid-detail/bid-detail'
+import {useInterpolate, useSpring, useValue} from '../../../utils/animation-hooks/Hooks'
+import {loadType} from '../../api/rest/loads/types'
+import {links} from "../../navigation/links";
 
 type BidCartType = {
     item: loadType
@@ -19,7 +20,23 @@ type BidCartType = {
 
 export const BidCardInner: React.FC<BidCartType> = ({item}) => {
     const {navigate} = useNavigation()
-    const currentGeo = useStore(geoLocationStore)
+    const currentGeo = useStore($geoLocationStore)
+
+    const animatedValue = useValue(0)
+
+    const interpolate = useInterpolate(animatedValue, [0, 1], [0, 1])
+    const interpolateY = useInterpolate(animatedValue, [0, 1], [-200, 0])
+    const interpolateHeight = useInterpolate(animatedValue, [0, 1], [0, 152])
+
+    const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity)
+
+    const animatedStyle = {
+        opacity: interpolate,
+        height: interpolateHeight,
+        transform: [
+            {translateY: interpolateY},
+        ],
+    }
 
     const openBidsDetailMenu = () => {
         navigate(links.bidDetail, {item})
@@ -27,14 +44,21 @@ export const BidCardInner: React.FC<BidCartType> = ({item}) => {
     }
 
     const milesOut = item?.start_location?.split(',')
-    // @ts-ignore
-    const distance = (getDistance(milesOut[0], milesOut[1], currentGeo.latitude, currentGeo.longitude)).toFixed(1)
+    const distance = (getDistance(+milesOut?.[0], +milesOut?.[1], currentGeo.latitude, currentGeo.longitude)).toFixed(1)
+
+
+    useEffect(()=>{
+        useSpring(animatedValue, 1, 10, 6, false).start()
+        return ()=>{
+            useSpring(animatedValue, 0, 10, 6, false).start()
+        }
+    }, [])
 
     return (
-        <TouchableOpacity
+        <AnimatedTouchableOpacity
             activeOpacity={0.6}
             onPress={openBidsDetailMenu}
-            style={[styles.container, styleConfig.shadowMenu]}
+            style={[styles.container, styleConfig.shadowMenu, animatedStyle]}
         >
             <SeeDetailBid callback={openBidsDetailMenu} date={item.created_date}/>
             <View style={styles.content}>
@@ -42,7 +66,7 @@ export const BidCardInner: React.FC<BidCartType> = ({item}) => {
                     pickUp={item.pickUpAt} deliveryTo={item.deliverTo} pickUpZip={item.pickUpAt_zip}
                     deliveryToZip={item.deliverTo_zip}/>
             </View>
-        </TouchableOpacity>
+        </AnimatedTouchableOpacity>
     )
 }
 

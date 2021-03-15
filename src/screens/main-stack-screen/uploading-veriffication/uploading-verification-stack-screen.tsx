@@ -1,11 +1,11 @@
 import {Stack, StackScreenContainer} from '../../stack-screen-container'
 import {UploadingVerificationStep1} from './uploading-verification-step-1'
 import {HeaderBackButton} from '../../../ui/atoms/buttons/header-back'
-import links from '../../../../links.json'
 import {UploadingVerificationStep2} from './uploading-verification-step-2'
 import {UploadingVerificationStep3} from './uploading-verification-step-3'
 import {UploadingVerificationStep4} from './uploading-verification-step-4'
 import React from 'react'
+import {links} from '../../../navigation/links'
 
 export const UploadingVerificationStackScreen = () => {
     return (

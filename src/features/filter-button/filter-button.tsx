@@ -1,10 +1,10 @@
 import {useNavigation} from '@react-navigation/native'
 import {TouchableOpacity} from 'react-native'
-import links from '../../../links.json'
 import React from 'react'
 import {FilterIcon} from '../../ui/molecules/icons/filter-icon'
 import {useStore} from 'effector-react'
 import {$isFilteredBids} from '../../screens/main-stack-screen/bids/filter/models'
+import {links} from '../../navigation/links'
 
 export const FilterButton = () => {
     const navigation = useNavigation()

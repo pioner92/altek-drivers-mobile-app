@@ -6,7 +6,6 @@ import {Wrapper} from '../../../ui/atoms/wrapper'
 import {useNavigation} from '@react-navigation/native'
 import {WhiteCard} from '../../../ui/atoms/card/white-card'
 import {SignUpOrLogInSubtitle} from '../../../features/sign-up-or-login-subtitles/sign-up-or-login-subtites'
-import links from '../../../../links.json'
 import {ButtonWithSubtitles} from '../../../ui/atoms/buttons/button-with-subtitles'
 import {
     $inputValueSignUpName,
@@ -17,16 +16,11 @@ import {
 import {useStore} from 'effector-react'
 import {ScreenWrapper} from '../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {styleConfig} from '../../../StyleConfig'
+import {links} from '../../../navigation/links'
 
 export const SignUp: React.FC = () => {
     const nameInputValue = useStore($inputValueSignUpName)
     const numberInputValue = useStore($inputValueSignUpNumber)
-
-    const closeKeyboard = () => {
-        Keyboard.dismiss()
-    }
-    const {navigate} = useNavigation()
-
 
     const onChangeName = (text: string) => {
         setInputValueSignUpName(text)

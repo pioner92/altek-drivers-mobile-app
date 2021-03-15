@@ -16,7 +16,7 @@ export const MessageFile: React.FC<propsType> = ({file}) => {
     // }
 
     return (
-        <TouchableOpacity  style={styles.container}>
+        <TouchableOpacity style={styles.container}>
             <Icon name='file' size={50} color='#fff'/>
             <Text style={{color: '#fff'}}>{file?.name}</Text>
         </TouchableOpacity>

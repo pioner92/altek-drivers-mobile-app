@@ -1,9 +1,9 @@
-import {createEvent, createStore} from 'effector'
+import {attach, createEffect, createEvent, createStore} from 'effector'
 import {Animated} from 'react-native'
 import {useSpring} from '../../../../utils/animation-hooks/Hooks'
 import {
     hideDarkBGAnimated,
-    showDarkBGAnimated
+    showDarkBGAnimated,
 } from '../../../screens/main-stack-screen/home/available-home/features/dark-bg-animated/models/models'
 
 type itemType = {
@@ -11,6 +11,12 @@ type itemType = {
     value: string
 }
 
+
+const startAnimationEffect = createEffect<{ state: Animated.Value, to: number }, Promise<null>>(async ({state, to}) => {
+    return new Promise((resolve) => {
+        useSpring(state, to, 10, 7).start(() => resolve())
+    })
+})
 
 export const setScrollSelectedMenuSelectedValue = createEvent<itemType>()
 export const setInputValueScrollSelectMenu = createEvent<string>()
@@ -32,16 +38,22 @@ export const $isMountedScrollSelectMenu = createStore(false)
 
 export const $animatedValueScrollSelectMenu = createStore(new Animated.Value(0))
 
+
+const startAnimation = attach({
+    source: $animatedValueScrollSelectMenu,
+    effect: startAnimationEffect,
+    mapParams: (to: number, state) => ({state, to}),
+})
+
 showScrollSelectMenu.watch(() => {
     showDarkBGAnimated()
     setIsMountedScrollSelectMenu(true)
-    useSpring($animatedValueScrollSelectMenu.getState(), 1, 10, 7).start()
+    startAnimation(1)
 })
 
-hideScrollSelectMenu.watch(() => {
+hideScrollSelectMenu.watch(async () => {
     hideDarkBGAnimated()
-    useSpring($animatedValueScrollSelectMenu.getState(), 0, 10, 7).start(() => {
-        setIsMountedScrollSelectMenu(false)
-        resetInputValueScrollMenu()
-    })
+    await startAnimation(0)
+    setIsMountedScrollSelectMenu(false)
+    resetInputValueScrollMenu()
 })

@@ -5,10 +5,8 @@ import {Input} from '../../../../ui/atoms/input'
 import {useNavigate} from '../../../../lib/hooks'
 import {useStore} from 'effector-react'
 import {showStayAtPickUpMenu} from '../../../../features/stay-at-pick-up/models/models'
-import links from '../../../../../links.json'
 import {setButtonIsDisabled} from '../../../../features/arrived-menu/models'
 import {$imageDataTruck} from '../uploading-verification-step-3/models'
-import {loadType} from '../../../../api/rest/loads/get-loads'
 import {InputBol} from '../features/input-bol'
 import {Load} from '../features'
 import {TitleEditRow} from '../features/load-attributes/ui/moleculs'
@@ -28,11 +26,12 @@ import {setLoad} from '../../../../api/rest/loads/set-load'
 import {clearUploadingData} from '../models/models'
 import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {sendStatusToServerSocketAction} from '../../../../api/socket-client/socket-actions/socket-actions'
+import {loadType} from "../../../../api/rest/loads/types";
+import {links} from '../../../../navigation/links'
 
 
 export const UploadingVerificationStep4: React.FC = () => {
     const uploadDocument = new UploadDocumentService(new UploadService())
-
     const navigate = useNavigate()
     const addressValue = useStore($inputValueAddress)
     const pickUpAt = useStore($currentLoad)?.pickUpAt
@@ -59,7 +58,7 @@ export const UploadingVerificationStep4: React.FC = () => {
         bolPicture && uploadDocument.uploadBolPicture(bolPicture, loadId!)
         truckPicture && uploadDocument.uploadTruckPicture(truckPicture, loadId!)
 
-        setLoad({data: dataValidate()})
+        setLoad({data: dataValidate(), id: Number(loadId) ?? 0})
             .then(()=>{
                 sendStatusToServerSocketAction({...statusGenerate.uploaded})
             })

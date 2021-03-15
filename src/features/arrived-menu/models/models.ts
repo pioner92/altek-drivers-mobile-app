@@ -1,25 +1,39 @@
-import {createEffect, createEvent, createStore} from 'effector'
+import {attach, createEffect, createEvent, createStore, sample} from 'effector'
 import {Animated, Easing} from 'react-native'
 import {useSpring} from '../../../../utils/animation-hooks/Hooks'
 import {$isAvailable, hideSetAvailable, showSetAvailable} from '../../set-available/models'
 
 
-export const showArrivedMenu = createEffect(() => {
+export const showArrivedMenuEffect = createEffect<Animated.Value, Promise<any>>((state) => {
     return new Promise((resolve) => {
         setIsMountedArrivedMenu(true)
         setIsOpenedArrivedMenu(true)
-        useSpring($arrivedMenuAnimValue.getState(), 1, 4, 6).start(resolve)
+        useSpring(state, 1, 4, 6).start(resolve)
     })
 })
-export const hideArrivedMenu = createEffect(async () => {
+
+
+export const hideArrivedMenuEffect = createEffect<Animated.Value, Promise<any>>(async (state) => {
     return new Promise((resolve) => {
         setIsOpenedArrivedMenu(false)
-        useSpring($arrivedMenuAnimValue.getState(), 0, 4, 6).start(resolve)
+        useSpring(state, 0, 4, 6).start(resolve)
     })
 })
+
+const slideArrivedMenuEffect = createEffect<{ to: number, state: Animated.Value }, Promise<any>>(async ({to, state}) => {
+    return new Promise((resolve) => {
+        Animated.timing(state, {
+            toValue: to,
+            duration: 500,
+            easing: Easing.bezier(0.2, 0.8, 0.2, 1),
+            useNativeDriver: true,
+        }).start(resolve)
+    })
+})
+
+
 export const setIsMountedArrivedMenu = createEvent<boolean>()
 export const setButtonIsDisabled = createEvent<boolean>()
-export const setArrivedMenuOffset = createEvent<number>()
 export const slideToBottomArrivedMenu = createEvent()
 export const slideToTopArrivedMenu = createEvent()
 export const setIsOpenedArrivedMenu = createEvent<boolean>()
@@ -28,21 +42,17 @@ export const resetArrivedMenuAnimValue = createEvent()
 export const resetIsMountedArrivedAnimValue = createEvent()
 export const resetIsOpenedArrivedMenu = createEvent()
 
+
 export const $arrivedMenuAnimValue = createStore(new Animated.Value(0))
     .reset(resetArrivedMenuAnimValue)
 
+
 export const $buttonIsDisabled = createStore(false)
-    .on(setButtonIsDisabled, ((state, payload) => payload))
+    .on(setButtonIsDisabled, (state, payload) => payload)
 
 export const $isMountedArrivedMenu = createStore(false)
-    .on(setIsMountedArrivedMenu, ((state, payload) => payload))
+    .on(setIsMountedArrivedMenu, (state, payload) => payload)
     .reset(resetIsMountedArrivedAnimValue)
-
-
-export const $arrivedMenuOffset = createStore(0)
-    .on(setArrivedMenuOffset, (state, payload) => {
-        return payload
-    })
 
 
 export const $isOpenedArrivedMenu = createStore(false)
@@ -50,8 +60,14 @@ export const $isOpenedArrivedMenu = createStore(false)
     .reset(resetIsOpenedArrivedMenu)
 
 
-setIsMountedArrivedMenu.watch((payload) => {
-    if (payload && $isAvailable.getState()) {
+const mountedHandler = sample({
+    source: $isAvailable,
+    clock: setIsMountedArrivedMenu,
+    fn: (isAvailable, isMounted) => ({isMounted, isAvailable}),
+})
+
+mountedHandler.watch(({isAvailable, isMounted})=>{
+    if (isAvailable && isMounted) {
         hideSetAvailable()
     } else {
         showSetAvailable()
@@ -59,28 +75,36 @@ setIsMountedArrivedMenu.watch((payload) => {
 })
 
 
+export const showArrivedMenu = attach({
+    source: $arrivedMenuAnimValue,
+    effect: showArrivedMenuEffect,
+})
+
+
+export const hideArrivedMenu = attach({
+    source: $arrivedMenuAnimValue,
+    effect: hideArrivedMenuEffect,
+})
+
 hideArrivedMenu.done.watch(() => {
     setIsMountedArrivedMenu(false)
 })
 
-slideToBottomArrivedMenu.watch(() => {
-    // useSpring($arrivedMenuAnimValue.getState(), 2, 10, 6).start()
-    Animated.timing($arrivedMenuAnimValue.getState(), {
-        toValue: 2,
-        duration: 500,
-        easing: Easing.bezier(0.2, 0.8, 0.2, 1),
-        useNativeDriver: true,
-    }).start()
+const slideArrivedMenu = attach({
+    source: $arrivedMenuAnimValue,
+    mapParams: (to: number, state) => ({to, state}),
+    effect: slideArrivedMenuEffect,
+})
+
+
+slideToBottomArrivedMenu.watch(async () => {
+    await slideArrivedMenu(2)
     setIsOpenedArrivedMenu(false)
 })
 
 slideToTopArrivedMenu.watch(() => {
     setIsOpenedArrivedMenu(true)
-    Animated.timing($arrivedMenuAnimValue.getState(), {
-        toValue: 3,
-        duration: 500,
-        easing: Easing.bezier(0.2, 0.8, 0.2, 1),
-        useNativeDriver: true,
-    }).start()
-    // useSpring($arrivedMenuAnimValue.getState(), 3, 10, 5).start()
+    slideArrivedMenu(3)
 })
+
+

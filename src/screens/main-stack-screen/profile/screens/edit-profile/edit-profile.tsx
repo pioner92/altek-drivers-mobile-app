@@ -8,7 +8,6 @@ import {Button} from '../../../../../ui/atoms/buttons'
 import {TakePictureMenu} from '../../../../../features/take-picture-menu'
 import {Camera} from 'expo-camera'
 import {useNavigate} from '../../../../../lib/hooks'
-import links from '../../../../../../links.json'
 import {setDb} from '../../../../../../utils/db'
 import {setUserPhoto} from '../../models'
 import {imagePicker} from '../../../../../../utils/image-picker'
@@ -19,6 +18,7 @@ import {LogOutAnimMenu} from './features/log-out-anim-menu/log-out-anim-menu'
 import {PHOTOPROFILE} from '../../../../../../utils/db/constants'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useHeaderHeight} from '@react-navigation/stack'
+import {links} from '../../../../../navigation/links'
 
 export const EditProfile: React.FC = () => {
     const navigate = useNavigate()

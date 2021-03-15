@@ -5,12 +5,12 @@ import {TakePictureMenu} from '../../../../features/take-picture-menu'
 import {useNavigate} from '../../../../lib/hooks'
 import {hideTakePictureMenu, showTakePictureMenu} from '../../../../features/take-picture-menu/models'
 import {TitleGrey} from '../../../../features/load-verified/ui/atoms'
-import links from '../../../../../links.json'
 import {setImageDataTruck} from './models'
 import {Button} from '../../../../ui/atoms/buttons'
 import {WrapperPaddingBottom} from '../../../../ui/atoms/wrapper/wrapper-padding-bottom'
 import {cameraHandler} from '../../../../../utils/cameraHandler/cameraHandler'
 import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
+import {links} from '../../../../navigation/links'
 
 
 export const UploadingVerificationStep3: React.FC = () => {

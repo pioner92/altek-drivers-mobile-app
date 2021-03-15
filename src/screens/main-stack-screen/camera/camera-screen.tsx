@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react'
-import {StyleSheet, TouchableOpacity, View} from 'react-native'
+import {StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {Camera} from 'expo-camera'
 import {FlashOnSVG} from '../../../ui/atoms/icons/flash-on-svg'
 import {FlashOffSVG} from '../../../ui/atoms/icons/flash-off-svg'
@@ -15,7 +15,6 @@ type routeType = {
 export const CameraScreen: React.FC<StackScreenProps<routeType>> = ({route, navigation}) => {
     const routeData = route.params as routeType
     const callback = routeData.callback
-
 
     const camera = useRef<Camera>(null)
     const [type, setType] = useState(Camera.Constants.Type.back)
@@ -42,6 +41,9 @@ export const CameraScreen: React.FC<StackScreenProps<routeType>> = ({route, navi
         }
     }
 
+    const onPressBack = () => {
+        navigation.goBack()
+    }
 
     return (
         <Camera
@@ -49,6 +51,7 @@ export const CameraScreen: React.FC<StackScreenProps<routeType>> = ({route, navi
             style={styles.camera}
             flashMode={Camera.Constants.FlashMode[flashMode ? 'on' : 'off']}
             type={type}>
+            <BackButton onPress={onPressBack}/>
             <View style={styles.buttonWrapper}>
                 <TouchableOpacity style={styles.button} onPress={takePhoto}>
                     <CameraSVG size={40} color={'#fff'}/>
@@ -65,7 +68,21 @@ export const CameraScreen: React.FC<StackScreenProps<routeType>> = ({route, navi
                     <CameraReverseSVG/>
                 </TouchableOpacity>
             </View>
+            <StatusBar barStyle='light-content'/>
         </Camera>
+    )
+}
+
+type backButtonPropsType = {
+    onPress:()=>void
+}
+
+const BackButton:React.FC<backButtonPropsType> = ({onPress}) => {
+    return (
+        <TouchableOpacity onPress={onPress} style={{top: 50, paddingLeft: 20}}>
+            <Text style={{color: '#fff', fontSize: 30}}>←</Text>
+        </TouchableOpacity>
+
     )
 }
 
@@ -84,8 +101,6 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
     },
     flashMode: {
-        // width: 30,
-        // height: 30
     },
     panel: {
         alignItems: 'center',

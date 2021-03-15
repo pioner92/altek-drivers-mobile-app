@@ -38,7 +38,7 @@ export const $chatMessagesPage = createStore(1)
 export const $isNewMessageInChat = createStore(false)
     .on(setIsNewMessageInChat, (state, payload) => payload)
 
-export const $isAmInChat = createStore(false)
+export const $isInChat = createStore(false)
     .on(setIsInChat, (state, payload) => payload)
 
 export const $selfId = createStore<number | null>(null)
