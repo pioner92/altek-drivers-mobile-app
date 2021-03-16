@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {Text, View} from 'react-native'
 import moment from 'moment'
-import {useTimer} from '../../../hooks/useTimer'
+import {useTimer} from '../../lib/hooks/useTimer'
 import {useStore} from 'effector-react'
 import {$isStartedCounter, setCounter, startTimer, TIMER_VALUE} from '../button-with-counter/models/models'
-import {getDb, setDb} from '../../../utils/db'
-import {TIMERBID} from '../../../utils/db/constants'
+import {getDb, setDb} from '../../lib/db'
+import {TIMERBID} from '../../lib/db/constants'
 
 
 type propsType = {

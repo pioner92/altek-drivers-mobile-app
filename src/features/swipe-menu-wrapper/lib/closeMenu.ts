@@ -1,5 +1,5 @@
 import {Animated} from 'react-native'
-import {useTiming} from '../../../../utils/animation-hooks/Hooks'
+import {useTiming} from '../../../lib/animation-hooks/Hooks'
 
 
 export const closeMenu = (value: Animated.Value, callback?: () => void) => {

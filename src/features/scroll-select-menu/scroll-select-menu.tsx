@@ -16,7 +16,7 @@ import {
 
 import {Picker} from '@react-native-picker/picker'
 import {useStore} from 'effector-react'
-import {useInterpolate} from '../../../utils/animation-hooks/Hooks'
+import {useInterpolate} from '../../lib/animation-hooks/Hooks'
 import {loadType} from '../../api/rest/loads/types'
 
 const width = Dimensions.get('window').width

@@ -6,7 +6,7 @@ import {$currentLoad} from '../../../screens/main-stack-screen/load-info/models'
 import {hideAlertModal} from '../alert-modal/models/models'
 import {setIsMountedConfirmArrivedModal} from './models'
 import {sendStatusToServerSocketAction} from '../../../api/socket-client/socket-actions/socket-actions'
-import {statusGenerate} from '../../../../utils/check-statuses-with-init/check-statuses-with-init'
+import {statusGenerate} from '../../../lib/check-statuses-with-init/check-statuses-with-init'
 import {$animValueUnavailableModal} from '../unavailable/models'
 
 export const ConfirmArrivedContainer = () => {

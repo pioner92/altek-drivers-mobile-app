@@ -1,8 +1,8 @@
-import {hideNewLoadOfferMenu, showNewLoadOfferMenu} from '../../src/features/new-load-offer/models'
-import {completedStatus, toUploadStatus, unloadingStatus, uploadingStatus} from '../../hooks'
-import {hideArrivedMenu, setButtonIsDisabled, showArrivedMenu} from '../../src/features/arrived-menu/models'
-import {hideStayAtPickUpMenu, showStayAtPickUpMenu} from '../../src/features/stay-at-pick-up/models/models'
-import {successUnloadHandler, successUploadHandler} from '../../src/api/socket-client/lib'
+import {hideNewLoadOfferMenu, showNewLoadOfferMenu} from '../../features/new-load-offer/models'
+import {completedStatus, toUploadStatus, unloadingStatus, uploadingStatus} from '../../../hooks'
+import {hideArrivedMenu, setButtonIsDisabled, showArrivedMenu} from '../../features/arrived-menu/models'
+import {hideStayAtPickUpMenu, showStayAtPickUpMenu} from '../../features/stay-at-pick-up/models/models'
+import {successUnloadHandler, successUploadHandler} from '../../api/socket-client/lib'
 
 
 type statusData = {

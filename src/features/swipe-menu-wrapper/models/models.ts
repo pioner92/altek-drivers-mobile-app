@@ -1,6 +1,6 @@
 import {createEvent, createStore} from 'effector'
 import {Animated, Keyboard, PanResponder} from 'react-native'
-import {useSpring} from '../../../../utils/animation-hooks/Hooks'
+import {useSpring} from '../../../lib/animation-hooks/Hooks'
 
 export const showSwipeMenuWrapper = createEvent()
 export const hideSwipeMenuWrapper = createEvent()

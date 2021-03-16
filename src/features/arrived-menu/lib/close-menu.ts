@@ -1,5 +1,5 @@
 import {Animated} from 'react-native'
-import {useTiming} from '../../../../utils/animation-hooks/Hooks'
+import {useTiming} from '../../../lib/animation-hooks/Hooks'
 
 type propsType = {
     value: Animated.Value

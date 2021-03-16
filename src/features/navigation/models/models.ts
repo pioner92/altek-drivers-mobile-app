@@ -1,6 +1,6 @@
 import {createEvent, createStore} from 'effector'
 import {Animated} from 'react-native'
-import {useSpring, useTiming} from '../../../../utils/animation-hooks/Hooks'
+import {useSpring, useTiming} from '../../../lib/animation-hooks/Hooks'
 
 export const showNavigationPanel = createEvent()
 export const hideNavigationPanel = createEvent()

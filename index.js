@@ -2,8 +2,8 @@ import {AppRegistry} from 'react-native';
 
 import App from './App';
 import React from 'react';
-import {FirebaseService} from './utils/firebase-serivce/firebase-service';
-import {notificationHandler} from './utils/firebase-serivce/notification-handler';
+import {FirebaseService} from './src/lib/firebase-serivce/firebase-service';
+import {notificationHandler} from './src/lib/firebase-serivce/notification-handler';
 
 
 

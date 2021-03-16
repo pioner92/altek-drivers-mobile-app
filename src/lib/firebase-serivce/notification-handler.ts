@@ -1,5 +1,5 @@
 import {FirebaseMessagingTypes} from '@react-native-firebase/messaging'
-import {sendGeoToServer} from '../../src/api/rest/send-geo-to-server'
+import {sendGeoToServer} from '../../api/rest/send-geo-to-server'
 import {AppState} from 'react-native'
 import {logOutHandler} from '../log-out-handler'
 

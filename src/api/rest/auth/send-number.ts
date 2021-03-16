@@ -1,13 +1,13 @@
 import {createEffect} from 'effector'
 import {urls} from '../../urls'
-import {setDb} from '../../../../utils/db/set-db'
+import {setDb} from '../../../lib/db/set-db'
 import {makeRequest} from '../../make-request'
 import {setIsNumberValidateFailed} from '../../../screens/auth-stack-screen/login/models/models'
 import {
     hideNumberErrorModal,
     showNumberErrorModal,
 } from '../../../screens/auth-stack-screen/login/features/number-error-modal/models/models'
-import {PHONENUMBER} from '../../../../utils/db/constants'
+import {PHONENUMBER} from '../../../lib/db/constants'
 
 type result = {
     message: string

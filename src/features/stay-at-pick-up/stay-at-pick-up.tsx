@@ -1,7 +1,7 @@
 import React from 'react'
 import {Animated, StyleSheet, Text} from 'react-native'
 import {DarkBg} from '../../ui/atoms/dark-bg'
-import {useInterpolate} from '../../../utils/animation-hooks/Hooks'
+import {useInterpolate} from '../../lib/animation-hooks/Hooks'
 import {useStore} from 'effector-react'
 import {$isMounted} from './models'
 import {$stayAtPickUpAnimValue} from './models/models'

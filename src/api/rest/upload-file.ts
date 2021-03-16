@@ -1,5 +1,5 @@
-import {getDb} from '../../../utils/db'
-import {TOKEN} from '../../../utils/db/constants'
+import {getDb} from '../../lib/db'
+import {TOKEN} from '../../lib/db/constants'
 import {urls} from '../urls'
 
 type resultType = {

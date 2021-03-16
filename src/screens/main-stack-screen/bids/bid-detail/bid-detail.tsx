@@ -24,8 +24,8 @@ import {
     hideScrollSelectMenu,
     showScrollSelectMenu,
 } from '../../../../features/scroll-select-menu/models/models'
-import {getDb, setDb} from '../../../../../utils/db'
-import {TIMERBID} from '../../../../../utils/db/constants'
+import {getDb, setDb} from '../../../../lib/db'
+import {TIMERBID} from '../../../../lib/db/constants'
 import {$sentBidData, setSentBidData} from './models/models'
 import {PlaceBidErrorModal} from './features/placeBidErrorModal/placeBidErrorModal'
 import {showPlaceBidErrorModal} from './features/placeBidErrorModal/models/models'

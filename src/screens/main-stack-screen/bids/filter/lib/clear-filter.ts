@@ -1,4 +1,4 @@
-import {setDb} from '../../../../../../utils/db'
+import {setDb} from '../../../../../lib/db'
 import {
     DELIVERYPOINT,
     MAXMILES,
@@ -7,7 +7,7 @@ import {
     MINIMUMDIMSWIDTH,
     MINIMUMPAYLOADS,
     PICKUPPOINT,
-} from '../../../../../../utils/db/constants'
+} from '../../../../../lib/db/constants'
 import {setMaxMilesEvent} from '../../../../../../Store/FilterStore'
 import {setIsFilteredBids} from '../models'
 import {setInputValueDeliveryPoint} from '../features/delivery-point/models'

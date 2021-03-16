@@ -3,9 +3,9 @@ import {Animated, StyleSheet, Text} from 'react-native'
 import {Button} from '../../../../../../../ui/atoms/buttons'
 import {useStore} from 'effector-react'
 import {$animValueLogOutAnimMenu, $isMountedLogOutAnimMenu, hideLogOutAnimMenu} from './models/models'
-import {useInterpolate} from '../../../../../../../../utils/animation-hooks/Hooks'
+import {useInterpolate} from '../../../../../../../lib/animation-hooks/Hooks'
 import {styleConfig} from '../../../../../../../StyleConfig'
-import {logOutHandler} from '../../../../../../../../utils/log-out-handler'
+import {logOutHandler} from '../../../../../../../lib/log-out-handler'
 
 
 export const LogOutAnimMenu: React.FC = () => {

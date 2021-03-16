@@ -1,7 +1,7 @@
 import React from 'react'
 import {Animated} from 'react-native'
 import {AlertModal, alertModalPropsType} from '../../../ui/molecules/alert-modal/alert-modal'
-import {useInterpolate} from '../../../../utils/animation-hooks/Hooks'
+import {useInterpolate} from '../../../lib/animation-hooks/Hooks'
 
 type propsType = {
     value: Animated.Value

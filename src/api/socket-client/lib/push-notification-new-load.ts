@@ -1,5 +1,5 @@
 import {calculationDistance} from './calculation-distance'
-import {pushActions, pushNotification} from '../../../../utils/notification/push-notification'
+import {pushActions, pushNotification} from '../../../lib/notification/push-notification'
 import {updateLoadsType} from '../types'
 
 export const pushNotificationNewLoad = (data: updateLoadsType) => {

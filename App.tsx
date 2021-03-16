@@ -5,14 +5,14 @@ import {DarkTheme, DefaultTheme, NavigationContainer} from '@react-navigation/na
 import {StatusBar, Text, TextInput} from 'react-native'
 import {useStore} from 'effector-react'
 import {$isAuth} from './Store/Store'
-import {getNotificationPermissions} from './utils/notification/push-notification'
-import {useAppState} from './hooks/useAppState'
-import {FirebaseService} from './utils/firebase-serivce/firebase-service'
-import {getLocationPermissions} from './utils/permissions/location-permissions'
+import {getNotificationPermissions} from './src/lib/notification/push-notification'
+import {useAppState} from './src/lib/hooks/useAppState'
+import {FirebaseService} from './src/lib/firebase-serivce/firebase-service'
+import {getLocationPermissions} from './src/lib/permissions/location-permissions'
 import {SafeAreaProvider} from 'react-native-safe-area-context'
 import {MainStackScreen} from './src/screens/main-stack-screen/main-stack-screen'
 import {AuthStackScreen} from './src/screens/auth-stack-screen/auth-stack-screen'
-import {useIsInBid} from './hooks/use-is-in-bid'
+import {useIsInBid} from './src/lib/hooks/use-is-in-bid'
 import {$currentLoad} from "./src/screens/main-stack-screen/load-info/models";
 
 

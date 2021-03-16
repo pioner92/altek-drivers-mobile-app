@@ -1,7 +1,7 @@
 import {hideStayAtPickUpMenu} from '../../../features/stay-at-pick-up/models/models'
 import {toUnloadStatus} from '../../../../hooks'
 import {setButtonIsDisabled} from '../../../features/arrived-menu/models'
-import {playSoundNotification} from '../../../../utils/notification/play-notification'
+import {playSoundNotification} from '../../../lib/notification/play-notification'
 import {showAlertModal} from '../../../features/modals/alert-modal/models/models'
 import {
     $animValueConfirmationFromDispatcherModal,

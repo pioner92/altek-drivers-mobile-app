@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Animated, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
-import {useInterpolate, useSpring, useValue} from '../../../utils/animation-hooks/Hooks'
+import {useInterpolate, useSpring, useValue} from '../../lib/animation-hooks/Hooks'
 import {BlueArrowDownSVG} from '../../ui/atoms/icons/blue-arrow-down-svg'
 import {ScrollArea} from './ui/moleculs'
 import {valueType} from './ui/moleculs/scroll-area'

@@ -6,9 +6,10 @@ import {CameraSVG} from '../../../../../ui/atoms/icons'
 import {ImageView} from '../ui/molecules/image-view'
 import {useNavigate} from '../../../../../lib/hooks'
 import {sendChatMessageSocketAction} from '../../../../../api/socket-client/socket-actions/socket-actions'
-import {ChatContext, uploadPhotoContainer} from '../../chat-content/chat-content'
+import {ChatContext} from '../../chat-content/chat-content'
 import {hideAttachMenu} from '../../../../../features/chat/AttachMenu/models/models'
 import {links} from '../../../../../navigation/links'
+import {uploadPhotoContainer} from '../../chat-content/lib/uploadPhotoContainer'
 
 type propsType = {
     // images: Array<Asset>

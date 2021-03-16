@@ -1,5 +1,5 @@
-import {getDb} from '../../utils/db/get-db'
-import {TOKEN} from '../../utils/db/constants'
+import {getDb} from '../lib/db/get-db'
+import {TOKEN} from '../lib/db/constants'
 
 type requestDataType = {
     url: string

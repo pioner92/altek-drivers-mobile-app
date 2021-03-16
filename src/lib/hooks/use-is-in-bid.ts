@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
-import {FirebaseService} from '../utils/firebase-serivce/firebase-service'
-import {loadType} from '../src/api/rest/loads/types'
+import {FirebaseService} from '../firebase-serivce/firebase-service'
+import {loadType} from '../../api/rest/loads/types'
 
 export const useIsInBid = (load:loadType | null) => {
     useEffect(()=>{

@@ -1,6 +1,6 @@
 import {attach, createEffect, createEvent, createStore, sample} from 'effector'
 import {Animated, Easing} from 'react-native'
-import {useSpring} from '../../../../utils/animation-hooks/Hooks'
+import {useSpring} from '../../../lib/animation-hooks/Hooks'
 import {$isAvailable, hideSetAvailable, showSetAvailable} from '../../set-available/models'
 
 

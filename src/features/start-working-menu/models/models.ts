@@ -1,6 +1,6 @@
 import {attach, createEffect, createEvent, createStore} from 'effector'
 import {Animated} from 'react-native'
-import {useSpring,} from '../../../../utils/animation-hooks/Hooks'
+import {useSpring,} from '../../../lib/animation-hooks/Hooks'
 
 
 export const showStartWorkingMenu = createEvent()

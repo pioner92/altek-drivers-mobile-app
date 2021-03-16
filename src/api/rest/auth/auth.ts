@@ -1,9 +1,9 @@
 import {createEffect} from 'effector'
 import {urls} from '../../urls'
-import {getDb} from '../../../../utils/db/get-db'
-import {setDb} from '../../../../utils/db/set-db'
+import {getDb} from '../../../lib/db/get-db'
+import {setDb} from '../../../lib/db/set-db'
 import {makeRequest} from '../../make-request'
-import {EMAIL, PASSWORD, USERID} from '../../../../utils/db/constants'
+import {EMAIL, PASSWORD, USERID} from '../../../lib/db/constants'
 
 
 type result = {

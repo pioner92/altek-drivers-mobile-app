@@ -2,8 +2,8 @@ import {createEffect} from 'effector'
 import {makeRequest} from '../../make-request'
 import {urls} from '../../urls'
 import {startTimer} from '../../../features/button-with-counter/models/models'
-import {setDb} from '../../../../utils/db'
-import {TIMERBID} from '../../../../utils/db/constants'
+import {setDb} from '../../../lib/db'
+import {TIMERBID} from '../../../lib/db/constants'
 
 type sendBidDataType = {
     load: number

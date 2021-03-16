@@ -2,7 +2,7 @@ import React from 'react'
 import {Animated, StyleSheet, Text, View} from 'react-native'
 import {useStore} from 'effector-react'
 import {$animValueNumberErrorModal, $isMountedNumberErrorModal} from './models/models'
-import {useInterpolate} from '../../../../../../utils/animation-hooks/Hooks'
+import {useInterpolate} from '../../../../../lib/animation-hooks/Hooks'
 
 export const NumberErrorModal: React.FC = () => {
     const animValue = useStore($animValueNumberErrorModal)

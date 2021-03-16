@@ -1,8 +1,8 @@
 import {useEffect} from 'react'
 import {useStore} from 'effector-react'
-import {$isAuth} from '../Store/Store'
+import {$isAuth} from '../../../Store/Store'
 import {useNavigation} from '@react-navigation/native'
-import {links} from "../src/navigation/links";
+import {links} from "../../navigation/links";
 
 export const useLogout = () => {
     const navigator = useNavigation()

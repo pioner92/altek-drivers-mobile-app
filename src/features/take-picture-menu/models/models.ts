@@ -1,6 +1,6 @@
 import {createEvent, createStore, sample} from 'effector'
 import {Animated, Keyboard} from 'react-native'
-import {useSpring} from '../../../../utils/animation-hooks/Hooks'
+import {useSpring} from '../../../lib/animation-hooks/Hooks'
 
 export const startAnimation = createEvent<number>()
 

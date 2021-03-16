@@ -5,11 +5,11 @@ import {$geoLocationStore, setSelectedBidEvent} from '../../../Store/Store'
 import {RightArrowSVG} from '../../ui/atoms/icons'
 import {BidStepContent} from './ui/organisms'
 import {styleConfig} from '../../StyleConfig'
-import {getDistance} from '../../../utils/get-distance/get-distance'
+import {getDistance} from '../../lib/get-distance/get-distance'
 import {useStore} from 'effector-react'
 import {LoadLiveTimer} from '../load-live-timer/load-live-timer'
 import {BIDLIVETIME} from '../../screens/main-stack-screen/bids/bid-detail/bid-detail'
-import {useInterpolate, useSpring, useValue} from '../../../utils/animation-hooks/Hooks'
+import {useInterpolate, useSpring, useValue} from '../../lib/animation-hooks/Hooks'
 import {loadType} from '../../api/rest/loads/types'
 import {links} from "../../navigation/links";
 

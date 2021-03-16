@@ -1,6 +1,6 @@
 import {createEffect} from 'effector'
 import {urls} from '../urls'
-import {getCurrentGeo} from '../../../utils/get-current-geo'
+import {getCurrentGeo} from '../../lib/get-current-geo'
 import {makeRequest} from '../make-request'
 
 export const sendGeoToServer = createEffect(async () => {

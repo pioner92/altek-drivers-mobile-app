@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {setGeoLocationEvent} from '../../../../../Store/Store'
 import {useStore} from 'effector-react'
-import {getCurrentGeo} from '../../../../../utils/get-current-geo'
+import {getCurrentGeo} from '../../../../lib/get-current-geo'
 import {NewLoadOffer} from '../../../../features/new-load-offer/new-load-offer'
 import {
     $animValueUnavailableModal,
@@ -13,7 +13,7 @@ import {StayAtPickUp} from '../../../../features/stay-at-pick-up'
 import {SetAvailable} from '../../../../features/set-available'
 import {$isAvailable} from '../../../../features/set-available/models/models'
 import {$currentLoad} from '../../load-info/models'
-import {checkStatusesWithInit} from '../../../../../utils/check-statuses-with-init/check-statuses-with-init'
+import {checkStatusesWithInit} from '../../../../lib/check-statuses-with-init/check-statuses-with-init'
 import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {showAlertModal} from '../../../../features/modals/alert-modal/models/models'
 import {ConfirmationFromDispatcher} from '../../../../features/modals/confirmation-from-dispatcher/confirmation-from-dispatcher'

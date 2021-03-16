@@ -1,4 +1,4 @@
-import {useSpring} from '../../../../utils/animation-hooks/Hooks'
+import {useSpring} from '../../../lib/animation-hooks/Hooks'
 import {Animated} from 'react-native'
 
 type propsType = {

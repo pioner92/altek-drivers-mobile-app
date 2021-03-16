@@ -8,7 +8,7 @@ import {TitleGrey} from '../../../../features/load-verified/ui/atoms'
 import {setImageDataTruck} from './models'
 import {Button} from '../../../../ui/atoms/buttons'
 import {WrapperPaddingBottom} from '../../../../ui/atoms/wrapper/wrapper-padding-bottom'
-import {cameraHandler} from '../../../../../utils/cameraHandler/cameraHandler'
+import {cameraHandler} from '../../../../lib/cameraHandler/cameraHandler'
 import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {links} from '../../../../navigation/links'
 

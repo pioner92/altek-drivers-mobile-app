@@ -1,4 +1,4 @@
-import {setGeoLocationEvent} from '../Store/Store'
+import {setGeoLocationEvent} from '../../Store/Store'
 import Geolocation from '@react-native-community/geolocation'
 import * as Permissions from 'expo-permissions'
 

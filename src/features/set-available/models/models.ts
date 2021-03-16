@@ -1,9 +1,9 @@
 import {createEvent, createStore, sample} from 'effector'
 import {Animated} from 'react-native'
-import {useSpring} from '../../../../utils/animation-hooks/Hooks'
-import {setDb} from '../../../../utils/db/set-db'
+import {useSpring} from '../../../lib/animation-hooks/Hooks'
+import {setDb} from '../../../lib/db/set-db'
 import {sendIsAvailableToServer} from '../../../api/rest/send-is-available-to-server'
-import {ISAVAILABLE} from '../../../../utils/db/constants'
+import {ISAVAILABLE} from '../../../lib/db/constants'
 import {sendGeoToServer} from '../../../api/rest/send-geo-to-server'
 
 

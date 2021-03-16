@@ -1,8 +1,8 @@
 import {showNewLoadOfferMenu} from '../../../features/new-load-offer/models'
 import {$selfStatus, statuses} from '../../../../hooks'
-import {playSoundNotification} from '../../../../utils/notification/play-notification'
+import {playSoundNotification} from '../../../lib/notification/play-notification'
 import {setCurrentLoad} from '../../../screens/main-stack-screen/load-info/models'
-import {pushNotification} from '../../../../utils/notification/push-notification'
+import {pushNotification} from '../../../lib/notification/push-notification'
 import {loadType} from '../../rest/loads/types'
 import {createEvent, sample} from 'effector'
 

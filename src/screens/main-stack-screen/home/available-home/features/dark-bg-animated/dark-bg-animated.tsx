@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Animated, StyleSheet} from 'react-native'
-import {useInterpolate} from '../../../../../../../utils/animation-hooks/Hooks'
+import {useInterpolate} from '../../../../../../lib/animation-hooks/Hooks'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 type propsType = {

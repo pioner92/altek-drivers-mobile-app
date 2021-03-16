@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 import {AppState} from 'react-native'
-import {resetBadgeCount} from '../utils/notification/push-notification'
+import {resetBadgeCount} from '../notification/push-notification'
 
 export const useAppState = () => {
     useEffect(() => {

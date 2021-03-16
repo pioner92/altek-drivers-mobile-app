@@ -9,7 +9,7 @@ import {
     $minimumPayloads,
     $pickUpPoint,
 } from '../../../../../Store/FilterStore'
-import {setDb} from '../../../../../utils/db'
+import {setDb} from '../../../../lib/db'
 import {MaxMilesOut} from './features/max-miles-out/max-miles-out'
 import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {Button} from '../../../../ui/atoms/buttons'
@@ -23,7 +23,7 @@ import {
     MINIMUMDIMSWIDTH,
     MINIMUMPAYLOADS,
     PICKUPPOINT,
-} from '../../../../../utils/db/constants'
+} from '../../../../lib/db/constants'
 import {$sliderValueMaxMilesRight} from './features/max-miles-out/models'
 import {clearFilter} from './lib/clear-filter'
 import {useInitFilter} from './lib/use-init-filter'

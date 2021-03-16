@@ -23,6 +23,7 @@ import {
     hideAttachMenu,
     showAttachMenu,
 } from '../../../../features/chat/AttachMenu/models/models'
+import {uploadPhotoContainer} from './lib/uploadPhotoContainer'
 
 type imagePickerResultType = {
     cancelled: boolean
@@ -182,15 +183,9 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
                     null
                 }
             </ChatContext.Provider>
-            <Preloader/>
         </>
     )
 })
-
-
-export async function uploadPhotoContainer(uri:string) {
-    return await uploadFile('photo.jpg', 'jpeg', {uri: uri, name: 'photo.jpg', type: `image/jpeg`})
-}
 
 
 const styles = StyleSheet.create({

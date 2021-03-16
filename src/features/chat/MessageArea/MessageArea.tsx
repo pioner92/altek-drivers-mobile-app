@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {FlatList, StyleSheet} from 'react-native'
 import {MessageContainer} from './MessageContainer/MessageContainer'
-import {getDb} from '../../../../utils/db/get-db'
+import {getDb} from '../../../lib/db/get-db'
 import {getChatData} from '../../../api/rest/chat/get-chat-data'
 import {useStore} from 'effector-react'
-import {USERID} from '../../../../utils/db/constants'
+import {USERID} from '../../../lib/db/constants'
 import {
     $chatData,
     $chatMessages,

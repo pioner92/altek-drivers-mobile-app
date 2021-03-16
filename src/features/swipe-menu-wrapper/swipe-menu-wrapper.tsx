@@ -1,7 +1,7 @@
 import React from 'react'
 import {Animated, StyleSheet, View, ViewStyle} from 'react-native'
 import {SwipeLine} from '../../ui/atoms/swipe-line'
-import {useInterpolate} from '../../../utils/animation-hooks/Hooks'
+import {useInterpolate} from '../../lib/animation-hooks/Hooks'
 import {useStore} from 'effector-react'
 import {$newAnimValueSwipeMenuWrapper, $panResponder} from './models/models'
 

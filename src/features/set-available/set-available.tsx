@@ -4,7 +4,7 @@ import {ButtonSetAvailable} from '../../ui/atoms/buttons'
 import {TruckSVG} from '../../ui/atoms/icons'
 import {IsAvailableCard} from '../../ui/atoms/card'
 import {$setAvailableAnimValue, $shadowColor, $svgColor, $title} from './models'
-import {useInterpolate} from '../../../utils/animation-hooks/Hooks'
+import {useInterpolate} from '../../lib/animation-hooks/Hooks'
 import {useStore} from 'effector-react'
 
 type propsType = {

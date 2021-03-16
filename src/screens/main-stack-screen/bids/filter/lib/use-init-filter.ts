@@ -1,5 +1,5 @@
 import {useEffect} from 'react'
-import {getDb} from '../../../../../../utils/db'
+import {getDb} from '../../../../../lib/db'
 import {
     DELIVERYPOINT,
     MAXMILES,
@@ -8,7 +8,7 @@ import {
     MINIMUMDIMSWIDTH,
     MINIMUMPAYLOADS,
     PICKUPPOINT,
-} from '../../../../../../utils/db/constants'
+} from '../../../../../lib/db/constants'
 import {
     setDeliveryPointEvent,
     setMaxMilesEvent,

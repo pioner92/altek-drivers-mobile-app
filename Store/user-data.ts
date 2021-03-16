@@ -1,6 +1,6 @@
 import {createEvent, createStore} from 'effector'
-import {setDb} from '../utils/db/set-db'
-import {COMPANYHASH} from '../utils/db/constants'
+import {setDb} from '../src/lib/db/set-db'
+import {COMPANYHASH} from '../src/lib/db/constants'
 
 export const setCompanyHash = createEvent<string>()
 export const $companyHash = createStore('')

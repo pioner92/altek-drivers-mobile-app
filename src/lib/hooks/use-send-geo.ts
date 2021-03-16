@@ -1,5 +1,5 @@
 import {useEffect} from 'react'
-import {sendGeoToServer} from '../src/api/rest/send-geo-to-server'
+import {sendGeoToServer} from '../../api/rest/send-geo-to-server'
 import {Platform} from 'react-native'
 
 

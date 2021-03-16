@@ -1,6 +1,6 @@
 import {createEffect, createEvent} from 'effector'
 import {Animated} from 'react-native'
-import {useSpring, useTiming} from '../../../../../utils/animation-hooks/Hooks'
+import {useSpring, useTiming} from '../../../../lib/animation-hooks/Hooks'
 
 type callback = () => void
 type callbackPromise = () => Promise<void>

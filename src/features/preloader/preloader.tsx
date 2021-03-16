@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {Animated, StyleSheet, Text, View} from 'react-native'
 import {Circle, Svg} from 'react-native-svg'
-import {useInterpolate, useTiming, useValue} from '../../../utils/animation-hooks/Hooks'
+import {useInterpolate, useTiming, useValue} from '../../lib/animation-hooks/Hooks'
 import {styleConfig} from '../../StyleConfig'
 import {useStore} from 'effector-react'
 import {$animValuePreloader, $isMountedPreloader} from './models/models'

@@ -1,5 +1,5 @@
 import {createEvent, createStore, sample} from 'effector'
-import {getDb, setDb} from '../../../../../utils/db'
+import {getDb, setDb} from '../../../../lib/db'
 import {
     $inputValueUserName,
     $inputValueUserPhone,
@@ -7,7 +7,7 @@ import {
     setInputValueUserPhone,
 } from '../screens/edit-profile/features/personal-info/models/models'
 import {updateProfileDateOnServer} from '../../../../api/rest/update-profile'
-import {FIRSTNAME, LASTNAME, PHONENUMBER} from '../../../../../utils/db/constants'
+import {FIRSTNAME, LASTNAME, PHONENUMBER} from '../../../../lib/db/constants'
 import {responseUserDataType} from '../../../../api/rest/get-user-data'
 
 
