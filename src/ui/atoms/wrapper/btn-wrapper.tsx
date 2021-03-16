@@ -16,7 +16,7 @@ export const BtnWrapper: React.FC<propsType> = ({children, style}) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        paddingVertical: 16,
+        paddingBottom: 16,
         paddingHorizontal: 16,
     },
 })

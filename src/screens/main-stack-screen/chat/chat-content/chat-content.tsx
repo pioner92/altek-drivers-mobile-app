@@ -16,7 +16,6 @@ import {$swipeMenuWrapperValueDY} from '../../../../features/swipe-menu-wrapper/
 import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {getChatAvatar} from '../lib/get-chat-avatar'
 import * as DocumentPicker from 'expo-document-picker'
-import {Preloader} from '../../../../features/preloader/preloader'
 import {
     $animValueAttachMenu,
     $isMountedAttachMenu,
@@ -24,6 +23,7 @@ import {
     showAttachMenu,
 } from '../../../../features/chat/AttachMenu/models/models'
 import {uploadPhotoContainer} from './lib/uploadPhotoContainer'
+import {ChatContext} from './context'
 
 type imagePickerResultType = {
     cancelled: boolean
@@ -37,8 +37,6 @@ type imagePickerResultType = {
 export type chatContentPropsType = {
     id: number
 }
-
-export const ChatContext = createContext({chatId: 0})
 
 
 export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType }>> = React.memo(({route, navigation}) => {

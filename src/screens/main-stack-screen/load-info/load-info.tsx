@@ -13,7 +13,7 @@ import {BtnWrapper} from '../../../ui/atoms/wrapper/btn-wrapper'
 import {links} from '../../../navigation/links'
 
 
-export const LoadInfo: React.FC<any> = ({route}) => {
+export const LoadInfo: React.FC = () => {
     const currentLoadData = useStore($currentLoad)
     const navigate = useNavigate()
 
@@ -38,7 +38,7 @@ export const LoadInfo: React.FC<any> = ({route}) => {
     return (
         <>
             <ScreenWrapper isEnabledHeightController={true}>
-                <ScrollView contentContainerStyle={{paddingBottom: 100, paddingTop: 27}} style={styles.container}>
+                <ScrollView contentContainerStyle={styles.contentScrollViewContainer} style={styles.container}>
                     <InfoCard data={currentLoadData!}/>
                     <Notes notes={currentLoadData!.note}/>
                     <View style={styles.priceAreasWrapper}>
@@ -49,7 +49,7 @@ export const LoadInfo: React.FC<any> = ({route}) => {
                     <DetailCard data={currentLoadData!}/>
                 </ScrollView>
                 <BtnWrapper>
-                    <Button onPress={onClickToBack}>Go back</Button>
+                    <Button theme={'white'} onPress={onClickToBack}>Go back</Button>
                 </BtnWrapper>
             </ScreenWrapper>
         </>
@@ -58,8 +58,12 @@ export const LoadInfo: React.FC<any> = ({route}) => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 16,
         paddingBottom: 50,
+    },
+    contentScrollViewContainer: {
+        paddingBottom: 40,
+        paddingTop: 27,
+        paddingHorizontal: 16,
     },
     priceAreasWrapper: {
         flexDirection: 'row',

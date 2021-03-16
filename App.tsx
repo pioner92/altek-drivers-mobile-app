@@ -13,7 +13,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context'
 import {MainStackScreen} from './src/screens/main-stack-screen/main-stack-screen'
 import {AuthStackScreen} from './src/screens/auth-stack-screen/auth-stack-screen'
 import {useIsInBid} from './src/lib/hooks/use-is-in-bid'
-import {$currentLoad} from "./src/screens/main-stack-screen/load-info/models";
+import {$currentLoad} from './src/screens/main-stack-screen/load-info/models'
+
 
 
 if (__DEV__) {
@@ -40,6 +41,10 @@ export default function App() {
             await getLocationPermissions()
             await getNotificationPermissions()
         })()
+
+
+
+
         return FirebaseService.unsubscribe
     }, [])
 
