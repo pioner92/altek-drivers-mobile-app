@@ -56,7 +56,7 @@ export const AvailableHome = () => {
 
     return (
         <>
-            <ScreenWrapper enableNavigateButtons={false} safeAreaStyle={{backgroundColor: '#fff'}}>
+            <ScreenWrapper safeAreaStyle={{backgroundColor: '#fff'}}>
                 <Map/>
                 <DarkBgAnimated
                     onPress={slideToBottomArrivedMenu}

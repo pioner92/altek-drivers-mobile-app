@@ -12,6 +12,7 @@ import {PHOTOPROFILE} from '../../../lib/db/constants'
 import {ScreenWrapper} from '../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {StackScreenCreator} from '../../../features/navigation/features/stack-screen-creator/stack-screen-creator'
 import {links} from '../../../navigation/links'
+import {MostRecentLoad} from './features/most-recent-load/most-recent-load'
 
 
 const Profile: React.FC<StackScreenProps<any>> = ({navigation}) => {
@@ -23,12 +24,12 @@ const Profile: React.FC<StackScreenProps<any>> = ({navigation}) => {
 
 
     return (
-        <ScreenWrapper enableNavigateButtons={false} style={styles.container}>
+        <ScreenWrapper style={styles.container}>
             <ScrollView
                 contentContainerStyle={styles.scrollContainer}>
                 <PopoverContainer>
                     <PhotoProfileBlock enableButtonEdit={true}/>
-                    {/* <MostRecentLoad/>*/}
+                    <MostRecentLoad/>
                     {/* <Rewards/>*/}
                     {/* <Benefits/>*/}
                     {/* <Account/>*/}

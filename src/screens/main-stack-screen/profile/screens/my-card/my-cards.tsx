@@ -27,7 +27,7 @@ export const MyCards: React.FC = () => {
 
 
     return (
-        <ScreenWrapper enableNavigateButtons={true} style={styles.container}>
+        <ScreenWrapper style={styles.container}>
             <BankCard/>
             <CardList/>
             <View style={{flex: 1, justifyContent: 'flex-end', paddingBottom: 70}}>

@@ -46,7 +46,7 @@ export const UnavailableHome: React.FC = () => {
 
     return (
         <>
-            <ScreenWrapper enableNavigateButtons={false}>
+            <ScreenWrapper>
                 <View style={styles.container}>
                     <LogoScreen/>
                     <SetAvailable callback={openMenu}/>

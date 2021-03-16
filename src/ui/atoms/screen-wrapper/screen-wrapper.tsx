@@ -10,7 +10,6 @@ type propsType = {
     safeAreaStyle?: ViewStyle
     style?: ViewStyle
     isEnabledHeightController?: boolean
-    enableNavigateButtons?: boolean
 }
 
 export const ScreenWrapper: React.FC<propsType> = ({children, isEnabledHeightController = false, safeAreaStyle, style}) => {

@@ -153,7 +153,7 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
     return (
         <>
             <ChatContext.Provider value={{chatId: id}}>
-                <ScreenWrapper safeAreaStyle={{backgroundColor: '#fff'}} enableNavigateButtons={false}>
+                <ScreenWrapper safeAreaStyle={{backgroundColor: '#fff'}}>
                     <KeyboardAvoidingView
                     // @ts-ignore
                         behavior={Platform.OS == 'ios' ? 'padding' : null}

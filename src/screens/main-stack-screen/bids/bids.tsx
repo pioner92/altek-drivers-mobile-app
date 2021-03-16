@@ -42,7 +42,7 @@ export const Bids: React.FC = () => {
 
     return (
         <>
-            <ScreenWrapper enableNavigateButtons={false} style={{backgroundColor: styleConfig.screenBackgroundGrey}}>
+            <ScreenWrapper style={{backgroundColor: styleConfig.screenBackgroundGrey}}>
                 <View style={styles.container}>
                     <FlatList
                         onRefresh={() => getLoads({})}

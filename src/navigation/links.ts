@@ -17,6 +17,7 @@ export enum links {
     chatContent = 'ChatContent',
     profile = 'Profile',
     editProfile = 'EditProfile',
+    completedLoads = 'CompletedLoads',
     notAvailable = 'NotAvailable',
     camera = 'Camera',
     myCards = 'MyCards',

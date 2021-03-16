@@ -34,7 +34,7 @@ const Chat: React.FC = React.memo(() => {
 
 
     return (
-        <ScreenWrapper enableNavigateButtons={false}>
+        <ScreenWrapper>
             <ScrollView
                 style={styles.container}>
                 <View>

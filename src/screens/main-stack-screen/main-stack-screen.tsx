@@ -13,6 +13,7 @@ import {CameraScreen} from './camera/camera-screen'
 import {EditProfile} from './profile/screens/edit-profile/edit-profile'
 import {StackScreenContainer} from '../stack-screen-container'
 import {links} from '../../navigation/links'
+import {CompletedLoads} from './profile/screens/completed-loads/completed-loads'
 
 const Stack = createStackNavigator()
 
@@ -128,6 +129,17 @@ export const MainStackScreen = () => {
                     headerShown: true,
                     headerTintColor: '#000',
                     title: 'Edit Profile',
+                    headerBackImage: HeaderBackButton,
+                    headerBackTitleVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name={links.completedLoads}
+                component={CompletedLoads}
+                options={{
+                    headerShown: true,
+                    headerTintColor: '#000',
+                    title: 'Completed Loads',
                     headerBackImage: HeaderBackButton,
                     headerBackTitleVisible: false,
                 }}

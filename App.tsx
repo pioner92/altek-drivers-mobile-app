@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import useCachedResources from './hooks/useCachedResources'
 import useColorScheme from './hooks/useColorScheme'
 import {DarkTheme, DefaultTheme, NavigationContainer} from '@react-navigation/native'
-import {StatusBar, Text, TextInput} from 'react-native'
+import {PermissionsAndroid, StatusBar, Text, TextInput} from 'react-native'
 import {useStore} from 'effector-react'
 import {$isAuth} from './Store/Store'
 import {getNotificationPermissions} from './src/lib/notification/push-notification'
@@ -14,7 +14,7 @@ import {MainStackScreen} from './src/screens/main-stack-screen/main-stack-screen
 import {AuthStackScreen} from './src/screens/auth-stack-screen/auth-stack-screen'
 import {useIsInBid} from './src/lib/hooks/use-is-in-bid'
 import {$currentLoad} from './src/screens/main-stack-screen/load-info/models'
-
+import {requestReadSmsPermission} from './src/lib/permissions/sms-permissions'
 
 
 if (__DEV__) {
@@ -35,16 +35,12 @@ export default function App() {
     // @ts-ignore
     TextInput.defaultProps.allowFontScaling = false
 
-
     useEffect(() => {
         (async function f() {
             await getLocationPermissions()
             await getNotificationPermissions()
+            await requestReadSmsPermission()
         })()
-
-
-
-
         return FirebaseService.unsubscribe
     }, [])
 

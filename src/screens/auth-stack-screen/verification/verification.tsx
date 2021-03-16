@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import {setIsAuth} from '../../../../Store/Store'
-import {PermissionsAndroid, StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 import {AuthTitle} from '../../../ui/atoms/title'
 import {Counter} from '../../../features/counter'
 import {NumberFields} from '../../../features/number-fields'
@@ -12,9 +12,7 @@ import {ScreenWrapper} from '../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {getUserData} from '../../../api/rest/get-user-data'
 import {setSelfStatus, statuses} from '../../../../hooks'
 import {styleConfig} from '../../../StyleConfig'
-
-// @ts-ignore
-import SmsListener from 'react-native-android-sms-listener'
+import {useSmsListener} from './lib/use-sms-listener/use-sms-listener'
 
 export const Verification = () => {
     const [value, setValue] = useState('')
@@ -33,30 +31,15 @@ export const Verification = () => {
     }, [value])
 
 
-    async function requestReadSmsPermission() {
-        try {
-            await PermissionsAndroid.request(
-                PermissionsAndroid.PERMISSIONS.READ_SMS,
-                {
-                    title: 'Read sms permission',
-                    message: 'Why you\'re asking for...',
-                },
-            )
-        } catch (err) {}
-    }
+    useSmsListener({callback: setValue})
 
     useEffect(() => {
         const tick = setInterval(() => {
             setCounter(((prevState) => prevState - 1))
         }, 1000)
-        requestReadSmsPermission()
-        const listener = SmsListener.addListener((message:{ originatingAddress: string, body: string, timestamp: number}) => {
-            setValue(message.body)
-        })
 
         return () => {
             clearInterval(tick)
-            listener.remove()
             setCounter(180)
         }
     }, [])

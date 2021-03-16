@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {Camera} from 'expo-camera'
 import {FlashOnSVG} from '../../../ui/atoms/icons/flash-on-svg'
@@ -45,6 +45,12 @@ export const CameraScreen: React.FC<StackScreenProps<routeType>> = ({route, navi
         navigation.goBack()
     }
 
+    useEffect(() => {
+        (async () => {
+            const {status} = await Camera.requestPermissionsAsync()
+        })()
+    }, [])
+
     return (
         <Camera
             ref={camera}
@@ -74,10 +80,10 @@ export const CameraScreen: React.FC<StackScreenProps<routeType>> = ({route, navi
 }
 
 type backButtonPropsType = {
-    onPress:()=>void
+    onPress: () => void
 }
 
-const BackButton:React.FC<backButtonPropsType> = ({onPress}) => {
+const BackButton: React.FC<backButtonPropsType> = ({onPress}) => {
     return (
         <TouchableOpacity onPress={onPress} style={{top: 50, paddingLeft: 20}}>
             <Text style={{color: '#fff', fontSize: 30}}>←</Text>
@@ -100,8 +106,7 @@ const styles = StyleSheet.create({
         marginTop: 'auto',
         paddingBottom: 20,
     },
-    flashMode: {
-    },
+    flashMode: {},
     panel: {
         alignItems: 'center',
         flexDirection: 'row',

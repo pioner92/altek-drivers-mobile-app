@@ -5,8 +5,16 @@ import {ProfileTitle} from '../../ui/atoms/profile-title'
 import {GrayLine} from '../../ui/atoms/gray-line'
 import {styleConfig} from '../../../../../StyleConfig'
 import {RightArrowSVG} from '../../../../../ui/atoms/icons'
+import {useNavigate} from '../../../../../lib/hooks'
+import {links} from '../../../../../navigation/links'
 
 export const MostRecentLoad: React.FC = () => {
+    const navigate = useNavigate()
+
+    const onPressSeeAllLoads = () => {
+        navigate(links.completedLoads)
+    }
+
     return (
         <View style={styles.container}>
             <ProfileTitle>Most recent load</ProfileTitle>
@@ -22,7 +30,7 @@ export const MostRecentLoad: React.FC = () => {
                     </View>
                 </View>
                 <GrayLine style={{marginTop: 13}}/>
-                <TouchableOpacity style={styles.seeAllCompletedLoadsButton}>
+                <TouchableOpacity onPress={onPressSeeAllLoads} style={styles.seeAllCompletedLoadsButton}>
                     <Text style={styles.seeAllCompletedLoadsTitle}>See all completed loads</Text>
                     <RightArrowSVG/>
                 </TouchableOpacity>
