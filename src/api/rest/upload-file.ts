@@ -1,6 +1,5 @@
 import {getDb} from '../../lib/db'
 import {TOKEN} from '../../lib/db/constants'
-import {urls} from '../urls'
 
 type resultType = {
     chat: null
@@ -14,21 +13,11 @@ type resultType = {
     size: string
 }
 
-const createFormData = (name: string, format: string, file: string) => {
-    const formData = new FormData()
-    formData.append('name', name)
-    formData.append('extension', format)
-    // @ts-ignore
-    formData.append('path', file, `${name}.${format}`)
-    return formData
-}
-
-export const uploadFile = async (name: string, type: string, file: any): Promise<resultType | undefined> => {
+export const uploadFile = async (url:string, body:any): Promise<resultType | undefined> => {
     try {
         const token = await getDb(TOKEN)
-        const body = createFormData(name, type, file)
 
-        const response = await fetch(urls.fileUpload(), {
+        const response = await fetch(url, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',

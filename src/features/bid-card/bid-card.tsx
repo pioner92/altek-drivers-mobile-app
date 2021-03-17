@@ -1,4 +1,4 @@
-import React, {memo, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {Animated, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {$geoLocationStore, setSelectedBidEvent} from '../../../Store/Store'
@@ -9,33 +9,26 @@ import {getDistance} from '../../lib/get-distance/get-distance'
 import {useStore} from 'effector-react'
 import {LoadLiveTimer} from '../load-live-timer/load-live-timer'
 import {BIDLIVETIME} from '../../screens/main-stack-screen/bids/bid-detail/bid-detail'
-import {useInterpolate, useSpring, useValue} from '../../lib/animation-hooks/Hooks'
+import {useInterpolate, useTiming, useValue} from '../../lib/animation-hooks/Hooks'
 import {loadType} from '../../api/rest/loads/types'
-import {links} from "../../navigation/links";
+import {links} from '../../navigation/links'
 
 type BidCartType = {
     item: loadType
 }
 
 
-export const BidCardInner: React.FC<BidCartType> = ({item}) => {
+export const BidCard: React.FC<BidCartType> = React.memo( ({item}) => {
     const {navigate} = useNavigation()
     const currentGeo = useStore($geoLocationStore)
-
     const animatedValue = useValue(0)
 
-    const interpolate = useInterpolate(animatedValue, [0, 1], [0, 1])
-    const interpolateY = useInterpolate(animatedValue, [0, 1], [-200, 0])
-    const interpolateHeight = useInterpolate(animatedValue, [0, 1], [0, 152])
+    const interpolateHeight = useInterpolate(animatedValue, [0, 1], [1, 152])
 
     const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity)
 
     const animatedStyle = {
-        opacity: interpolate,
         height: interpolateHeight,
-        transform: [
-            {translateY: interpolateY},
-        ],
     }
 
     const openBidsDetailMenu = () => {
@@ -48,10 +41,7 @@ export const BidCardInner: React.FC<BidCartType> = ({item}) => {
 
 
     useEffect(()=>{
-        useSpring(animatedValue, 1, 10, 6, false).start()
-        return ()=>{
-            useSpring(animatedValue, 0, 10, 6, false).start()
-        }
+        useTiming(animatedValue, 1, 300, false).start()
     }, [])
 
     return (
@@ -60,7 +50,7 @@ export const BidCardInner: React.FC<BidCartType> = ({item}) => {
             onPress={openBidsDetailMenu}
             style={[styles.container, styleConfig.shadowMenu, animatedStyle]}
         >
-            <SeeDetailBid callback={openBidsDetailMenu} date={item.created_date}/>
+            <SeeDetailBid date={item.created_date}/>
             <View style={styles.content}>
                 <BidStepContent totalMiles={item.miles} emptyMiles={+distance} pieces={item.pieces} weight={item.weight}
                     pickUp={item.pickUpAt} deliveryTo={item.deliverTo} pickUpZip={item.pickUpAt_zip}
@@ -68,29 +58,26 @@ export const BidCardInner: React.FC<BidCartType> = ({item}) => {
             </View>
         </AnimatedTouchableOpacity>
     )
-}
+},() => true )
 
 
 type seeDetailBidType = {
-    callback: () => void
     date: string
 }
-export const SeeDetailBid: React.FC<seeDetailBidType> = ({callback, date}) => {
+export const SeeDetailBid: React.FC<seeDetailBidType> = ({date}) => {
     return (
         <View>
-            <TouchableOpacity activeOpacity={0.5} onPress={callback} style={styles.header}>
+            <View style={styles.header}>
                 <View style={{flexDirection: 'row'}}>
                     <Text style={styles.headerTitle}>See details - </Text>
                     <LoadLiveTimer date={date} BIDLIVETIME={BIDLIVETIME}/>
                 </View>
                 <RightArrowSVG/>
-            </TouchableOpacity>
+            </View>
         </View>
     )
 }
 
-
-export const BidCard = memo(BidCardInner)
 
 const styles = StyleSheet.create({
     container: {

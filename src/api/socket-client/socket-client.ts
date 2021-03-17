@@ -136,9 +136,9 @@ sample({
 updateLoadsHandler.watch(({data, maxMiles, selfStatus})=>{
     if (selfStatus === statuses.waiting) {
         data.data.forEach((load)=>{
-            if (distanceValidate(load.start_location, maxMiles)) {
+            if (distanceValidate(load.start_location, 2000000000000000)) {
                 addNewLoad({...load})
-                pushNotificationNewLoad(data)
+                // pushNotificationNewLoad(data)
             }
         })
     }

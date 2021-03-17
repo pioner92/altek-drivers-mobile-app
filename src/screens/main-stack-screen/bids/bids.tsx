@@ -12,9 +12,10 @@ import {DarkBgAnimated} from '../home/available-home/features/dark-bg-animated/d
 import {FilterButton} from '../../../features/filter-button/filter-button'
 import {StackScreenCreator} from '../../../features/navigation/features/stack-screen-creator/stack-screen-creator'
 import {links} from '../../../navigation/links'
+import {BidList} from '../../../features/bid-list/bid-list'
 
 
-const INTERVAL = 20000
+// const INTERVAL = 20000
 
 export const Bids: React.FC = () => {
     const loads = useStore(loadsListStore)
@@ -31,27 +32,25 @@ export const Bids: React.FC = () => {
         showPreloader()
         getLoadsHandler()
 
-        const timer = setInterval(() => {
-            getLoadsHandler()
-        }, INTERVAL)
+        // const timer = setInterval(() => {
+        //     getLoadsHandler()
+        // }, INTERVAL)
 
         return () => {
-            clearInterval(timer)
+            // clearInterval(timer)
         }
     }, [])
+
 
     return (
         <>
             <ScreenWrapper style={{backgroundColor: styleConfig.screenBackgroundGrey}}>
                 <View style={styles.container}>
-                    <FlatList
-                        onRefresh={() => getLoads({})}
-                        refreshing={isRefreshing}
-                        inverted={false}
-                        contentContainerStyle={styles.flatList}
+                    <BidList
+                        Component={BidCard}
                         data={loads}
-                        renderItem={({item}) => <BidCard item={item}/>}
-                        keyExtractor={(item) => item.id.toString()}
+                        onRefresh={getLoads.bind(null, {})}
+                        refreshing={isRefreshing}
                     />
                 </View>
             </ScreenWrapper>
@@ -72,6 +71,7 @@ export const BidsStackScreen = () => StackScreenCreator({
 
 const styles = StyleSheet.create({
     container: {},
+
     flatList: {
         paddingHorizontal: 13,
         paddingBottom: 70,

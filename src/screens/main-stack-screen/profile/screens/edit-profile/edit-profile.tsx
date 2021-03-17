@@ -19,6 +19,7 @@ import {PHOTOPROFILE} from '../../../../../lib/db/constants'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useHeaderHeight} from '@react-navigation/stack'
 import {links} from '../../../../../navigation/links'
+import {updateAvatar} from '../../../../../api/rest/update-avatar'
 
 export const EditProfile: React.FC = () => {
     const navigate = useNavigate()
@@ -30,6 +31,7 @@ export const EditProfile: React.FC = () => {
     const photo = (photo: string) => {
         setDb(PHOTOPROFILE, photo)
         setUserPhoto(photo)
+        updateAvatar(photo)
     }
 
     const takePhoto = async () => {
@@ -43,6 +45,7 @@ export const EditProfile: React.FC = () => {
         if (!result.cancelled) {
             setUserPhoto(result.uri)
             setDb(PHOTOPROFILE, result.uri)
+            updateAvatar(result.uri)
         }
     }
 

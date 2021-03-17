@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useLayoutEffect} from 'react'
+import React, {useEffect, useLayoutEffect} from 'react'
 import {KeyboardAvoidingView, Platform, StyleSheet, TouchableOpacity, View} from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
 import {InputContainer} from '../../../../features/chat/InputContent/InputContainer'
@@ -10,7 +10,6 @@ import {$chatsData, setIsInChat, setIsNewMessageInChat, setUnreadCount} from '..
 import {sendChatMessageSocketAction} from '../../../../api/socket-client/socket-actions/socket-actions'
 import {MoreSVG} from '../../../../ui/atoms/icons/more-svg'
 import {ChatHeader} from './ui/moleculs/chat-header'
-import {uploadFile} from '../../../../api/rest/upload-file'
 import {useStore} from 'effector-react'
 import {$swipeMenuWrapperValueDY} from '../../../../features/swipe-menu-wrapper/models/models'
 import {ScreenWrapper} from '../../../../ui/atoms/screen-wrapper/screen-wrapper'
@@ -24,6 +23,7 @@ import {
 } from '../../../../features/chat/AttachMenu/models/models'
 import {uploadPhotoContainer} from './lib/uploadPhotoContainer'
 import {ChatContext} from './context'
+import {uploadFileChat} from '../../../../api/rest/upload-chat-files'
 
 type imagePickerResultType = {
     cancelled: boolean
@@ -68,7 +68,7 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
         if (result.type === 'success') {
             const type = getMediaType(result.name) ?? 'pdf'
             closeAttachMenu()
-            const res = await uploadFile(result.name, type, {uri: result.uri, name: result.name, type: `file/${type}`})
+            const res = await uploadFileChat(result.name, type, {uri: result.uri, name: result.name, type: `file/${type}`})
             if (res) {
                 sendChatMessageSocketAction({files: [res.id], content: '', chat_id: id})
             }

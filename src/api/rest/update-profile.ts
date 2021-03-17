@@ -5,27 +5,24 @@ import {urls} from '../urls'
 type propsData = {
     firstName?: string
     lastName?: string
+    avatar?:string
     fb_token?: string
 }
 
-type datType = {
+type dataType = {
     first_name?: string
     last_name?: string
     fb_token?: string
+    avatar?:string
 }
 
-export const updateProfileDateOnServer = createEffect(async ({firstName, lastName, fb_token}: propsData) => {
-    const data: datType = {}
+export const updateProfileDateOnServer = createEffect(async ({firstName: first_name, lastName: last_name, fb_token, avatar}: propsData) => {
+    const data: dataType = {}
 
-    if (firstName) {
-        data['first_name'] = firstName
-    }
-    if (lastName) {
-        data['last_name'] = lastName
-    }
-    if (fb_token) {
-        data['fb_token'] = fb_token
-    }
+    first_name && (data.first_name = first_name)
+    last_name && (data.last_name = last_name)
+    fb_token && (data.fb_token = fb_token)
+    avatar && (data.avatar = avatar)
 
     return await makeRequest({
         url: urls.updateProfile(), token: true, method: 'PUT', body: data,

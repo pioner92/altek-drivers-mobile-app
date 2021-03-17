@@ -30,7 +30,7 @@ export const $userData = createStore({} as responseUserDataType)
     .reset(resetUserDataStore)
 
 export const $userPhoto = createStore<string>('')
-    .on(setUserPhoto, ((state, payload) => payload))
+    .on(setUserPhoto, (state, payload) => payload)
 
 initUserData.watch(async () => {
     const firstName = await getDb(FIRSTNAME)
