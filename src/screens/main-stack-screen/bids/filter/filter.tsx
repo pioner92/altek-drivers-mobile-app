@@ -76,7 +76,7 @@ export const Filter: React.FC<StackScreenProps<any>> = ({navigation}) => {
                     {/* <MinimumPayloads/>*/}
                 </View>
             </ScrollView>
-            <BtnWrapper style={{height: 149, justifyContent: 'space-between'}}>
+            <BtnWrapper style={{height: 134, justifyContent: 'space-between'}}>
                 <Button onPress={onSaveFilter}>Apply</Button>
                 <Button theme='white' onPress={onClearFilter}>Clear</Button>
             </BtnWrapper>

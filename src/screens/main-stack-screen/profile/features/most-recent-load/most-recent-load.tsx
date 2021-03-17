@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from 'react'
+import React, {useMemo} from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {WhiteCard} from '../../../../../ui/atoms/card/white-card'
 import {ProfileTitle} from '../../ui/atoms/profile-title'
@@ -26,10 +26,6 @@ export const MostRecentLoad: React.FC = () => {
     const onPressSeeAllLoads = () => {
         navigate(links.completedLoads, {loads: loadList})
     }
-
-    useEffect(() => {
-        // getLoadsHistory()
-    }, [])
 
     return (
         <View style={styles.container}>

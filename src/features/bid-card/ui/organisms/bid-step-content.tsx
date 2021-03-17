@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {Info, StepComponent} from '../molecules'
+import {Info} from '../molecules'
 import {StepsWithTitle} from '../../../../ui/organisms/steps-with-title/steps-with-title'
 
 type stepsType = {

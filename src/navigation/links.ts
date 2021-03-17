@@ -12,6 +12,7 @@ export enum links {
     bids = 'Bids',
     loadInfo = 'LoadInfo',
     bidDetail = 'BidDetail',
+    bidDetailForActiveLoads = 'BidDetailForActiveLoads',
     filter = 'Filter',
     chat = 'Chat',
     chatContent = 'ChatContent',

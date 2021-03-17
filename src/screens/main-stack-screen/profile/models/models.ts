@@ -9,6 +9,7 @@ import {
 import {updateProfileDateOnServer} from '../../../../api/rest/update-profile'
 import {FIRSTNAME, LASTNAME, PHONENUMBER} from '../../../../lib/db/constants'
 import {responseUserDataType} from '../../../../api/rest/get-user-data'
+import {serverUrl} from '../../../../api/urls'
 
 
 export const setUserPhoto = createEvent<string>()
@@ -42,12 +43,16 @@ initUserData.watch(async () => {
     setInputValueUserPhone(`${phone}`)
 })
 
+setUserData.watch((payload) => {
+    setUserPhoto(serverUrl + payload.avatar)
+})
 
 const handler = sample({
     source: {userName: $inputValueUserName, userPhone: $inputValueUserPhone},
     clock: updateProfile,
     fn: (states, _) => (states),
 })
+
 
 handler.watch(({userName, userPhone})=>{
     const fullName = userName.split(' ')

@@ -8,10 +8,10 @@ import {styleConfig} from '../../StyleConfig'
 import {getDistance} from '../../lib/get-distance/get-distance'
 import {useStore} from 'effector-react'
 import {LoadLiveTimer} from '../load-live-timer/load-live-timer'
-import {BIDLIVETIME} from '../../screens/main-stack-screen/bids/bid-detail/bid-detail'
 import {useInterpolate, useTiming, useValue} from '../../lib/animation-hooks/Hooks'
 import {loadType} from '../../api/rest/loads/types'
 import {links} from '../../navigation/links'
+import {BIDLIVETIME} from '../../screens/main-stack-screen/bids/bid-detail/bid-detail-for-active-loads/bid-details-for-active-loads'
 
 type BidCartType = {
     item: loadType
@@ -32,7 +32,7 @@ export const BidCard: React.FC<BidCartType> = React.memo( ({item}) => {
     }
 
     const openBidsDetailMenu = () => {
-        navigate(links.bidDetail, {item})
+        navigate(links.bidDetailForActiveLoads, {item})
         setSelectedBidEvent(item.id)
     }
 
@@ -58,7 +58,7 @@ export const BidCard: React.FC<BidCartType> = React.memo( ({item}) => {
             </View>
         </AnimatedTouchableOpacity>
     )
-},() => true )
+} )
 
 
 type seeDetailBidType = {

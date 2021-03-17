@@ -28,12 +28,12 @@ export const getLoadsHistory = createEffect(async (page = 1 ):Promise<getLoadsHi
 
 
 getLoadsHistory.done.watch(({result, params})=>{
-    console.log('GET LOADS')
-    if (params === 1) {
-        addLoadHistory(result.results)
-    } else {
-        addNexPageLoadHistory(result.results)
-    }
+    // console.log('GET LOADS')
+    // if (params === 1) {
+    //     addLoadHistory(result.results)
+    // } else {
+    //     addNexPageLoadHistory(result.results)
+    // }
 })
 getLoadsHistory.fail.watch(({error})=>{
     console.log('Get loads history error ', error)

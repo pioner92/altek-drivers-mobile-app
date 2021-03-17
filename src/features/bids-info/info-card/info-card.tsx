@@ -9,7 +9,7 @@ import {ArrowTop} from '../../../ui/atoms/icons/arrow-top'
 import {loadType} from '../../../api/rest/loads/types'
 
 type propsType = {
-    data: loadType
+    data: loadType | null
 }
 
 export const InfoCard: React.FC<propsType> = ({data}) => {
@@ -25,7 +25,7 @@ export const InfoCard: React.FC<propsType> = ({data}) => {
     const coordinates = data?.start_location?.split(',')
 
     const emptyMiles = () => {
-        if (coordinates?.length > 1) {
+        if ( coordinates && coordinates?.length > 1) {
             return Math.ceil(calculationDistance(+coordinates[0], +coordinates[1]))
         } else return 0
     }
@@ -112,9 +112,9 @@ export const InfoCard: React.FC<propsType> = ({data}) => {
                             <InfoRow title='Empty miles' value={`${emptyMiles()} mi`}/>
                             <InfoRow title='Total cargo'
                                 value={`${data?.pieces?.toString()} pc, ${data?.weight?.toString()} lb`}/>
-                            <InfoRow title='Dims (LxWxH)' value={data?.dims}/>
-                            <InfoRow title='Truck size' value={data?.car?.toString()}/>
-                            <InfoRow title='Fast load' value={boolResultFormatted(data?.isUrgent)}/>
+                            <InfoRow title='Dims (LxWxH)' value={data?.dims ?? ''}/>
+                            <InfoRow title='Truck size' value={data?.car?.toString() ?? ''}/>
+                            <InfoRow title='Fast load' value={boolResultFormatted(data?.isUrgent ?? false)}/>
                         </View>
                         <View
                             ref={refBottomWrapper}
@@ -123,9 +123,9 @@ export const InfoCard: React.FC<propsType> = ({data}) => {
                                     setBottomWrapper(val.nativeEvent.layout.height)
                                 }
                             }}>
-                            <InfoRow title='Hazardous' value={boolResultFormatted(data?.isDanger)}/>
-                            <InfoRow title='Stackable' value={boolResultFormatted(data?.isCanPutOnTop)}/>
-                            <InfoRow title='Dock level' value={boolResultFormatted(data?.dock_level)}/>
+                            <InfoRow title='Hazardous' value={boolResultFormatted(data?.isDanger ?? false)}/>
+                            <InfoRow title='Stackable' value={boolResultFormatted(data?.isCanPutOnTop ?? false)}/>
+                            <InfoRow title='Dock level' value={boolResultFormatted(data?.dock_level ?? false)}/>
                         </View>
                     </Wrapper>
                 </ScrollView>

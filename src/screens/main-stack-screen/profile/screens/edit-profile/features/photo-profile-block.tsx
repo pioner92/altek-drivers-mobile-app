@@ -1,16 +1,13 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {styleConfig} from '../../../../../../StyleConfig'
 import {useStore} from 'effector-react'
-import {$userData, $userPhoto, setUserPhoto} from '../../../models/models'
-import {getDb} from '../../../../../../lib/db'
+import {$userData, $userPhoto} from '../../../models/models'
 import {ButtonEdit} from '../../../../uploading-veriffication/features/load-attributes/ui/atoms'
 import {useNavigate} from '../../../../../../lib/hooks'
 import {CameraSVG} from '../../../../../../ui/atoms/icons'
 import {showTakePictureMenu} from '../../../../../../features/take-picture-menu/models'
-import {PHOTOPROFILE} from '../../../../../../lib/db/constants'
 import {links} from '../../../../../../navigation/links'
-import {serverUrl} from '../../../../../../api/urls'
 
 
 type propsType = {
@@ -50,17 +47,6 @@ export const PhotoProfileBlock: React.FC<propsType> = ({enableButtonEdit = false
             )
         } else return null
     }
-
-
-    useEffect(() => {
-        getDb(PHOTOPROFILE)
-            .then((data) => {
-                data
-                    ? setUserPhoto(data)
-                    : setUserPhoto(serverUrl + userData.avatar)
-            })
-    }, [])
-
 
     return (
         <View style={styles.container}>

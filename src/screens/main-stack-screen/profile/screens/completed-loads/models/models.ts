@@ -15,6 +15,12 @@ export const $loadHistoryPageNumber = createStore(1)
     .on(nexPageLoadHistory, (state, payload) => state + 1)
 
 
-$loadHistoryPageNumber.watch((state, payload) => {
-    getLoadsHistory(state)
+$loadHistoryPageNumber.watch(async (pageNumber) => {
+    const loads = await getLoadsHistory(pageNumber)
+    if (pageNumber === 1) {
+        addLoadHistory(loads.results)
+    }
+    else {
+        addNexPageLoadHistory(loads.results)
+    }
 })

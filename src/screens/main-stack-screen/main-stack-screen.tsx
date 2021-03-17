@@ -1,7 +1,6 @@
 import {createStackNavigator} from '@react-navigation/stack'
 import React from 'react'
 import {BottomTabNavigationScreen} from '../../navigation/BottomTabNavigator'
-import {BidDetail} from './bids/bid-detail/bid-detail'
 import {HeaderBackButton} from '../../ui/atoms/buttons/header-back'
 import {LoadInfo} from './load-info'
 import {ChatContent, Filter, UnloadingVerification} from '../index'
@@ -14,6 +13,8 @@ import {EditProfile} from './profile/screens/edit-profile/edit-profile'
 import {StackScreenContainer} from '../stack-screen-container'
 import {links} from '../../navigation/links'
 import {CompletedLoads} from './profile/screens/completed-loads/completed-loads'
+import {BidDetailForActiveLoads} from './bids/bid-detail/bid-detail-for-active-loads/bid-details-for-active-loads'
+import {BidDetailScreen} from './bids/bid-detail/bid-detail-screen/bid-detail-screen'
 
 const Stack = createStackNavigator()
 
@@ -28,10 +29,20 @@ export const MainStackScreen = () => {
                 component={BottomTabNavigationScreen}/>
 
             <Stack.Screen
-                name={links.bidDetail}
-                component={BidDetail}
+                name={links.bidDetailForActiveLoads}
+                component={BidDetailForActiveLoads}
                 options={{
                     title: 'Load offer',
+                    headerShown: true,
+                    headerBackImage: HeaderBackButton,
+                    headerBackTitleVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name={links.bidDetail}
+                component={BidDetailScreen}
+                options={{
+                    title: 'Profile',
                     headerShown: true,
                     headerBackImage: HeaderBackButton,
                     headerBackTitleVisible: false,
@@ -139,7 +150,7 @@ export const MainStackScreen = () => {
                 options={{
                     headerShown: true,
                     headerTintColor: '#000',
-                    title: 'Completed Loads',
+                    title: 'Profile',
                     headerBackImage: HeaderBackButton,
                     headerBackTitleVisible: false,
                 }}

@@ -7,6 +7,7 @@ export class Timer {
     static timer: NodeJS.Timer
 
     static start(callback: any) {
+        clearInterval(this.timer)
         this.timer = setInterval(() => {
             callback()
         }, 1000)
@@ -23,10 +24,14 @@ export const stopTimer = createEvent()
 export const setCounter = createEvent<number>()
 export const setCounterMinutes = createEvent<string>()
 export const resetCounter = createEvent()
+export const counterTarget = createEvent<{ state: number }>()
+export const initCounter = createEvent<number>()
 
 
 export const $counter = createStore(TIMER_VALUE)
-    .on(setCounter, (state, payload) => payload)
+    .on(setCounter, (state, payload) => state - 1)
+    .on(initCounter, (state, payload) => payload)
+    .reset(resetCounter)
 
 export const $counterMinutes = createStore('')
     .on(setCounterMinutes, (state, payload) => payload)
@@ -35,21 +40,17 @@ export const $isStartedCounter = createStore(false)
     .on(setIsStartedCounter, (state, payload) => payload)
 
 
-const handler = sample({
+sample({
     source: $counter,
     clock: startTimer,
     fn: (state, value) => ({state, value}),
+    target: counterTarget,
 })
 
-handler.watch(({state, value})=>{
+counterTarget.watch(({state}) => {
     setIsStartedCounter(true)
     Timer.start(() => setCounter(state - 1))
 })
-
-// startTimer.watch(() => {
-//     setIsStartedCounter(true)
-//     Timer.start(() => setCounter($counter.getState() - 1))
-// })
 
 stopTimer.watch(() => {
     Timer.stop()

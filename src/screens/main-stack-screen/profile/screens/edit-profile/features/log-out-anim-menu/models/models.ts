@@ -1,4 +1,4 @@
-import {attach, createEffect, createEvent, createStore, sample} from 'effector'
+import {attach, createEffect, createEvent, createStore} from 'effector'
 import {Animated} from 'react-native'
 import {useSpring} from '../../../../../../../../lib/animation-hooks/Hooks'
 

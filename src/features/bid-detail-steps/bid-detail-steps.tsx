@@ -3,11 +3,11 @@ import {StyleSheet, Text, View} from 'react-native'
 import {StepCircles} from '../../ui/molecules/steps/steps'
 import {styleConfig} from '../../StyleConfig'
 import {VALUEINSTEAD} from '../../lib/nullableDateValidate/nullableDateValidate'
-import {loadType} from "../../api/rest/loads/types";
+import {loadType} from '../../api/rest/loads/types'
 
 
 type propsType = {
-    item: loadType
+    item: loadType | null
     isCargo?: boolean
 }
 
@@ -17,12 +17,12 @@ export const BidDetailSteps: React.FC<propsType> = ({item, isCargo = true}) => {
         <View style={styles.wrapper}>
             <StepCircles/>
             <View style={{justifyContent: 'space-between'}}>
-                <StepContent point='Pick-up' direction={item.pickUpAt} date={`${item?.pick_up_date || VALUEINSTEAD }`}/>
+                <StepContent point='Pick-up' direction={item?.pickUpAt ?? ''} date={`${item?.pick_up_date || VALUEINSTEAD }`}/>
                 {isCargo ?
                     <CargoWrapper item={item}/> :
                     <View style={{height: 40}}/>
                 }
-                <StepContent point='Delivery' direction={item.deliverTo} date={`${item.delivery_date || VALUEINSTEAD}`}/>
+                <StepContent point='Delivery' direction={item?.deliverTo ?? ''} date={`${item?.delivery_date || VALUEINSTEAD}`}/>
             </View>
         </View>
     )
@@ -74,7 +74,7 @@ const StepContent: React.FC<stepContent> = ({point, direction, date}) => {
 }
 
 const CargoWrapper: React.FC<propsType> = ({item}) => {
-    const stackable = item.isCanPutOnTop ? 'stackable' : 'not stackable'
+    const stackable = item?.isCanPutOnTop ? 'stackable' : 'not stackable'
     return (
         <View style={{marginVertical: 20, marginLeft: 4}}>
             <Text style={styles.cargoTitle}>Cargo 1 ({stackable}, not turnable)</Text>

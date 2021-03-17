@@ -7,7 +7,7 @@ import {ArrowTop} from '../../../ui/atoms/icons/arrow-top'
 import {loadType} from '../../../api/rest/loads/types'
 
 type propsType = {
-    data: loadType
+    data: loadType | null
 }
 
 export const DetailCard: React.FC<propsType> = ({data}) => {

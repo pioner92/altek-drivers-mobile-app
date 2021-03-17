@@ -4,14 +4,17 @@ import {loadType} from '../../api/rest/loads/types'
 import {StepsWithTitle} from '../../ui/organisms/steps-with-title/steps-with-title'
 import {styleConfig} from '../../StyleConfig'
 import {RightArrowSVG} from '../../ui/atoms/icons'
+import {links} from '../../navigation/links'
+import {useNavigate} from '../../lib/hooks'
 
 type propsType = {
     item: loadType
 }
 export const BidCardCompleted: React.FC<propsType> = ({item}) => {
+    const navigate = useNavigate()
 
     const onPress = () => {
-        // navigate(links.bidDetail, {item})
+        navigate(links.bidDetail, {item})
     }
 
     return (
@@ -49,7 +52,7 @@ const Header: React.FC<headerType> = ({status}) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 12,
+        marginBottom: 20,
         backgroundColor: '#FFFFFF',
         width: '100%',
         borderRadius: 12,

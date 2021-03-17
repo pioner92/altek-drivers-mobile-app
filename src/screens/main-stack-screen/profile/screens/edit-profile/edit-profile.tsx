@@ -8,14 +8,12 @@ import {Button} from '../../../../../ui/atoms/buttons'
 import {TakePictureMenu} from '../../../../../features/take-picture-menu'
 import {Camera} from 'expo-camera'
 import {useNavigate} from '../../../../../lib/hooks'
-import {setDb} from '../../../../../lib/db'
 import {setUserPhoto} from '../../models'
 import {imagePicker} from '../../../../../lib/image-picker'
 import * as MediaLibrary from 'expo-media-library'
 import {updateProfile} from '../../models/models'
 import {styleConfig} from '../../../../../StyleConfig'
 import {LogOutAnimMenu} from './features/log-out-anim-menu/log-out-anim-menu'
-import {PHOTOPROFILE} from '../../../../../lib/db/constants'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useHeaderHeight} from '@react-navigation/stack'
 import {links} from '../../../../../navigation/links'
@@ -29,7 +27,6 @@ export const EditProfile: React.FC = () => {
 
 
     const photo = (photo: string) => {
-        setDb(PHOTOPROFILE, photo)
         setUserPhoto(photo)
         updateAvatar(photo)
     }
@@ -44,7 +41,6 @@ export const EditProfile: React.FC = () => {
         const result = await imagePicker()
         if (!result.cancelled) {
             setUserPhoto(result.uri)
-            setDb(PHOTOPROFILE, result.uri)
             updateAvatar(result.uri)
         }
     }

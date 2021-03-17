@@ -7,12 +7,12 @@ type propsType = {
     refreshing: boolean
     onRefresh?: () => void
     data: Array<loadType>
+    onEndReachedThreshold?:number
     onEndReached?: () => void
     Component: React.FC<{ item: loadType }>
 }
 
-export const BidList: React.FC<propsType> = ({refreshing, onRefresh, data, Component, onEndReached}) => {
-
+export const BidList: React.FC<propsType> = ({refreshing, onRefresh, data, Component, onEndReached, onEndReachedThreshold= 0}) => {
     const onEndReachedHandler = () => {
         onEndReached && onEndReached()
     }
@@ -23,7 +23,7 @@ export const BidList: React.FC<propsType> = ({refreshing, onRefresh, data, Compo
             removeClippedSubviews={true}
             refreshing={refreshing}
             inverted={false}
-            onEndReachedThreshold={0}
+            onEndReachedThreshold={onEndReachedThreshold}
             contentContainerStyle={styles.flatList}
             data={data}
             renderItem={({item}) => <Component item={item}/>}

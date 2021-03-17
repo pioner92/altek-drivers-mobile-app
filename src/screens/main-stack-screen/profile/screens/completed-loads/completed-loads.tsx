@@ -15,8 +15,9 @@ export const CompletedLoads: React.FC<StackScreenProps<any>> = ({route, navigati
 
 
     return (
-        <ScreenWrapper style={{backgroundColor: '#fff'}}>
+        <ScreenWrapper isEnabledHeightController={true} style={{backgroundColor: '#fff'}}>
             <BidList
+                onEndReachedThreshold={0.4}
                 onEndReached={onEndReached}
                 refreshing={false}
                 data={loads}

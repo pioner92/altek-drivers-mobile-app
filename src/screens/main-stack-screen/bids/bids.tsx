@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {FlatList, StyleSheet, View} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {ScreenWrapper} from '../../../ui/atoms/screen-wrapper/screen-wrapper'
 import {styleConfig} from '../../../StyleConfig'
 import {BidCard} from '../../../features/bid-card'
