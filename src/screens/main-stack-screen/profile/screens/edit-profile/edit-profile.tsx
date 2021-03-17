@@ -25,23 +25,22 @@ export const EditProfile: React.FC = () => {
     const inset = useSafeAreaInsets()
     const headerHeight = useHeaderHeight()
 
-
-    const photo = (photo: string) => {
+    const updateAvatart = (photo:string) => {
         setUserPhoto(photo)
         updateAvatar(photo)
     }
 
+
     const takePhoto = async () => {
         await MediaLibrary.requestPermissionsAsync()
         const {status} = await Camera.requestPermissionsAsync()
-        status === 'granted' && navigate(links.camera, {callback: photo})
+        status === 'granted' && navigate(links.camera, {callback: updateAvatart})
     }
 
     const getPhotoFromCameraRoll = async () => {
         const result = await imagePicker()
         if (!result.cancelled) {
-            setUserPhoto(result.uri)
-            updateAvatar(result.uri)
+            updateAvatart(result.uri)
         }
     }
 
@@ -59,15 +58,7 @@ export const EditProfile: React.FC = () => {
                         <PhotoProfileBlock/>
                         <PersonalInfo/>
                         <LogOut/>
-                        <View style={{
-                            width: '100%',
-                            flex: 1,
-                            minHeight: 60,
-                            marginTop: 30,
-                            bottom: 20,
-                            justifyContent: 'flex-end',
-                            paddingBottom: inset.bottom || Platform.OS === 'ios' ? 0 : 20,
-                        }}>
+                        <View style={[styles.buttonWrapper, {paddingBottom: inset.bottom || Platform.OS === 'ios' ? 0 : 20}]}>
                             <Button onPress={onPressUpdateProfile} theme='white'>Update profile</Button>
                         </View>
                     </View>
@@ -91,27 +82,12 @@ const styles = StyleSheet.create({
         paddingTop: 26,
         paddingHorizontal: 16,
     },
-    camera: {
-        height: 500,
-    },
-    buttonContainer: {
+    buttonWrapper: {
+        width: '100%',
         flex: 1,
-        backgroundColor: 'transparent',
-        flexDirection: 'row',
-        margin: 20,
-    },
-    button: {
-        flex: 0.1,
-        alignSelf: 'flex-end',
-        alignItems: 'center',
-    },
-    text: {
-        fontSize: 18,
-        color: 'white',
-    },
-    logOutMenu: {
-        height: 120,
-        justifyContent: 'space-between',
-        paddingHorizontal: styleConfig.screenPadding,
+        minHeight: 60,
+        marginTop: 30,
+        bottom: 20,
+        justifyContent: 'flex-end',
     },
 })

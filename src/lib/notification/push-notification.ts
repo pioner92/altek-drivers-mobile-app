@@ -32,16 +32,6 @@ type propsType = {
     id?: number
 }
 
-// export const getGeolocationPermissions = async () => {
-//     const {status} = await Permissions.getAsync(Permissions.LOCATION)
-//     if (status !== 'granted') {
-//         const {status} = await Permissions.askAsync(Permissions.LOCATION)
-//         return status
-//     }
-//     return status
-// }
-
-
 export const resetBadgeCount = () => {
     Notifications.setBadgeCountAsync(0)
 }
@@ -49,20 +39,9 @@ export const resetBadgeCount = () => {
 export const getNotificationPermissions = async () => {
     const {status} = await Permissions.getAsync(Permissions.NOTIFICATIONS)
     if (status) {
-        const {status} = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+        await Permissions.askAsync(Permissions.NOTIFICATIONS)
     }
 }
-
-// export const NotificationsHandler = async (callback: ({id}: chatContentPropsType) => void) => {
-//     Notifications.addNotificationResponseReceivedListener((notification) => {
-//         const data = notification.notification.request.content.data as propsType
-//         if (data?.hasOwnProperty('action') && data.action === newChatSms) {
-//             const {id = 0} = data || {}
-//             callback({id})
-//         }
-//     })
-// }
-
 
 export const NotificationsHandler = async (handlers:Array<handlerType>) => {
     Notifications.addNotificationResponseReceivedListener((notification) => {

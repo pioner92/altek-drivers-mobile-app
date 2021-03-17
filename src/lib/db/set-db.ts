@@ -5,8 +5,7 @@ import {dbType} from './get-db'
 export const setDb = async (name: dbType, value: string) => {
     try {
         await AsyncStorage.setItem(name, value)
-    }
-    catch (e) {
+    } catch (e) {
         console.log('Set db error', e)
     }
 }

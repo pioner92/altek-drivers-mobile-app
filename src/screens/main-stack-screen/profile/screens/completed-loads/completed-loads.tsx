@@ -13,7 +13,6 @@ export const CompletedLoads: React.FC<StackScreenProps<any>> = ({route, navigati
         nexPageLoadHistory()
     }
 
-
     return (
         <ScreenWrapper isEnabledHeightController={true} style={{backgroundColor: '#fff'}}>
             <BidList

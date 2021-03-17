@@ -19,8 +19,7 @@ $loadHistoryPageNumber.watch(async (pageNumber) => {
     const loads = await getLoadsHistory(pageNumber)
     if (pageNumber === 1) {
         addLoadHistory(loads.results)
-    }
-    else {
+    } else {
         addNexPageLoadHistory(loads.results)
     }
 })
