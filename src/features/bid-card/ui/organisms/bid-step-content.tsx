@@ -1,6 +1,7 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
 import {Info, StepComponent} from '../molecules'
+import {StepsWithTitle} from '../../../../ui/organisms/steps-with-title/steps-with-title'
 
 type stepsType = {
     pickUp: string
@@ -21,13 +22,7 @@ export const BidStepContent: React.FC<stepsType> = ({pickUp, deliveryTo, pieces,
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
-                <View style={styles.circleAndTitleWrapper}>
-                    <View style={styles.circlesWrapper}>
-                        <StepComponent number='1' title={pickUp} subTitle={createSubtitle(pickUpZip)}/>
-                        <View style={styles.line}/>
-                        <StepComponent number='2' title={deliveryTo} subTitle={createSubtitle(deliveryToZip)}/>
-                    </View>
-                </View>
+                <StepsWithTitle titleTop={pickUp} subtitleTop={createSubtitle(pickUpZip)} titleBottom={deliveryTo} subtitleBottom={createSubtitle(deliveryToZip)}/>
                 <Info
                     value1={`${totalMiles} mi`}
                     value2={`${emptyMiles} out`}
@@ -51,57 +46,5 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
-    },
-    circlesWrapper: {
-        alignItems: 'center',
-    },
-    circle: {
-        width: 18,
-        height: 18,
-        borderWidth: 2,
-        borderColor: '#E7F1F4',
-        backgroundColor: '#4EA2EF',
-        borderRadius: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: 10,
-    },
-    circleAndTitleWrapper: {
-        height: 89,
-        flexDirection: 'row',
-        width: '60%',
-    },
-    circleTitle: {
-        fontSize: 7,
-        color: '#E7F1F4',
-        fontFamily: 'IBMPlex-500',
-    },
-    line: {
-        borderLeftWidth: 1,
-        height: 36,
-        alignSelf: 'flex-start',
-        marginLeft: 10,
-        borderColor: '#7B8CAE',
-    },
-    stepRow: {
-        flexDirection: 'row',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    city: {
-        fontSize: 12,
-        fontFamily: 'IBMPlex-500',
-        marginLeft: 4,
-        color: '#1F2934',
-        letterSpacing: -0.01,
-        lineHeight: 16,
-        fontWeight: '500',
-        fontStyle: 'normal',
-    },
-    content: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '90%',
     },
 })

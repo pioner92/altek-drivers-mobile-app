@@ -137,19 +137,6 @@ export const BidDetail: React.FC<StackScreenProps<itemType>> = ({route, navigati
         return () => hideScrollSelectMenu()
     }, [])
 
-    // useEffect(() => {
-    //     navigation.setOptions({
-    //         headerRight: () => (<Text
-    //             style={{
-    //                 marginRight: 16,
-    //                 color: '#FF4869',
-    //                 fontSize: 12,
-    //                 fontFamily: 'IBMPlex-500',
-    //                 lineHeight: 16
-    //             }}>{headerTimer()}</Text>)
-    //     })
-    // }, [timeValue])
-
     useEffect(() => {
         navigation.setOptions({headerRight: () => <LoadLiveTimer BIDLIVETIME={BIDLIVETIME} date={data.item.created_date}/>})
     }, [])
@@ -182,7 +169,7 @@ export const BidDetail: React.FC<StackScreenProps<itemType>> = ({route, navigati
                         <DetailCard data={data.item}/>
                         {/* <ButtonsColorCardWithIcon style={{marginTop:26}} LeftComponent={OpenChat} RightComponent={ViewLoadOnMap}/>*/}
                     </ScrollView>
-                    <BtnWrapper style={{height: 149, justifyContent: 'space-between'}}>
+                    <BtnWrapper style={{height: 134, justifyContent: 'space-between'}}>
                         <Button disabled={isStartedTimer} onPress={placeBid}>Place Bid</Button>
                         <ButtonWithCounter onPress={cancelBid}>Cancel Bid</ButtonWithCounter>
                     </BtnWrapper>

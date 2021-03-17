@@ -1,26 +1,28 @@
 import React from 'react'
 import {ScreenWrapper} from '../../../../../ui/atoms/screen-wrapper/screen-wrapper'
-import {BidCard} from '../../../../../features/bid-card'
-import {StyleSheet} from 'react-native'
 import {BidList} from '../../../../../features/bid-list/bid-list'
+import {StackScreenProps} from '@react-navigation/stack'
+import {BidCardCompleted} from '../../../../../features/bid-card-completed/bid-card-completed'
 import {useStore} from 'effector-react'
-import {loadsListStore} from '../../../../../../Store/Store'
+import {$loadHistory, nexPageLoadHistory} from './models/models'
 
-export const CompletedLoads = () => {
-    const loads = useStore(loadsListStore)
+export const CompletedLoads: React.FC<StackScreenProps<any>> = ({route, navigation}) => {
+    const loads = useStore($loadHistory).map((el) => el.load)
+
+    const onEndReached = () => {
+        nexPageLoadHistory()
+    }
+
 
     return (
         <ScreenWrapper style={{backgroundColor: '#fff'}}>
             <BidList
+                onEndReached={onEndReached}
                 refreshing={false}
-                onRefresh={()=>{}}
                 data={loads}
-                Component={BidCard}
+                Component={BidCardCompleted}
             />
         </ScreenWrapper>
     )
 }
 
-const styles = StyleSheet.create({
-    container: {},
-})

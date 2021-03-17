@@ -15,7 +15,9 @@ export const StepComponent: React.FC<StepComponent> = ({number, title, subTitle}
             <View style={styles.content}>
                 <View style={{position: 'absolute', transform: [{translateY: -10}]}}>
                     <Text style={styles.city}>{title}</Text>
+                    {subTitle &&
                     <Text style={styles.subTitle}>{subTitle}</Text>
+                    }
                 </View>
             </View>
         </View>

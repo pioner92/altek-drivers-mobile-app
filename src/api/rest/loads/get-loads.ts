@@ -59,7 +59,7 @@ export const getLoadsEffect = createEffect<getLoadsEffectPropsType, loadsResult>
         maxMiles = '99999999999999999999999999999'
     }
 
-    return await makeRequest({url: urls.Loads(geo, maxMiles, filterUrl), method: 'GET', token: true})
+    return await makeRequest({url: urls.loads(geo, maxMiles, filterUrl), method: 'GET', token: true})
 })
 
 getLoadsEffect.fail.watch(({error})=>{

@@ -4,22 +4,31 @@ import {loadType} from '../../api/rest/loads/types'
 
 
 type propsType = {
-    refreshing:boolean
-    onRefresh:()=>void
-    data:Array<loadType>
-    Component:React.FC<{item:loadType}>
+    refreshing: boolean
+    onRefresh?: () => void
+    data: Array<loadType>
+    onEndReached?: () => void
+    Component: React.FC<{ item: loadType }>
 }
 
-export const BidList:React.FC<propsType> = ({refreshing, onRefresh, data, Component}) => {
+export const BidList: React.FC<propsType> = ({refreshing, onRefresh, data, Component, onEndReached}) => {
+
+    const onEndReachedHandler = () => {
+        onEndReached && onEndReached()
+    }
+
     return (
         <FlatList
             onRefresh={onRefresh}
+            removeClippedSubviews={true}
             refreshing={refreshing}
             inverted={false}
+            onEndReachedThreshold={0}
             contentContainerStyle={styles.flatList}
             data={data}
             renderItem={({item}) => <Component item={item}/>}
             keyExtractor={(item) => item.id.toString()}
+            onEndReached={onEndReachedHandler}
         />
     )
 }

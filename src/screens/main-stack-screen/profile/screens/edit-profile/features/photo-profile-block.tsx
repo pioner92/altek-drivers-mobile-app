@@ -10,6 +10,7 @@ import {CameraSVG} from '../../../../../../ui/atoms/icons'
 import {showTakePictureMenu} from '../../../../../../features/take-picture-menu/models'
 import {PHOTOPROFILE} from '../../../../../../lib/db/constants'
 import {links} from '../../../../../../navigation/links'
+import {serverUrl} from '../../../../../../api/urls'
 
 
 type propsType = {
@@ -20,7 +21,6 @@ export const PhotoProfileBlock: React.FC<propsType> = ({enableButtonEdit = false
     const navigate = useNavigate()
     const userPhoto = useStore($userPhoto)
     const userData = useStore($userData)
-
 
     const onPressEditProfile = () => {
         navigate(links.editProfile)
@@ -54,14 +54,19 @@ export const PhotoProfileBlock: React.FC<propsType> = ({enableButtonEdit = false
 
     useEffect(() => {
         getDb(PHOTOPROFILE)
-            .then((data) => data && setUserPhoto(data))
+            .then((data) => {
+                data
+                    ? setUserPhoto(data)
+                    : setUserPhoto(serverUrl + userData.avatar)
+            })
     }, [])
+
 
     return (
         <View style={styles.container}>
             <View style={styles.photo}>
                 {!!userPhoto?.toString() &&
-                <Image style={{width: 80, height: 80, borderRadius: 50}} source={{uri: userPhoto?.toString()}}/>
+                <Image style={{width: 80, height: 80, borderRadius: 50}} source={{uri: userPhoto}}/>
                 }
                 <ButtonCamera/>
             </View>

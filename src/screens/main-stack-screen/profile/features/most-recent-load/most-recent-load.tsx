@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useMemo} from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {WhiteCard} from '../../../../../ui/atoms/card/white-card'
 import {ProfileTitle} from '../../ui/atoms/profile-title'
@@ -7,13 +7,29 @@ import {styleConfig} from '../../../../../StyleConfig'
 import {RightArrowSVG} from '../../../../../ui/atoms/icons'
 import {useNavigate} from '../../../../../lib/hooks'
 import {links} from '../../../../../navigation/links'
+import {useStore} from 'effector-react'
+import {$loadHistory} from '../../screens/completed-loads/models/models'
 
 export const MostRecentLoad: React.FC = () => {
     const navigate = useNavigate()
 
+    const loadHistory = useStore($loadHistory)
+
+    const totalRate = useMemo(() => {
+        return loadHistory.reduce((acc, el) => acc + el.driver_price, 0)
+    }, [loadHistory])
+
+    const loadList = useMemo(() => {
+        return loadHistory.map((el) => el.load)
+    }, [loadHistory])
+
     const onPressSeeAllLoads = () => {
-        navigate(links.completedLoads)
+        navigate(links.completedLoads, {loads: loadList})
     }
+
+    useEffect(() => {
+        // getLoadsHistory()
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -21,7 +37,7 @@ export const MostRecentLoad: React.FC = () => {
             <WhiteCard style={{padding: 16}}>
                 <View style={styles.row}>
                     <Text style={[styles.text, styles.title]}>Your rate</Text>
-                    <Text style={[styles.text, styles.moneyValue]}>555 $</Text>
+                    <Text style={[styles.text, styles.moneyValue]}>${totalRate} $</Text>
                 </View>
                 <View style={[styles.row, {marginTop: 7}]}>
                     <Text style={[styles.text, styles.title]}>Payment status</Text>
