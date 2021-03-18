@@ -4,8 +4,7 @@ import {resetSentBidData} from '../../../screens/main-stack-screen/bids/bid-deta
 import {setDb} from '../../../lib/db'
 import {TIMERBID} from '../../../lib/db/constants'
 
-// export const TIMER_VALUE = 300
-export const TIMER_VALUE = 30
+export const TIMER_VALUE = 300
 
 export class Timer {
     static timer: NodeJS.Timer

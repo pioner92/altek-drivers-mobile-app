@@ -88,7 +88,6 @@ $socketStore.watch((state) => {
         console.log('MESSAGE')
 
         const data = JSON.parse(message?.data) as socketDataType
-        console.log(data)
 
         switch (data?.action) {
         case 'new_load_offer':
