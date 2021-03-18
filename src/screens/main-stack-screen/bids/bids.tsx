@@ -13,6 +13,7 @@ import {FilterButton} from '../../../features/filter-button/filter-button'
 import {StackScreenCreator} from '../../../features/navigation/features/stack-screen-creator/stack-screen-creator'
 import {links} from '../../../navigation/links'
 import {BidList} from '../../../features/bid-list/bid-list'
+import {showAlertCancelBid} from './bid-detail/features/alert/alert-cancel-bid/models/models'
 
 
 // const INTERVAL = 20000
@@ -31,7 +32,6 @@ export const Bids: React.FC = () => {
     useEffect(() => {
         showPreloader()
         getLoadsHandler()
-
         // const timer = setInterval(() => {
         //     getLoadsHandler()
         // }, INTERVAL)

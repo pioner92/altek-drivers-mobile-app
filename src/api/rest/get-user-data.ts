@@ -42,6 +42,7 @@ export type responseUserDataType = {
         company_mail_password: string
         company_mail_port: number
         email_template: string
+        company_phone:string
         parsing_domain: string
         parsing_email: string
         parsing_password: string

@@ -10,6 +10,7 @@ export const useSmsListener = ({callback}:{callback:(code:string)=>void}) => {
 
     useEffect(()=>{
         if (Platform.OS === 'android') {
+            // @ts-ignore
             listener.current = SmsListener.addListener((message:{ originatingAddress: string, body: string, timestamp: number}) => {
                 const {body, originatingAddress} = message
 

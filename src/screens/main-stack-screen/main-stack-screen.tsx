@@ -15,6 +15,7 @@ import {links} from '../../navigation/links'
 import {CompletedLoads} from './profile/screens/completed-loads/completed-loads'
 import {BidDetailForActiveLoads} from './bids/bid-detail/bid-detail-for-active-loads/bid-details-for-active-loads'
 import {BidDetailScreen} from './bids/bid-detail/bid-detail-screen/bid-detail-screen'
+import {CallScreen} from './chat/call-screen/call-screen'
 
 const Stack = createStackNavigator()
 
@@ -62,6 +63,16 @@ export const MainStackScreen = () => {
                 name={links.chatContent}
                 component={ChatContent}
                 options={{
+                    headerShown: true,
+                    headerBackImage: HeaderBackButton,
+                    headerBackTitleVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name={links.callScreen}
+                component={CallScreen}
+                options={{
+                    title: 'CallScreen',
                     headerShown: true,
                     headerBackImage: HeaderBackButton,
                     headerBackTitleVisible: false,

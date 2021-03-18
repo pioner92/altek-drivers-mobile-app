@@ -12,7 +12,7 @@ import {links} from '../../../navigation/links'
 import {MostRecentLoad} from './features/most-recent-load/most-recent-load'
 
 
-const Profile: React.FC<StackScreenProps<any>> = ({navigation}) => {
+const Profile: React.FC<StackScreenProps<any>> = () => {
     useEffect(() => {
         initUserData()
     }, [])

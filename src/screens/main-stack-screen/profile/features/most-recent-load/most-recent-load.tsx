@@ -14,10 +14,7 @@ export const MostRecentLoad: React.FC = () => {
     const navigate = useNavigate()
 
     const loadHistory = useStore($loadHistory)
-
-    const totalRate = useMemo(() => {
-        return loadHistory.reduce((acc, el) => acc + el.driver_price, 0)
-    }, [loadHistory])
+    const rateTotal = loadHistory[0].load.driver_price
 
     const loadList = useMemo(() => {
         return loadHistory.map((el) => el.load)
@@ -33,7 +30,7 @@ export const MostRecentLoad: React.FC = () => {
             <WhiteCard style={{padding: 16}}>
                 <View style={styles.row}>
                     <Text style={[styles.text, styles.title]}>Your rate</Text>
-                    <Text style={[styles.text, styles.moneyValue]}>${totalRate} $</Text>
+                    <Text style={[styles.text, styles.moneyValue]}>{rateTotal} $</Text>
                 </View>
                 <View style={[styles.row, {marginTop: 7}]}>
                     <Text style={[styles.text, styles.title]}>Payment status</Text>

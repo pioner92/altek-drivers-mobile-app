@@ -1,5 +1,5 @@
 import React, {useEffect, useLayoutEffect} from 'react'
-import {KeyboardAvoidingView, Platform, StyleSheet, TouchableOpacity, View} from 'react-native'
+import {KeyboardAvoidingView, Platform, StyleSheet, View} from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
 import {InputContainer} from '../../../../features/chat/InputContent/InputContainer'
 import {AttachMenu} from '../../../../features/chat/AttachMenu/AttachMenu'
@@ -8,7 +8,6 @@ import {getChatData} from '../../../../api/rest/chat/get-chat-data'
 import {StackScreenProps, useHeaderHeight} from '@react-navigation/stack'
 import {$chatsData, setIsInChat, setIsNewMessageInChat, setUnreadCount} from '../models/models'
 import {sendChatMessageSocketAction} from '../../../../api/socket-client/socket-actions/socket-actions'
-import {MoreSVG} from '../../../../ui/atoms/icons/more-svg'
 import {ChatHeader} from './ui/moleculs/chat-header'
 import {useStore} from 'effector-react'
 import {$swipeMenuWrapperValueDY} from '../../../../features/swipe-menu-wrapper/models/models'
@@ -24,6 +23,10 @@ import {
 import {uploadPhotoContainer} from './lib/uploadPhotoContainer'
 import {ChatContext} from './context'
 import {uploadFileChat} from '../../../../api/rest/upload-chat-files'
+import {HeaderRightChatContent} from './features/header-right-chat-content/header-right-chat-content'
+import {links} from '../../../../navigation/links'
+import {chatUsersType} from '../../../../api/rest/chat/get-chats'
+import {$userData} from '../../profile/models/models'
 
 type imagePickerResultType = {
     cancelled: boolean
@@ -46,7 +49,7 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
     const dy = useStore($swipeMenuWrapperValueDY)
     const isMounted = useStore($isMountedAttachMenu)
     const chats = useStore($chatsData)
-
+    const currentUser = useStore($userData)
     const headerHeight = useHeaderHeight()
 
     const value = useStore($animValueAttachMenu)
@@ -68,7 +71,11 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
         if (result.type === 'success') {
             const type = getMediaType(result.name) ?? 'pdf'
             closeAttachMenu()
-            const res = await uploadFileChat(result.name, type, {uri: result.uri, name: result.name, type: `file/${type}`})
+            const res = await uploadFileChat(result.name, type, {
+                uri: result.uri,
+                name: result.name,
+                type: `file/${type}`,
+            })
             if (res) {
                 sendChatMessageSocketAction({files: [res.id], content: '', chat_id: id})
             }
@@ -103,13 +110,18 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
         }
     }
 
-    const onSendMessage = (text: string, file?: { name: string, uri: string }) => {
+    const onSendMessage = (text: string) => {
         sendChatMessageSocketAction({content: text, chat_id: id})
     }
 
+    const onPressPhone = (users?: chatUsersType) => {
+        // @ts-ignore
+        navigation.navigate(links.callScreen, {users, companyPhone: currentUser?.company_info.company_phone})
+    }
 
     useLayoutEffect(() => {
         const chat = chats.find((el) => el.id === id)
+        const dispatchers = chat?.users.filter((el) => el.id !== currentUser.id && el.department !== 'Driver')
 
         if (chat) {
             navigation.setOptions({
@@ -118,17 +130,7 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
                     membersCount={chat.users.length}
                     avatar={getChatAvatar(chat.users) || ''}/>
                 ),
-                headerRight: () => (
-                    <TouchableOpacity
-                        // onPress={()=>Linking.openURL(`tel:+34698779553`)}
-                        style={{
-                            width: 32,
-                            alignItems: 'center',
-                            height: '100%',
-                            justifyContent: 'center',
-                        }}>
-                        <MoreSVG/>
-                    </TouchableOpacity>),
+                headerRight: () => (<HeaderRightChatContent onPressPhone={() => onPressPhone(dispatchers)}/>),
             })
         }
     }, [])
@@ -155,7 +157,7 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
             <ChatContext.Provider value={{chatId: id}}>
                 <ScreenWrapper safeAreaStyle={{backgroundColor: '#fff'}}>
                     <KeyboardAvoidingView
-                    // @ts-ignore
+                        // @ts-ignore
                         behavior={Platform.OS == 'ios' ? 'padding' : null}
                         style={{flex: 1, backgroundColor: '#fff'}}
                         keyboardVerticalOffset={Platform.OS === 'ios' ? headerHeight : 0}

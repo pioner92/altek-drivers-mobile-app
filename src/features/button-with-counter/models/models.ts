@@ -1,7 +1,11 @@
 import {createEvent, createStore, sample} from 'effector'
 import moment from 'moment'
+import {resetSentBidData} from '../../../screens/main-stack-screen/bids/bid-detail/models/models'
+import {setDb} from '../../../lib/db'
+import {TIMERBID} from '../../../lib/db/constants'
 
-export const TIMER_VALUE = 300
+// export const TIMER_VALUE = 300
+export const TIMER_VALUE = 30
 
 export class Timer {
     static timer: NodeJS.Timer
@@ -56,6 +60,8 @@ stopTimer.watch(() => {
     Timer.stop()
     setIsStartedCounter(false)
     resetCounter()
+    resetSentBidData()
+    setDb(TIMERBID, '')
 })
 
 $counter.watch((state) => {
@@ -67,4 +73,7 @@ $counter.watch((state) => {
 
 $counter.reset(resetCounter)
 
+setIsStartedCounter.watch((payload)=>{
+    console.log('SET COUNTER',payload)
+})
 

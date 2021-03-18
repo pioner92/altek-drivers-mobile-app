@@ -8,15 +8,16 @@ import {
     hideScrollSelectMenu,
     showScrollSelectMenu,
 } from '../../../../../features/scroll-select-menu/models/models'
-import {PlaceBidErrorModal} from '../features/placeBidErrorModal/placeBidErrorModal'
+import {AlertErrorPlaceBid} from '../features/alert/alert-error-place-bid/alert-error-place-bid'
 import {
     $isStartedCounter,
     initCounter,
     startTimer,
+    stopTimer,
     TIMER_VALUE,
 } from '../../../../../features/button-with-counter/models/models'
 import {$sentBidData, setSentBidData} from '../models/models'
-import {showPlaceBidErrorModal} from '../features/placeBidErrorModal/models/models'
+import {showPlaceBidErrorModal} from '../features/alert/alert-error-place-bid/models/models'
 import {sendBidSocketAction} from '../../../../../api/socket-client/socket-actions/socket-actions'
 import {removeBid} from '../../../../../api/rest/bid/remove-bid'
 import {getDb, setDb} from '../../../../../lib/db'
@@ -28,6 +29,10 @@ import {ButtonWithCounter} from '../../../../../features/button-with-counter/but
 import {ScrollSelectMenu} from '../../../../../features/scroll-select-menu/scroll-select-menu'
 import {DarkBgAnimated} from '../../../home/available-home/features/dark-bg-animated/dark-bg-animated'
 import {BidDetail} from '../features/bid-detail/bid-detail'
+import {AlertErrorPlaceMultipleBid} from '../features/alert/alert-error-place-multiple-bid/alert-error-place-multiple-bid'
+import {hideAlertCancelBid, showAlertCancelBid} from '../features/alert/alert-cancel-bid/models/models'
+import {AlertCancelBid} from '../features/alert/alert-cancel-bid/alert-cancel-bid'
+import {showAlertErrorPlaceMultipleBid} from '../features/alert/alert-error-place-multiple-bid/models/models'
 
 
 type itemType = {
@@ -59,6 +64,8 @@ export const BidDetailForActiveLoads: React.FC<StackScreenProps<itemType>> = ({r
             } else {
                 showPlaceBidErrorModal()
             }
+        } else {
+            showAlertErrorPlaceMultipleBid()
         }
     }
 
@@ -90,8 +97,16 @@ export const BidDetailForActiveLoads: React.FC<StackScreenProps<itemType>> = ({r
 
 
     const cancelBid = () => {
-        if (!isStartedTimer) {
+        if (!isSentBid() || isStartedTimer) {
             removeBid(data.item.id)
+            hideAlertCancelBid()
+            stopTimer()
+        }
+    }
+
+    const onPressCancelBid = () => {
+        if (isStartedTimer) {
+            showAlertCancelBid()
         }
     }
 
@@ -134,12 +149,14 @@ export const BidDetailForActiveLoads: React.FC<StackScreenProps<itemType>> = ({r
                 // @ts-ignore
                 behavior={Platform.OS == 'ios' ? 'padding' : null}
                 style={{flex: 1, backgroundColor: '#fff'}}
-                keyboardVerticalOffset={Platform.OS === 'ios' ? -130 : 0}
-            >
+                keyboardVerticalOffset={Platform.OS === 'ios' ? -130 : 0}>
                 <BidDetail bidPrice={createYourBidPrice()} perMile={createPerMilePrice()} item={data.item}>
                     <BtnWrapper style={{height: 134, justifyContent: 'space-between'}}>
-                        <Button disabled={isStartedTimer} onPress={placeBid}>Place Bid</Button>
-                        <ButtonWithCounter onPress={cancelBid}>Cancel Bid</ButtonWithCounter>
+                        <Button style={{backgroundColor: isStartedTimer ? '#5E7C9C' : '#1672D4'}}
+                            disabled={isStartedTimer && isSentBid()} onPress={placeBid}>Place Bid</Button>
+                        <ButtonWithCounter isSentBid={isSentBid()} onPress={onPressCancelBid}>
+                            Cancel Bid
+                        </ButtonWithCounter>
                     </BtnWrapper>
                 </BidDetail>
                 <DarkBgAnimated animatedValue={animValueScrollSelectMenu}/>
@@ -148,7 +165,9 @@ export const BidDetailForActiveLoads: React.FC<StackScreenProps<itemType>> = ({r
                     onPressRightButton={onPressPlaceBidInScrollMenu}
                 />
             </KeyboardAvoidingView>
-            <PlaceBidErrorModal/>
+            <AlertErrorPlaceBid/>
+            <AlertErrorPlaceMultipleBid/>
+            <AlertCancelBid onPressYes={cancelBid}/>
         </>
     )
 }

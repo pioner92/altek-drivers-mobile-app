@@ -1,10 +1,6 @@
 import {createEffect} from 'effector'
 import {makeRequest} from '../../make-request'
 import {urls} from '../../urls'
-import {
-    addLoadHistory,
-    addNexPageLoadHistory,
-} from '../../../screens/main-stack-screen/profile/screens/completed-loads/models/models'
 import {loadsResult, loadType} from './types'
 
 
@@ -15,10 +11,13 @@ export type getLoadsHistoryResultType = {
     driver_price:number
     load:loadType
 }
+type sum = {
+    sum:number
+}
 
 export type resultsType = {results:Array<getLoadsHistoryResultType>}
 
-export type getLoadsHistoryResponseType = Omit<loadsResult, 'results'> & resultsType
+export type getLoadsHistoryResponseType = Omit<loadsResult, 'results'> & resultsType & sum
 
 
 export const getLoadsHistory = createEffect(async (page = 1 ):Promise<getLoadsHistoryResponseType> => {
@@ -27,14 +26,6 @@ export const getLoadsHistory = createEffect(async (page = 1 ):Promise<getLoadsHi
 })
 
 
-getLoadsHistory.done.watch(({result, params})=>{
-    // console.log('GET LOADS')
-    // if (params === 1) {
-    //     addLoadHistory(result.results)
-    // } else {
-    //     addNexPageLoadHistory(result.results)
-    // }
-})
 getLoadsHistory.fail.watch(({error})=>{
     console.log('Get loads history error ', error)
 })

@@ -5,23 +5,25 @@ import {$counterMinutes, $isStartedCounter} from './models/models'
 
 type propsType = {
     onPress: () => void
+    isSentBid:boolean
 }
 
-export const ButtonWithCounter: React.FC<propsType> = ({onPress, children}) => {
+export const ButtonWithCounter: React.FC<propsType> = ({onPress, children,isSentBid}) => {
     const timerMinutes = useStore($counterMinutes)
     const isStartedTimer = useStore($isStartedCounter)
+    const isDisabled = !isStartedTimer || isSentBid
 
     const buttonStyle = {
-        borderColor: isStartedTimer ? '#C0C0C0' : '#F95875',
+        borderColor: isDisabled ? '#C0C0C0' : '#F95875',
     }
     const labelStyle = {
-        color: isStartedTimer ? '#798293' : '#FF4869',
+        color: isDisabled ? '#798293' : '#FF4869',
     }
 
     return (
-        <TouchableOpacity disabled={isStartedTimer} onPress={onPress} style={[styles.container, buttonStyle]}>
+        <TouchableOpacity disabled={isDisabled} onPress={onPress} style={[styles.container, buttonStyle]}>
             <Text style={[styles.label, labelStyle]}>{children}</Text>
-            {isStartedTimer ?
+            {isStartedTimer && isSentBid ?
                 <Text style={styles.counter}>{timerMinutes}</Text> :
                 <View style={{width: 40}}/>
             }

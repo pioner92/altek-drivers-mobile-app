@@ -5,7 +5,7 @@ export const requestReadSmsPermission = async () => {
         try {
             await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_SMS, {
                 title: 'Read sms permission',
-                message: 'sms permission',
+                message: 'SMS is read to automatically input a verification code into the phone number verification window',
                 buttonPositive: 'Ok',
                 buttonNegative: 'No',
             })

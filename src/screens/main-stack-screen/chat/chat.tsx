@@ -13,7 +13,6 @@ import {links} from '../../../navigation/links'
 
 const Chat: React.FC = React.memo(() => {
     const chats = useStore($chatsData)
-
     const geUserId = async () => {
         const userId = await getDb(USERID)
         if (userId) {

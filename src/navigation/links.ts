@@ -15,6 +15,7 @@ export enum links {
     bidDetailForActiveLoads = 'BidDetailForActiveLoads',
     filter = 'Filter',
     chat = 'Chat',
+    callScreen = 'CallScreen',
     chatContent = 'ChatContent',
     profile = 'Profile',
     editProfile = 'EditProfile',
