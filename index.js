@@ -1,19 +1,15 @@
-import {AppRegistry} from 'react-native';
+import {AppRegistry} from 'react-native'
 
-import App from './App';
-import React from 'react';
-import {FirebaseService} from './src/lib/firebase-serivce/firebase-service';
-import {notificationHandler} from './src/lib/firebase-serivce/notification-handler';
-
-
+import App from './App'
+import React from 'react'
+import {FirebaseService} from './src/lib/firebase-serivce/firebase-service'
+import {notificationHandler} from './src/lib/firebase-serivce/notification-handler'
+import Instabug from 'instabug-reactnative'
+Instabug.startWithToken('eda9a49f3e04002568ad6b740db82e75', [Instabug.invocationEvent.shake])
 
 
 FirebaseService.backgroundMessageListener({handler: notificationHandler})
-// messaging().setBackgroundMessageHandler(async remoteMessage => {
-//     console.log('Message handled in the background!', remoteMessage);
-//     console.log("MESSAGE BACKGROUND")
-//     // handler({message: remoteMessage})
-// });
+
 
 export function HeadlessCheck({isHeadless}) {
     if (isHeadless) {
@@ -23,7 +19,7 @@ export function HeadlessCheck({isHeadless}) {
 }
 
 
-AppRegistry.registerComponent('main', () => HeadlessCheck);
+AppRegistry.registerComponent('main', () => HeadlessCheck)
 
 
 // registerRootComponent calls AppRegistry.registerComponent('available-home', () => App);

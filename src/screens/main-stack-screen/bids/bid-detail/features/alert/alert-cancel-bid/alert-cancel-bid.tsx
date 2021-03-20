@@ -38,10 +38,10 @@ export const AlertCancelBid: React.FC<propsType> = ({onPressYes}) => {
         <AlertModal
             title='Confirmation'
             enableLeftButton={true}
-            rightButtonLabel="No"
-            leftButtonLabel='Yes'
-            onPressLeftButton={onPressYesHandler}
-            onPressRightButton={closeModal}
+            rightButtonLabel="Yes"
+            leftButtonLabel='No'
+            onPressLeftButton={closeModal}
+            onPressRightButton={onPressYesHandler}
             animStyle={opacity}
         >
             <Text style={styles.text}>Are you sure you want to cancel your bid?</Text>

@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect} from 'react'
+import React, {useEffect, useLayoutEffect, useState} from 'react'
 import {KeyboardAvoidingView, Platform, StyleSheet, View} from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
 import {InputContainer} from '../../../../features/chat/InputContent/InputContainer'
@@ -27,6 +27,7 @@ import {HeaderRightChatContent} from './features/header-right-chat-content/heade
 import {links} from '../../../../navigation/links'
 import {chatUsersType} from '../../../../api/rest/chat/get-chats'
 import {$userData} from '../../profile/models/models'
+import {ProgressIndicator} from './features/progreess-indicator/progress-indicator'
 
 type imagePickerResultType = {
     cancelled: boolean
@@ -51,6 +52,8 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
     const chats = useStore($chatsData)
     const currentUser = useStore($userData)
     const headerHeight = useHeaderHeight()
+    const [progress, setProgress] = useState(0)
+    const [isVisibleProgressIndicator, setIsVisibleProgressIndicator] = useState(false)
 
     const value = useStore($animValueAttachMenu)
 
@@ -66,16 +69,25 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
         return media.match(/\.([a-z]+)/)?.[1]
     }
 
+    const hideProgressIndicator = () => {
+        setIsVisibleProgressIndicator(false)
+        setProgress(0)
+    }
+
     const pickDocument = async () => {
         const result = await DocumentPicker.getDocumentAsync({type: '*/*', multiple: false})
         if (result.type === 'success') {
             const type = getMediaType(result.name) ?? 'pdf'
+
             closeAttachMenu()
+            setIsVisibleProgressIndicator(true)
+
             const res = await uploadFileChat(result.name, type, {
                 uri: result.uri,
                 name: result.name,
                 type: `file/${type}`,
-            })
+            }, setProgress)
+            hideProgressIndicator()
             if (res) {
                 sendChatMessageSocketAction({files: [res.id], content: '', chat_id: id})
             }
@@ -89,11 +101,13 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
         }) as imagePickerResultType
 
         if (!result.cancelled) {
-            const res = await uploadPhotoContainer(result.uri)
+            closeAttachMenu()
+            setIsVisibleProgressIndicator(true)
+            const res = await uploadPhotoContainer(result.uri, setProgress)
+            hideProgressIndicator()
             if (res) {
                 sendChatMessageSocketAction({media: [res.id], content: '', chat_id: id})
             }
-            closeAttachMenu()
         }
     }
 
@@ -126,9 +140,9 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
         if (chat) {
             navigation.setOptions({
                 headerTitle: () => (<ChatHeader
-                    loadId={chat.load}
-                    membersCount={chat.users.length}
-                    avatar={getChatAvatar(chat.users) || ''}/>
+                        loadId={chat.load}
+                        membersCount={chat.users.length}
+                        avatar={getChatAvatar(chat.users) || ''}/>
                 ),
                 headerRight: () => (<HeaderRightChatContent onPressPhone={() => onPressPhone(dispatchers)}/>),
             })
@@ -164,11 +178,14 @@ export const ChatContent: React.FC<StackScreenProps<{ item: chatContentPropsType
                     >
                         <View style={styles.container}>
                             <MessageArea id={id}/>
+                            <ProgressIndicator
+                                style={styles.progressIndicatorContainer}
+                                hidden={!isVisibleProgressIndicator}
+                                progressState={progress}/>
                             <InputContainer
                                 sendMessage={onSendMessage}
                                 openAttach={openAttachMenu}
                             />
-
                         </View>
                     </KeyboardAvoidingView>
                 </ScreenWrapper>
@@ -192,5 +209,13 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
         flex: 1,
+    },
+    progressIndicatorContainer:{
+        bottom: 50,
+        backgroundColor: '#F9F9FB',
+        height: 37,
+        justifyContent: 'center',
+        borderTopLeftRadius: 6,
+        borderTopRightRadius: 6,
     },
 })

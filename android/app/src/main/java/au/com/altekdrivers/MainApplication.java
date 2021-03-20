@@ -1,4 +1,5 @@
 package au.com.altekdrivers;
+import com.instabug.reactlibrary.RNInstabugReactnativePackage;
 
 import android.app.Application;
 import android.content.Context;
@@ -75,11 +76,19 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+      new RNInstabugReactnativePackage
+        .Builder("eda9a49f3e04002568ad6b740db82e75", MainApplication.this)
+        .setInvocationEvent("shake")
+        .setPrimaryColor("#1D82DC")
+        .setFloatingEdge("left")
+        .setFloatingButtonOffsetFromTop(250)
+        .build();
     SoLoader.init(this, /* native exopackage */ false);
 
     if (!BuildConfig.DEBUG) {
       UpdatesController.initialize(this);
     }
+
 
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }

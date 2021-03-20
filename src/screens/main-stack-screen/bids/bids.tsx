@@ -6,17 +6,13 @@ import {BidCard} from '../../../features/bid-card'
 import {useStore} from 'effector-react'
 import {loadsListStore} from '../../../../Store/Store'
 import {getLoads} from '../../../api/rest/loads/get-loads'
-import {Preloader} from '../../../features/preloader/preloader'
 import {$animValuePreloader, showPreloader} from '../../../features/preloader/models/models'
 import {DarkBgAnimated} from '../home/available-home/features/dark-bg-animated/dark-bg-animated'
 import {FilterButton} from '../../../features/filter-button/filter-button'
 import {StackScreenCreator} from '../../../features/navigation/features/stack-screen-creator/stack-screen-creator'
 import {links} from '../../../navigation/links'
 import {BidList} from '../../../features/bid-list/bid-list'
-import {showAlertCancelBid} from './bid-detail/features/alert/alert-cancel-bid/models/models'
 
-
-// const INTERVAL = 20000
 
 export const Bids: React.FC = () => {
     const loads = useStore(loadsListStore)
@@ -30,15 +26,7 @@ export const Bids: React.FC = () => {
     }
 
     useEffect(() => {
-        showPreloader()
         getLoadsHandler()
-        // const timer = setInterval(() => {
-        //     getLoadsHandler()
-        // }, INTERVAL)
-
-        return () => {
-            // clearInterval(timer)
-        }
     }, [])
 
 
@@ -55,7 +43,6 @@ export const Bids: React.FC = () => {
                 </View>
             </ScreenWrapper>
             <DarkBgAnimated animatedValue={preloaderAnimValue}/>
-            <Preloader/>
         </>
     )
 }

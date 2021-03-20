@@ -18,9 +18,10 @@ export const CompanyNumberCard: React.FC<propsType> = ({number}) => {
 const styles = StyleSheet.create({
     card: {
         paddingHorizontal: 12,
+        shadowRadius: 1,
         marginTop: 20,
         paddingVertical: 10,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     title: {
         color: '#000',

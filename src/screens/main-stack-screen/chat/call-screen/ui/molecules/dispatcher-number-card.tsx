@@ -35,6 +35,7 @@ export const DispatcherNumberCard: React.FC<propsType> = ({name, departament, ex
 
 const styles = StyleSheet.create({
     card: {
+        shadowRadius: 1,
         paddingHorizontal: 12,
         marginTop: 20,
         paddingVertical: 10,
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
         fontFamily: 'IBMPlex-400',
         fontSize: 14,
         lineHeight: 18,
+        marginTop: 2,
         color: styleConfig.textColor.dark,
     },
     avatar: {

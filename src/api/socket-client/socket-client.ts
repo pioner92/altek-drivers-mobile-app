@@ -88,7 +88,7 @@ $socketStore.watch((state) => {
         console.log('MESSAGE')
 
         const data = JSON.parse(message?.data) as socketDataType
-
+        console.log(data)
         switch (data?.action) {
         case 'new_load_offer':
             newLoadHandler(data?.data)
@@ -106,7 +106,6 @@ $socketStore.watch((state) => {
             }
             break
         case 'group_chat_message':
-            data.data.user_from.id
             newChatMessageClock(data.data)
             break
         case 'driver_bid':
@@ -159,7 +158,5 @@ newChatMessageHandler.watch(({isAuth, isInChat, selfId, chatData, socketData})=>
         }
         setUnreadCount({id: socketData.chat_id, content: socketData.content})
     }
-    if (socketData.files?.length) {
         addNewChatMessage([socketData])
-    }
 })

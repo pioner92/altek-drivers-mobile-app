@@ -22,10 +22,10 @@ const createFormData = (name: string, format: string, file: string) => {
     return formData
 }
 
-export const uploadFileChat = async (name: string, type: string, file: any): Promise<resultType | undefined> => {
+export const uploadFileChat = async (name: string, type: string, file: any, progressCallback?: (progress: number) => void): Promise<resultType | undefined> => {
     try {
         const body = createFormData(name, type, file)
-        return await uploadFile(urls.fileUpload(), body)
+        return await uploadFile(urls.fileUpload(), body, progressCallback)
     } catch (e) {
         console.log('Upload file error', e)
     }

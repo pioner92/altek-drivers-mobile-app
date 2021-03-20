@@ -2,7 +2,6 @@ import {attach, createEffect} from 'effector'
 import {urls} from '../../urls'
 import {$geoLocationStore, addLoadsToStoreEvent} from '../../../../Store/Store'
 import {makeRequest} from '../../make-request'
-import {hidePreloader, showPreloader} from '../../../features/preloader/models/models'
 import {getDb} from '../../../lib/db'
 import {MAXMILES, USERID} from '../../../lib/db/constants'
 import {$inputValuePickUpPoint} from '../../../screens/main-stack-screen/bids/filter/features/pick-up-point/models'
@@ -81,14 +80,8 @@ export const getLoads = attach({
 })
 
 
-getLoads.watch(() => {
-    showPreloader()
-})
-
-
 getLoads.done.watch(({result, params}) => {
     if (result) {
         addLoadsToStoreEvent(result.results)
     }
-    hidePreloader()
 })

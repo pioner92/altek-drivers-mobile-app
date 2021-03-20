@@ -21,7 +21,7 @@ config.json
 # OSX
 #
 .DS_Store
-test.js
+test/test.test.js
 
 # Xcode
 #

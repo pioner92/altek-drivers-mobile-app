@@ -35,9 +35,14 @@ allprojects {
             // expo-camera bundles a custom com.google.android:cameraview
             url "$rootDir/../node_modules/expo-camera/android/maven"
         }
-
+        maven {
+            url "https://sdks.instabug.com/nexus/repository/instabug-cp"
+        }
         google()
         jcenter()
         maven { url 'https://www.jitpack.io' }
-    }
+    	maven {
+      	    url "https://sdks.instabug.com/nexus/repository/instabug-cp"
+       	}
+      }
 }
